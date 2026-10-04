@@ -3,15 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cryo Labels — batch print freezer labels on laser sheets · labmate.tools</title>
-<meta name="description" content="Free cryo label maker: turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, with a calibration page to line it up with your printer.">
+<title>Cryo Label Maker for Laser Label Sheets | labmate.tools</title>
+<meta name="description" content="Free cryo label maker: turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, with a calibration page for your printer.">
 <link rel="canonical" href="https://labmate.tools/tools/cryo-labels/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cryo Label Maker — free, in your browser | labmate.tools">
+<meta property="og:description" content="Turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, lined up to your own printer.">
+<meta property="og:url" content="https://labmate.tools/tools/cryo-labels/">
+<meta property="og:image" content="https://labmate.tools/assets/og/cryo-labels.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cryo Label Maker — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cryo Label Maker — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, lined up to your own printer.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/cryo-labels.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/cryo-labels/#app","name":"Cryo Label Maker","url":"https://labmate.tools/tools/cryo-labels/","description":"Free cryo label maker: turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, with a calibration page for your printer.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Range or pasted ID list","CSV import","Copies per ID","3-line, ID + QR and large-text templates","Custom sheet geometry","Printer calibration page","Print-ready PDF in millimetres"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/cryo-labels.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Labels","item":"https://labmate.tools/#labels"},{"@type":"ListItem","position":3,"name":"Cryo Label Maker","item":"https://labmate.tools/tools/cryo-labels/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/cryo-labels/#faq","mainEntity":[{"@type":"Question","name":"Which printers and label sheets does it work with?","acceptedAnswer":{"@type":"Answer","text":"Laser printers with laser cryogenic label sheets. You can pick a sheet or enter its geometry. It is not made for thermal label printers."}},{"@type":"Question","name":"How do I line the labels up with my printer?","acceptedAnswer":{"@type":"Answer","text":"Print the calibration page on plain paper, hold it over a blank label sheet against the light, and enter how far to move the print. If the top-left lines up but the bottom-right doesn't, fix the pitch under Sheet geometry instead."}},{"@type":"Question","name":"Can I paste sample IDs from Excel or a CSV file?","acceptedAnswer":{"@type":"Answer","text":"Yes — paste one ID per line, or open a .csv file (the first column is used). The file is read on your computer and never uploaded."}},{"@type":"Question","name":"What print settings should I use?","acceptedAnswer":{"@type":"Answer","text":"Set the scale to Actual size / 100%, not Fit to page, and feed each label sheet through the printer only once."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
 <meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="cryo-labels.css?v=1">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 <div class="page">
@@ -198,6 +221,30 @@
   </div>
 </main>
 
+<!-- more:start -->
+<section class="lm-more is-wide" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · CRYO LABEL MAKER</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Which printers and label sheets does it work with?</summary><p>Laser printers with laser cryogenic label sheets. You can pick a sheet or enter its geometry. It is not made for thermal label printers.</p></details>
+      <details><summary>How do I line the labels up with my printer?</summary><p>Print the calibration page on plain paper, hold it over a blank label sheet against the light, and enter how far to move the print. If the top-left lines up but the bottom-right doesn&#x27;t, fix the pitch under Sheet geometry instead.</p></details>
+      <details><summary>Can I paste sample IDs from Excel or a CSV file?</summary><p>Yes — paste one ID per line, or open a .csv file (the first column is used). The file is read on your computer and never uploaded.</p></details>
+      <details><summary>What print settings should I use?</summary><p>Set the scale to Actual size / 100%, not Fit to page, and feed each label sheet through the printer only once.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../plate-tracker/"><span class="n">1.1</span><span class="t">Plate Tracker</span><span class="d">Tap each well as you pipette. Never lose your place on a 96 or 384 well plate.</span></a></li>
+        <li><a href="../poster-check/"><span class="n">6.1</span><span class="t">Poster Check</span><span class="d">File size, print size, board size — checked once, before you pay the print shop.</span></a></li>
+      </ul>
+      <a class="all" href="../../#labels">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 <footer class="footer mono">
   <span>LABMATE.TOOLS · VOL. 1</span>
   <span><a href="https://unjamkit.com">UNJAMKIT</a> · <a href="../../privacy/">PRIVACY</a></span>

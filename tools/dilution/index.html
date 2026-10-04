@@ -3,19 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dilution Calculator (C1V1 = C2V2) — stock volume, diluent &amp; dilution factor | labmate.tools</title>
-<meta name="description" content="Free C1V1 = C2V2 dilution calculator. Solve for stock volume, final volume or either concentration in M, mM, µM, nM, mg/mL, ng/µL, % or X. Get the stock and diluent volumes and a two-step plan when the volume is too small to pipette.">
+<title>Dilution Calculator (C1V1 = C2V2) | labmate.tools</title>
+<meta name="description" content="Free C1V1 = C2V2 dilution calculator. Solve for stock or final volume or concentration in any unit, with stock and diluent volumes ready to pipette.">
 <link rel="canonical" href="https://labmate.tools/tools/dilution/">
-<meta name="theme-color" content="#F2EDDF">
-<meta property="og:title" content="Dilution Calculator (C1V1 = C2V2) — labmate.tools">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dilution Calculator — free, in your browser | labmate.tools">
 <meta property="og:description" content="Solve C1V1 = C2V2 in any unit. Stock volume, diluent volume and dilution factor, ready to pipette.">
 <meta property="og:url" content="https://labmate.tools/tools/dilution/">
-<meta property="og:type" content="website">
+<meta property="og:image" content="https://labmate.tools/assets/og/dilution.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dilution Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dilution Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Solve C1V1 = C2V2 in any unit. Stock volume, diluent volume and dilution factor, ready to pipette.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/dilution.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/dilution/#app","name":"Dilution Calculator","url":"https://labmate.tools/tools/dilution/","description":"Free C1V1 = C2V2 dilution calculator. Solve for stock or final volume or concentration in any unit, with stock and diluent volumes ready to pipette.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Solve for C1, V1, C2 or V2","Molar, mass, % and X units","Stock and diluent volumes","Dilution factor","Two-step plan for volumes under 1 µL","Copy recipe"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/dilution.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"Dilution Calculator","item":"https://labmate.tools/tools/dilution/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/dilution/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate how much stock to add?","acceptedAnswer":{"@type":"Answer","text":"Use V₁ = C₂ × V₂ ÷ C₁. For 1 mL of 10 µM from a 1 mM stock: 10 µM × 1 mL ÷ 1 mM = 10 µL of stock plus 990 µL of diluent."}},{"@type":"Question","name":"Can I use different units for the stock and the final solution?","acceptedAnswer":{"@type":"Answer","text":"Yes — mM into µM, or mL into µL, is converted for you. Both concentrations must be the same kind (molar with molar, mass with mass). To go between molar and mg/mL, use the Molarity Calculator."}},{"@type":"Question","name":"What if the stock volume is too small to pipette?","acceptedAnswer":{"@type":"Answer","text":"When the stock volume is under 1 µL, the calculator gives a two-step plan with an intermediate dilution so you can pipette it accurately."}},{"@type":"Question","name":"What does a 1:100 dilution mean here?","acceptedAnswer":{"@type":"Answer","text":"1 part stock in 100 parts total (1 + 99), the usual lab reading. The dilution factor is C₁ ÷ C₂."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 
@@ -168,6 +187,30 @@
       </div>
     </div>
   </section>
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · DILUTION CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate how much stock to add?</summary><p>Use V₁ = C₂ × V₂ ÷ C₁. For 1 mL of 10 µM from a 1 mM stock: 10 µM × 1 mL ÷ 1 mM = 10 µL of stock plus 990 µL of diluent.</p></details>
+      <details><summary>Can I use different units for the stock and the final solution?</summary><p>Yes — mM into µM, or mL into µL, is converted for you. Both concentrations must be the same kind (molar with molar, mass with mass). To go between molar and mg/mL, use the Molarity Calculator.</p></details>
+      <details><summary>What if the stock volume is too small to pipette?</summary><p>When the stock volume is under 1 µL, the calculator gives a two-step plan with an intermediate dilution so you can pipette it accurately.</p></details>
+      <details><summary>What does a 1:100 dilution mean here?</summary><p>1 part stock in 100 parts total (1 + 99), the usual lab reading. The dilution factor is C₁ ÷ C₂.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../molarity/"><span class="n">2.3</span><span class="t">Molarity Calculator</span><span class="d">How many grams to weigh, and mg/mL ↔ µM with the molecular weight.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution Calculator</span><span class="d">Plan a 2-fold, 10-fold or any-fold series, tube by tube, ready to print.</span></a></li>
+        <li><a href="../master-mix/"><span class="n">2.1</span><span class="t">Master Mix Calculator</span><span class="d">Scale a PCR or qPCR mix for any number of reactions, with overage built in.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 </main>
 
 <footer class="lm-foot lm-foot-in">

@@ -1,0 +1,53 @@
+/* labmate.tools — FAQ + related tools block shared by every tool page */
+.lm-more {
+  --m-paper: #F2EDDF; --m-card: #FAF7EE; --m-ink: #1B2224; --m-ink-2: #3A4443; --m-teal: #17403D; --m-rule: #9A968A;
+  max-width: 1200px; margin: 44px auto 0; box-sizing: border-box;
+  font-family: "IBM Plex Sans", system-ui, sans-serif; color: var(--m-ink);
+  border-top: 2px solid var(--m-ink);
+}
+.lm-more.is-pad { padding: 0 24px; border-top: 0; }
+.lm-more.is-wide { max-width: none; }
+.lm-more.is-pad > .lm-more-grid { border-top: 2px solid var(--m-ink); }
+.lm-more *, .lm-more *::before, .lm-more *::after { box-sizing: border-box; }
+.lm-more-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 32px; }
+.lm-more-k {
+  background: var(--m-ink); color: var(--m-paper); font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px; letter-spacing: .1em; padding: 6px 10px; margin: 28px 0 8px;
+}
+.lm-more h2 {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; margin: 18px 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--m-ink);
+  background: none; color: var(--m-ink); display: block;
+}
+.lm-faq details { border-bottom: 1px dotted var(--m-rule); }
+.lm-faq summary {
+  cursor: pointer; list-style: none; padding: 10px 28px 10px 0; position: relative;
+  font-family: "IBM Plex Serif", Georgia, serif; font-size: 18px; font-weight: 600; line-height: 1.35;
+}
+.lm-faq summary::-webkit-details-marker { display: none; }
+.lm-faq summary::after {
+  content: "+"; position: absolute; right: 4px; top: 9px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 500; font-size: 18px; color: var(--m-teal);
+}
+.lm-faq details[open] summary::after { content: "−"; }
+.lm-faq summary:hover { color: var(--m-teal); }
+.lm-faq summary:focus-visible { outline: 2px solid var(--m-teal); outline-offset: 2px; }
+.lm-faq p { margin: 0 0 12px; font-size: 16px; line-height: 1.55; color: var(--m-ink-2); max-width: 70ch; }
+.lm-rel ul { list-style: none; margin: 0; padding: 0; }
+.lm-rel li { border-bottom: 1px dotted var(--m-rule); }
+.lm-rel a {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 2px 10px; padding: 10px 0;
+  color: var(--m-ink); text-decoration: none;
+}
+.lm-rel .n { grid-row: span 2; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .06em; color: var(--m-teal); padding-top: 3px; }
+.lm-rel .t { font-family: "IBM Plex Serif", Georgia, serif; font-size: 17px; font-weight: 600; }
+.lm-rel .d { font-size: 14px; line-height: 1.4; color: var(--m-ink-2); }
+.lm-rel a:hover .t { color: var(--m-teal); text-decoration: underline; }
+.lm-rel .all { display: inline-block; margin-top: 12px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .08em; color: var(--m-ink); }
+.lm-rel .all:hover { color: var(--m-teal); }
+@media (max-width: 760px) {
+  .lm-more-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .lm-more.is-pad { padding: 0 16px; }
+  .lm-faq summary { font-size: 17px; }
+}
+@media print { .lm-more { display: none !important; } }

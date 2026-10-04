@@ -3,19 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Serial Dilution Calculator — 2-fold, 10-fold, any fold, tube by tube | labmate.tools</title>
-<meta name="description" content="Free serial dilution calculator. Set the top concentration, fold, number of tubes and volume per tube. Get the diluent and transfer volume for every tube, the concentration series, and a printable plan.">
+<title>Serial Dilution Calculator, Tube by Tube | labmate.tools</title>
+<meta name="description" content="Free serial dilution calculator. Set top concentration, fold, tubes and volume; get diluent and transfer volumes for every tube and a printable plan.">
 <link rel="canonical" href="https://labmate.tools/tools/serial-dilution/">
-<meta name="theme-color" content="#F2EDDF">
-<meta property="og:title" content="Serial Dilution Calculator — labmate.tools">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Serial Dilution Calculator — free, in your browser | labmate.tools">
 <meta property="og:description" content="Plan a 2-fold, 10-fold or any-fold dilution series, tube by tube, ready to print.">
 <meta property="og:url" content="https://labmate.tools/tools/serial-dilution/">
-<meta property="og:type" content="website">
+<meta property="og:image" content="https://labmate.tools/assets/og/serial-dilution.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Serial Dilution Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Serial Dilution Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Plan a 2-fold, 10-fold or any-fold dilution series, tube by tube, ready to print.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/serial-dilution.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/serial-dilution/#app","name":"Serial Dilution Calculator","url":"https://labmate.tools/tools/serial-dilution/","description":"Free serial dilution calculator. Set top concentration, fold, tubes and volume; get diluent and transfer volumes for every tube and a printable plan.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Any fold per step","Diluent and transfer volume per tube","Concentration series","Optional stock step","Optional blank tube","Equal final volumes","Printable plan"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/serial-dilution.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"Serial Dilution Calculator","item":"https://labmate.tools/tools/serial-dilution/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/serial-dilution/#faq","mainEntity":[{"@type":"Question","name":"How much do I transfer between tubes in a serial dilution?","acceptedAnswer":{"@type":"Answer","text":"Transfer T = V ÷ (F − 1), where V is the volume you want left in each tube and F is the fold. Tubes 2 to n each get V of diluent first."}},{"@type":"Question","name":"What does a 2-fold, 6-tube series from 1000 ng/mL look like?","acceptedAnswer":{"@type":"Answer","text":"With 100 µL per tube: 100 µL diluent in tubes 2–6, 200 µL of 1000 ng/mL in tube 1, then move 100 µL down the line — 1000, 500, 250, 125, 62.5 and 31.25 ng/mL."}},{"@type":"Question","name":"My top tube has to be made from a stronger stock. Can it plan that?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the stock concentration and the plan adds the step that makes the top tube."}},{"@type":"Question","name":"Can every tube end with the same volume?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tick the option to take the extra out of the last tube. You can also add a blank tube with diluent only."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 
@@ -187,6 +206,30 @@
       </div>
     </div>
   </section>
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · SERIAL DILUTION CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How much do I transfer between tubes in a serial dilution?</summary><p>Transfer T = V ÷ (F − 1), where V is the volume you want left in each tube and F is the fold. Tubes 2 to n each get V of diluent first.</p></details>
+      <details><summary>What does a 2-fold, 6-tube series from 1000 ng/mL look like?</summary><p>With 100 µL per tube: 100 µL diluent in tubes 2–6, 200 µL of 1000 ng/mL in tube 1, then move 100 µL down the line — 1000, 500, 250, 125, 62.5 and 31.25 ng/mL.</p></details>
+      <details><summary>My top tube has to be made from a stronger stock. Can it plan that?</summary><p>Yes. Enter the stock concentration and the plan adds the step that makes the top tube.</p></details>
+      <details><summary>Can every tube end with the same volume?</summary><p>Yes. Tick the option to take the extra out of the last tube. You can also add a blank tube with diluent only.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit. Stock and diluent volumes, ready to pipette.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t">Protein Loading Calculator</span><span class="d">BCA standard curve → protein concentration → Western blot loading table.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 </main>
 
 <footer class="lm-foot lm-foot-in">

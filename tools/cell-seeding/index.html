@@ -3,19 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cell Count &amp; Seeding Calculator — hemocytometer, viability, cells per well | labmate.tools</title>
-<meta name="description" content="Free hemocytometer and cell seeding calculator. Turn your square counts into live cells/mL and viability, then get the cell suspension and medium volumes to seed any plate, dish or flask.">
+<title>Cell Seeding &amp; Hemocytometer Calculator | labmate.tools</title>
+<meta name="description" content="Free hemocytometer and cell seeding calculator: square counts to live cells/mL and viability, then cell suspension and medium volumes for any plate or flask.">
 <link rel="canonical" href="https://labmate.tools/tools/cell-seeding/">
-<meta name="theme-color" content="#F2EDDF">
-<meta property="og:title" content="Cell Count & Seeding Calculator — labmate.tools">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cell Count &amp; Seeding Calculator — free, in your browser | labmate.tools">
 <meta property="og:description" content="Hemocytometer counts to cells/mL, then exact volumes to seed your plate.">
 <meta property="og:url" content="https://labmate.tools/tools/cell-seeding/">
-<meta property="og:type" content="website">
+<meta property="og:image" content="https://labmate.tools/assets/og/cell-seeding.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cell Count &amp; Seeding Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cell Count &amp; Seeding Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Hemocytometer counts to cells/mL, then exact volumes to seed your plate.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/cell-seeding.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/cell-seeding/#app","name":"Cell Count & Seeding Calculator","url":"https://labmate.tools/tools/cell-seeding/","description":"Free hemocytometer and cell seeding calculator: square counts to live cells/mL and viability, then cell suspension and medium volumes for any plate or flask.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Hemocytometer counts to cells/mL","Trypan blue viability","Automated counter input","Cells per well or per cm²","Cell suspension and medium volumes","Printable seeding mix"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/cell-seeding.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cells & Protein","item":"https://labmate.tools/#cells"},{"@type":"ListItem","position":3,"name":"Cell Count & Seeding Calculator","item":"https://labmate.tools/tools/cell-seeding/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/cell-seeding/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate cells/mL from a hemocytometer?","acceptedAnswer":{"@type":"Answer","text":"cells/mL = mean count per large square × dilution × 10⁴. For 52, 48, 50 and 55 live cells mixed 1:1 with trypan blue: 51.25 × 2 × 10⁴ = 1.025 × 10⁶ cells/mL."}},{"@type":"Question","name":"How is viability calculated?","acceptedAnswer":{"@type":"Answer","text":"Viability = live ÷ (live + dead). Count the blue (dead) cells in the same squares as the live ones."}},{"@type":"Question","name":"I already have a count from an automated cell counter. Can I use it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose A CELL COUNT and type the concentration in."}},{"@type":"Question","name":"How many cells should I count per square?","acceptedAnswer":{"@type":"Answer","text":"Roughly 20–100 cells per square. Outside that range, dilute or concentrate the cells and count again."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 
@@ -234,6 +253,30 @@
       </div>
     </div>
   </section>
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · CELL COUNT &amp; SEEDING CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate cells/mL from a hemocytometer?</summary><p>cells/mL = mean count per large square × dilution × 10⁴. For 52, 48, 50 and 55 live cells mixed 1:1 with trypan blue: 51.25 × 2 × 10⁴ = 1.025 × 10⁶ cells/mL.</p></details>
+      <details><summary>How is viability calculated?</summary><p>Viability = live ÷ (live + dead). Count the blue (dead) cells in the same squares as the live ones.</p></details>
+      <details><summary>I already have a count from an automated cell counter. Can I use it?</summary><p>Yes. Choose A CELL COUNT and type the concentration in.</p></details>
+      <details><summary>How many cells should I count per square?</summary><p>Roughly 20–100 cells per square. Outside that range, dilute or concentrate the cells and count again.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t">Protein Loading Calculator</span><span class="d">BCA standard curve → protein concentration → Western blot loading table.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit. Stock and diluent volumes, ready to pipette.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cells">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 </main>
 
 <footer class="lm-foot lm-foot-in">

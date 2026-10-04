@@ -3,15 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panel Designer — flow cytometry panel builder with spectra and spillover · labmate.tools</title>
-<meta name="description" content="Free, vendor-neutral flow cytometry panel designer: pick your cytometer (or enter your own filters), assign fluorochromes to markers, and see emission spectra, estimated spillover and spectral similarity. Runs in your browser.">
+<title>Flow Cytometry Panel Designer | labmate.tools</title>
+<meta name="description" content="Free, vendor-neutral flow cytometry panel designer. Pick your cytometer, assign fluorochromes and see spectra, estimated spillover and spectral similarity.">
 <link rel="canonical" href="https://labmate.tools/tools/panel-designer/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flow Cytometry Panel Designer — free, in your browser | labmate.tools">
+<meta property="og:description" content="Vendor-neutral flow cytometry panel builder: pick your cytometer, assign fluorochromes and see spectra, estimated spillover and similarity.">
+<meta property="og:url" content="https://labmate.tools/tools/panel-designer/">
+<meta property="og:image" content="https://labmate.tools/assets/og/panel-designer.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flow Cytometry Panel Designer — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flow Cytometry Panel Designer — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Vendor-neutral flow cytometry panel builder: pick your cytometer, assign fluorochromes and see spectra, estimated spillover and similarity.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/panel-designer.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/panel-designer/#app","name":"Flow Cytometry Panel Designer","url":"https://labmate.tools/tools/panel-designer/","description":"Free, vendor-neutral flow cytometry panel designer. Pick your cytometer, assign fluorochromes and see spectra, estimated spillover and spectral similarity.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Cytometer presets and custom instruments","Editable filters","Fluorochrome to marker assignment","Emission spectra","Estimated spillover matrix","Spectral similarity","Share panels by link","Vendor-neutral dye list"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/panel-designer.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cytometry","item":"https://labmate.tools/#cytometry"},{"@type":"ListItem","position":3,"name":"Flow Cytometry Panel Designer","item":"https://labmate.tools/tools/panel-designer/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/panel-designer/#faq","mainEntity":[{"@type":"Question","name":"Does the spillover estimate replace compensation?","acceptedAnswer":{"@type":"Answer","text":"No. Spillover here is a theoretical estimate from spectra and your filters. Real values also depend on detector voltages and laser power, so compensation always comes from single-stain controls on your instrument. Spreading error is not modelled."}},{"@type":"Question","name":"My cytometer's filters differ from the preset. What can I do?","acceptedAnswer":{"@type":"Answer","text":"Facilities often swap filters. Check the labels on your instrument and use EDIT FILTERS, or add your own instrument."}},{"@type":"Question","name":"Is the dye list sponsored by a vendor?","acceptedAnswer":{"@type":"Answer","text":"No. Dyes from every supplier are listed side by side, with peak values from each maker's published tables. Nothing is sponsored."}},{"@type":"Question","name":"Where are my panels saved?","acceptedAnswer":{"@type":"Answer","text":"In your browser. Clearing site data or switching browsers loses them, so export a copy if they matter. You can also share a panel by link."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
 <meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="panel-designer.css?v=1">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 <div class="page">
@@ -157,6 +180,30 @@
   </ol>
 </section>
 
+<!-- more:start -->
+<section class="lm-more is-wide" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · FLOW CYTOMETRY PANEL DESIGNER</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Does the spillover estimate replace compensation?</summary><p>No. Spillover here is a theoretical estimate from spectra and your filters. Real values also depend on detector voltages and laser power, so compensation always comes from single-stain controls on your instrument. Spreading error is not modelled.</p></details>
+      <details><summary>My cytometer&#x27;s filters differ from the preset. What can I do?</summary><p>Facilities often swap filters. Check the labels on your instrument and use EDIT FILTERS, or add your own instrument.</p></details>
+      <details><summary>Is the dye list sponsored by a vendor?</summary><p>No. Dyes from every supplier are listed side by side, with peak values from each maker&#x27;s published tables. Nothing is sponsored.</p></details>
+      <details><summary>Where are my panels saved?</summary><p>In your browser. Clearing site data or switching browsers loses them, so export a copy if they matter. You can also share a panel by link.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../cell-seeding/"><span class="n">5.1</span><span class="t">Cell Count &amp; Seeding Calculator</span><span class="d">Hemocytometer counts to cells/mL, then exact volumes to seed your plate.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t">Protein Loading Calculator</span><span class="d">BCA standard curve → protein concentration → Western blot loading table.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cytometry">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 <footer class="footer mono">
   <span>LABMATE.TOOLS · VOL. 1</span>
   <span><a href="https://unjamkit.com">UNJAMKIT</a> · <a href="../../privacy/">PRIVACY</a></span>

@@ -3,19 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Master Mix Calculator — scale PCR &amp; qPCR mixes with overage | labmate.tools</title>
-<meta name="description" content="Free master mix calculator for PCR, qPCR and other reactions. List your reagents per reaction, set the number of reactions and overage, top up with water, then copy or print the table.">
+<title>Master Mix Calculator for PCR &amp; qPCR | labmate.tools</title>
+<meta name="description" content="Free PCR and qPCR master mix calculator. List reagents per reaction, set reactions and overage, top up with water, then copy or print the table.">
 <link rel="canonical" href="https://labmate.tools/tools/master-mix/">
-<meta name="theme-color" content="#F2EDDF">
-<meta property="og:title" content="Master Mix Calculator — labmate.tools">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Master Mix Calculator — free, in your browser | labmate.tools">
 <meta property="og:description" content="Scale a reaction mix for any number of samples, with overage built in.">
 <meta property="og:url" content="https://labmate.tools/tools/master-mix/">
-<meta property="og:type" content="website">
+<meta property="og:image" content="https://labmate.tools/assets/og/master-mix.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Master Mix Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Master Mix Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Scale a reaction mix for any number of samples, with overage built in.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/master-mix.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/master-mix/#app","name":"Master Mix Calculator","url":"https://labmate.tools/tools/master-mix/","description":"Free PCR and qPCR master mix calculator. List reagents per reaction, set reactions and overage, top up with water, then copy or print the table.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Per-reaction reagent table","Overage as % or extra reactions","Top up with water","qPCR and PCR starting templates","Copy to Excel","Printable bench sheet"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/master-mix.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"Master Mix Calculator","item":"https://labmate.tools/tools/master-mix/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/master-mix/#faq","mainEntity":[{"@type":"Question","name":"How much overage should I add to a master mix?","acceptedAnswer":{"@type":"Answer","text":"10% is common to cover pipetting loss. You can also add a fixed number of extra reactions instead of a percentage."}},{"@type":"Question","name":"Should the template go into the master mix?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Untick IN MIX for anything you add to each well separately, such as the template or sample. It stays in the reaction total but not in the mix."}},{"@type":"Question","name":"Can the calculator work out the water for me?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the reaction volume and tick Top up with water; water = reaction volume minus all other reagents."}},{"@type":"Question","name":"How is the volume for the mix calculated?","acceptedAnswer":{"@type":"Answer","text":"Volume in mix = volume per reaction × effective reactions. For example, 24 qPCR reactions + 10% overage = a mix for 26.4 reactions."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 
@@ -171,6 +190,30 @@
       </div>
     </div>
   </section>
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · MASTER MIX CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How much overage should I add to a master mix?</summary><p>10% is common to cover pipetting loss. You can also add a fixed number of extra reactions instead of a percentage.</p></details>
+      <details><summary>Should the template go into the master mix?</summary><p>Usually not. Untick IN MIX for anything you add to each well separately, such as the template or sample. It stays in the reaction total but not in the mix.</p></details>
+      <details><summary>Can the calculator work out the water for me?</summary><p>Yes. Enter the reaction volume and tick Top up with water; water = reaction volume minus all other reagents.</p></details>
+      <details><summary>How is the volume for the mix calculated?</summary><p>Volume in mix = volume per reaction × effective reactions. For example, 24 qPCR reactions + 10% overage = a mix for 26.4 reactions.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit. Stock and diluent volumes, ready to pipette.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution Calculator</span><span class="d">Plan a 2-fold, 10-fold or any-fold series, tube by tube, ready to print.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 </main>
 
 <footer class="lm-foot lm-foot-in">

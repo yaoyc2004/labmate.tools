@@ -3,9 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>96 &amp; 384 Well Plate Tracker — tap each well as you pipette | labmate.tools</title>
-<meta name="description" content="Free well plate pipetting tracker for iPad, laptop and phone. Tap each well as you load it, track up to 8 reagents in colored rounds, skip blank wells, undo. Progress is saved in your browser.">
+<title>Well Plate Pipetting Tracker (96 &amp; 384) | labmate.tools</title>
+<meta name="description" content="Free well plate pipetting tracker for iPad, laptop and phone. Tap each well as you load a 96 or 384 well plate and track up to 8 reagents in rounds.">
 <link rel="canonical" href="https://labmate.tools/tools/plate-tracker/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Plate Tracker — free, in your browser | labmate.tools">
+<meta property="og:description" content="Tap each well as you pipette a 96 or 384 well plate. Track up to 8 reagents in colored rounds and never lose your place.">
+<meta property="og:url" content="https://labmate.tools/tools/plate-tracker/">
+<meta property="og:image" content="https://labmate.tools/assets/og/plate-tracker.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Plate Tracker — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plate Tracker — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Tap each well as you pipette a 96 or 384 well plate. Track up to 8 reagents in colored rounds and never lose your place.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/plate-tracker.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/plate-tracker/#app","name":"Plate Tracker","url":"https://labmate.tools/tools/plate-tracker/","description":"Free well plate pipetting tracker for iPad, laptop and phone. Tap each well as you load a 96 or 384 well plate and track up to 8 reagents in rounds.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["96 and 384 well plates","Up to 8 reagent rounds per plate","Row and column mode for multichannel pipettes","1:1 plate-on-iPad mode","Skip blank wells","Undo","Progress saved in the browser"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/plate-tracker.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Plates","item":"https://labmate.tools/#plates"},{"@type":"ListItem","position":3,"name":"Plate Tracker","item":"https://labmate.tools/tools/plate-tracker/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/plate-tracker/#faq","mainEntity":[{"@type":"Question","name":"Can I use the plate tracker with a multichannel pipette?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch to ROW or COLUMN and a single tap — or MARK NEXT — marks the whole row or column at once."}},{"@type":"Question","name":"Will I lose my place if the page refreshes?","acceptedAnswer":{"@type":"Answer","text":"No. Progress is saved in your browser after every tap, so a refresh or a closed tab keeps your plate. Private browsing, clearing site data, or switching device or browser starts a fresh plate."}},{"@type":"Question","name":"Can I set the plate directly on my iPad screen?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose 1:1 and calibrate once against the plate's edges or a bank card. The plate is then drawn at its real size, using the standard SLAS/ANSI footprint and well positions."}},{"@type":"Question","name":"How do I track several reagents on the same plate?","acceptedAnswer":{"@type":"Answer","text":"Each reagent is a round — up to 8 per plate. Mark wells as added or skipped; when every well is in, the round shows PASS and you move to the next one."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":[]},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
 <meta name="theme-color" content="#F2EDDF">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Plate Tracker">
@@ -14,6 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="plate-tracker.css?v=7">
+<link rel="stylesheet" href="../../assets/more.css?v=1">
 </head>
 <body>
 
@@ -226,6 +249,30 @@
   </div>
 </section>
 
+<!-- more:start -->
+<section class="lm-more is-pad" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · PLATE TRACKER</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Can I use the plate tracker with a multichannel pipette?</summary><p>Yes. Switch to ROW or COLUMN and a single tap — or MARK NEXT — marks the whole row or column at once.</p></details>
+      <details><summary>Will I lose my place if the page refreshes?</summary><p>No. Progress is saved in your browser after every tap, so a refresh or a closed tab keeps your plate. Private browsing, clearing site data, or switching device or browser starts a fresh plate.</p></details>
+      <details><summary>Can I set the plate directly on my iPad screen?</summary><p>Yes. Choose 1:1 and calibrate once against the plate&#x27;s edges or a bank card. The plate is then drawn at its real size, using the standard SLAS/ANSI footprint and well positions.</p></details>
+      <details><summary>How do I track several reagents on the same plate?</summary><p>Each reagent is a round — up to 8 per plate. Mark wells as added or skipped; when every well is in, the round shows PASS and you move to the next one.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../master-mix/"><span class="n">2.1</span><span class="t">Master Mix Calculator</span><span class="d">Scale a PCR or qPCR mix for any number of reactions, with overage built in.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution Calculator</span><span class="d">Plan a 2-fold, 10-fold or any-fold series, tube by tube, ready to print.</span></a></li>
+      </ul>
+      <a class="all" href="../../#plates">ALL 12 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
 <footer class="pt-foot">
   <span>LABMATE.TOOLS · VOL. 1</span>
   <span><a href="../../">INDEX</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
