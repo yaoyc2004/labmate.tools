@@ -44,6 +44,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=3">
 <link rel="stylesheet" href="../../assets/more.css?v=1">
+<link rel="stylesheet" href="cell-seeding.css?v=1">
 </head>
 <body>
 
@@ -89,34 +90,57 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       </div>
     </div>
 
-    <div class="cs-count" id="hemo">
-      <div class="term" data-term="live">
-        <div class="term-head"><span class="term-sym">live</span><span class="term-name">CELLS PER SQUARE</span></div>
-        <div class="term-body">
-          <label class="sr" for="live">Live cells counted in each large square</label>
-          <input id="live" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="52 48 50 55">
-        </div>
-        <p class="cs-hint">One number per large square, e.g. <b>52 48 50 55</b></p>
-        <div class="term-msg" id="livem"></div>
+    <div class="hc">
+    <div class="hc-left">
+    <div class="hc-wrap" id="hemo">
+      <div class="hc-cap"><span>A · COUNT THE CORNER SQUARES</span><span>EACH 1 × 1 MM = 0.1 µL</span></div>
+      <div class="hc-keyrow">
+        <div class="hc-key" aria-hidden="true"><b>1</b><i></i><b>2</b><i></i><i class="c"></i><i></i><b>3</b><i></i><b>4</b></div>
+        <p>Square 1 is enough. Squares 2–4 can be skipped — the mean uses the ones you fill.</p>
       </div>
-      <div class="term" data-term="dead">
-        <div class="term-head"><span class="term-sym">dead</span><span class="term-name">BLUE CELLS · OPTIONAL</span></div>
-        <div class="term-body">
-          <label class="sr" for="dead">Dead (blue) cells counted in the same squares</label>
-          <input id="dead" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="3 5 2 4">
+      <div class="hc-chamber" role="group" aria-label="Hemocytometer corner squares">
+        <div class="hc-sq hc-corner" data-q="1">
+          <div class="hc-card">
+            <div class="hc-card-h"><span class="hc-n">SQ 1</span><span class="hc-st" id="st1">START HERE</span></div>
+            <label class="hc-k" for="l1"><i class="hc-dot"></i>LIVE · CLEAR</label>
+            <input class="hc-live" id="l1" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="0" aria-label="Square 1, live cells">
+            <div class="hc-dead"><label class="hc-k is-dead" for="d1"><i class="hc-dot is-dead"></i>DEAD<span class="hc-opt"> · BLUE</span></label><input id="d1" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="–" aria-label="Square 1, dead blue cells"></div>
+          </div>
         </div>
-        <p class="cs-hint">Same squares, trypan-blue stained cells</p>
-        <div class="term-msg" id="deadm"></div>
+        <div class="hc-sq hc-edge-h" aria-hidden="true"></div>
+        <div class="hc-sq hc-corner" data-q="2">
+          <div class="hc-card">
+            <div class="hc-card-h"><span class="hc-n">SQ 2</span><span class="hc-st" id="st2">OPTIONAL</span></div>
+            <label class="hc-k" for="l2"><i class="hc-dot"></i>LIVE · CLEAR</label>
+            <input class="hc-live" id="l2" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="skip" aria-label="Square 2, live cells">
+            <div class="hc-dead"><label class="hc-k is-dead" for="d2"><i class="hc-dot is-dead"></i>DEAD<span class="hc-opt"> · BLUE</span></label><input id="d2" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="–" aria-label="Square 2, dead blue cells"></div>
+          </div>
+        </div>
+        <div class="hc-sq hc-edge-v" aria-hidden="true"></div>
+        <div class="hc-sq hc-center" aria-hidden="true"><span>CENTRE · NOT USED</span></div>
+        <div class="hc-sq hc-edge-v" aria-hidden="true"></div>
+        <div class="hc-sq hc-corner" data-q="3">
+          <div class="hc-card">
+            <div class="hc-card-h"><span class="hc-n">SQ 3</span><span class="hc-st" id="st3">OPTIONAL</span></div>
+            <label class="hc-k" for="l3"><i class="hc-dot"></i>LIVE · CLEAR</label>
+            <input class="hc-live" id="l3" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="skip" aria-label="Square 3, live cells">
+            <div class="hc-dead"><label class="hc-k is-dead" for="d3"><i class="hc-dot is-dead"></i>DEAD<span class="hc-opt"> · BLUE</span></label><input id="d3" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="–" aria-label="Square 3, dead blue cells"></div>
+          </div>
+        </div>
+        <div class="hc-sq hc-edge-h" aria-hidden="true"></div>
+        <div class="hc-sq hc-corner" data-q="4">
+          <div class="hc-card">
+            <div class="hc-card-h"><span class="hc-n">SQ 4</span><span class="hc-st" id="st4">OPTIONAL</span></div>
+            <label class="hc-k" for="l4"><i class="hc-dot"></i>LIVE · CLEAR</label>
+            <input class="hc-live" id="l4" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="skip" aria-label="Square 4, live cells">
+            <div class="hc-dead"><label class="hc-k is-dead" for="d4"><i class="hc-dot is-dead"></i>DEAD<span class="hc-opt"> · BLUE</span></label><input id="d4" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" placeholder="–" aria-label="Square 4, dead blue cells"></div>
+          </div>
+        </div>
       </div>
-      <div class="term" data-term="df">
-        <div class="term-head"><span class="term-sym">×</span><span class="term-name">DILUTION IN TRYPAN BLUE</span></div>
-        <div class="term-body">
-          <label class="sr" for="df">Dilution factor</label>
-          <input id="df" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
-          <span class="term-unit">×</span>
-        </div>
-        <p class="cs-hint">1:1 mix (10 µL cells + 10 µL dye) = <b>2</b></p>
-        <div class="term-msg" id="dfm"></div>
+      <div class="hc-meter">
+        <div class="hc-meter-t"><span id="meanTxt">0 of 4 squares</span><span class="hc-range">GOOD RANGE 20–100</span></div>
+        <div class="hc-bar" aria-hidden="true"><i class="hc-zone"></i><i class="hc-mark" id="meanMark"></i></div>
+        <p class="hc-warn" id="densNote" hidden></p>
       </div>
     </div>
 
@@ -141,12 +165,54 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <div class="term-msg" id="viam"></div>
       </div>
     </div>
+    </div>
 
-    <div class="cs-result" id="countOut" aria-live="polite"></div>
-    <div class="cs-have">
-      <label class="pl-check" for="have"><span>You have</span></label>
-      <input id="have" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="optional">
-      <span>mL of cell suspension</span>
+    <div class="hc-right">
+      <div class="hc-dil" id="hemoDil">
+        <div class="hc-cap"><span>B · HOW YOU DILUTED THE CELLS</span></div>
+        <section class="hc-box" id="preBox" aria-labelledby="preK">
+          <div class="hc-box-h">
+            <input id="preOn" type="checkbox">
+            <label id="preK" for="preOn">1 · PRE-DILUTION <small>· OPTIONAL</small></label>
+            <span class="hc-x" id="preX">OFF</span>
+          </div>
+          <div class="hc-box-b" id="preBody" hidden>
+            <p>For dense cultures: cells diluted in medium or PBS before the trypan blue.</p>
+            <div class="hc-vv">
+              <label class="sr" for="pc">Cell suspension volume, µL</label>
+              <input id="pc" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"><span>µL cells +</span>
+              <label class="sr" for="pd">Medium or PBS volume, µL</label>
+              <input id="pd" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"><span>µL medium / PBS</span>
+            </div>
+            <div class="hc-chips"><button type="button" data-pre="10,90">1 : 10 · 10 + 90</button><button type="button" data-pre="20,80">1 : 5 · 20 + 80</button></div>
+          </div>
+        </section>
+        <section class="hc-box" aria-labelledby="tbK">
+          <div class="hc-box-h">
+            <i class="hc-blue" aria-hidden="true"></i>
+            <span id="tbK">2 · TRYPAN BLUE MIX</span>
+            <span class="hc-x is-on" id="tbX">×2</span>
+          </div>
+          <div class="hc-box-b">
+            <div class="hc-vv">
+              <label class="sr" for="tc">Cell volume in the trypan blue mix, µL</label>
+              <input id="tc" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"><span>µL cells +</span>
+              <label class="sr" for="td">Trypan blue volume, µL</label>
+              <input id="td" class="is-blue" type="text" inputmode="decimal" autocomplete="off" spellcheck="false"><span>µL trypan blue</span>
+            </div>
+            <div class="hc-chips"><button type="button" data-tb="10,10">1 : 1 · 10 + 10</button><button type="button" data-tb="10,30">1 : 3 · 10 + 30</button><button type="button" data-tb="10,0">NO DYE</button></div>
+          </div>
+        </section>
+        <div class="hc-total"><span>TOTAL DILUTION</span><span><b id="totX">×2</b> <span id="totWhy"></span></span></div>
+      </div>
+
+      <div class="cs-result" id="countOut" aria-live="polite"></div>
+      <div class="cs-have">
+        <label for="have">You have</label>
+        <input id="have" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="optional">
+        <span>mL of cell suspension</span>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -234,8 +300,9 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <h2>How to use</h2>
         <ol class="lm-num">
           <li>Mix your cells with trypan blue and load the hemocytometer.</li>
-          <li>Count the live (clear) cells in each large corner square and type the numbers in, separated by spaces. Add the blue cells if you want viability.</li>
-          <li>Set the dilution in trypan blue — 2 for a 1:1 mix.</li>
+          <li>Count the live (clear) cells in a large corner square and type the number into that square on the drawing. Square 1 is enough; fill squares 2–4 too for a better average, or skip them.</li>
+          <li>Add the dead (blue) cells in the same squares if you want viability.</li>
+          <li>Enter how you mixed the cells with trypan blue — 10 µL cells + 10 µL dye is ×2. Diluted a dense culture before that? Turn on <b>Pre-dilution</b> and enter those volumes too; the two dilutions are multiplied.</li>
           <li>Already have a count from an automated counter? Choose <b>A CELL COUNT</b> and type it in.</li>
           <li>Pick your plate or flask, how many cells per well (or per cm²), how many wells, and the medium volume per well.</li>
           <li>Mix the cell suspension and medium as shown, then dispense the per-well volume. Mix the tube gently between wells so cells don't settle.</li>
@@ -246,12 +313,13 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <div class="formula">
           <span class="eq">cells/mL = mean per square × dilution × 10⁴</span>
           <table>
+            <tr><td>dilution</td><td>pre-dilution × trypan blue mix, e.g. (10 + 10) ÷ 10 = 2</td></tr>
             <tr><td>10⁴</td><td>one large square holds 0.1 µL (1 mm × 1 mm × 0.1 mm)</td></tr>
             <tr><td>viability</td><td>live ÷ (live + dead)</td></tr>
             <tr><td>suspension</td><td>cells needed ÷ live cells/mL</td></tr>
           </table>
         </div>
-        <p class="example"><b>Example.</b> 52, 48, 50, 55 live in 4 squares, 1:1 with trypan blue: 51.25 × 2 × 10⁴ = 1.025 × 10⁶ cells/mL.</p>
+        <p class="example"><b>Example.</b> 52, 48, 50, 55 live in 4 squares, 1:1 with trypan blue: 51.25 × 2 × 10⁴ = 1.025 × 10⁶ cells/mL. Diluted 1:10 in PBS first: × 20 instead, 1.025 × 10⁷ cells/mL.</p>
         <h2>Good to know</h2>
         <ol class="lm-num">
           <li>Free to use. No subscription. Nothing you type leaves your browser.</li>
@@ -295,6 +363,6 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="cell-seeding.js?v=1"></script>
+<script src="cell-seeding.js?v=2"></script>
 </body>
 </html>

@@ -12,15 +12,26 @@
     ["d60", "60 mm dish", 21, 4, "dishes"], ["d100", "100 mm dish", 55, 10, "dishes"],
     ["t25", "T25 flask", 25, 5, "flasks"], ["t75", "T75 flask", 75, 15, "flasks"], ["t175", "T175 flask", 175, 35, "flasks"]
   ];
-  var EXAMPLE = { mode: "hemo", live: "52 48 50 55", dead: "3 5 2 4", df: "2", conc: "", concu: "1e6", via: "", have: "",
+  var EXAMPLE = { mode: "hemo", l1: "52", l2: "48", l3: "", l4: "", d1: "3", d2: "5", d3: "", d4: "",
+    pre: false, pc: "10", pd: "90", tc: "10", td: "10", conc: "", concu: "1e6", via: "", have: "",
     vessel: "96", dens: "1e4", densu: "well", wells: "60", wv: "100", wvu: "µL", over: "10" };
-  var FIELDS = ["live", "dead", "df", "conc", "concu", "via", "have", "vessel", "dens", "densu", "wells", "wv", "wvu", "over"];
+  var Q = [1, 2, 3, 4];
+  var FIELDS = ["l1", "l2", "l3", "l4", "d1", "d2", "d3", "d4", "pc", "pd", "tc", "td",
+    "conc", "concu", "via", "have", "vessel", "dens", "densu", "wells", "wv", "wvu", "over"];
 
   var $ = function (id) { return document.getElementById(id); };
   VESSELS.forEach(function (v) {
     var o = document.createElement("option"); o.value = v[0]; o.textContent = v[1]; $("vessel").appendChild(o);
   });
   var state = LM.load(KEY) || JSON.parse(JSON.stringify(EXAMPLE));
+  if (state.live != null && state.l1 == null) { // saved by the old one-box version
+    var oldL = String(state.live).trim().split(/[\s,;]+/), oldD = String(state.dead || "").trim().split(/[\s,;]+/);
+    Q.forEach(function (q) { state["l" + q] = oldL[q - 1] || ""; state["d" + q] = oldD[q - 1] || ""; });
+    var oldDf = LM.parse(state.df);
+    state.tc = "10"; state.td = oldDf && oldDf >= 1 ? LM.fmtPlain(10 * (oldDf - 1)) : "10";
+    state.pre = false; state.pc = "10"; state.pd = "90";
+    delete state.live; delete state.dead; delete state.df;
+  }
   var lastText = "";
   function vessel() { var id = $("vessel").value; return VESSELS.filter(function (v) { return v[0] === id; })[0]; }
 
@@ -41,13 +52,6 @@
     m.textContent = t || "";
     document.querySelector('[data-term="' + id + '"]').classList.toggle("is-bad", !!t);
   }
-  function list(id) {
-    var raw = $(id).value.trim();
-    if (!raw) return null;
-    var parts = raw.split(/[\s,;]+/).filter(Boolean).map(LM.parse);
-    if (parts.some(function (x) { return x == null || isNaN(x) || x < 0; })) { setMsg(id, "Numbers only, one per square"); return NaN; }
-    return parts;
-  }
   function num(id, o) {
     o = o || {};
     var v = LM.parse($(id).value);
@@ -60,46 +64,98 @@
   }
 
   // ---------- 1 · count ----------
-  function count() {
-    ["live", "dead", "df", "conc", "via"].forEach(function (id) { setMsg(id, ""); });
+  function corner(q) { // → {live, dead} numbers, null when empty, NaN when not a number
+    var r = {};
+    ["l", "d"].forEach(function (k) {
+      var v = LM.parse($(k + q).value);
+      r[k] = v == null ? null : (isNaN(v) || v < 0 ? NaN : v);
+    });
+    return r;
+  }
+  function vv(a, b) { // "a µL + b µL" → fold, or NaN; marks bad boxes
+    var x = LM.parse($(a).value), y = LM.parse($(b).value);
+    var badX = x == null || isNaN(x) || x <= 0, badY = y == null || isNaN(y) || y < 0;
+    $(a).classList.toggle("is-bad", badX); $(b).classList.toggle("is-bad", badY);
+    return badX || badY ? NaN : (x + y) / x;
+  }
+  function markChips(attr, a, b) {
+    document.querySelectorAll("[data-" + attr + "]").forEach(function (btn) {
+      var v = btn.getAttribute("data-" + attr).split(",");
+      btn.setAttribute("aria-pressed", String(LM.parse($(a).value) === +v[0] && LM.parse($(b).value) === +v[1]));
+    });
+  }
+  function hemo() {
     var out = { conc: null, via: null };
-    if (state.mode === "hemo") {
-      var live = list("live"), dead = list("dead"), df = num("df");
-      if (live && live === live && dead && dead === dead && dead.length !== live.length) setMsg("dead", "Count the same " + live.length + " squares");
-      if (!live || live !== live || df == null || isNaN(df)) {
-        $("countOut").innerHTML = '<span class="cs-wait">' + (live == null ? "Type your square counts above." : "Check the highlighted value.") + "</span>";
-        return out;
+    var sumL = 0, n = 0, vL = 0, vD = 0, bad = false;
+    Q.forEach(function (q) {
+      var c = corner(q), el = document.querySelector('.hc-corner[data-q="' + q + '"]');
+      var isBad = (c.l !== c.l) || (c.d !== c.d), filled = c.l != null && c.l === c.l;
+      el.classList.toggle("is-bad", isBad); el.classList.toggle("is-filled", filled && !isBad);
+      $("st" + q).textContent = isBad ? "NUMBER?" : (filled ? "COUNTED ✓" : (q === 1 ? "START HERE" : "OPTIONAL"));
+      if (isBad) { bad = true; return; }
+      if (filled) {
+        n++; sumL += c.l;
+        if (c.d != null) { vL += c.l; vD += c.d; } // viability only from squares with both counts
       }
-      var meanL = live.reduce(function (a, b) { return a + b; }, 0) / live.length;
-      out.conc = meanL * df * 1e4;
-      var said = live.length + " square" + (live.length > 1 ? "s" : "") + " · mean " + LM.fmt(meanL, 4) + " · ×" + LM.fmt(df) + " · ×10⁴";
-      if (dead && dead === dead && dead.length === live.length) {
-        var sl = live.reduce(function (a, b) { return a + b; }, 0), sd = dead.reduce(function (a, b) { return a + b; }, 0);
-        out.via = sl + sd > 0 ? sl / (sl + sd) : null;
-        out.total = (sl + sd) / live.length * df * 1e4;
-      }
-      out.meanL = meanL;
-      out.said = said;
-    } else {
-      var c = num("conc"), via = num("via", { max: 100, maxMsg: "100% at most" });
-      if (c == null || isNaN(c)) {
-        $("countOut").innerHTML = '<span class="cs-wait">' + (c == null ? "Type your live cell count above." : "Check the highlighted value.") + "</span>";
-        return out;
-      }
-      out.conc = c * parseFloat($("concu").value);
-      if (via != null && !isNaN(via)) out.via = via / 100;
-      out.said = "from your count";
+    });
+    // dilution: optional pre-dilution × trypan blue mix
+    var pre = 1;
+    $("preBody").hidden = !state.pre;
+    if (state.pre) pre = vv("pc", "pd"); else { $("pc").classList.remove("is-bad"); $("pd").classList.remove("is-bad"); }
+    var tb = vv("tc", "td");
+    var total = pre * tb;
+    $("preX").textContent = state.pre ? (pre === pre ? "×" + LM.fmt(pre, 4) : "—") : "OFF";
+    $("preX").classList.toggle("is-on", !!state.pre);
+    $("tbX").textContent = tb === tb ? "×" + LM.fmt(tb, 4) : "—";
+    $("totX").textContent = total === total ? "×" + LM.fmt(total, 4) : "—";
+    $("totWhy").textContent = state.pre && total === total ? "= " + LM.fmt(pre, 4) + " × " + LM.fmt(tb, 4) : "";
+    markChips("pre", "pc", "pd"); markChips("tb", "tc", "td");
+
+    var mean = n ? sumL / n : NaN;
+    $("meanTxt").innerHTML = "<b>" + n + " of 4 squares</b>" + (n ? " · mean <b>" + LM.fmt(mean, 4) + "</b> live per square" : "");
+    $("meanMark").hidden = !n;
+    if (n) $("meanMark").style.left = (Math.min(mean, 150) / 150 * 100).toFixed(2) + "%";
+    var dn = $("densNote");
+    if (n && mean > 100) { dn.hidden = false; dn.innerHTML = "<b>Too dense to count well.</b> Over 100 cells per square: dilute the cells 1:10, recount, and turn on <b>Pre-dilution</b>."; }
+    else if (n && mean < 20) { dn.hidden = false; dn.innerHTML = "<b>Few cells per square.</b> Count all four corners, or spin the cells down and resuspend in less medium."; }
+    else dn.hidden = true;
+
+    if (bad || total !== total || !n) {
+      out.wait = bad || (n && total !== total) ? "Check the highlighted value." : "Type the live count in square 1.";
+      return out;
     }
-    var html = '<div class="cs-big"><b>' + cells(out.conc) + "</b> live cells/mL</div>";
-    if (out.via != null) html += '<div class="cs-via' + (out.via < 0.8 ? " is-low" : "") + '"><b>' + LM.fmt(out.via * 100, 3) + "%</b> viable</div>";
-    html += '<div class="cs-said">' + out.said + "</div>";
+    out.conc = mean * total * 1e4;
+    if (vL + vD > 0) out.via = vL / (vL + vD);
+    out.said = "= " + LM.fmt(mean, 4) + " × " + LM.fmt(total, 4) + " × 10⁴";
+    return out;
+  }
+
+  function count() {
+    ["conc", "via"].forEach(function (id) { setMsg(id, ""); });
+    var out;
+    if (state.mode === "hemo") out = hemo();
+    else {
+      out = { conc: null, via: null };
+      var c = num("conc"), via = num("via", { max: 100, maxMsg: "100% at most" });
+      if (c == null || isNaN(c)) out.wait = c == null ? "Type your live cell count." : "Check the highlighted value.";
+      else {
+        out.conc = c * parseFloat($("concu").value);
+        if (via != null && !isNaN(via)) out.via = via / 100;
+        out.said = "from your count";
+      }
+    }
+    if (out.conc == null) {
+      $("countOut").innerHTML = '<span class="cs-k">LIVE CELLS</span><span class="cs-wait">' + out.wait + "</span>";
+      return out;
+    }
+    var html = '<span class="cs-k">LIVE CELLS</span><div class="cs-big"><b>' + cells(out.conc) + "</b> /mL</div><div class=\"cs-line\">";
+    if (out.via != null) html += '<span class="cs-via' + (out.via < 0.8 ? " is-low" : "") + '">VIABILITY <b>' + LM.fmt(out.via * 100, 3) + "%</b></span>";
+    else if (state.mode === "hemo") html += '<span class="cs-via">VIABILITY <b>—</b> add dead counts</span>';
+    html += '<span class="cs-said">' + out.said + "</span></div>";
     var have = num("have");
     if (have && !isNaN(have)) { out.have = have; html += '<div class="cs-said">' + cells(out.conc * have) + " live cells in " + LM.fmt(have) + " mL</div>"; }
     $("countOut").innerHTML = html;
     out.notes = [];
-    if (out.meanL != null && (out.meanL < 20 || out.meanL > 100))
-      out.notes.push('<li class="note info">' + LM.fmt(out.meanL, 3) + " cells per square is " + (out.meanL < 20 ? "low" : "high") +
-        " — counts are most reliable around 20–100 per square. Consider " + (out.meanL < 20 ? "concentrating" : "diluting") + " and recounting.</li>");
     if (out.via != null && out.via < 0.8) out.notes.push('<li class="note">Viability is ' + LM.fmt(out.via * 100, 3) + "% — below the ~80–90% many protocols expect for seeding.</li>");
     return out;
   }
@@ -176,12 +232,13 @@
 
   function update() {
     FIELDS.forEach(function (id) { state[id] = $(id).value; });
+    state.pre = $("preOn").checked;
     LM.save(KEY, state);
     seed(count());
   }
   function setMode(m) {
     state.mode = m;
-    $("hemo").hidden = m !== "hemo"; $("direct").hidden = m !== "direct";
+    $("hemo").hidden = m !== "hemo"; $("direct").hidden = m !== "direct"; $("hemoDil").hidden = m !== "hemo";
     $("modeSeg").querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-v") === m)); });
     update();
   }
@@ -189,6 +246,14 @@
   // ---------- events ----------
   $("modeSeg").addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) setMode(b.getAttribute("data-v")); });
   FIELDS.forEach(function (id) { $(id).addEventListener("input", update); $(id).addEventListener("change", update); });
+  $("preOn").addEventListener("change", function () { update(); if (state.pre) $("pc").focus(); });
+  document.querySelectorAll("[data-pre], [data-tb]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var isPre = btn.hasAttribute("data-pre"), v = btn.getAttribute(isPre ? "data-pre" : "data-tb").split(",");
+      $(isPre ? "pc" : "tc").value = v[0]; $(isPre ? "pd" : "td").value = v[1];
+      update();
+    });
+  });
   $("vessel").addEventListener("change", function () {
     var v = vessel();
     // fill the usual medium volume for the new vessel
@@ -196,8 +261,9 @@
     update();
   });
   $("clear").addEventListener("click", function () {
-    ["live", "dead", "conc", "via", "have", "dens", "wells"].forEach(function (id) { $(id).value = ""; });
-    update(); (state.mode === "hemo" ? $("live") : $("conc")).focus();
+    ["l1", "l2", "l3", "l4", "d1", "d2", "d3", "d4", "conc", "via", "have", "dens", "wells"].forEach(function (id) { $(id).value = ""; });
+    $("preOn").checked = false;
+    update(); (state.mode === "hemo" ? $("l1") : $("conc")).focus();
   });
   $("copy").addEventListener("click", function () {
     if (!lastText) return;
@@ -209,6 +275,7 @@
   $("print").addEventListener("click", function () { window.print(); });
 
   FIELDS.forEach(function (id) { if (state[id] != null) $(id).value = state[id]; });
+  $("preOn").checked = !!state.pre;
   if (!$("vessel").value) $("vessel").value = "96";
   setMode(state.mode === "direct" ? "direct" : "hemo");
 })();
