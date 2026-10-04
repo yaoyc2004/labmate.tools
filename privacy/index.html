@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy — labmate.tools</title>
-<meta name="description" content="labmate.tools privacy: no accounts, no tracking, no cookies. What you type stays in your browser.">
+<meta name="description" content="labmate.tools privacy: no accounts, and what you type stays in your browser. Visits are counted with Google Analytics.">
 <link rel="canonical" href="https://labmate.tools/privacy/">
 <!-- seo:start -->
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -12,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy — labmate.tools">
-<meta property="og:description" content="labmate.tools privacy: no accounts, no tracking, no cookies. What you type stays in your browser.">
+<meta property="og:description" content="labmate.tools privacy: no accounts, and what you type stays in your browser. Visits are counted with Google Analytics.">
 <meta property="og:url" content="https://labmate.tools/privacy/">
 <meta property="og:image" content="https://labmate.tools/assets/og/home.png">
 <meta property="og:image:width" content="1200">
@@ -20,7 +29,7 @@
 <meta property="og:image:alt" content="labmate.tools — The Lab Toolbox">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy — labmate.tools">
-<meta name="twitter:description" content="labmate.tools privacy: no accounts, no tracking, no cookies. What you type stays in your browser.">
+<meta name="twitter:description" content="labmate.tools privacy: no accounts, and what you type stays in your browser. Visits are counted with Google Analytics.">
 <meta name="twitter:image" content="https://labmate.tools/assets/og/home.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="manifest" href="../site.webmanifest">
@@ -51,11 +60,11 @@
   <div class="lm-head">
     <div>
       <h1>Privacy</h1>
-      <p class="lm-lede">Short version: no accounts, no tracking, no cookies. What you type into a tool stays in your browser.</p>
+      <p class="lm-lede">Short version: no accounts, and what you type into a tool stays in your browser. We count visits with Google Analytics.</p>
     </div>
   </div>
 
-  <h2 class="lm-bar"><span>THE DETAILS</span><small>LAST UPDATED OCTOBER 2026</small></h2>
+  <h2 class="lm-bar"><span>THE DETAILS</span><small>LAST UPDATED 4 OCTOBER 2026</small></h2>
   <div class="lm-sheet">
     <div class="lm-prose">
       <h2>What you type</h2>
@@ -71,14 +80,23 @@
       <h2>Files you open</h2>
       <p>When a tool lets you open a file — like a sample list for Cryo Labels — the file is read in your browser. It is not uploaded.</p>
 
-      <h2>No accounts, analytics or cookies</h2>
-      <p>There is nothing to sign up for. We don't use analytics, advertising trackers or cookies.</p>
+      <h2>No accounts</h2>
+      <p>There is nothing to sign up for. We don't use advertising trackers.</p>
+
+      <h2>Visit statistics</h2>
+      <p>We use <b>Google Analytics</b> to see which pages and tools people open, how they found the site, and roughly where they are (country and city), so we know what to improve. It sets a few first-party cookies (named <code>_ga</code>) to tell a returning visitor from a new one.</p>
+      <ul>
+        <li>It records page addresses and clicks, never the values you type into a tool, the files you open, or a shared panel in a link.</li>
+        <li>Google Analytics does not store your IP address. Data is kept for Google Analytics' default retention period.</li>
+        <li>To opt out, block cookies for labmate.tools, use a content blocker, or install Google's <a href="https://tools.google.com/dlpage/gaoptout">Analytics opt-out add-on</a>. Every tool still works.</li>
+      </ul>
 
       <h2>Services the pages load</h2>
       <p>To show the page, your browser fetches a few files from other services. Like any web request, they receive your IP address and browser details, under their own privacy policies:</p>
       <ul>
         <li><b>GitHub Pages</b> hosts the site.</li>
         <li><b>Google Fonts</b> serves the typefaces.</li>
+        <li><b>Google Analytics</b> receives the visit statistics described above.</li>
         <li><b>cdnjs (Cloudflare)</b> serves the PDF and QR-code libraries used by Cryo Labels.</li>
       </ul>
       <p>None of these receive what you type into the tools.</p>
@@ -87,7 +105,7 @@
       <p>If you write to <a href="mailto:hello@labmate.tools">hello@labmate.tools</a> to request a tool, we use your email only to reply and to understand the request.</p>
 
       <h2>Changes</h2>
-      <p>If this ever changes — for example if we add a sponsor or a sign-up — we'll update this page first and change the date above.</p>
+      <p>If this changes — for example if we add a sponsor or a sign-up — we'll update this page first and change the date above. Visit statistics were added on 4 October 2026.</p>
       <span class="stamp">QUESTIONS: HELLO@LABMATE.TOOLS</span>
     </div>
   </div>
