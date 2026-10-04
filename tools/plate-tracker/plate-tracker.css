@@ -386,7 +386,8 @@ kbd { font-family: var(--mono); font-size: 12px; border: 1.5px solid var(--ink);
 
 /* ---------- compact side panel (fits 8 rounds + MOVE NEXT on an iPad) ---------- */
 .pt-panels { gap: 12px; }
-.pt-rounds { max-height: 204px; overflow-y: auto; overscroll-behavior: contain; }
+/* flex-shrink: 0 — the side panel scrolls instead; never squeeze the list (it collapsed to 0 on short iPad/phone-landscape screens) */
+.pt-rounds { max-height: 204px; max-height: clamp(160px, calc(100dvh - 682px), 204px); overflow-y: auto; overscroll-behavior: contain; flex-shrink: 0; }
 .pt-round-edit { margin-top: -4px; }
 .pt-round-edit .pt-btn-dash, .pt-round-edit .pt-link { height: 36px; }
 .pt-seg-row { display: flex; gap: 8px; }

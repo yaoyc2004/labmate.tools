@@ -848,7 +848,11 @@
   $('undo').addEventListener('click', undo);
   $('markNext').addEventListener('click', function () { requestWake(); markNext(); if (L && L.zones) { renderAll(); } });
   $('nextRound').addEventListener('click', nextRound);
-  $('addRound').addEventListener('click', function () { addRound(false); });
+  $('addRound').addEventListener('click', function () {
+    addRound(false);
+    var last = $('rounds').lastElementChild; // show the round just added, inside the list and on the page
+    if (last) { last.scrollIntoView({ block: 'nearest' }); }
+  });
   $('removeRound').addEventListener('click', removeRound);
   $('zonePrev').addEventListener('click', function () { var p = P(); p.zone = (p.zone + 3) % 4; afterChange(true); });
   $('zoneNext').addEventListener('click', function () { var p = P(); p.zone = (p.zone + 1) % 4; afterChange(true); });
