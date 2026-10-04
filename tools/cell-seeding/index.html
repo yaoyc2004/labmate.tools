@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cell Count &amp; Seeding Calculator — hemocytometer, viability, cells per well | labmate.tools</title>
+<meta name="description" content="Free hemocytometer and cell seeding calculator. Turn your square counts into live cells/mL and viability, then get the cell suspension and medium volumes to seed any plate, dish or flask.">
+<link rel="canonical" href="https://labmate.tools/tools/cell-seeding/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Cell Count & Seeding Calculator — labmate.tools">
+<meta property="og:description" content="Hemocytometer counts to cells/mL, then exact volumes to seed your plate.">
+<meta property="og:url" content="https://labmate.tools/tools/cell-seeding/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 5.1 CELL SEEDING</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#cells">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 5.1</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <rect x="6" y="10" width="48" height="48" fill="#fff" stroke="#1B2224" stroke-width="1.5"/>
+        <g stroke="#1B2224" stroke-width="0.8"><path d="M18 10 V58 M30 10 V58 M42 10 V58 M6 22 H54 M6 34 H54 M6 46 H54"/></g>
+        <g fill="#9CC7B6" stroke="#5E8F80" stroke-width="0.8"><circle cx="12" cy="15" r="2.4"/><circle cx="24" cy="18" r="2.4"/><circle cx="37" cy="27" r="2.4"/><circle cx="47" cy="40" r="2.4"/><circle cx="15" cy="51" r="2.4"/><circle cx="27" cy="39" r="2.4"/><circle cx="49" cy="15" r="2.4"/></g>
+        <circle cx="33" cy="52" r="2.4" fill="#17403D"/>
+        <text x="62" y="38" font-family="IBM Plex Mono, monospace" font-size="12" fill="#6B7472">→</text>
+        <g fill="#fff" stroke="#1B2224" stroke-width="1.3"><circle cx="86" cy="22" r="8"/><circle cx="106" cy="22" r="8"/><circle cx="126" cy="22" r="8"/><circle cx="86" cy="44" r="8"/><circle cx="106" cy="44" r="8"/><circle cx="126" cy="44" r="8"/></g>
+        <g fill="#2E9E5B"><circle cx="86" cy="22" r="4"/><circle cx="106" cy="22" r="4"/><circle cx="126" cy="22" r="4"/><circle cx="86" cy="44" r="4"/><circle cx="106" cy="44" r="4"/></g>
+      </svg>
+    </figure>
+    <div>
+      <h1>Cell Count &amp; Seeding</h1>
+      <p class="lm-lede">From hemocytometer squares to live cells/mL, then exactly how much cell suspension and medium to seed your plate, dish or flask.</p>
+    </div>
+  </div>
+
+  <!-- 1 · count -->
+  <h2 class="lm-bar"><span>1 · COUNT</span><small>SECTION 05 — CELLS &amp; PROTEIN · 5.1</small></h2>
+  <div class="lm-sheet">
+    <div class="lm-solve">
+      <span class="lm-solve-k" id="modeLabel">I HAVE</span>
+      <div class="lm-seg" role="group" aria-labelledby="modeLabel" id="modeSeg">
+        <button type="button" data-v="hemo">HEMOCYTOMETER COUNTS</button>
+        <button type="button" data-v="direct">A CELL COUNT</button>
+      </div>
+    </div>
+
+    <div class="cs-count" id="hemo">
+      <div class="term" data-term="live">
+        <div class="term-head"><span class="term-sym">live</span><span class="term-name">CELLS PER SQUARE</span></div>
+        <div class="term-body">
+          <label class="sr" for="live">Live cells counted in each large square</label>
+          <input id="live" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="52 48 50 55">
+        </div>
+        <p class="cs-hint">One number per large square, e.g. <b>52 48 50 55</b></p>
+        <div class="term-msg" id="livem"></div>
+      </div>
+      <div class="term" data-term="dead">
+        <div class="term-head"><span class="term-sym">dead</span><span class="term-name">BLUE CELLS · OPTIONAL</span></div>
+        <div class="term-body">
+          <label class="sr" for="dead">Dead (blue) cells counted in the same squares</label>
+          <input id="dead" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="3 5 2 4">
+        </div>
+        <p class="cs-hint">Same squares, trypan-blue stained cells</p>
+        <div class="term-msg" id="deadm"></div>
+      </div>
+      <div class="term" data-term="df">
+        <div class="term-head"><span class="term-sym">×</span><span class="term-name">DILUTION IN TRYPAN BLUE</span></div>
+        <div class="term-body">
+          <label class="sr" for="df">Dilution factor</label>
+          <input id="df" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <span class="term-unit">×</span>
+        </div>
+        <p class="cs-hint">1:1 mix (10 µL cells + 10 µL dye) = <b>2</b></p>
+        <div class="term-msg" id="dfm"></div>
+      </div>
+    </div>
+
+    <div class="cs-count" id="direct" hidden>
+      <div class="term" data-term="conc">
+        <div class="term-head"><span class="term-sym">c</span><span class="term-name">LIVE CELLS</span></div>
+        <div class="term-body">
+          <label class="sr" for="conc">Live cell concentration</label>
+          <input id="conc" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="concu">Unit</label>
+          <select id="concu"><option value="1">cells/mL</option><option value="1e4">× 10⁴ /mL</option><option value="1e5">× 10⁵ /mL</option><option value="1e6">× 10⁶ /mL</option></select>
+        </div>
+        <div class="term-msg" id="concm"></div>
+      </div>
+      <div class="term" data-term="via">
+        <div class="term-head"><span class="term-sym">%</span><span class="term-name">VIABILITY · OPTIONAL</span></div>
+        <div class="term-body">
+          <label class="sr" for="via">Viability percent</label>
+          <input id="via" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <span class="term-unit">%</span>
+        </div>
+        <div class="term-msg" id="viam"></div>
+      </div>
+    </div>
+
+    <div class="cs-result" id="countOut" aria-live="polite"></div>
+    <div class="cs-have">
+      <label class="pl-check" for="have"><span>You have</span></label>
+      <input id="have" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="optional">
+      <span>mL of cell suspension</span>
+    </div>
+  </div>
+
+  <!-- 2 · seed -->
+  <h2 class="lm-bar"><span>2 · SEED</span><small>COUNT → SEED → PLATE</small></h2>
+  <div class="lm-sheet">
+    <div class="cs-seed">
+      <div class="term" data-term="vessel">
+        <div class="term-head"><span class="term-sym">▦</span><span class="term-name">PLATE OR FLASK</span></div>
+        <div class="term-body">
+          <label class="sr" for="vessel">Vessel</label>
+          <select id="vessel" class="cs-wide"></select>
+        </div>
+        <p class="cs-hint" id="vesselInfo"></p>
+      </div>
+      <div class="term" data-term="dens">
+        <div class="term-head"><span class="term-sym">n</span><span class="term-name">CELLS TO SEED</span></div>
+        <div class="term-body">
+          <label class="sr" for="dens">Cells to seed</label>
+          <input id="dens" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="densu">Per</label>
+          <select id="densu"><option value="well">/ well</option><option value="cm2">/ cm²</option></select>
+        </div>
+        <p class="cs-hint">Scientific notation works: <b>5e4</b> = 50,000</p>
+        <div class="term-msg" id="densm"></div>
+      </div>
+      <div class="term" data-term="wells">
+        <div class="term-head"><span class="term-sym">#</span><span class="term-name">WELLS / VESSELS</span></div>
+        <div class="term-body">
+          <label class="sr" for="wells">Number of wells or vessels</label>
+          <input id="wells" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
+          <span class="term-unit" id="wellsU">wells</span>
+        </div>
+        <div class="term-msg" id="wellsm"></div>
+      </div>
+      <div class="term" data-term="wv">
+        <div class="term-head"><span class="term-sym">V</span><span class="term-name">MEDIUM PER WELL</span></div>
+        <div class="term-body">
+          <label class="sr" for="wv">Volume per well</label>
+          <input id="wv" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <select id="wvu"><option value="µL">µL</option><option value="mL">mL</option></select>
+        </div>
+        <div class="term-msg" id="wvm"></div>
+      </div>
+      <div class="term" data-term="over">
+        <div class="term-head"><span class="term-sym">+</span><span class="term-name">EXTRA</span></div>
+        <div class="term-body">
+          <label class="sr" for="over">Extra volume</label>
+          <input id="over" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <span class="term-unit">%</span>
+        </div>
+        <div class="term-msg" id="overm"></div>
+      </div>
+    </div>
+
+    <div class="lm-answer">
+      <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+        <span class="ans-k" id="ansK">MIX</span>
+        <div class="ans-big" id="ansBig"></div>
+        <p class="ans-say" id="ansSay"></p>
+        <div class="ans-actions">
+          <button type="button" class="btn" id="copy">COPY</button>
+          <button type="button" class="lm-link" id="print">PRINT</button>
+          <span class="btn-copied" id="copied" role="status"></span>
+        </div>
+      </section>
+      <section class="slip" id="slip" aria-label="Seeding recipe">
+        <div class="slip-title"><span>SEEDING MIX</span><span id="slipN"></span></div>
+        <ol>
+          <li><span class="k">CELL SUSPENSION</span><span class="lead"></span><span class="v" id="rSusp">—</span></li>
+          <li><span class="k">MEDIUM</span><span class="lead"></span><span class="v" id="rMed">—</span></li>
+          <li><span class="k">TOTAL</span><span class="lead"></span><span class="v" id="rTot">—</span></li>
+          <li class="total"><span class="k">PER WELL</span><span class="lead"></span><span class="v" id="rWell">—</span></li>
+          <li><span class="k">CELLS PER WELL</span><span class="lead"></span><span class="v" id="rCells">—</span></li>
+        </ol>
+      </section>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Mix your cells with trypan blue and load the hemocytometer.</li>
+          <li>Count the live (clear) cells in each large corner square and type the numbers in, separated by spaces. Add the blue cells if you want viability.</li>
+          <li>Set the dilution in trypan blue — 2 for a 1:1 mix.</li>
+          <li>Already have a count from an automated counter? Choose <b>A CELL COUNT</b> and type it in.</li>
+          <li>Pick your plate or flask, how many cells per well (or per cm²), how many wells, and the medium volume per well.</li>
+          <li>Mix the cell suspension and medium as shown, then dispense the per-well volume. Mix the tube gently between wells so cells don't settle.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">cells/mL = mean per square × dilution × 10⁴</span>
+          <table>
+            <tr><td>10⁴</td><td>one large square holds 0.1 µL (1 mm × 1 mm × 0.1 mm)</td></tr>
+            <tr><td>viability</td><td>live ÷ (live + dead)</td></tr>
+            <tr><td>suspension</td><td>cells needed ÷ live cells/mL</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 52, 48, 50, 55 live in 4 squares, 1:1 with trypan blue: 51.25 × 2 × 10⁴ = 1.025 × 10⁶ cells/mL.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser.</li>
+          <li>Aim for roughly 20–100 cells per square; outside that, dilute or concentrate and recount.</li>
+          <li>Plate areas and volumes are typical values — check your vessel's data sheet and your protocol.</li>
+          <li>Seeding numbers use live cells only.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../plate-layout/">PLATE LAYOUT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 5.1</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="cell-seeding.js?v=1"></script>
+</body>
+</html>

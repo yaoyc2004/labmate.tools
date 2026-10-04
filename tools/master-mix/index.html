@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Master Mix Calculator — scale PCR &amp; qPCR mixes with overage | labmate.tools</title>
+<meta name="description" content="Free master mix calculator for PCR, qPCR and other reactions. List your reagents per reaction, set the number of reactions and overage, top up with water, then copy or print the table.">
+<link rel="canonical" href="https://labmate.tools/tools/master-mix/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Master Mix Calculator — labmate.tools">
+<meta property="og:description" content="Scale a reaction mix for any number of samples, with overage built in.">
+<meta property="og:url" content="https://labmate.tools/tools/master-mix/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=2">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.1 MASTER MIX</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.1</figcaption>
+      <svg width="120" height="66" viewBox="0 0 120 66"><path d="M18 4 H42" stroke="#1B2224" stroke-width="2.4" stroke-linecap="round"/><path d="M21 8 H39 V44 L30 60 L21 44 Z" fill="none" stroke="#1B2224" stroke-width="2" stroke-linejoin="round"/><path d="M22.2 28 H37.8 V43.6 L30 57.4 L22.2 43.6 Z" fill="#2E9E5B"/><text x="52" y="44" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-weight="500" font-size="32" fill="#1B2224">×n</text><text x="86" y="24" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="11" fill="#1F7A45">+10%</text></svg>
+    </figure>
+    <div>
+      <h1>Master Mix Calculator</h1>
+      <p class="lm-lede">List what goes into one reaction, set how many reactions and how much extra. You get the volume of each reagent for the mix, ready to copy or print.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>SECTION 02 — CALCULATORS · 2.1</span><small>ENTER → SCALE → PRINT</small></h2>
+  <div class="lm-sheet">
+    <div class="mm-controls">
+      <div class="term" data-term="n">
+        <div class="term-head"><span class="term-sym">n</span><span class="term-name">REACTIONS</span></div>
+        <div class="term-body">
+          <label class="sr" for="n">Number of reactions</label>
+          <input id="n" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
+          <span class="term-unit">rxns</span>
+        </div>
+        <div class="term-msg" id="nm"></div>
+      </div>
+      <div class="term" data-term="over">
+        <div class="term-head"><span class="term-sym">+</span><span class="term-name">OVERAGE</span></div>
+        <div class="term-body">
+          <label class="sr" for="over">Overage</label>
+          <input id="over" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="overMode">Overage unit</label>
+          <select id="overMode"><option value="pct">%</option><option value="rxn">extra rxns</option></select>
+        </div>
+        <div class="term-msg" id="overm"></div>
+      </div>
+      <div class="term" data-term="vol">
+        <div class="term-head"><span class="term-sym">V</span><span class="term-name">REACTION VOLUME</span></div>
+        <div class="term-body">
+          <label class="sr" for="vol">Reaction volume</label>
+          <input id="vol" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="optional">
+          <span class="term-unit">µL</span>
+        </div>
+        <label class="mm-check"><input type="checkbox" id="topup"> Top up with water to this volume</label>
+        <div class="term-msg" id="volm"></div>
+      </div>
+    </div>
+
+    <div class="mm-presets">
+      <span class="presets-k">START FROM</span>
+      <button type="button" class="chip" data-preset="qpcr">qPCR · 20 µL</button>
+      <button type="button" class="chip" data-preset="pcr">PCR · 25 µL</button>
+      <button type="button" class="chip" data-preset="blank">Blank</button>
+      <span class="presets-note">Examples only — change the rows to match your kit.</span>
+    </div>
+
+    <div class="mm-print-head" aria-hidden="true">
+      <b>Master mix</b> <span id="printMeta"></span>
+    </div>
+    <div class="mm-wrap">
+      <table class="mm-table" id="table">
+        <thead>
+          <tr>
+            <th class="c-name">REAGENT</th>
+            <th class="c-num">PER RXN (µL)</th>
+            <th class="c-in">IN MIX</th>
+            <th class="c-num c-tot" id="totHead">FOR MIX (µL)</th>
+            <th class="c-x"><span class="sr">Remove</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+        <tfoot>
+          <tr class="mm-sum">
+            <td class="c-name">Total per reaction</td>
+            <td class="c-num" id="sumPer">—</td>
+            <td class="c-in"></td>
+            <td class="c-num c-tot" id="sumMix">—</td>
+            <td class="c-x"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <button type="button" class="mm-add" id="addRow">+ ADD REAGENT</button>
+
+    <div class="lm-answer">
+      <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+        <span class="ans-k" id="ansK">ANSWER</span>
+        <div class="ans-big" id="ansBig"></div>
+        <p class="ans-say" id="ansSay"></p>
+        <div class="ans-actions">
+          <button type="button" class="btn" id="copy">COPY TABLE</button>
+          <button type="button" class="lm-link" id="print">PRINT</button>
+          <span class="btn-copied" id="copied" role="status"></span>
+        </div>
+      </section>
+      <section class="slip" id="slip" aria-label="Summary">
+        <div class="slip-title"><span>SUMMARY</span><span id="slipN"></span></div>
+        <ol>
+          <li><span class="k">MAKE MIX FOR</span><span class="lead"></span><span class="v" id="rEff">—</span></li>
+          <li><span class="k">TOTAL MIX</span><span class="lead"></span><span class="v" id="rMix">—</span></li>
+          <li class="total"><span class="k">MIX PER WELL</span><span class="lead"></span><span class="v" id="rWell">—</span></li>
+          <li id="rSepRow"><span class="k">THEN ADD</span><span class="lead"></span><span class="v" id="rSep">—</span></li>
+        </ol>
+      </section>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Start from an example or a blank table, then type each reagent and its volume in one reaction, in µL.</li>
+          <li>Untick <b>IN MIX</b> for anything you add to each well separately — usually the template or sample. It stays in the reaction total but not in the mix.</li>
+          <li>Set the number of reactions. Count every sample, control and replicate.</li>
+          <li>Add overage to cover pipetting loss: a percentage (10% is common) or a number of extra reactions.</li>
+          <li>Enter the reaction volume and tick <b>Top up with water</b> to have the water calculated for you.</li>
+          <li><b>COPY TABLE</b> pastes cleanly into Excel or your notebook. <b>PRINT</b> gives a one-page sheet for the bench.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">volume in mix = per rxn × n<sub>eff</sub></span>
+          <table>
+            <tr><td>n<sub>eff</sub></td><td>n × (1 + overage %) or n + extra reactions</td></tr>
+            <tr><td>water</td><td>reaction volume − all other reagents</td></tr>
+            <tr><td>per well</td><td>sum of the reagents in the mix</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 24 qPCR reactions + 10% → mix for 26.4. With 10 µL of 2X master mix per reaction, the mix gets 264 µL of it.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser; the table is saved in this browser.</li>
+          <li>Keep enzymes and the polymerase on ice and add them last, as your kit's protocol says.</li>
+          <li>Volumes are rounded to 4 significant figures.</li>
+          <li>A calculator, not a protocol: check the per-reaction amounts against your kit.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.1</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="master-mix.js?v=1"></script>
+</body>
+</html>

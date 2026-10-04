@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>96 &amp; 384 Well Plate Layout Maker — samples, controls &amp; replicates | labmate.tools</title>
+<meta name="description" content="Free plate layout maker for 96 and 384 well plates. Paste your sample list, add controls and replicates, skip edge wells, then print the plate map or download a CSV for your qPCR software.">
+<link rel="canonical" href="https://labmate.tools/tools/plate-layout/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Plate Layout Maker — labmate.tools">
+<meta property="og:description" content="Paste samples, add controls and replicates, get a printable 96 or 384 well plate map.">
+<meta property="og:url" content="https://labmate.tools/tools/plate-layout/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="plate-layout.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 1.2 PLATE LAYOUT</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#plates">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 1.2</figcaption>
+      <svg width="132" height="66" viewBox="0 0 132 66" id="figSvg"></svg>
+    </figure>
+    <div>
+      <h1>Plate Layout</h1>
+      <p class="lm-lede">Paste your sample list, add controls and replicates, and get a 96 or 384 well plate map to print or load into your instrument software.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>SECTION 01 — PLATES · 1.2</span><small>PASTE → MAP → PRINT</small></h2>
+  <div class="lm-sheet">
+    <div class="pl-work">
+
+      <!-- setup -->
+      <div class="pl-setup">
+        <div class="pl-field pl-wide">
+          <span class="pl-k" id="fmtLabel">PLATE</span>
+          <div class="lm-seg" role="group" aria-labelledby="fmtLabel" id="fmtSeg">
+            <button type="button" data-v="96">96 WELL</button>
+            <button type="button" data-v="384">384 WELL</button>
+          </div>
+        </div>
+
+        <div class="pl-field">
+          <label class="pl-k" for="samples"><span>SAMPLES · ONE PER LINE</span><b id="nSamples">0</b></label>
+          <textarea id="samples" spellcheck="false" autocomplete="off" placeholder="Paste a column from Excel&#10;S01&#10;S02&#10;S03"></textarea>
+          <p class="pl-hint">Paste straight from a spreadsheet column. Extra columns are ignored.</p>
+        </div>
+
+        <div class="pl-field">
+          <label class="pl-k" for="controls"><span>CONTROLS · ONE PER LINE</span><b id="nCtrls">0</b></label>
+          <textarea id="controls" class="is-ctrl" spellcheck="false" autocomplete="off" placeholder="NTC&#10;Positive"></textarea>
+          <label class="pl-check"><input type="checkbox" id="repeatCtrls"> Repeat controls on every plate</label>
+        </div>
+
+        <div class="pl-row2 pl-wide">
+          <div class="pl-field">
+            <span class="pl-k" id="repLabel">REPLICATES</span>
+            <div class="lm-seg" role="group" aria-labelledby="repLabel" id="repSeg">
+              <button type="button" data-v="1">1</button>
+              <button type="button" data-v="2">2</button>
+              <button type="button" data-v="3">3</button>
+              <button type="button" data-v="4">4</button>
+            </div>
+          </div>
+          <div class="pl-field">
+            <span class="pl-k" id="dirLabel">REPLICATES GO</span>
+            <div class="lm-seg" role="group" aria-labelledby="dirLabel" id="dirSeg">
+              <button type="button" data-v="across">→ ACROSS</button>
+              <button type="button" data-v="down">↓ DOWN</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-row2 pl-wide">
+          <div class="pl-field">
+            <span class="pl-k" id="fillLabel">FILL ORDER</span>
+            <div class="lm-seg" role="group" aria-labelledby="fillLabel" id="fillSeg">
+              <button type="button" data-v="col">BY COL</button>
+              <button type="button" data-v="row">BY ROW</button>
+            </div>
+          </div>
+          <div class="pl-field">
+            <span class="pl-k" id="posLabel">CONTROLS GO</span>
+            <div class="lm-seg" role="group" aria-labelledby="posLabel" id="posSeg">
+              <button type="button" data-v="start">FIRST</button>
+              <button type="button" data-v="end">LAST</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-field">
+          <label class="pl-check"><input type="checkbox" id="skipEdges"> Leave outer wells empty (edge effect)</label>
+        </div>
+        <div class="pl-field">
+          <label class="pl-k" for="plateName"><span>PLATE NAME</span></label>
+          <input type="text" id="plateName" maxlength="40" autocomplete="off" spellcheck="false" placeholder="e.g. qPCR run 1">
+        </div>
+      </div>
+
+      <!-- plate -->
+      <div class="pl-view">
+                <div class="pl-viewhead">
+          <div class="pl-tabs" id="tabs" role="group" aria-label="Plates"></div>
+          <div class="pl-stats" id="stats" aria-live="polite"></div>
+        </div>
+        <div class="pl-plate-wrap">
+          <div class="pl-plate" id="plate" role="grid" aria-label="Plate map"></div>
+        </div>
+        <div class="pl-legend" id="legend"></div>
+        <p class="pl-tip">TAP A WELL TO KEEP IT EMPTY · TAP AGAIN TO USE IT <span id="blockedNote"></span></p>
+        <ul class="notes" id="notes"></ul>
+
+        <div class="pl-actions">
+          <button type="button" class="btn" id="print">PRINT</button>
+          <button type="button" class="btn btn-ghost" id="csv">DOWNLOAD CSV</button>
+          <button type="button" class="lm-link" id="copyMap">COPY MAP</button>
+          <button type="button" class="lm-link" id="copyList">COPY WELL LIST</button>
+          <span class="btn-copied" id="copied" role="status"></span>
+        </div>
+
+        <div class="pl-print" id="printPlates"></div>
+
+        <div class="pl-list">
+          <details id="listDetails">
+            <summary>WELL LIST</summary>
+            <div id="wellList"></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Pick <b>96</b> or <b>384</b> well.</li>
+          <li>Paste your sample names, one per line — a column copied from Excel works. Add your controls in the box below.</li>
+          <li>Choose how many replicates, and whether they sit side by side (<b>across</b>) or one above the other (<b>down</b>).</li>
+          <li>Choose the fill order and whether controls go first or last. Tick <b>Leave outer wells empty</b> to avoid edge effects.</li>
+          <li>Tap any well to keep it empty — a cracked well, or one you're saving for later. The layout flows around it.</li>
+          <li>Too many samples for one plate? The layout continues on plate 2, 3… With <b>Repeat controls</b> ticked, every plate gets its own controls.</li>
+          <li><b>PRINT</b> gives the plate map with the well list on page 2. <b>DOWNLOAD CSV</b> gives Plate, Well, Sample, Type and Replicate — ready to adapt for qPCR or plate reader software.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Your sample names stay in this browser — nothing is uploaded.</li>
+          <li>The layout is saved in this browser, so a refresh won't lose it.</li>
+          <li>Replicates of one sample always sit next to each other. If the rows or columns don't divide evenly by the number of replicates, the last row or column is left empty.</li>
+          <li>Neighbouring samples alternate between two shades of green, so replicate groups are easy to tell apart.</li>
+          <li>Pair it with the <a href="../plate-tracker/">Plate Tracker</a> to keep your place while you pipette.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../plate-tracker/">PLATE TRACKER</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 1.2</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="plate-layout.js?v=1"></script>
+</body>
+</html>

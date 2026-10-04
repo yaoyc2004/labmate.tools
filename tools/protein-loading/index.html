@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Protein Loading Calculator — BCA standard curve to Western blot loading table | labmate.tools</title>
+<meta name="description" content="Free BCA / Bradford standard curve and Western blot loading calculator. Fit your standards, get each sample's protein concentration, then the sample, loading buffer and water volumes for equal µg per lane.">
+<link rel="canonical" href="https://labmate.tools/tools/protein-loading/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Protein Loading Calculator — labmate.tools">
+<meta property="og:description" content="BCA standard curve → protein concentration → Western blot loading table.">
+<meta property="og:url" content="https://labmate.tools/tools/protein-loading/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 5.2 PROTEIN LOADING</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#cells">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 5.2</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <path d="M8 56 H64 M8 56 V8" stroke="#1B2224" stroke-width="1.4" fill="none"/>
+        <path d="M10 52 Q34 30 62 12" stroke="#1B2224" stroke-width="1.4" fill="none"/>
+        <g fill="#2E9E5B"><circle cx="14" cy="49" r="2.6"/><circle cx="24" cy="41" r="2.6"/><circle cx="36" cy="31" r="2.6"/><circle cx="50" cy="21" r="2.6"/><circle cx="60" cy="14" r="2.6"/></g>
+        <text x="70" y="36" font-family="IBM Plex Mono, monospace" font-size="12" fill="#6B7472">→</text>
+        <rect x="84" y="8" width="50" height="50" fill="#fff" stroke="#1B2224" stroke-width="1.4"/>
+        <g fill="#17403D"><rect x="88" y="20" width="8" height="3"/><rect x="99" y="20" width="8" height="3"/><rect x="110" y="20" width="8" height="3"/><rect x="121" y="20" width="8" height="3"/></g>
+        <g fill="#9CC7B6"><rect x="88" y="34" width="8" height="3"/><rect x="99" y="34" width="8" height="3"/><rect x="110" y="34" width="8" height="3"/><rect x="121" y="34" width="8" height="3"/></g>
+        <g fill="#B7791F"><rect x="88" y="10" width="8" height="5"/><rect x="99" y="10" width="8" height="5"/><rect x="110" y="10" width="8" height="5"/><rect x="121" y="10" width="8" height="5"/></g>
+      </svg>
+    </figure>
+    <div>
+      <h1>Protein Loading</h1>
+      <p class="lm-lede">Fit your BCA or Bradford standards, read each sample's protein concentration, and get a Western blot loading table with the same µg in every lane.</p>
+    </div>
+  </div>
+
+  <!-- 1 · standards -->
+  <h2 class="lm-bar"><span>1 · STANDARD CURVE</span><small>SECTION 05 — CELLS &amp; PROTEIN · 5.2</small></h2>
+  <div class="lm-sheet">
+    <div class="lm-solve">
+      <span class="lm-solve-k" id="srcLabel">I HAVE</span>
+      <div class="lm-seg" role="group" aria-labelledby="srcLabel" id="srcSeg">
+        <button type="button" data-v="assay">ABSORBANCE READINGS</button>
+        <button type="button" data-v="known">CONCENTRATIONS ALREADY</button>
+      </div>
+    </div>
+    <div class="pp-example" id="exampleNote" hidden>Showing example readings — type over them with yours.</div>
+
+    <div class="pp-curve" id="curveBox">
+      <div>
+        <table class="pp-table" id="stdTable">
+          <thead><tr><th>STANDARD (µg/mL)</th><th>ABSORBANCE <small>· replicates</small></th><th class="x"><span class="sr">Remove</span></th></tr></thead>
+          <tbody id="stdRows"></tbody>
+        </table>
+        <div class="pp-row-actions">
+          <button type="button" class="mm-add" id="addStd">+ STANDARD</button>
+          <div class="lm-seg" role="group" aria-label="Curve fit" id="fitSeg">
+            <button type="button" data-v="linear">LINEAR</button>
+            <button type="button" data-v="quad">QUADRATIC</button>
+          </div>
+        </div>
+        <p class="cs-hint pp-hint">The 0 µg/mL standard is the blank: its absorbance is subtracted from everything.</p>
+      </div>
+      <figure class="pp-chart">
+        <svg id="chart" viewBox="0 0 480 320" role="img" aria-labelledby="chartTitle"><title id="chartTitle">Standard curve</title></svg>
+        <figcaption id="fitInfo"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 2 · samples -->
+  <h2 class="lm-bar"><span>2 · SAMPLES</span><small id="samplesSub">ABSORBANCE → µg/µL</small></h2>
+  <div class="lm-sheet">
+    <div class="mm-wrap">
+      <table class="pp-table pp-samples" id="sTable">
+        <thead><tr><th>SAMPLE</th><th class="a">ABSORBANCE <small>· replicates</small></th><th class="d">DIL. ×</th><th class="n">µg/µL</th><th class="x"><span class="sr">Remove</span></th></tr></thead>
+        <tbody id="sRows"></tbody>
+      </table>
+    </div>
+    <button type="button" class="mm-add" id="addSample">+ SAMPLE</button>
+    <p class="cs-hint pp-hint" id="dilHint">DIL. ×: how much you diluted the lysate before the assay — 5 for 1:5. Leave 1 if you didn't.</p>
+  </div>
+
+  <!-- 3 · load -->
+  <h2 class="lm-bar"><span>3 · LOADING TABLE</span><small>EQUAL µg PER LANE</small></h2>
+  <div class="lm-sheet">
+    <div class="pp-load">
+      <div class="term" data-term="ug">
+        <div class="term-head"><span class="term-sym">µg</span><span class="term-name">PROTEIN PER LANE</span></div>
+        <div class="term-body"><label class="sr" for="ug">Protein per lane</label><input id="ug" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µg</span></div>
+        <div class="term-msg" id="ugm"></div>
+      </div>
+      <div class="term" data-term="lv">
+        <div class="term-head"><span class="term-sym">V</span><span class="term-name">VOLUME PER LANE</span></div>
+        <div class="term-body"><label class="sr" for="lv">Volume per lane</label><input id="lv" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µL</span></div>
+        <div class="term-msg" id="lvm"></div>
+      </div>
+      <div class="term" data-term="buf">
+        <div class="term-head"><span class="term-sym">X</span><span class="term-name">SAMPLE BUFFER</span></div>
+        <div class="term-body">
+          <label class="sr" for="buf">Sample buffer strength</label>
+          <select id="buf" class="cs-wide"><option value="2">2X</option><option value="4">4X (Laemmli / LDS)</option><option value="5">5X</option><option value="6">6X</option></select>
+        </div>
+      </div>
+      <div class="term" data-term="extra">
+        <div class="term-head"><span class="term-sym">+</span><span class="term-name">MAKE EXTRA</span></div>
+        <div class="term-body"><label class="sr" for="extra">Extra volume</label><input id="extra" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">%</span></div>
+        <div class="term-msg" id="extram"></div>
+      </div>
+    </div>
+
+    <div class="mm-wrap">
+      <table class="pp-table pp-loadtable" id="lTable">
+        <thead><tr><th>LANE</th><th>SAMPLE</th><th class="n">µg/µL</th><th class="n">SAMPLE</th><th class="n">BUFFER</th><th class="n">WATER</th><th class="n t">TOTAL</th></tr></thead>
+        <tbody id="lRows"></tbody>
+      </table>
+    </div>
+    <div class="ans-actions pp-actions">
+      <button type="button" class="btn" id="copy">COPY TABLE</button>
+      <button type="button" class="lm-link" id="print">PRINT</button>
+      <span class="btn-copied" id="copied" role="status"></span>
+      <span class="pp-say" id="loadSay"></span>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Enter your standards (e.g. BSA for BCA) and their absorbance readings. Several replicates? Type them in one box separated by spaces — they're averaged.</li>
+          <li>Keep the 0 µg/mL standard: it's used as the blank. Choose <b>LINEAR</b> or <b>QUADRATIC</b> — pick the one with R² closer to 1 that follows your points.</li>
+          <li>Enter each sample's readings, and the dilution if you diluted the lysate before the assay.</li>
+          <li>Already know the concentrations? Choose <b>CONCENTRATIONS ALREADY</b> and type them in µg/µL (= mg/mL).</li>
+          <li>Set µg per lane, the volume you load per lane, and your sample buffer. The table gives sample, buffer and water for each lane.</li>
+          <li><b>COPY TABLE</b> pastes into Excel or your notebook; <b>PRINT</b> gives a bench sheet.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">A − A<sub>blank</sub> = m·c + b</span>
+          <table>
+            <tr><td>sample conc.</td><td>c from the curve × dilution ÷ 1000 (µg/mL → µg/µL)</td></tr>
+            <tr><td>sample vol.</td><td>µg per lane ÷ µg/µL</td></tr>
+            <tr><td>buffer</td><td>lane volume ÷ X (4X → ¼)</td></tr>
+            <tr><td>water</td><td>lane volume − sample − buffer</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 20 µg in 20 µL with 4X buffer, lysate at 2.5 µg/µL: 8 µL sample + 5 µL buffer + 7 µL water.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser.</li>
+          <li>Samples that read above the top standard are flagged — dilute them and read again rather than trusting an extrapolated value.</li>
+          <li>Add reducing agent to the buffer as your kit says; this tool treats the buffer as one volume.</li>
+          <li>Volumes are rounded to 3 significant figures.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../dilution/">DILUTION</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 5.2</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="protein-loading.js?v=1"></script>
+</body>
+</html>

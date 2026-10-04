@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>96 &amp; 384 Well Plate Tracker — tap each well as you pipette | labmate.tools</title>
+<meta name="description" content="Free well plate pipetting tracker for iPad, laptop and phone. Tap each well as you load it, track up to 8 reagents in colored rounds, skip blank wells, undo. Progress is saved in your browser.">
+<link rel="canonical" href="https://labmate.tools/tools/plate-tracker/">
+<meta name="theme-color" content="#F2EDDF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Plate Tracker">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="plate-tracker.css?v=7">
+</head>
+<body>
+
+<header class="pt-top">
+  <a class="pt-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="pt-word">labmate<i></i>tools</span>
+  </a>
+  <span class="pt-crumb">/ 1.1 PLATE TRACKER</span>
+  <span class="pt-spacer"></span>
+  <span class="pt-saved" id="saved" role="status" aria-live="polite"></span>
+  <button type="button" class="pt-btn-sm pt-op-btn" id="opBtn" aria-pressed="false" title="1:1 — real plate size, for a plate set on the screen">1:1</button>
+  <div class="pt-seg pt-format" role="group" aria-label="Plate format">
+    <button type="button" data-format="96">96</button>
+    <button type="button" data-format="384">384</button>
+  </div>
+  <label class="pt-plate-name"><span class="sr">Plate name</span><input id="plateName" type="text" maxlength="24" autocomplete="off" spellcheck="false"></label>
+  <button type="button" class="pt-link" id="reset">RESET</button>
+</header>
+
+<main class="pt-app" id="app">
+  <section class="pt-stage" aria-label="Plate">
+    <div class="pt-stage-head">
+      <div class="pt-round-now">
+        <span class="pt-swatch" id="curSwatch"></span>
+        <span class="pt-mono" id="curRoundLabel">ROUND 1 / 1</span>
+        <span class="pt-cur-name" id="curName">Reagent 1</span>
+      </div>
+      <div class="pt-next">
+        <span class="pt-mono pt-muted" id="nextLabel">NEXT WELL</span>
+        <span class="pt-next-id" id="nextId">A1</span>
+        <button type="button" class="pt-btn-sm" id="orderBtn" aria-label="Change fill order">↓ BY COL</button>
+      </div>
+    </div>
+
+    <div class="pt-zonebar" id="zonebar" hidden>
+      <span class="pt-chip" id="zoneLabel">ZONE 1 / 4</span>
+      <div class="pt-zone-nav">
+        <button type="button" class="pt-btn-sq" id="zonePrev" aria-label="Previous zone">←</button>
+        <button type="button" class="pt-btn-sq" id="zoneNext" aria-label="Next zone">→</button>
+        <button type="button" class="pt-btn-sm" id="zoneToggle">FULL PLATE</button>
+      </div>
+    </div>
+
+    <div class="pt-frame" id="frame">
+      <div class="pt-plate" id="plate"></div>
+      <div class="pt-stamp" id="stamp" hidden>PASS ✓</div>
+    </div>
+
+    <div class="pt-op-note" id="opNote" hidden>
+      <span class="pt-op-tag">1:1 ON PLATE</span>
+      <span id="opScale"></span>
+      <button type="button" class="pt-link" id="opRecal">RECALIBRATE</button>
+      <button type="button" class="pt-link" id="opExit">EXIT 1:1</button>
+      <span class="pt-op-warn" id="opWarn" hidden></span>
+    </div>
+
+    <div class="pt-legend" aria-hidden="true">
+      <span><b class="lg lg-next"></b>NEXT</span>
+      <span><b class="lg lg-todo"></b>TO ADD</span>
+      <span><b class="lg lg-done" id="lgDone"></b>DONE THIS ROUND</span>
+      <span><b class="lg lg-skip"></b>SKIPPED</span>
+      <span class="pt-legend-tip" id="legendTip">TAP AGAIN TO UN-MARK · DRAG TO PAINT</span>
+    </div>
+  </section>
+
+  <aside class="pt-panels" aria-label="Rounds and options">
+    <div class="pt-minimap-wrap" id="minimapWrap" hidden>
+      <div class="pt-bar"><span>PLATE MAP</span><span>TAP A ZONE</span></div>
+      <div class="pt-minimap" id="minimap"></div>
+    </div>
+
+    <div class="pt-bar"><span>ROUNDS</span><span>UP TO 8</span></div>
+    <ol class="pt-rounds" id="rounds"></ol>
+    <div class="pt-round-edit">
+      <button type="button" class="pt-btn-dash" id="addRound">+ ADD ROUND</button>
+      <button type="button" class="pt-link" id="removeRound">REMOVE LAST</button>
+    </div>
+
+    <div class="pt-group">
+      <span class="pt-label">ONE TAP &amp; MARK NEXT COVER</span>
+      <div class="pt-seg-row">
+        <div class="pt-seg pt-seg-wide" role="group" aria-label="Scope: well, row or column" id="scopes">
+          <button type="button" data-scope="well">WELL</button>
+          <button type="button" data-scope="row">ROW</button>
+          <button type="button" data-scope="col">COL</button>
+        </div>
+        <div class="pt-seg pt-seg-wide pt-seg-act" role="group" aria-label="Action: add or skip" id="acts">
+          <button type="button" data-act="add">ADD</button>
+          <button type="button" data-act="skip">SKIP</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-progress">
+      <div class="pt-count"><b id="count">0</b><span id="total">/ 96</span><em id="skipNote"></em></div>
+      <div class="pt-meter"><i id="meter"></i></div>
+    </div>
+
+    <label class="pt-wake" id="wakeRow" hidden><input type="checkbox" id="wake"> KEEP SCREEN ON</label>
+
+    <div class="pt-pad-wrap">
+      <div class="pt-bar"><span>MOVE NEXT</span><span id="padState">AUTO · A1</span></div>
+      <div class="pt-pad-body">
+        <p class="pt-pad-help">Plate sitting on the screen? Use the arrows to move what <b>MARK NEXT</b> fills — one well, row or column at a time. <b>AUTO</b> jumps back to the first open spot.</p>
+        <div class="pt-pad" role="group" aria-label="Move next target">
+          <span></span>
+          <button type="button" id="pad-up" aria-label="Move up"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 13 L10 7 L16 13"/></svg></button>
+          <span></span>
+          <button type="button" id="pad-left" aria-label="Move left"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M13 4 L7 10 L13 16"/></svg></button>
+          <button type="button" id="padAuto" class="pt-pad-auto" aria-label="Back to automatic: first open spot">AUTO</button>
+          <button type="button" id="pad-right" aria-label="Move right"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 4 L13 10 L7 16"/></svg></button>
+          <span></span>
+          <button type="button" id="pad-down" aria-label="Move down"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7 L10 13 L16 7"/></svg></button>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="pt-actions">
+    <button type="button" class="pt-next-round" id="nextRound">Round 1 done — next round →</button>
+    <button type="button" class="pt-btn pt-undo" id="undo"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3 L2 6 L5 9 M2 6 H10 a4 4 0 0 1 0 8 H7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>UNDO</button>
+    <button type="button" class="pt-mark" id="markNext"><span class="pt-mark-k" id="markVerb">MARK NEXT</span><span class="pt-mark-id" id="markId">A1</span></button>
+  </div>
+
+  <aside class="pt-calib" id="calib" hidden aria-label="Calibrate 1:1">
+    <div class="pt-bar"><span>CALIBRATE 1:1</span><span>ONE TIME</span></div>
+    <ol class="pt-calib-steps" id="calibSteps">
+      <li>Set the plate on the outline, <b>A1 corner top-left</b>. Look straight down.</li>
+      <li>Push it so the <b>left and top edges</b> sit on the black line.</li>
+      <li>Tap <b>−</b> / <b>+</b> until the <b>right and bottom edges</b> match too. The wells should sit over the circles.</li>
+    </ol>
+    <ol class="pt-calib-steps" id="calibStepsCard" hidden>
+      <li>Lay a bank or ID card flat in the dashed box, <b>top-left corner</b> in the corner.</li>
+      <li>Tap <b>−</b> / <b>+</b> until the card's right and bottom edges match the dashed line.</li>
+    </ol>
+    <div class="pt-calib-ctrl" role="group" aria-label="Adjust size">
+      <button type="button" data-cal="0.98" aria-label="Smaller, big step">−−</button>
+      <button type="button" data-cal="0.9975" aria-label="Smaller">−</button>
+      <output id="calRead">5.20 px/mm</output>
+      <button type="button" data-cal="1.0025" aria-label="Larger">+</button>
+      <button type="button" data-cal="1.02" aria-label="Larger, big step">++</button>
+    </div>
+    <div class="pt-calib-links">
+      <button type="button" class="pt-link" id="calCard">NO PLATE AT HAND? USE A CARD</button>
+      <button type="button" class="pt-link" id="calDefault">DEFAULT FOR THIS SCREEN</button>
+    </div>
+    <p class="pt-calib-note">Keep Safari at 100% zoom (aA menu). The size is saved on this device — you only do this once.</p>
+    <div class="pt-calib-go">
+      <button type="button" class="pt-link" id="calCancel">CANCEL</button>
+      <button type="button" class="pt-next-round is-pass" id="calDone">Edges match — start ✓</button>
+    </div>
+  </aside>
+</main>
+
+<section class="pt-about" id="about">
+  <div class="pt-sec">SECTION 01 — PLATES · 1.1</div>
+  <div class="pt-about-head">
+    <figure class="pt-fig">
+      <svg viewBox="0 0 120 64" width="120" height="64" aria-hidden="true">
+        <g fill="none" stroke="#1B2224" stroke-width="1.2">
+          <circle cx="16" cy="18" r="6" fill="#2E9E5B" stroke="none"/><circle cx="32" cy="18" r="6" fill="#2E9E5B" stroke="none"/><circle cx="48" cy="18" r="6" fill="#2E9E5B" stroke="none"/><circle cx="64" cy="18" r="6" stroke-width="3"/><circle cx="80" cy="18" r="6"/><circle cx="96" cy="18" r="6"/>
+          <circle cx="16" cy="38" r="6"/><circle cx="32" cy="38" r="6"/><circle cx="48" cy="38" r="6"/><circle cx="64" cy="38" r="6"/><circle cx="80" cy="38" r="6"/><circle cx="96" cy="38" r="6"/>
+        </g>
+      </svg>
+      <figcaption>FIG. 1.1</figcaption>
+    </figure>
+    <div>
+      <h1>Plate Tracker</h1>
+      <p class="pt-lede">A well plate pipetting tracker for the bench. Tap each well as you load it, run several reagents as colored rounds, and never lose your place on a 96 or 384 well plate.</p>
+      <p class="pt-flow">TAP → TRACK → PASS</p>
+    </div>
+  </div>
+
+  <div class="pt-cols">
+    <div>
+      <h2>How to use</h2>
+      <ol class="pt-num">
+        <li>Pick <b>96</b> or <b>384</b> at the top. Each format keeps its own plate.</li>
+        <li>Name the round after the reagent you are adding — tap its name in the list to edit.</li>
+        <li>On an iPad you can set the plate right on the screen: choose <b>1:1</b>, calibrate once against the plate's edges (or a bank card), and the plate is drawn at its real size — standard SLAS/ANSI footprint and well positions.</li>
+        <li>Tap a well as you pipette into it, or press the big <b>MARK NEXT</b> button to fill in order (by column or by row).</li>
+        <li>Plate lined up on the iPad screen? Use the <b>MOVE NEXT</b> arrows to put the next well, row or column exactly where you are. After that, <b>MARK NEXT</b> carries on from there. <b>AUTO</b> returns to the first open spot.</li>
+        <li>Using a multichannel? Switch to <b>ROW</b> or <b>COLUMN</b>: a tap, or <b>MARK NEXT</b>, then marks the whole line at once.</li>
+        <li>Blanks or wells that don't get this reagent: switch <b>ADD</b> to <b>SKIP</b>, then tap them or use <b>SKIP NEXT</b> — a well, row or column at a time. In a round a well is either added or skipped: wells already added stay added. Skipped wells are left out of the count, and a new round starts with the same wells skipped.</li>
+        <li>When every well is in, the round shows <b>PASS ✓</b>. Go to the next round — up to 8 per plate.</li>
+      </ol>
+    </div>
+    <div>
+      <h2>Keyboard</h2>
+      <table class="pt-keys">
+        <tr><td><kbd>Space</kbd></td><td>Mark next (well, row or column)</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd></td><td>Move next · <kbd>A</kbd> back to auto</td></tr>
+        <tr><td><kbd>Z</kbd></td><td>Undo</td></tr>
+        <tr><td><kbd>W</kbd> / <kbd>R</kbd> / <kbd>C</kbd></td><td>Work by well / row / column</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Switch between add and skip</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td>Round done, next round</td></tr>
+        <tr><td><kbd>1</kbd>–<kbd>8</kbd></td><td>Switch round</td></tr>
+        <tr><td><kbd>Shift</kbd> + click</td><td>Fill a rectangle from the last well</td></tr>
+      </table>
+      <h2>Good to know</h2>
+      <ol class="pt-num">
+        <li>Free to use. No subscription.</li>
+        <li>Progress is saved in this browser after every tap, so a refresh or a closed tab won't lose your plate. Private browsing, clearing site data, or switching device or browser starts a fresh plate.</li>
+        <li>Built for iPad at the bench; works on a laptop and a phone too.</li>
+        <li>A tracker, not a record: it does not replace your lab notebook or LIMS.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer class="pt-foot">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 1.1</span>
+</footer>
+
+<div class="pt-modal" id="askModal" hidden>
+  <div class="pt-modal-box" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+    <div class="pt-bar"><span>1.1 PLATE TRACKER</span><span>HOW WILL YOU WORK?</span></div>
+    <div class="pt-modal-body">
+      <h2 id="askTitle">Setting the plate on the screen?</h2>
+      <p><b>1:1 mode</b> draws the plate at its real size, so a 96 or 384 well plate sits right on the iPad and the highlighted wells light up under the real ones. The first time takes a one-minute calibration.</p>
+      <div class="pt-modal-choices">
+        <button type="button" class="pt-choice pt-choice-main" id="askYes"><b>Yes — 1:1 on plate</b><span id="askYesSub">Calibrate once, then work under the plate</span></button>
+        <button type="button" class="pt-choice" id="askNo"><b>No — normal view</b><span>Plate drawn to fit the screen</span></button>
+      </div>
+      <label class="pt-modal-remember"><input type="checkbox" id="askRemember"> Don't ask again on this device — switch any time with the <b>1:1</b> button</label>
+    </div>
+  </div>
+</div>
+
+<script src="plate-tracker.js?v=7"></script>
+</body>
+</html>

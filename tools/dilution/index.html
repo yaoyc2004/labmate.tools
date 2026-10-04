@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dilution Calculator (C1V1 = C2V2) — stock volume, diluent &amp; dilution factor | labmate.tools</title>
+<meta name="description" content="Free C1V1 = C2V2 dilution calculator. Solve for stock volume, final volume or either concentration in M, mM, µM, nM, mg/mL, ng/µL, % or X. Get the stock and diluent volumes and a two-step plan when the volume is too small to pipette.">
+<link rel="canonical" href="https://labmate.tools/tools/dilution/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Dilution Calculator (C1V1 = C2V2) — labmate.tools">
+<meta property="og:description" content="Solve C1V1 = C2V2 in any unit. Stock volume, diluent volume and dilution factor, ready to pipette.">
+<meta property="og:url" content="https://labmate.tools/tools/dilution/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=2">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.2 DILUTION</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.2</figcaption>
+      <svg width="132" height="62" viewBox="0 0 132 62">
+        <text x="66" y="22" text-anchor="middle" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-weight="500" font-size="20" fill="#1B2224">C₁V₁ = C₂V₂</text>
+        <path d="M44 32 V50 a3 3 0 0 0 3 3 H55 a3 3 0 0 0 3 -3 V32" fill="#17403D" stroke="#1B2224" stroke-width="1.5"/>
+        <path d="M44 32 V40 H58 V32" fill="#FAF7EE"/>
+        <path d="M44 32 V50 a3 3 0 0 0 3 3 H55 a3 3 0 0 0 3 -3 V32" fill="none" stroke="#1B2224" stroke-width="1.5"/>
+        <text x="66" y="48" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#6B7472">→</text>
+        <path d="M74 26 V54 a3 3 0 0 0 3 3 H89 a3 3 0 0 0 3 -3 V26" fill="#9CC7B6"/>
+        <path d="M74 26 V31 H92 V26" fill="#FAF7EE"/>
+        <path d="M74 26 V54 a3 3 0 0 0 3 3 H89 a3 3 0 0 0 3 -3 V26" fill="none" stroke="#1B2224" stroke-width="1.5"/>
+      </svg>
+    </figure>
+    <div>
+      <h1>Dilution Calculator</h1>
+      <p class="lm-lede">Fill in three of the four values in C₁V₁ = C₂V₂. You get the missing one, how much stock and diluent to pipette, and the dilution factor.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>SECTION 02 — CALCULATORS · 2.2</span><small>ENTER → SOLVE → PIPETTE</small></h2>
+  <div class="lm-sheet">
+    <div class="lm-solve">
+      <span class="lm-solve-k" id="solveLabel">SOLVE FOR</span>
+      <div class="lm-seg" role="group" aria-labelledby="solveLabel" id="solveSeg">
+        <button type="button" data-solve="c1" aria-label="Stock concentration, C1"><span class="eq">C<sub>1</sub></span></button>
+        <button type="button" data-solve="v1" aria-label="Stock volume, V1"><span class="eq">V<sub>1</sub></span></button>
+        <button type="button" data-solve="c2" aria-label="Final concentration, C2"><span class="eq">C<sub>2</sub></span></button>
+        <button type="button" data-solve="v2" aria-label="Final volume, V2"><span class="eq">V<sub>2</sub></span></button>
+      </div>
+    </div>
+
+    <div class="lm-eqform" id="form">
+      <div class="term" data-term="c1">
+        <div class="term-head"><span class="term-sym">C<sub>1</sub></span><span class="term-name">STOCK CONC.</span></div>
+        <div class="term-body">
+          <label class="sr" for="c1">Stock concentration</label>
+          <input id="c1" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="c1u">Stock concentration unit</label>
+          <select id="c1u"></select>
+        </div>
+        <div class="term-msg" id="c1m"></div>
+      </div>
+      <span class="lm-op" aria-hidden="true">×</span>
+      <div class="term" data-term="v1">
+        <div class="term-head"><span class="term-sym">V<sub>1</sub></span><span class="term-name">STOCK TO ADD</span></div>
+        <div class="term-body">
+          <label class="sr" for="v1">Stock volume</label>
+          <input id="v1" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="v1u">Stock volume unit</label>
+          <select id="v1u"></select>
+        </div>
+        <div class="term-msg" id="v1m"></div>
+      </div>
+      <span class="lm-op is-eq" aria-hidden="true">=</span>
+      <div class="term" data-term="c2">
+        <div class="term-head"><span class="term-sym">C<sub>2</sub></span><span class="term-name">FINAL CONC.</span></div>
+        <div class="term-body">
+          <label class="sr" for="c2">Final concentration</label>
+          <input id="c2" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="c2u">Final concentration unit</label>
+          <select id="c2u"></select>
+        </div>
+        <div class="term-msg" id="c2m"></div>
+      </div>
+      <span class="lm-op" aria-hidden="true">×</span>
+      <div class="term" data-term="v2">
+        <div class="term-head"><span class="term-sym">V<sub>2</sub></span><span class="term-name">FINAL VOLUME</span></div>
+        <div class="term-body">
+          <label class="sr" for="v2">Final volume</label>
+          <input id="v2" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="v2u">Final volume unit</label>
+          <select id="v2u"></select>
+        </div>
+        <div class="term-msg" id="v2m"></div>
+      </div>
+    </div>
+
+    <div class="lm-answer">
+      <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+        <span class="ans-k" id="ansK">ANSWER</span>
+        <div class="ans-big" id="ansBig"></div>
+        <p class="ans-say" id="ansSay"></p>
+        <div class="ans-actions">
+          <button type="button" class="btn" id="copy">COPY RECIPE</button>
+          <span class="btn-copied" id="copied" role="status"></span>
+        </div>
+      </section>
+      <section class="slip" id="slip" aria-label="Pipetting recipe">
+        <div class="slip-title"><span>RECIPE</span><span id="slipFactor"></span></div>
+        <ol>
+          <li><span class="k">STOCK</span><span class="lead"></span><span class="v" id="rStock">—</span></li>
+          <li><span class="k">DILUENT</span><span class="lead"></span><span class="v" id="rDil">—</span></li>
+          <li class="total"><span class="k">MAKES</span><span class="lead"></span><span class="v" id="rTotal">—</span></li>
+        </ol>
+      </section>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Pick what you want to find under <b>SOLVE FOR</b>. Most of the time that is <span class="eq">V<sub>1</sub></span>: how much stock to add.</li>
+          <li>Type the other three values and pick their units. Units can differ — mM stock into µM final, mL into µL — the tool converts.</li>
+          <li>Both concentrations must be the same kind: molar with molar, mass with mass, % with %, X with X. To go between molar and mg/mL, use the <a href="../molarity/">Molarity</a> tool.</li>
+          <li>The recipe shows how much stock and how much diluent (water, buffer or medium) to mix.</li>
+          <li>If the stock volume is under 1 µL, you get a two-step plan with an intermediate dilution so you can pipette it accurately.</li>
+          <li><b>COPY RECIPE</b> puts the result on your clipboard, ready to paste into your notebook.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">C<sub>1</sub> × V<sub>1</sub> = C<sub>2</sub> × V<sub>2</sub></span>
+          <table>
+            <tr><td>C<sub>1</sub></td><td>concentration of the stock</td></tr>
+            <tr><td>V<sub>1</sub></td><td>volume of stock to take</td></tr>
+            <tr><td>C<sub>2</sub></td><td>concentration you want</td></tr>
+            <tr><td>V<sub>2</sub></td><td>total volume you want to end up with</td></tr>
+          </table>
+          <p>Diluent to add = V<sub>2</sub> − V<sub>1</sub>. Dilution factor = C<sub>1</sub> ÷ C<sub>2</sub>.</p>
+        </div>
+        <p class="example"><b>Example.</b> 1 mL of 10 µM from a 1 mM stock: V<sub>1</sub> = 10 µM × 1 mL ÷ 1 mM = 10 µL. Add 10 µL stock to 990 µL diluent — a 1:100 dilution.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser.</li>
+          <li>“1:100” here means 1 part stock in 100 parts total (1 + 99), the usual lab reading.</li>
+          <li>Results are rounded to 4 significant figures.</li>
+          <li>A calculator, not a protocol: check the numbers against your own method.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../molarity/">MOLARITY</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.2</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="dilution.js?v=1"></script>
+</body>
+</html>

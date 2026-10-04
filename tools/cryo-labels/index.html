@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cryo Labels — batch print freezer labels on laser sheets · labmate.tools</title>
+<meta name="description" content="Free cryo label maker: turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, with a calibration page to line it up with your printer.">
+<link rel="canonical" href="https://labmate.tools/tools/cryo-labels/">
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cryo-labels.css?v=1">
+</head>
+<body>
+<div class="page">
+
+<header class="topbar">
+  <a class="brand" href="../../" aria-label="labmate.tools home">
+    <svg width="22" height="32" viewBox="0 0 22 32" aria-hidden="true"><rect x="5" y="1" width="12" height="5" fill="currentColor"/><rect x="6.5" y="6" width="9" height="24" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8.5" y="17" width="5" height="11" rx="2.5" fill="#2E9E5B"/></svg>
+    <span class="wordmark">labmate<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#2E9E5B"/><path d="M4.3 8.3l2.4 2.4 5-5" fill="none" stroke="#fff" stroke-width="2"/></svg>tools</span>
+  </a>
+  <nav class="nav mono" aria-label="Site">
+    <a href="../../#index">INDEX</a>
+    <a href="../../#know">GOOD TO KNOW</a>
+    <a href="../../#request">REQUEST A TOOL</a>
+  </nav>
+</header>
+<div class="crumbs mono">
+  <span><a href="../../#index">INDEX</a> › <a href="../../#labels">04 LABELS</a> › 4.1 CRYO LABELS</span>
+  <span class="saved" id="savedFlag">● AUTO-SAVED · SETTINGS STAY IN THIS BROWSER</span>
+</div>
+
+<section class="hero">
+  <figure class="fig">
+    <svg viewBox="0 0 170 96" aria-hidden="true">
+      <rect x="22" y="6" width="26" height="12" fill="#1B2224"/>
+      <rect x="25" y="18" width="20" height="70" rx="9" fill="none" stroke="#1B2224" stroke-width="2.4"/>
+      <rect x="24" y="34" width="22" height="26" fill="#FAF7EE" stroke="#1B2224" stroke-width="1.6"/>
+      <line x1="28" y1="42" x2="40" y2="42" stroke="#1B2224" stroke-width="2.4"/>
+      <line x1="28" y1="48" x2="42" y2="48" stroke="#1B2224" stroke-width="1.2"/>
+      <line x1="28" y1="53" x2="37" y2="53" stroke="#1B2224" stroke-width="1.2"/>
+      <rect x="78" y="10" width="78" height="80" fill="#fff" stroke="#1B2224" stroke-width="1.6"/>
+      <g fill="#9CC7B6" stroke="#1B2224" stroke-width="0.8"><rect x="84" y="17" width="20" height="10"/><rect x="107" y="17" width="20" height="10"/><rect x="130" y="17" width="20" height="10"/><rect x="84" y="30" width="20" height="10"/><rect x="107" y="30" width="20" height="10"/><rect x="130" y="30" width="20" height="10"/></g>
+      <g fill="none" stroke="#1B2224" stroke-width="0.8" stroke-dasharray="2 2"><rect x="84" y="43" width="20" height="10"/><rect x="107" y="43" width="20" height="10"/><rect x="130" y="43" width="20" height="10"/><rect x="84" y="56" width="20" height="10"/><rect x="107" y="56" width="20" height="10"/><rect x="130" y="56" width="20" height="10"/><rect x="84" y="69" width="20" height="10"/><rect x="107" y="69" width="20" height="10"/><rect x="130" y="69" width="20" height="10"/></g>
+      <line x1="56" y1="48" x2="72" y2="48" stroke="#1B2224" stroke-width="1.6"/><path d="M68 44l5 4-5 4" fill="none" stroke="#1B2224" stroke-width="1.6"/>
+    </svg>
+    <figcaption class="mono">FIG. 4.1 — LIST → SHEET</figcaption>
+  </figure>
+  <div class="hero-text">
+    <h1 class="serif">Cryo Labels.</h1>
+    <p class="serif lede">Batch-print freezer-box labels onto a full laser sheet — lined up to your own printer.</p>
+    <div class="mono flow">LIST → LAYOUT → ALIGN → PDF</div>
+  </div>
+  <ul class="facts mono">
+    <li>RUNS IN YOUR BROWSER</li>
+    <li>OUTPUT · PDF, MILLIMETRE LAYOUT</li>
+    <li>FOR LASER LABEL SHEETS</li>
+    <li class="muted">NOT FOR THERMAL PRINTERS</li>
+  </ul>
+</section>
+
+<main class="work">
+  <div class="steps">
+
+    <section class="box" aria-labelledby="s1">
+      <h2 class="bar mono" id="s1"><span>01 — SAMPLES</span><span id="countBar">0 LABELS</span></h2>
+      <div class="box-body">
+        <div class="tabs mono" role="group" aria-label="Input mode">
+          <button type="button" id="modeRange" aria-pressed="true">RANGE</button>
+          <button type="button" id="modeList" aria-pressed="false">PASTE LIST</button>
+        </div>
+
+        <div id="rangeFields" class="grid3">
+          <label class="field mono">PREFIX<input id="prefix" autocomplete="off" spellcheck="false"></label>
+          <label class="field mono">FROM<input id="from" inputmode="numeric" autocomplete="off"></label>
+          <label class="field mono">TO<input id="to" inputmode="numeric" autocomplete="off"></label>
+          <p class="hint sans span3">Leading zeros are kept: FROM “001” gives S001, S002 …</p>
+        </div>
+
+        <div id="listFields" hidden>
+          <label class="field mono">ONE ID PER LINE · PASTE FROM EXCEL OK
+            <textarea id="list" rows="6" spellcheck="false" placeholder="S001&#10;S002&#10;S003"></textarea>
+          </label>
+          <p class="hint sans">or <label class="filelink"><input type="file" id="csvFile" accept=".csv,.txt,.tsv,text/csv,text/plain">open a .csv file</label> — first column is used. The file is read on this computer and never uploaded.</p>
+        </div>
+
+        <div class="grid2">
+          <label class="field mono">COPIES PER ID<input id="copies" type="number" min="1" max="20" step="1"></label>
+          <label class="field mono">COPIES PLACED
+            <select id="placement"><option value="side">SIDE BY SIDE</option><option value="sets">AS FULL SETS</option></select>
+          </label>
+        </div>
+        <div class="grid2">
+          <label class="field mono">LINE 2 · DATE<input id="line2" autocomplete="off"></label>
+          <label class="field mono">LINE 3 · SAME ON ALL<input id="line3" autocomplete="off" placeholder="initials · project"></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s2">
+      <h2 class="bar mono" id="s2"><span>02 — SHEET &amp; LABEL</span></h2>
+      <div class="box-body">
+        <label class="field mono">LABEL SHEET · MATCH THE SIZE ON YOUR BOX
+          <select id="sheet"></select>
+        </label>
+        <div class="sheetinfo mono" id="sheetInfo"></div>
+
+        <details class="geom" id="geomBox">
+          <summary class="mono">SHEET GEOMETRY · MM <span id="geomTag"></span></summary>
+          <div class="geom-body">
+            <div class="grid3">
+              <label class="field mono">PAPER<select id="g_page"><option value="letter">LETTER</option><option value="a4">A4</option></select></label>
+              <label class="field mono">COLUMNS<input id="g_cols" type="number" min="1" max="20"></label>
+              <label class="field mono">ROWS<input id="g_rows" type="number" min="1" max="60"></label>
+            </div>
+            <div class="grid3">
+              <label class="field mono">LABEL W<input id="g_w" type="number" step="0.1" min="3"></label>
+              <label class="field mono">LABEL H<input id="g_h" type="number" step="0.1" min="3"></label>
+              <label class="field mono">CORNER R<input id="g_r" type="number" step="0.1" min="0"></label>
+            </div>
+            <div class="grid4">
+              <label class="field mono">TOP<input id="g_top" type="number" step="0.1" min="0"></label>
+              <label class="field mono">LEFT<input id="g_left" type="number" step="0.1" min="0"></label>
+              <label class="field mono">PITCH →<input id="g_px" type="number" step="0.01" min="1"></label>
+              <label class="field mono">PITCH ↓<input id="g_py" type="number" step="0.01" min="1"></label>
+            </div>
+            <p class="hint sans">Top and left are measured to the edge of the first label. Pitch is from one label’s left (or top) edge to the next one’s — measure across 5 labels and divide by 5. Editing any value switches to a custom sheet, saved in this browser.</p>
+            <p class="warn-inline sans" id="geomWarn" hidden></p>
+          </div>
+        </details>
+
+        <div class="grid2">
+          <label class="field mono">TEMPLATE
+            <select id="template"><option value="lines">3 LINES</option><option value="qr">ID + QR</option><option value="id">ID ONLY · LARGE</option></select>
+          </label>
+          <label class="field mono">TEXT SIZE
+            <select id="textSize"><option value="auto">AUTO-FIT · MIN 6 PT</option><option value="7">UP TO 7 PT</option><option value="8">UP TO 8 PT</option><option value="10">UP TO 10 PT</option></select>
+          </label>
+        </div>
+        <label class="check sans"><input type="checkbox" id="wrap"> Let long IDs wrap onto two lines</label>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s3">
+      <h2 class="bar mono" id="s3"><span>03 — ALIGN TO YOUR PRINTER</span><span class="bar-note" id="offsetFor"></span></h2>
+      <div class="box-body align">
+        <ol class="sans">
+          <li>Print the calibration page on plain paper.</li>
+          <li>Hold it over a blank label sheet against the light.</li>
+          <li>Enter how far to move the print so the crosses land on the label centres.</li>
+        </ol>
+        <div class="offsets">
+          <label class="field mono">X MM →<input id="offX" type="number" step="0.1"></label>
+          <label class="field mono">Y MM ↓<input id="offY" type="number" step="0.1"></label>
+        </div>
+        <p class="hint sans span-all">Positive X moves the print right, positive Y moves it down. Top-left correct but bottom-right off? The spacing is wrong, not the offset — fix the pitch under Sheet geometry.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="output">
+    <h2 class="bar mono"><span id="previewTitle">PREVIEW</span><span id="previewCount"></span></h2>
+    <div class="output-grid">
+      <div class="preview-wrap">
+        <div class="sheet-frame" id="sheetFrame" aria-label="Sheet preview" role="img"></div>
+        <div class="pager mono" id="pager">
+          <button type="button" id="prevPage" aria-label="Previous page">◀</button>
+          <span id="pageLabel">PAGE 1 OF 1</span>
+          <button type="button" id="nextPage" aria-label="Next page">▶</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div id="status"></div>
+
+        <dl class="stats mono">
+          <div><dt>LABELS</dt><dd id="stLabels">0</dd></div>
+          <div><dt>SHEETS NEEDED</dt><dd id="stSheets">0</dd></div>
+          <div><dt>EMPTY ON LAST SHEET</dt><dd id="stEmpty">0</dd></div>
+          <div><dt>OFFSET APPLIED</dt><dd id="stOffset">X 0.0 · Y 0.0</dd></div>
+        </dl>
+
+        <div class="note-box">
+          <div class="mono note-title">BEFORE YOU PRINT</div>
+          <p class="sans">Set scale to <strong>Actual size / 100%</strong>, not “Fit to page”. Feed each label sheet only once.</p>
+          <label class="check sans"><input type="checkbox" id="outlines"> Draw label outlines (for a test print on plain paper)</label>
+        </div>
+
+        <div class="grow"></div>
+        <button type="button" class="primary mono" id="downloadPdf">DOWNLOAD PDF <span aria-hidden="true">→</span></button>
+        <button type="button" class="secondary mono" id="calPdf">PRINT CALIBRATION PAGE <span aria-hidden="true">↗</span></button>
+        <p class="hint sans">Screen preview is approximate. The PDF is laid out in millimetres.</p>
+        <p class="error sans" id="libError" hidden>The PDF library didn’t load. Check your connection and reload the page.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer mono">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="https://unjamkit.com">UNJAMKIT</a> · <a href="../../privacy/">PRIVACY</a></span>
+  <span>P. 4.1</span>
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="cryo-labels.js?v=1"></script>
+</body>
+</html>

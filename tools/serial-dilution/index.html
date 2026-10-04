@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Serial Dilution Calculator — 2-fold, 10-fold, any fold, tube by tube | labmate.tools</title>
+<meta name="description" content="Free serial dilution calculator. Set the top concentration, fold, number of tubes and volume per tube. Get the diluent and transfer volume for every tube, the concentration series, and a printable plan.">
+<link rel="canonical" href="https://labmate.tools/tools/serial-dilution/">
+<meta name="theme-color" content="#F2EDDF">
+<meta property="og:title" content="Serial Dilution Calculator — labmate.tools">
+<meta property="og:description" content="Plan a 2-fold, 10-fold or any-fold dilution series, tube by tube, ready to print.">
+<meta property="og:url" content="https://labmate.tools/tools/serial-dilution/">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.4 SERIAL DILUTION</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.4</figcaption>
+      <svg width="140" height="62" viewBox="0 0 140 62">
+        <g stroke="#1B2224" stroke-width="1.4">
+          <path d="M10 18 V46 a4 4 0 0 0 8 0 V18" fill="#17403D"/>
+          <path d="M36 18 V46 a4 4 0 0 0 8 0 V18" fill="#3F7A6B"/>
+          <path d="M62 18 V46 a4 4 0 0 0 8 0 V18" fill="#6FA595"/>
+          <path d="M88 18 V46 a4 4 0 0 0 8 0 V18" fill="#9CC7B6"/>
+          <path d="M114 18 V46 a4 4 0 0 0 8 0 V18" fill="#D3E6DD"/>
+        </g>
+        <g fill="none" stroke="#6B7472" stroke-width="1.2"><path d="M20 12 q8 -8 14 0"/><path d="M46 12 q8 -8 14 0"/><path d="M72 12 q8 -8 14 0"/><path d="M98 12 q8 -8 14 0"/></g>
+        <text x="70" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#6B7472">÷F  ÷F  ÷F  ÷F</text>
+      </svg>
+    </figure>
+    <div>
+      <h1>Serial Dilution Calculator</h1>
+      <p class="lm-lede">Set the top concentration, the fold and how many tubes. You get what goes into every tube, the concentration series, and a plan to print.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>SECTION 02 — CALCULATORS · 2.4</span><small>SET → PLAN → PIPETTE</small></h2>
+  <div class="lm-sheet">
+    <div class="sd-controls">
+      <div class="term" data-term="top">
+        <div class="term-head"><span class="term-sym">C<sub>1</sub></span><span class="term-name">TOP CONCENTRATION</span></div>
+        <div class="term-body">
+          <label class="sr" for="top">Top concentration</label>
+          <input id="top" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="topu">Unit</label>
+          <select id="topu"></select>
+        </div>
+        <div class="term-msg" id="topm"></div>
+      </div>
+      <div class="term" data-term="fold">
+        <div class="term-head"><span class="term-sym">÷F</span><span class="term-name">FOLD PER STEP</span></div>
+        <div class="term-body">
+          <label class="sr" for="fold">Dilution fold per step</label>
+          <input id="fold" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <span class="term-unit">-fold</span>
+        </div>
+        <div class="sd-quick" role="group" aria-label="Common folds" id="foldQuick">
+          <button type="button" data-v="2">2×</button><button type="button" data-v="3">3×</button><button type="button" data-v="5">5×</button><button type="button" data-v="10">10×</button>
+        </div>
+        <div class="term-msg" id="foldm"></div>
+      </div>
+      <div class="term" data-term="n">
+        <div class="term-head"><span class="term-sym">n</span><span class="term-name">TUBES IN SERIES</span></div>
+        <div class="term-body">
+          <label class="sr" for="n">Number of tubes</label>
+          <input id="n" type="text" inputmode="numeric" autocomplete="off" spellcheck="false">
+          <span class="term-unit">tubes</span>
+        </div>
+        <div class="term-msg" id="nm"></div>
+      </div>
+      <div class="term" data-term="vol">
+        <div class="term-head"><span class="term-sym">V</span><span class="term-name">LEFT IN EACH TUBE</span></div>
+        <div class="term-body">
+          <label class="sr" for="vol">Volume left in each tube</label>
+          <input id="vol" type="text" inputmode="decimal" autocomplete="off" spellcheck="false">
+          <label class="sr" for="volu">Volume unit</label>
+          <select id="volu"></select>
+        </div>
+        <div class="term-msg" id="volm"></div>
+      </div>
+      <div class="term" data-term="stock">
+        <div class="term-head"><span class="term-sym">C<sub>s</sub></span><span class="term-name">STOCK · OPTIONAL</span></div>
+        <div class="term-body">
+          <label class="sr" for="stock">Stock concentration</label>
+          <input id="stock" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="= top">
+          <span class="term-unit" id="stocku"></span>
+        </div>
+        <div class="term-msg" id="stockm"></div>
+      </div>
+      <div class="sd-opts">
+        <label class="pl-check"><input type="checkbox" id="discard"> Take the extra out of the last tube, so every tube ends with the same volume</label>
+        <label class="pl-check"><input type="checkbox" id="blank"> Add a blank tube (diluent only)</label>
+      </div>
+    </div>
+
+    <div class="sd-strip" id="strip" aria-hidden="true"></div>
+
+    <div class="mm-wrap">
+      <table class="mm-table sd-table" id="table">
+        <thead>
+          <tr>
+            <th class="c-name">TUBE</th>
+            <th class="c-num">CONCENTRATION</th>
+            <th class="c-num">DILUENT</th>
+            <th class="c-num">ADD</th>
+            <th class="c-num c-tot">ENDS WITH</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <div class="lm-answer">
+      <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+        <span class="ans-k" id="ansK">HOW TO</span>
+        <div class="ans-big" id="ansBig"></div>
+        <ol class="sd-steps" id="steps"></ol>
+        <div class="ans-actions">
+          <button type="button" class="btn" id="copy">COPY PLAN</button>
+          <button type="button" class="lm-link" id="print">PRINT</button>
+          <span class="btn-copied" id="copied" role="status"></span>
+        </div>
+      </section>
+      <section class="slip" id="slip" aria-label="Summary">
+        <div class="slip-title"><span>SERIES</span><span id="slipF"></span></div>
+        <ol>
+          <li><span class="k">HIGHEST</span><span class="lead"></span><span class="v" id="rHi">—</span></li>
+          <li><span class="k">LOWEST</span><span class="lead"></span><span class="v" id="rLo">—</span></li>
+          <li><span class="k">TRANSFER</span><span class="lead"></span><span class="v" id="rT">—</span></li>
+          <li class="total"><span class="k">DILUENT NEEDED</span><span class="lead"></span><span class="v" id="rD">—</span></li>
+        </ol>
+      </section>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Enter the concentration you want in the first tube — the top of your series or standard curve.</li>
+          <li>Pick the fold per step (2× for a half-dilution, 10× for a log series) and how many tubes.</li>
+          <li>Enter how much you need left in each tube for your assay.</li>
+          <li>If the top tube must itself be made from a stronger stock, enter the stock. The plan adds that step.</li>
+          <li>Follow the steps: diluent into every tube first, then transfer and mix from tube to tube. Change tips between tubes.</li>
+          <li><b>COPY PLAN</b> pastes into Excel or your notebook; <b>PRINT</b> gives a one-page bench sheet.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">C<sub>k</sub> = C<sub>1</sub> ÷ F<sup>k−1</sup></span>
+          <table>
+            <tr><td>transfer</td><td>T = V ÷ (F − 1)</td></tr>
+            <tr><td>diluent</td><td>D = V (tubes 2 to n)</td></tr>
+            <tr><td>tube 1</td><td>V + T of the top concentration</td></tr>
+          </table>
+          <p>Each tube gets D of diluent plus T from the tube before: (T + D) ÷ T = F.</p>
+        </div>
+        <p class="example"><b>Example.</b> 6 tubes, 2-fold, 100 µL each from 1000 ng/mL: put 100 µL diluent in tubes 2–6, 200 µL of 1000 ng/mL in tube 1, then move 100 µL down the line → 1000, 500, 250, 125, 62.5, 31.25 ng/mL.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser.</li>
+          <li>Errors add up along a series — mix well and change tips at every step.</li>
+          <li>Volumes are rounded to 4 significant figures.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../dilution/">DILUTION</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.4</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="serial-dilution.js?v=1"></script>
+</body>
+</html>

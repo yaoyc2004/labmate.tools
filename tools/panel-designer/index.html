@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Designer — flow cytometry panel builder with spectra and spillover · labmate.tools</title>
+<meta name="description" content="Free, vendor-neutral flow cytometry panel designer: pick your cytometer (or enter your own filters), assign fluorochromes to markers, and see emission spectra, estimated spillover and spectral similarity. Runs in your browser.">
+<link rel="canonical" href="https://labmate.tools/tools/panel-designer/">
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="panel-designer.css?v=1">
+</head>
+<body>
+<div class="page">
+
+<header class="topbar">
+  <a class="brand" href="../../" aria-label="labmate.tools home">
+    <svg width="22" height="32" viewBox="0 0 22 32" aria-hidden="true"><rect x="5" y="1" width="12" height="5" fill="currentColor"/><rect x="6.5" y="6" width="9" height="24" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8.5" y="17" width="5" height="11" rx="2.5" fill="#2E9E5B"/></svg>
+    <span class="wordmark">labmate<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#2E9E5B"/><path d="M4.3 8.3l2.4 2.4 5-5" fill="none" stroke="#fff" stroke-width="2"/></svg>tools</span>
+  </a>
+  <nav class="nav mono" aria-label="Site">
+    <a href="../../#find">FIND A TOOL</a>
+    <a href="../../#know">GOOD TO KNOW</a>
+    <a href="../../#request">REQUEST A TOOL</a>
+  </nav>
+</header>
+<div class="crumbs mono">
+  <span><a href="../../#find">INDEX</a> › <a href="../../#cytometry">07 CYTOMETRY</a> › 7.1 PANEL DESIGNER</span>
+  <span class="saved" id="savedFlag">● AUTO-SAVED · STAYS IN THIS BROWSER</span>
+</div>
+
+<section class="hero">
+  <figure class="fig">
+    <svg viewBox="0 0 272 150" aria-hidden="true">
+      <line x1="6" y1="132" x2="266" y2="132" stroke="#1B2224" stroke-width="1"/>
+      <line x1="44" y1="10" x2="44" y2="132" stroke="#1B2224" stroke-width="2"/>
+      <rect x="86" y="10" width="34" height="122" fill="#9CC7B6" opacity=".55"/>
+      <path d="M60 132 C80 132 88 24 103 24 C120 24 132 120 170 130 L180 132" fill="none" stroke="#1B2224" stroke-width="2"/>
+      <path d="M110 132 C130 132 140 54 156 54 C174 54 190 122 230 130 L240 132" fill="none" stroke="#1B2224" stroke-width="1.4" stroke-dasharray="4 3"/>
+      <text x="48" y="22" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1B2224">488</text>
+      <text x="88" y="146" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1B2224">530/30</text>
+      <text x="196" y="94" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="11" fill="#1B2224">spill</text>
+    </svg>
+    <figcaption class="mono">FIG. 7.1 — LASER, FILTER, SPILL</figcaption>
+  </figure>
+  <div class="hero-text">
+    <h1 class="serif">Panel Designer.</h1>
+    <p class="serif lede">Lay your markers onto your own cytometer and see, before you stain, where every colour will spill.</p>
+    <div class="mono flow">PICK INSTRUMENT → ASSIGN FLUORS → CHECK SPILLOVER</div>
+  </div>
+  <ul class="facts mono">
+    <li>RUNS IN YOUR BROWSER</li>
+    <li id="factCounts">PRESETS · FLUORS</li>
+    <li>ADD YOUR OWN INSTRUMENT OR DYE</li>
+    <li class="muted">ESTIMATES — NOT A COMPENSATION</li>
+  </ul>
+</section>
+
+<div class="notice info" id="shareNote" hidden>
+  <b>SHARED PANEL</b>
+  <p>You opened a panel from a link. Your own panel is kept — switch back any time.</p>
+  <button type="button" class="btn" id="restoreMine">BACK TO MY PANEL</button>
+  <button type="button" class="btn" id="keepShared">KEEP THIS ONE</button>
+</div>
+<div class="notice warn" id="approxNote" hidden>
+  <b>APPROX</b>
+  <p id="approxText"></p>
+</div>
+
+<!-- 01 -->
+<section class="sec" aria-labelledby="s1">
+  <h2 class="bar" id="s1"><span>01 — INSTRUMENT</span><span class="bar-note" id="instSummary"></span></h2>
+  <div class="row no-print">
+    <label class="field grow">PRESET OR YOUR OWN
+      <select id="inst"></select>
+    </label>
+    <button type="button" class="btn" id="editInst">EDIT FILTERS</button>
+    <button type="button" class="btn dashed" id="addInst">+ ADD YOUR OWN</button>
+    <button type="button" class="linkbtn" id="delInst" hidden>DELETE THIS ONE</button>
+  </div>
+  <p class="hint" id="instSource"></p>
+  <div class="detgrid" id="detGrid" style="margin-top:12px"></div>
+</section>
+
+<!-- 02 -->
+<section class="sec" aria-labelledby="s2">
+  <h2 class="bar" id="s2"><span>02 — PANEL</span><span class="bar-note" id="panelSummary"></span></h2>
+  <div class="scroll">
+    <table class="panel" id="panel">
+      <thead>
+        <tr>
+          <th>#</th><th>MARKER</th><th>EXPRESSION</th><th>FLUOR</th><th title="Relative dye brightness, 1 = dim, 5 = bright">DYE 1–5</th>
+          <th id="thDet">DETECTOR</th><th id="thRecv">RECEIVES (MAX)</th><th>CHECK</th><th><span class="sr">Remove</span></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="row no-print">
+    <button type="button" class="btn" id="addRow">+ ADD MARKER</button>
+    <button type="button" class="btn" id="pasteRows">PASTE MARKER LIST</button>
+    <button type="button" class="linkbtn" id="clearRows">CLEAR PANEL</button>
+    <span class="hint">The fluor menu offers dyes this instrument can excite and detect — or add your own from the same menu.</span>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="sec" aria-labelledby="s3">
+  <h2 class="bar" id="s3"><span>03 — SPECTRA</span><span class="bar-note" id="chartMode">EMISSION · NORMALISED</span></h2>
+  <div class="row no-print" style="align-items:center">
+    <div class="tabs" role="group" aria-label="Curve type">
+      <button type="button" id="viewEm" aria-pressed="true">EMISSION</button>
+      <button type="button" id="viewEx" aria-pressed="false">EXCITATION</button>
+    </div>
+    <label class="check"><input type="checkbox" id="showLasers" checked> LASERS</label>
+    <label class="check"><input type="checkbox" id="showBands" checked> USED DETECTORS</label>
+  </div>
+  <figure class="chart-fig">
+    <div id="chart"></div>
+    <figcaption class="caption"><span id="chartCap">FIG. 7.1a — SHADED = DETECTORS IN USE · BLACK RULES = LASERS</span><span id="chartSrc"></span></figcaption>
+  </figure>
+</section>
+
+<!-- 04 -->
+<section class="sec" aria-labelledby="s4">
+  <h2 class="bar" id="s4"><span id="s4title">04 — SPILLOVER, ESTIMATED</span><span class="bar-note" id="s4note">% OF PRIMARY SIGNAL · ROW SPILLS INTO COLUMN</span></h2>
+  <div id="matrixArea"></div>
+</section>
+
+<!-- 05 -->
+<section class="sec no-print" aria-labelledby="s5">
+  <h2 class="bar" id="s5"><span>05 — SAVE &amp; SHARE</span></h2>
+  <div class="save-row">
+    <button type="button" class="btn solid" id="printBtn">PRINT PANEL SHEET</button>
+    <button type="button" class="btn" id="shareBtn">COPY SHARE LINK</button>
+    <button type="button" class="btn" id="csvBtn">DOWNLOAD CSV</button>
+    <span class="toast" id="toast" role="status" aria-live="polite"></span>
+  </div>
+  <div class="save-row">
+    <button type="button" class="btn" id="exportMine">EXPORT MY INSTRUMENTS &amp; DYES</button>
+    <label class="btn filelabel">IMPORT .JSON<input type="file" id="importMine" accept=".json,application/json"></label>
+    <span class="hint">The share link carries the whole panel, including any instrument or dye you added — no account needed to open it.</span>
+  </div>
+</section>
+
+<section class="know" id="know">
+  <h2>Good to know</h2>
+  <ol>
+    <li>Spillover here is a theoretical estimate from spectra and your filters. Real values also depend on detector voltages and laser power, so compensation always comes from single-stain controls on your instrument; spreading error is not modelled.</li>
+    <li id="knowSpectra">Spectra come from published peak values.</li>
+    <li>Instrument presets are published default or core-facility configurations. Facilities often swap filters — check the labels on your instrument and use EDIT FILTERS.</li>
+    <li>Vendor-neutral: dyes from every supplier are listed side by side; nothing is sponsored. Peak values come from each maker's published tables.</li>
+    <li>Your panels, instruments and dyes stay in this browser. Clearing site data or switching browsers loses them — export a copy if they matter.</li>
+  </ol>
+</section>
+
+<footer class="footer mono">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="https://unjamkit.com">UNJAMKIT</a> · <a href="../../privacy/">PRIVACY</a></span>
+  <span>P. 7.1</span>
+</footer>
+</div>
+
+<!-- instrument editor -->
+<dialog id="instDlg" aria-labelledby="instDlgTitle">
+  <div class="dlg-head"><span id="instDlgTitle">01 — INSTRUMENT · YOUR OWN</span><button type="button" data-close aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <div class="row" style="padding:0">
+      <label class="field" id="edStartWrap" style="flex:0 1 360px">START FROM
+        <select id="edStart"></select>
+      </label>
+      <label class="field grow">NAME ON YOUR LIST
+        <input id="edName" type="text" autocomplete="off" spellcheck="false">
+      </label>
+      <div class="field">DETECTION
+        <div class="tabs" role="group" aria-label="Detection type">
+          <button type="button" id="edConv" aria-pressed="true">FILTERS</button>
+          <button type="button" id="edSpec" aria-pressed="false">SPECTRAL</button>
+        </div>
+      </div>
+    </div>
+    <div class="ed-lasers" id="edLasers"></div>
+    <div class="ed-bottom">
+      <div>
+        <span class="field">HOW TO WRITE A FILTER</span>
+        <div class="syntax">
+          <code>530/30</code><span>bandpass, centre/width → 515–545 nm</span>
+          <code>670LP</code><span>longpass, everything above 670 nm</span>
+          <code>655-730</code><span>a range, as some makers print it (also for spectral channels)</span>
+        </div>
+        <p class="hint">The label on the filter holder is all you need. Changed one filter on a shared machine? Copy the preset and edit just that line.</p>
+      </div>
+      <div>
+        <label class="field" for="edPaste">OR PASTE FROM A SPREADSHEET — LASER, DETECTOR, FILTER</label>
+        <textarea id="edPaste" rows="5" spellcheck="false" placeholder="405	V-F	450/50&#10;405	V-E	525/50&#10;488	B-B	530/30&#10;561	YG-D	586/15"></textarea>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button type="button" class="btn" id="edApplyPaste">USE PASTED TABLE</button>
+          <span class="hint small" id="edPasteMsg">Tabs, commas or semicolons all work. Replaces the lasers above.</span>
+        </div>
+      </div>
+    </div>
+    <div class="dlg-foot">
+      <button type="button" class="btn solid" id="edSave">SAVE TO MY INSTRUMENTS</button>
+      <button type="button" class="btn" data-close>CANCEL</button>
+      <span class="right" id="edCount"></span>
+    </div>
+  </div>
+</dialog>
+
+<!-- fluor picker / custom fluor -->
+<dialog id="fluorDlg" aria-labelledby="fluorDlgTitle">
+  <div class="dlg-head"><span id="fluorDlgTitle">FLUOR</span><button type="button" data-close aria-label="Close">×</button></div>
+  <div class="dlg-body" id="pickView">
+    <div class="pk-wrap">
+      <div class="pk-list">
+        <div class="pk-tools">
+          <label class="sr" for="pkSearch">Search fluors</label>
+          <input id="pkSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Search: BV605, PE-Cy7, 610, GFP…">
+          <div class="pk-tabs" role="group" aria-label="Filter by laser" id="pkTabs"></div>
+          <label class="check"><input type="checkbox" id="pkCompat" checked> Only dyes this instrument can excite and detect</label>
+        </div>
+        <div class="pk-scroll" id="pkScroll"></div>
+        <div class="pk-foot">
+          <button type="button" class="btn dashed" id="pkAdd">+ ADD CUSTOM FLUOR</button>
+          <button type="button" class="linkbtn" id="pkNone">REMOVE FLUOR FROM THIS ROW</button>
+        </div>
+      </div>
+      <div class="pk-side">
+        <div class="side-title">HOW THE LIST WORKS</div>
+        <p style="margin:0">Grouped by the laser that excites each dye best, sorted by emission peak. Numbers are excitation / emission peaks in nm.</p>
+        <p style="margin:0"><span class="tag dim">EM ONLY</span> the maker publishes the emission peak only; the curve is a rougher guess.</p>
+        <p style="margin:0"><span class="tag mine">MINE</span> a dye you added. It travels with share links and exports.</p>
+        <p style="margin:0"><span class="tag use">IN USE</span> already on another row of this panel.</p>
+      </div>
+    </div>
+  </div>
+  <div class="dlg-body" id="cfView" hidden>
+    <div class="cf-grid">
+      <label class="field full">NAME
+        <input id="cfName" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. In-house PE tandem 641">
+      </label>
+      <label class="field">EXCITATION PEAK, nm
+        <input id="cfEx" type="text" inputmode="numeric" autocomplete="off" placeholder="566">
+      </label>
+      <label class="field">EMISSION PEAK, nm
+        <input id="cfEm" type="text" inputmode="numeric" autocomplete="off" placeholder="641">
+      </label>
+      <label class="field">MAIN LASER
+        <select id="cfLaser"><option value="355">355 UV</option><option value="375">375 NEAR UV</option><option value="405">405 VIOLET</option><option value="488">488 BLUE</option><option value="561">561 YELLOW-GREEN</option><option value="640">640 RED</option><option value="808">808 IR</option></select>
+      </label>
+      <fieldset>
+        <legend>ALSO EXCITED BY</legend>
+        <div class="cf-lasers" id="cfAlso"></div>
+      </fieldset>
+      <fieldset class="full">
+        <legend>BRIGHTNESS (YOUR RATING, 1 = DIM)</legend>
+        <div class="tabs" role="group" aria-label="Brightness" id="cfBright"></div>
+      </fieldset>
+      <div class="src-box full">
+        <label><input type="radio" name="cfSrc" value="peaks" checked><span><b>Peaks only</b> — drawn as an approximate curve; numbers it touches are marked APPROX.</span></label>
+        <label><input type="radio" name="cfSrc" value="csv"><span><b>Upload CSV</b> — wavelength, intensity: one file for excitation and one for emission.</span></label>
+        <div class="src-detail" id="cfCsvBox" hidden>
+          <label class="btn filelabel">EXCITATION CSV<input type="file" id="cfCsvEx" accept=".csv,.txt,.tsv,text/csv,text/plain"></label>
+          <label class="btn filelabel">EMISSION CSV<input type="file" id="cfCsvEm" accept=".csv,.txt,.tsv,text/csv,text/plain"></label>
+          <span id="cfCsvMsg"></span>
+        </div>
+        <label><input type="radio" name="cfSrc" value="fpbase"><span><b>From FPbase</b> — paste the spectra viewer link or the spectrum IDs.</span></label>
+        <div class="src-detail" id="cfFpBox" hidden>
+          <input type="text" id="cfFp" placeholder="https://www.fpbase.org/spectra/?s=17,18  or  17, 18">
+          <button type="button" class="btn" id="cfFpGo">FETCH</button>
+          <span id="cfFpMsg"></span>
+        </div>
+      </div>
+      <figure class="preview full">
+        <span class="stamp" id="cfStamp">APPROX</span>
+        <div id="cfPreview"></div>
+      </figure>
+    </div>
+    <p class="err" id="cfErr" hidden></p>
+    <div class="dlg-foot">
+      <button type="button" class="btn solid" id="cfSave">SAVE &amp; USE</button>
+      <button type="button" class="btn" id="cfBack">BACK TO LIST</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- paste markers -->
+<dialog id="pasteDlg" aria-labelledby="pasteDlgTitle" style="width:min(640px, calc(100vw - 32px))">
+  <div class="dlg-head"><span id="pasteDlgTitle">PASTE MARKER LIST</span><button type="button" data-close aria-label="Close">×</button></div>
+  <div class="dlg-body">
+    <label class="field" for="pasteText">ONE MARKER PER LINE · OPTIONALLY A FLUOR AFTER A TAB OR COMMA</label>
+    <textarea id="pasteText" rows="10" spellcheck="false" placeholder="CD3&#9;BV421&#10;CD4&#9;PE-Dazzle 594&#10;CD8&#10;CD19"></textarea>
+    <label class="check"><input type="checkbox" id="pasteReplace"> Replace the current panel</label>
+    <p class="hint small" id="pasteMsg">Copy two columns straight from Excel. Fluor names are matched to the list; anything not found is left empty for you to choose.</p>
+    <div class="dlg-foot">
+      <button type="button" class="btn solid" id="pasteGo">ADD TO PANEL</button>
+      <button type="button" class="btn" data-close>CANCEL</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="data/cytometry-data.js?v=1"></script>
+<script src="data/spectra.js?v=2"></script>
+<script src="panel-designer.js?v=2"></script>
+</body>
+</html>
