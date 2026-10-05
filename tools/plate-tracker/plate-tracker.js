@@ -225,7 +225,7 @@
   function stepFor(dir) {
     var m = { up: [-1, 0], down: [1, 0], left: [0, -1], right: [0, 1] }[dir], dr, dc; // [screen dy, dx]
     if (L && L.rot) { dr = -m[1]; dc = m[0]; }        // 1:1 plate turned 90° clockwise
-    else if (L && L.t) { dr = m[1]; dc = m[0]; }      // phone view: rows across
+    else if (L && L.t) { dr = -m[1]; dc = m[0]; }     // phone view: plate turned 90° clockwise
     else { dr = m[0]; dc = m[1]; }
     if (S.scope === 'row' && dc) { return null; }
     if (S.scope === 'col' && dr) { return null; }
@@ -515,12 +515,12 @@
       // header row: corner + column labels
       frag.appendChild(mk('div', 'lab corner', ''));
       for (b = 0; b < L.nc; b++) {
-        frag.appendChild(mk('div', 'lab colh', L.t ? LETTERS[L.r0 + b] : String(L.c0 + b + 1)));
+        frag.appendChild(mk('div', 'lab colh', L.t ? LETTERS[L.r1 - 1 - b] : String(L.c0 + b + 1)));
       }
       for (a = 0; a < L.nr; a++) {
         frag.appendChild(mk('div', L.t ? 'lab' : 'lab row', L.t ? String(L.c0 + a + 1) : LETTERS[L.r0 + a]));
         for (b = 0; b < L.nc; b++) {
-          var r = L.t ? L.r0 + b : L.r0 + a, c = L.t ? L.c0 + a : L.c0 + b;
+          var r = L.t ? L.r1 - 1 - b : L.r0 + a, c = L.t ? L.c0 + a : L.c0 + b; // turned: rows run H…A left to right
           i = r * d.cols + c;
           var el = mk('button', 'well', '');
           el.type = 'button';
