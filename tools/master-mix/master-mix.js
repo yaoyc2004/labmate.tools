@@ -70,6 +70,7 @@
     if (over == null) over = 0;
     var vol = num("vol", { optional: true });
     var mode = $("overMode").value;
+    state.targets = $("targets").value;
     state.n = $("n").value; state.over = $("over").value; state.overMode = mode; state.vol = $("vol").value; state.topup = $("topup").checked;
     if (mode === "rxn" && !isNaN(over) && Math.round(over) !== over) { setMsg("over", "Whole number"); over = NaN; }
     LM.save(KEY, state);
@@ -131,14 +132,22 @@
     showResult(n, nEff, mode, over, sumMix, perWell, sep, water);
   }
 
+  function targets() {
+    return String($("targets").value || "").split(/\r?\n/).map(function (t) { return t.split("\t")[0].trim(); }).filter(Boolean);
+  }
   function showResult(n, nEff, mode, over, sumMix, perWell, sep, water) {
+    var tg = targets(), multi = tg.length > 1;
     $("ans").classList.remove("is-empty", "is-error");
     $("copy").disabled = false; $("print").disabled = false;
     var overT = over ? (mode === "pct" ? " + " + LM.fmt(over) + "%" : " + " + over + " extra") : "";
     $("ansBig").textContent = ulShow(sumMix) + " of mix";
     var sepT = sep.map(function (s) { return ul(s[1]) + " µL " + s[0]; }).join(" and ");
-    $("ansSay").innerHTML = "Mix for " + LM.fmt(nEff, 4) + " reactions (" + n + overT + "). Dispense <b>" + ul(perWell) + " µL</b> into each well" +
+    $("ansSay").innerHTML = (multi ? "Make <b>" + tg.length + " mixes</b>, one per target (" + LM.esc(tg.join(", ")) + "), each for " : "Mix for ") + LM.fmt(nEff, 4) + " reactions (" + n + overT + ")" +
+      (multi ? " — " + ulShow(sumMix * tg.length) + " in all" : "") + ". Dispense <b>" + ul(perWell) + " µL</b> into each well" +
       (sep.length ? ", then add <b>" + LM.esc(sepT) + "</b>." : ".");
+    if (multi) $("ansBig").textContent = ulShow(sumMix) + " × " + tg.length + " mixes";
+    $("rTgtRow").hidden = !multi;
+    $("rTgt").textContent = multi ? tg.length + " × " + ulShow(sumMix) : "—";
     $("slip").classList.remove("is-empty");
     $("slipN").textContent = n + " RXNS" + overT.toUpperCase();
     $("rEff").textContent = LM.fmt(nEff, 4) + " rxns";
@@ -146,9 +155,11 @@
     $("rWell").textContent = ul(perWell) + " µL";
     $("rSepRow").hidden = !sep.length;
     $("rSep").textContent = sep.map(function (s) { return ul(s[1]) + " µL"; }).join(" + ");
-    $("printMeta").textContent = "· " + n + " reactions" + overT + " · mix for " + LM.fmt(nEff, 4) + " · " + new Date().toLocaleDateString();
+    $("printMeta").textContent = "· " + n + " reactions" + (multi ? " per target" : "") + overT + " · mix for " + LM.fmt(nEff, 4) + (multi ? " · " + tg.length + " targets: " + tg.join(", ") : "") + " · " + new Date().toLocaleDateString();
 
-    var lines = ["Master mix — labmate.tools", n + " reactions" + overT + " → mix for " + LM.fmtPlain(nEff, 4), "", "Reagent\tPer rxn (µL)\tFor mix (µL)"];
+    var lines = ["Master mix — labmate.tools", n + " reactions" + (multi ? " per target" : "") + overT + " → mix for " + LM.fmtPlain(nEff, 4)];
+    if (multi) lines.push(tg.length + " mixes, one per target: " + tg.join(", ") + " (" + LM.fmtPlain(sumMix * tg.length) + " µL in all)");
+    lines.push("", "Reagent\tPer rxn (µL)\tFor mix (µL)" + (multi ? " — each target" : ""));
     state.rows.forEach(function (r) {
       var per = LM.parse(r[1]);
       if (per == null || isNaN(per)) return;
@@ -165,7 +176,8 @@
     $("ansBig").textContent = title;
     $("ansSay").textContent = say || "";
     $("slip").classList.add("is-empty");
-    ["rEff", "rMix", "rWell", "rSep"].forEach(function (id) { $(id).textContent = "—"; });
+    ["rEff", "rMix", "rWell", "rSep", "rTgt"].forEach(function (id) { $(id).textContent = "—"; });
+    $("rTgtRow").hidden = true;
     $("slipN").textContent = "";
     lastTable = "";
   }
@@ -189,7 +201,7 @@
     var last = tbody.querySelectorAll("tr[data-i]");
     last[last.length - 1].querySelector(".mm-name").focus();
   });
-  ["n", "over", "vol"].forEach(function (id) { $(id).addEventListener("input", update); });
+  ["n", "over", "vol", "targets"].forEach(function (id) { $(id).addEventListener("input", update); });
   $("overMode").addEventListener("change", update);
   $("topup").addEventListener("change", function () { readRows(); state.topup = $("topup").checked; render(); });
   document.querySelectorAll("[data-preset]").forEach(function (b) {
@@ -217,5 +229,13 @@
   $("n").value = state.n || ""; $("over").value = state.over == null ? "10" : state.over;
   $("overMode").value = state.overMode === "rxn" ? "rxn" : "pct";
   $("vol").value = state.vol || ""; $("topup").checked = !!state.topup;
+  $("targets").value = state.targets || "";
+  if (targets().length > 1) $("targetsBox").open = true;
+  // arriving from Plate Layout: the number of wells becomes the number of reactions
+  var inbound = window.LMH && window.LMH.take("master-mix");
+  if (inbound && inbound.reactions > 0) {
+    $("n").value = String(Math.round(inbound.reactions));
+    setTimeout(function () { window.LMH.note("Reactions set to " + inbound.reactions + " — " + (inbound.note || "from Plate Layout") + ".", document.querySelector(".lm-page")); }, 0);
+  }
   render();
 })();

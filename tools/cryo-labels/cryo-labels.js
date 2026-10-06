@@ -628,6 +628,14 @@
   els.calPdf.addEventListener('click', downloadCalibration);
 
   /* ---------- start ---------- */
+  // arriving from Plate Layout: its sample list becomes the label list
+  var inbound = window.LMH && window.LMH.take('cryo-labels');
+  if (inbound && Array.isArray(inbound.ids) && inbound.ids.length) {
+    state.list = inbound.ids.map(function (x) { return String(x).trim(); }).filter(Boolean).join('\n');
+    state.mode = 'list';
+    save();
+    setTimeout(function () { window.LMH.note(inbound.ids.length + ' sample IDs from Plate Layout — check the sheet, then download the PDF.', document.querySelector('.page')); }, 0);
+  }
   buildSheetSelect();
   setMode(state.mode);
   fillInputs();

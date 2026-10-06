@@ -46,6 +46,7 @@
   if (!state || TERMS.indexOf(state.solve) < 0) state = JSON.parse(JSON.stringify(EXAMPLE));
   var unitLocked = false;
   var lastRecipe = "";
+  var lastStock = null;
 
   function setUnit(sel, u) {
     if (Array.prototype.some.call(sel.options, function (o) { return o.value === u; })) sel.value = u;
@@ -143,7 +144,7 @@
     var mT = LM.show(r.m, LM.MASS), vT = LM.show(r.v, LM.VOL), cT = LM.show(r.c, LM.MOLAR);
     var mwT = LM.fmt(mw, 5) + " g/mol";
     $("ans").classList.remove("is-empty", "is-error");
-    $("copy").disabled = false;
+    $("copy").disabled = false; $("toDilution").disabled = false;
     $("ansBig").innerHTML = '<span class="eq">' + ({ m: "m", c: "c", v: "V" })[solve] + "</span> = " + LM.show(r[solve], TABLE[solve]);
     if (solve === "m") $("ansSay").innerHTML = "Weigh <b>" + mT + "</b> of " + what + " and make up to <b>" + vT + "</b> for " + cT + ".";
     if (solve === "c") $("ansSay").innerHTML = mT + " of " + what + " in " + vT + " is <b>" + cT + "</b>.";
@@ -168,6 +169,7 @@
     }
     $("notes").innerHTML = notes.join("");
 
+    lastStock = { c: r.c, name: name };
     lastRecipe = [
       "Molarity — labmate.tools",
       (name || "Compound") + ", MW " + LM.fmtPlain(mw, 5) + " g/mol",
@@ -180,7 +182,7 @@
 
   function showEmpty(missing) {
     $("ans").classList.add("is-empty"); $("ans").classList.remove("is-error");
-    $("copy").disabled = true;
+    $("copy").disabled = true; $("toDilution").disabled = true; lastStock = null;
     el[state.solve].inp.value = "";
     var names = missing.map(function (t) { return t === "mw" ? "molecular weight" : NAMES[t]; });
     $("ansBig").textContent = "Waiting for " + names.join(", ").replace(/, ([^,]*)$/, " and $1");
@@ -189,7 +191,7 @@
   }
   function showError(title) {
     $("ans").classList.add("is-error"); $("ans").classList.remove("is-empty");
-    $("copy").disabled = true;
+    $("copy").disabled = true; $("toDilution").disabled = true; lastStock = null;
     el[state.solve].inp.value = "";
     $("ansBig").textContent = title;
     $("ansSay").textContent = "";
@@ -265,6 +267,13 @@
       $("copied").textContent = ok ? "COPIED ✓" : "Copy failed — select the text instead";
       setTimeout(function () { $("copied").textContent = ""; }, 2200);
     });
+  });
+
+  // hand the stock just made to the Dilution tool as C1
+  $("toDilution").addEventListener("click", function () {
+    if (!lastStock) return;
+    var b = LM.best(lastStock.c, LM.MOLAR);
+    window.LMH.send("dilution", { c1: LM.fmtPlain(lastStock.c / b[1]), unit: b[0], name: lastStock.name }, "../dilution/");
   });
 
   applyState();

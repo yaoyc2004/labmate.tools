@@ -44,7 +44,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="plate-tracker.css?v=8">
+<link rel="stylesheet" href="plate-tracker.css?v=9">
 <link rel="stylesheet" href="../../assets/more.css?v=2">
 </head>
 <body>
@@ -77,6 +77,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="pt-next">
         <span class="pt-mono pt-muted" id="nextLabel">NEXT WELL</span>
         <span class="pt-next-id" id="nextId">A1</span>
+        <span class="pt-next-name" id="nextName" hidden></span>
         <button type="button" class="pt-btn-sm" id="orderBtn" aria-label="Change fill order">↓ BY COL</button>
       </div>
     </div>
@@ -118,6 +119,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="pt-minimap" id="minimap"></div>
     </div>
 
+    <div class="pt-bar"><span>PLATES</span><button type="button" class="pt-bar-link" id="delPlate">DELETE THIS PLATE</button></div>
+    <div class="pt-plates-row">
+      <div class="pt-plates" id="plateTabs" role="group" aria-label="Plates"></div>
+      <button type="button" class="pt-ptab pt-ptab-add" id="addPlate" aria-label="New plate">+ NEW</button>
+    </div>
+
     <div class="pt-bar"><span>ROUNDS</span><span>UP TO 8</span></div>
     <ol class="pt-rounds" id="rounds"></ol>
     <div class="pt-round-edit">
@@ -144,6 +151,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="pt-count"><b id="count">0</b><span id="total">/ 96</span><em id="skipNote"></em></div>
       <div class="pt-meter"><i id="meter"></i></div>
     </div>
+
+    <details class="pt-log">
+      <summary class="pt-bar"><span>ROUND LOG</span><span id="logCount"></span></summary>
+      <ul class="pt-log-list" id="logList"></ul>
+      <button type="button" class="pt-link" id="copyLog">COPY LOG</button>
+    </details>
 
     <label class="pt-wake" id="wakeRow" hidden><input type="checkbox" id="wake"> KEEP SCREEN ON</label>
 
@@ -225,14 +238,15 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
     <div>
       <h2>How to use</h2>
       <ol class="pt-num">
-        <li>Pick <b>96</b> or <b>384</b> at the top. Each format keeps its own plate.</li>
+        <li>Pick <b>96</b> or <b>384</b> at the top. Working on several plates? <b>+ NEW</b> under <b>PLATES</b> adds one (up to 12 per format); tap a plate to switch, each keeps its own rounds.</li>
         <li>Name the round after the reagent you are adding — tap its name in the list to edit.</li>
         <li>On an iPad you can set the plate right on the screen: choose <b>1:1</b>, calibrate once against the plate's edges (or a bank card), and the plate is drawn at its real size — standard SLAS/ANSI footprint and well positions.</li>
         <li>Tap a well as you pipette into it, or press the big <b>MARK NEXT</b> button to fill in order (by column or by row).</li>
         <li>Plate lined up on the iPad screen? Use the <b>MOVE NEXT</b> arrows to put the next well, row or column exactly where you are. After that, <b>MARK NEXT</b> carries on from there. <b>AUTO</b> returns to the first open spot.</li>
         <li>Using a multichannel? Switch to <b>ROW</b> or <b>COLUMN</b>: a tap, or <b>MARK NEXT</b>, then marks the whole line at once.</li>
         <li>Blanks or wells that don't get this reagent: switch <b>ADD</b> to <b>SKIP</b>, then tap them or use <b>SKIP NEXT</b> — a well, row or column at a time. In a round a well is either added or skipped: wells already added stay added. Skipped wells are left out of the count, and a new round starts with the same wells skipped.</li>
-        <li>When every well is in, the round shows <b>PASS ✓</b>. Go to the next round — up to 8 per plate.</li>
+        <li>When every well is in, the round shows <b>PASS ✓</b>. Go to the next round — up to 8 per plate. The <b>ROUND LOG</b> keeps the time each round passed; <b>COPY LOG</b> pastes it into your notebook.</li>
+        <li>Laid the plate out in <a href="../plate-layout/">Plate Layout</a> first? Use <b>TRACK IN PLATE TRACKER</b> there: empty wells come in skipped, and the next well shows its sample name.</li>
       </ol>
     </div>
     <div>
@@ -252,7 +266,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <li>Free to use. No subscription.</li>
         <li>Progress is saved in this browser after every tap, so a refresh or a closed tab won't lose your plate. Private browsing, clearing site data, or switching device or browser starts a fresh plate.</li>
         <li>Built for iPad at the bench; works on a laptop and a phone too.</li>
-        <li>A tracker, not a record: it does not replace your lab notebook or LIMS.</li>
+        <li>A tracker, not a record: it does not replace your lab notebook or LIMS. The round log is a convenience copy.</li>
       </ol>
     </div>
   </div>
@@ -303,6 +317,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
   </div>
 </div>
 
-<script src="plate-tracker.js?v=8"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="plate-tracker.js?v=9"></script>
 </body>
 </html>

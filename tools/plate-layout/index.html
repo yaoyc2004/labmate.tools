@@ -42,7 +42,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
 <link rel="stylesheet" href="plate-layout.css?v=1">
 <link rel="stylesheet" href="../../assets/more.css?v=2">
 </head>
@@ -162,6 +162,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
           <button type="button" class="lm-link" id="copyList">COPY WELL LIST</button>
           <span class="btn-copied" id="copied" role="status"></span>
         </div>
+        <div class="lm-send" id="sendRow">
+          <span>NEXT →</span>
+          <button type="button" id="toTracker">TRACK IN PLATE TRACKER</button>
+          <button type="button" id="toMix">MASTER MIX FOR THESE WELLS</button>
+          <button type="button" id="toLabels">CRYO LABELS FOR THESE SAMPLES</button>
+        </div>
 
         <div class="pl-print" id="printPlates"></div>
 
@@ -197,7 +203,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
           <li>The layout is saved in this browser, so a refresh won't lose it.</li>
           <li>Replicates of one sample always sit next to each other. If the rows or columns don't divide evenly by the number of replicates, the last row or column is left empty.</li>
           <li>Neighbouring samples alternate between two shades of green, so replicate groups are easy to tell apart.</li>
-          <li>Pair it with the <a href="../plate-tracker/">Plate Tracker</a> to keep your place while you pipette.</li>
+          <li><b>TRACK IN PLATE TRACKER</b> opens the layout in the <a href="../plate-tracker/">Plate Tracker</a>: empty wells are skipped and every well shows its sample name. <b>MASTER MIX</b> counts the wells for you; <b>CRYO LABELS</b> takes the sample list.</li>
         </ol>
       </div>
     </div>
@@ -235,6 +241,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="plate-layout.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="plate-layout.js?v=2"></script>
 </body>
 </html>

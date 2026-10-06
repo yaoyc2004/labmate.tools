@@ -156,7 +156,7 @@
     $("notes").innerHTML = notes.join("");
 
     var ok = !result.error && nItems > 0;
-    ["print", "csv", "copyMap", "copyList"].forEach(function (id) { $(id).disabled = !ok; });
+    ["print", "csv", "copyMap", "copyList", "toTracker", "toMix", "toLabels"].forEach(function (id) { $(id).disabled = !ok; });
 
     renderList();
     syncControls();
@@ -340,6 +340,40 @@
   $("print").addEventListener("click", function () { window.print(); });
 
   function save() { LM.save(KEY, state); }
+
+  // ---------- hand-off to other tools ----------
+  function wellCount() {
+    return result.plates.reduce(function (n, p) { return n + Object.keys(p.wells).length; }, 0);
+  }
+  $("toTracker").addEventListener("click", function () {
+    if (!result || result.error) return;
+    var plates = result.plates.map(function (p, i) {
+      var wells = {};
+      Object.keys(p.wells).forEach(function (id) {
+        var w = p.wells[id];
+        wells[id] = w.item.name + (state.reps > 1 ? " · rep " + w.rep : "") + (w.item.type === "ctrl" ? " · control" : "");
+      });
+      var base = state.plateName || "Layout";
+      return { name: (result.plates.length > 1 ? base + " " + (i + 1) : base).slice(0, 24), wells: wells };
+    });
+    window.LMH.send("plate-tracker", { format: state.format, plates: plates }, "../plate-tracker/");
+  });
+  $("toMix").addEventListener("click", function () {
+    if (!result || result.error) return;
+    window.LMH.send("master-mix", { reactions: wellCount(), note: wellCount() + " wells from Plate Layout" + (result.plates.length > 1 ? " (" + result.plates.length + " plates)" : "") }, "../master-mix/");
+  });
+  $("toLabels").addEventListener("click", function () {
+    if (!result || result.error) return;
+    window.LMH.send("cryo-labels", { ids: result.samples.slice() }, "../cryo-labels/");
+  });
+  // arriving from the Serial Dilution tool: the standards become controls
+  var inbound = window.LMH && window.LMH.take("plate-layout");
+  if (inbound && Array.isArray(inbound.controls) && inbound.controls.length) {
+    state.controls = inbound.controls.join("\n");
+    state.ctrlPos = "start";
+    if (inbound.reps >= 1 && inbound.reps <= 4) state.reps = inbound.reps;
+    setTimeout(function () { window.LMH.note("Added " + inbound.controls.length + " standards from Serial Dilution as controls — paste your samples above.", document.querySelector(".lm-page")); }, 0);
+  }
 
   // ---------- start ----------
   $("samples").value = state.samples || "";

@@ -42,7 +42,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
 <link rel="stylesheet" href="../../assets/more.css?v=2">
 </head>
 <body>
@@ -112,6 +112,15 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <span class="presets-note">Examples only — change the rows to match your kit.</span>
     </div>
 
+    <details class="mm-targets" id="targetsBox">
+      <summary><span class="presets-k">SEVERAL TARGETS?</span> One mix per gene or primer pair — for qPCR panels</summary>
+      <div class="mm-targets-body">
+        <label for="targets">TARGETS · ONE PER LINE</label>
+        <textarea id="targets" rows="4" spellcheck="false" placeholder="GAPDH&#10;ACTB&#10;IL6"></textarea>
+        <p>With two or more targets, <b>REACTIONS</b> means reactions <b>per target</b>. Every target gets the same recipe; only its primers differ. Count every sample, control and replicate for one target.</p>
+      </div>
+    </details>
+
     <div class="mm-print-head" aria-hidden="true">
       <b>Master mix</b> <span id="printMeta"></span>
     </div>
@@ -158,6 +167,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
           <li><span class="k">TOTAL MIX</span><span class="lead"></span><span class="v" id="rMix">—</span></li>
           <li class="total"><span class="k">MIX PER WELL</span><span class="lead"></span><span class="v" id="rWell">—</span></li>
           <li id="rSepRow"><span class="k">THEN ADD</span><span class="lead"></span><span class="v" id="rSep">—</span></li>
+          <li id="rTgtRow" hidden><span class="k">MIXES</span><span class="lead"></span><span class="v" id="rTgt">—</span></li>
         </ol>
       </section>
     </div>
@@ -173,6 +183,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
           <li>Start from an example or a blank table, then type each reagent and its volume in one reaction, in µL.</li>
           <li>Untick <b>IN MIX</b> for anything you add to each well separately — usually the template or sample. It stays in the reaction total but not in the mix.</li>
           <li>Set the number of reactions. Count every sample, control and replicate.</li>
+          <li>Running several genes on the same samples? Open <b>Several targets?</b> and list them: you get one mix per target, all with the same recipe.</li>
           <li>Add overage to cover pipetting loss: a percentage (10% is common) or a number of extra reactions.</li>
           <li>Enter the reaction volume and tick <b>Top up with water</b> to have the water calculated for you.</li>
           <li><b>COPY TABLE</b> pastes cleanly into Excel or your notebook. <b>PRINT</b> gives a one-page sheet for the bench.</li>
@@ -232,6 +243,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="master-mix.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="master-mix.js?v=2"></script>
 </body>
 </html>

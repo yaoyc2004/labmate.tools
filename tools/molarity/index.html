@@ -42,7 +42,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/calc.css?v=2">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
 <link rel="stylesheet" href="../../assets/more.css?v=2">
 </head>
 <body>
@@ -148,6 +148,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <p class="ans-say" id="ansSay"></p>
         <div class="ans-actions">
           <button type="button" class="btn" id="copy">COPY RECIPE</button>
+          <button type="button" class="lm-link" id="toDilution">DILUTE THIS STOCK →</button>
           <span class="btn-copied" id="copied" role="status"></span>
         </div>
       </section>
@@ -198,7 +199,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
           <li>Fill in the other two boxes. Units can be mixed — mM with mL, µM with µL.</li>
           <li>The recipe follows the usual bench method: dissolve in about 80% of the final volume, then make up to the mark.</li>
           <li>To read a stock labelled in mg/mL or ng/µL as µM (or the other way), use <b>Convert a concentration</b> below. It uses the same molecular weight.</li>
-          <li>Need to dilute the stock you just made? Go to the <a href="../dilution/">Dilution</a> tool.</li>
+          <li>Need to dilute the stock you just made? <b>DILUTE THIS STOCK →</b> opens the <a href="../dilution/">Dilution</a> tool with it as the stock concentration.</li>
         </ol>
       </div>
       <div>
@@ -257,6 +258,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="molarity.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="molarity.js?v=2"></script>
 </body>
 </html>

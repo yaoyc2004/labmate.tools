@@ -70,3 +70,26 @@
 .lm-top.is-shared .lm-link:hover { color: #17403D; }
 @media (max-width: 760px) { .lm-top.is-shared .lm-crumb, .lm-top.is-shared .lm-saved { display: none; } }
 @media print { .lm-top.is-shared { display: none !important; } }
+
+/* hand-off between tools: note on arrival + "send to" links */
+.lm-handoff-note {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 12px 0; padding: 8px 12px; border: 1.5px solid #1F7A45; background: #E3F1E8; color: #1B2224;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .05em;
+  transition: opacity .8s;
+}
+.lm-handoff-note.is-fading { opacity: 0; }
+.lm-handoff-note button { background: none; border: 0; font: inherit; font-size: 18px; line-height: 1; cursor: pointer; color: #1B2224; padding: 0 4px; }
+.lm-send {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin-top: 14px; padding-top: 10px;
+  border-top: 1px dotted #9A968A; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: .06em;
+}
+.lm-send > span { color: #4A5655; }
+.lm-send button {
+  background: none; border: 0; padding: 4px 0; min-height: 32px; cursor: pointer;
+  font: inherit; color: #17403D; text-decoration: underline; text-underline-offset: 3px;
+}
+.lm-send button:hover { color: #1F7A45; }
+.lm-send button:disabled { opacity: .4; cursor: default; text-decoration: none; }
+@media print { .lm-send, .lm-handoff-note { display: none !important; } }
+.lm-handoff-note.is-toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 60; max-width: min(640px, calc(100vw - 32px)); margin: 0; box-shadow: 0 0 0 3px #F2EDDF; }

@@ -1,5 +1,5 @@
 /* labmate.tools — Plate Tracker (1.1)
- * One plate per format. Each well stores a bitmask, per round r (1..8):
+ * Up to 12 plates per format (state v3; v1/v2 kept one). Each well stores a bitmask, per round r (1..8):
  *   bit (r-1)  = reagent of round r added
  *   bit (r+7)  = well skipped in round r
  * In a round a well is either added, skipped or open — never both.
@@ -24,16 +24,17 @@
   ];
   var FORMATS = { 96: { rows: 8, cols: 12 }, 384: { rows: 16, cols: 24 } };
   var ADD_MASK = 0xFF, SKIP_MASK = 0xFF00;
+  var MAX_PLATES = 12;
 
   /* ---------- state ---------- */
 
-  function freshPlate(fmt) {
-    var n = FORMATS[fmt].rows * FORMATS[fmt].cols, w = [];
-    for (var i = 0; i < n; i++) { w.push(0); }
-    return { name: 'Plate 1', wells: w, round: 1, rounds: [{ name: 'Reagent 1' }], zone: 0, view: 'auto', cursor: -1, hist: [] };
+  function freshPlate(fmt, n) {
+    var count = FORMATS[fmt].rows * FORMATS[fmt].cols, w = [];
+    for (var i = 0; i < count; i++) { w.push(0); }
+    return { name: 'Plate ' + (n || 1), wells: w, round: 1, rounds: [{ name: 'Reagent 1' }], zone: 0, view: 'auto', cursor: -1, hist: [], labels: null, log: [] };
   }
   function freshState() {
-    return { v: 2, format: 96, scope: 'well', act: 'add', order: 'col', wake: true, op: { on: false, remember: false, k: 0, card: false }, plates: { 96: freshPlate(96), 384: freshPlate(384) } };
+    return { v: 3, format: 96, scope: 'well', act: 'add', order: 'col', wake: true, op: { on: false, remember: false, k: 0, card: false }, plates: { 96: [freshPlate(96)], 384: [freshPlate(384)] }, cur: { 96: 0, 384: 0 } };
   }
   function validPlate(p, fmt) {
     var n = FORMATS[fmt].rows * FORMATS[fmt].cols;
@@ -49,9 +50,12 @@
       s = raw ? JSON.parse(raw) : null;
     } catch (e) { storageOK = false; s = null; }
     var f = freshState();
-    if (!s || (s.v !== 1 && s.v !== 2) || !s.plates) { return f; }
+    if (!s || (s.v !== 1 && s.v !== 2 && s.v !== 3) || !s.plates) { return f; }
     [96, 384].forEach(function (fmt) {
-      var p = s.plates[fmt];
+      var list = s.v === 3 ? s.plates[fmt] : [s.plates[fmt]];
+      if (!Array.isArray(list)) { return; }
+      var kept = [];
+      list.slice(0, MAX_PLATES).forEach(function (p) {
       if (validPlate(p, fmt)) {
         if (s.v === 1) {
           // v1: one plate-wide skip flag (256). Make it a skip in every existing round.
@@ -64,8 +68,14 @@
         p.zone = p.zone >= 0 && p.zone < 4 ? p.zone : 0;
         p.view = p.view === 'zones' || p.view === 'full' ? p.view : 'auto';
         p.cursor = typeof p.cursor === 'number' && p.cursor >= 0 && p.cursor < p.wells.length ? p.cursor : -1;
-        f.plates[fmt] = p;
+        p.labels = p.labels && typeof p.labels === 'object' ? p.labels : null;
+        p.log = Array.isArray(p.log) ? p.log.filter(function (e) { return e && e.r >= 1 && e.r <= p.rounds.length; }) : [];
+        kept.push(p);
       }
+      });
+      if (kept.length) { f.plates[fmt] = kept; }
+      var c = s.cur && s.cur[fmt];
+      f.cur[fmt] = typeof c === 'number' && c >= 0 && c < f.plates[fmt].length ? c : 0;
     });
     f.format = s.format === 384 ? 384 : 96;
     f.scope = ['well', 'row', 'col'].indexOf(s.scope) >= 0 ? s.scope : (['row', 'col'].indexOf(s.mode) >= 0 ? s.mode : 'well');
@@ -89,7 +99,8 @@
     renderSaved();
   }
 
-  function P() { return S.plates[S.format]; }
+  function P() { return S.plates[S.format][S.cur[S.format]]; }
+  function label(i) { var l = P().labels; return l && l[i] ? String(l[i]) : ''; }
   function dims() { return FORMATS[S.format]; }
   function bit(r) { return 1 << (r - 1); }
   function isSkip(v, r) { return (v & skipBit(r || P().round)) !== 0; }
@@ -309,6 +320,7 @@
     var p = P();
     snapshot();
     p.wells = p.wells.map(function (v) { return v & SKIP_MASK; });
+    p.log = [];
     p.round = 1;
     p.zone = 0;
     p.cursor = -1;
@@ -566,17 +578,19 @@
     }
     Object.keys(wellEls).forEach(function (k) {
       var i = +k, el = wellEls[k], v = w[i], cls = 'well', st = '';
-      var id = wellId(i);
+      var id = wellId(i), nm = label(i);
+      el.title = nm ? id + ' — ' + nm : '';
       if (isSkip(v)) {
         cls += ' skip';
-        el.setAttribute('aria-label', id + ', skipped');
+        el.setAttribute('aria-label', id + (nm ? ' ' + nm : '') + ', skipped');
         el.textContent = '';
       } else {
         var top = topRound(v), done = hasR(v, R), next = !!nextSet[i];
         if (done) { cls += ' has done'; st = ROUND_COLORS[R - 1]; }
         else if (top) { cls += ' has'; st = ROUND_COLORS[top - 1]; }
         if (next) { cls += ' next'; }
-        el.setAttribute('aria-label', id + (done ? ', added' : ', not added') + (next ? ', next' : ''));
+        el.setAttribute('aria-label', id + (nm ? ' ' + nm : '') + (done ? ', added' : ', not added') + (next ? ', next' : ''));
+        if (nm) { cls += ' has-label'; }
         el.textContent = id;
       }
       if (el.className !== cls) { el.className = cls; }
@@ -596,6 +610,9 @@
     $('curName').textContent = p.rounds[R - 1].name || ('Reagent ' + R);
     $('nextLabel').textContent = (skipping ? 'NEXT TO SKIP · ' : 'NEXT ') + ({ well: 'WELL', row: 'ROW', col: 'COLUMN' })[S.scope];
     $('nextId').textContent = nid;
+    var nn = t && S.scope === 'well' ? label(t.first) : '';
+    $('nextName').textContent = nn;
+    $('nextName').hidden = !nn;
     var mark = $('markNext');
     mark.classList.toggle('is-skip', skipping);
     if (t && t.idx.length) {
@@ -656,6 +673,8 @@
 
     renderRounds();
     renderZones();
+    renderPlates();
+    renderLog();
   }
 
   function renderRounds() {
@@ -765,8 +784,118 @@
     renderOp();
   }
   function afterChange(relayout) {
+    updateLog();
     if (relayout) { renderAll(); } else { renderWells(); renderSide(); }
     save();
+  }
+
+  /* ---------- round log: when each round reached PASS ---------- */
+  function updateLog() {
+    var p = P(), changed = false;
+    p.log = (p.log || []).filter(function (e) { return e.r <= p.rounds.length; });
+    for (var n = 1; n <= p.rounds.length; n++) {
+      var st = stats(n), pass = st.total > 0 && st.done === st.total;
+      var at = -1;
+      for (var k = 0; k < p.log.length; k++) { if (p.log[k].r === n) { at = k; } }
+      if (pass && at < 0) { p.log.push({ r: n, at: new Date().toISOString(), done: st.done, skipped: st.skipped }); changed = true; }
+      else if (!pass && at >= 0) { p.log.splice(at, 1); changed = true; }
+    }
+    if (changed) { p.log.sort(function (a, b) { return a.at < b.at ? -1 : 1; }); }
+  }
+  function fmtTime(iso) {
+    var d = new Date(iso);
+    return isNaN(d) ? '' : d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  function logText() {
+    var p = P(), d = new Date(), lines = [];
+    lines.push((p.name || 'Plate') + ' · ' + S.format + ' well · ' + d.toLocaleDateString());
+    p.rounds.forEach(function (rd, k) {
+      var n = k + 1, st = stats(n), e = (p.log || []).filter(function (x) { return x.r === n; })[0];
+      lines.push('R' + n + '\t' + (rd.name || 'Reagent ' + n) + '\t' + (e ? 'PASS ' + new Date(e.at).toLocaleString() : st.done + '/' + st.total + ' added') +
+        '\t' + st.done + ' wells' + (st.skipped ? ', ' + st.skipped + ' skipped' : ''));
+    });
+    return lines.join('\n');
+  }
+  function renderLog() {
+    var p = P(), ul = $('logList');
+    if (!ul) { return; }
+    var rows = (p.log || []).map(function (e) {
+      var rd = p.rounds[e.r - 1];
+      return '<li><span class="sw" style="background:' + ROUND_COLORS[e.r - 1].c + '"></span><span class="n">R' + e.r + '</span><span class="nm">' +
+        esc(rd ? rd.name || ('Reagent ' + e.r) : '') + '</span><span class="t">' + fmtTime(e.at) + '</span></li>';
+    });
+    ul.innerHTML = rows.length ? rows.join('') : '<li class="empty">No round has reached PASS yet.</li>';
+    $('logCount').textContent = rows.length ? rows.length + ' PASS' : '';
+  }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  /* ---------- several plates per format ---------- */
+  function renderPlates() {
+    var list = S.plates[S.format], box = $('plateTabs');
+    if (!box) { return; }
+    box.innerHTML = '';
+    list.forEach(function (pl, k) {
+      var b = mk('button', 'pt-ptab', '');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(k === S.cur[S.format]));
+      var st = 0, tot = 0, R = pl.round;
+      pl.wells.forEach(function (v) { if (!(v & skipBit(R))) { tot++; if (v & bit(R)) { st++; } } });
+      b.innerHTML = '<b>' + (k + 1) + '</b><span>' + esc(pl.name || ('Plate ' + (k + 1))) + '</span><em>R' + R + ' · ' + st + '/' + tot + '</em>';
+      b.title = 'Switch to ' + (pl.name || ('plate ' + (k + 1)));
+      b.addEventListener('click', function () { switchPlate(k); });
+      box.appendChild(b);
+    });
+    var on = box.querySelector('[aria-pressed="true"]');
+    if (on && box.scrollWidth > box.clientWidth) { box.scrollLeft = Math.max(0, on.offsetLeft - box.offsetLeft - 8); }
+    $('addPlate').disabled = list.length >= MAX_PLATES;
+    $('delPlate').hidden = list.length <= 1;
+  }
+  function switchPlate(k) {
+    if (k === S.cur[S.format]) { return; }
+    S.cur[S.format] = k; lastTapped = -1; minimapBuilt = false; layoutKey = '';
+    afterChange(true);
+  }
+  function addPlate() {
+    var list = S.plates[S.format];
+    if (list.length >= MAX_PLATES) { return; }
+    list.push(freshPlate(S.format, list.length + 1));
+    switchPlate(list.length - 1);
+  }
+  function deletePlate() {
+    var list = S.plates[S.format];
+    if (list.length <= 1) { return; }
+    list.splice(S.cur[S.format], 1);
+    S.cur[S.format] = Math.max(0, Math.min(S.cur[S.format], list.length - 1));
+    lastTapped = -1; minimapBuilt = false; layoutKey = '';
+    afterChange(true);
+  }
+  function plateIsBlank(p) {
+    return !p.labels && p.rounds.length === 1 && p.wells.every(function (v) { return v === 0; });
+  }
+  // a layout sent from the Plate Layout tool: one plate per layout plate, empty wells skipped
+  function importLayout(data) {
+    if (!data || !FORMATS[data.format] || !Array.isArray(data.plates) || !data.plates.length) { return 0; }
+    var fmt = data.format, d = FORMATS[fmt], list = S.plates[fmt];
+    if (list.length === 1 && plateIsBlank(list[0])) { list.length = 0; }
+    var first = list.length, added = 0;
+    data.plates.forEach(function (lp) {
+      if (list.length >= MAX_PLATES) { return; }
+      var pl = freshPlate(fmt, list.length + 1), labels = {}, used = 0;
+      for (var r = 0; r < d.rows; r++) {
+        for (var c = 0; c < d.cols; c++) {
+          var id = LETTERS[r] + (c + 1), i = r * d.cols + c;
+          if (lp.wells && lp.wells[id]) { labels[i] = String(lp.wells[id]).slice(0, 60); used++; }
+          else { pl.wells[i] = skipBit(1); }
+        }
+      }
+      if (!used) { return; }
+      pl.labels = labels;
+      if (lp.name) { pl.name = String(lp.name).slice(0, 24); }
+      list.push(pl); added++;
+    });
+    if (!list.length) { list.push(freshPlate(fmt)); }
+    if (added) { S.format = fmt; S.cur[fmt] = first; }
+    return added;
   }
 
   /* ---------- plate input: tap, drag-paint, shift-range ---------- */
@@ -836,7 +965,7 @@
   /* ---------- controls ---------- */
 
   document.querySelectorAll('[data-format]').forEach(function (b) {
-    b.addEventListener('click', function () { S.format = +b.dataset.format; lastTapped = -1; minimapBuilt = false; afterChange(true); });
+    b.addEventListener('click', function () { S.format = +b.dataset.format; lastTapped = -1; minimapBuilt = false; layoutKey = ''; afterChange(true); });
   });
   document.querySelectorAll('[data-scope]').forEach(function (b) {
     b.addEventListener('click', function () { S.scope = b.dataset.scope; followZone(nextFirst()); afterChange(true); });
@@ -854,6 +983,21 @@
     if (last) { last.scrollIntoView({ block: 'nearest' }); }
   });
   $('removeRound').addEventListener('click', removeRound);
+  $('addPlate').addEventListener('click', addPlate);
+  var delBtn = $('delPlate'), delTimer = null;
+  delBtn.addEventListener('click', function () {
+    if (delBtn.classList.contains('is-armed')) {
+      clearTimeout(delTimer); delBtn.classList.remove('is-armed'); delBtn.textContent = 'DELETE THIS PLATE';
+      deletePlate(); return;
+    }
+    delBtn.classList.add('is-armed'); delBtn.textContent = 'TAP AGAIN TO DELETE';
+    delTimer = setTimeout(function () { delBtn.classList.remove('is-armed'); delBtn.textContent = 'DELETE THIS PLATE'; }, 3000);
+  });
+  $('copyLog').addEventListener('click', function () {
+    var txt = logText(), done = function (ok) { $('copyLog').textContent = ok ? 'COPIED ✓' : 'COPY FAILED'; setTimeout(function () { $('copyLog').textContent = 'COPY LOG'; }, 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { done(false); }); }
+    else { done(false); }
+  });
   $('zonePrev').addEventListener('click', function () { var p = P(); p.zone = (p.zone + 3) % 4; afterChange(true); });
   $('zoneNext').addEventListener('click', function () { var p = P(); p.zone = (p.zone + 1) % 4; afterChange(true); });
   $('zoneToggle').addEventListener('click', function () { var p = P(); p.view = useZones() ? 'full' : 'zones'; afterChange(true); });
@@ -982,8 +1126,11 @@
   $('askYes').addEventListener('click', function () { closeAsk(true); });
   $('askNo').addEventListener('click', function () { closeAsk(false); });
 
+  var imported = window.LMH ? importLayout(window.LMH.take('plate-tracker')) : 0;
+  if (imported) { updateLog(); save(); }
   renderAll();
   renderSaved();
+  if (imported) { window.LMH.note('Opened ' + imported + ' plate' + (imported > 1 ? 's' : '') + ' from Plate Layout — empty wells are skipped; each well shows its sample.', 'toast'); }
   if (isIPad() && !S.op.remember) { openAsk(); }
   else if (S.op.on && !S.op.k) { startCalib(); }
   if (window.visualViewport) { window.visualViewport.addEventListener('resize', renderOp); }

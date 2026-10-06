@@ -114,6 +114,8 @@
       lines.push([t.label, t.blank ? "0" : concPlain(t.c), t.dil ? volPlain(t.dil) : "", add, volPlain(t.end)].join("\t"));
     });
     lastText = lines.join("\n");
+    lastStds = tubes.map(function (t) { return t.blank ? "Blank" : "Std " + t.label + " (" + concPlain(t.c) + ")"; });
+    $("toLayout").disabled = false;
   }
 
   // dark teal → pale mint
@@ -124,7 +126,7 @@
 
   function empty(title, isErr) {
     $("ans").classList.toggle("is-error", !!isErr); $("ans").classList.toggle("is-empty", !isErr);
-    $("copy").disabled = true; $("print").disabled = true;
+    $("copy").disabled = true; $("print").disabled = true; $("toLayout").disabled = true; lastStds = null;
     $("ansBig").textContent = title; $("steps").innerHTML = "";
     $("rows").innerHTML = ""; $("strip").innerHTML = ""; $("notes").innerHTML = "";
     $("slip").classList.add("is-empty");
@@ -154,6 +156,12 @@
     });
   });
   $("print").addEventListener("click", function () { window.print(); });
+  // the series as standards (controls) on a plate map
+  var lastStds = null;
+  $("toLayout").addEventListener("click", function () {
+    if (!lastStds) return;
+    window.LMH.send("plate-layout", { controls: lastStds, reps: 2 }, "../plate-layout/");
+  });
 
   FIELDS.forEach(function (id) { if (state[id] != null) $(id).value = state[id]; });
   if (!$("topu").value) $("topu").value = "ng/mL";

@@ -307,5 +307,13 @@
     });
   });
 
+  // arriving from Molarity: the stock just made becomes C1, and we solve for V1
+  var inbound = window.LMH && window.LMH.take("dilution");
+  if (inbound && inbound.c1 && CONC_KIND[inbound.unit]) {
+    state.c1 = [String(inbound.c1), inbound.unit];
+    state.solve = "v1";
+    if (CONC_KIND[(state.c2 || [])[1]] !== CONC_KIND[inbound.unit]) state.c2 = ["", inbound.unit === "M" ? "mM" : inbound.unit];
+    setTimeout(function () { window.LMH.note("Stock from Molarity: " + inbound.c1 + " " + inbound.unit + (inbound.name ? " " + inbound.name : "") + ". Enter the final concentration and volume.", document.querySelector(".lm-page")); }, 0);
+  }
   applyState();
 })();
