@@ -51,3 +51,22 @@
   .lm-faq summary { font-size: 17px; }
 }
 @media print { .lm-more { display: none !important; } }
+
+/* shared top bar for pages that do not load calc.css (same look as the calculator pages) */
+.lm-top.is-shared {
+  position: sticky; top: 0; z-index: 20; min-height: 56px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 0 clamp(16px, 4vw, 32px); margin: 0;
+  background: #F2EDDF; border-bottom: 2px solid #1B2224;
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #1B2224;
+}
+.lm-top.is-shared .lm-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.lm-top.is-shared .lm-word { font-family: "IBM Plex Serif", Georgia, serif; font-weight: 600; font-size: 20px; color: #17403D; display: flex; align-items: center; gap: 3px; }
+.lm-top.is-shared .lm-word i { width: 6px; height: 6px; border-radius: 50%; background: #2E9E5B; display: inline-block; }
+.lm-top.is-shared .lm-crumb { color: #4A5655; letter-spacing: .08em; white-space: nowrap; }
+.lm-top.is-shared .lm-spacer { flex: 1; }
+.lm-top.is-shared .lm-saved { font-size: 11px; letter-spacing: .06em; color: #1F7A45; white-space: nowrap; }
+.lm-top.is-shared .lm-link { display: inline-flex; align-items: center; min-height: 40px; font-size: 13px; letter-spacing: .04em; text-decoration: underline; text-underline-offset: 3px; color: #1B2224; }
+.lm-top.is-shared .lm-link:hover { color: #17403D; }
+@media (max-width: 760px) { .lm-top.is-shared .lm-crumb, .lm-top.is-shared .lm-saved { display: none; } }
+@media print { .lm-top.is-shared { display: none !important; } }

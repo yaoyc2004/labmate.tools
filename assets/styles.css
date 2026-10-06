@@ -182,6 +182,8 @@ svg { display: block; }
 .item-flow { grid-area: flow; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted); }
 .status { grid-area: status; justify-self: end; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--faint); white-space: nowrap; }
 .status.building { color: var(--pass-dark); }
+.status.ready { color: var(--pass-dark); }
+.status.ready::before { content: "\2713\00a0"; }
 
 .item-name {
   display: block;

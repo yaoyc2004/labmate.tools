@@ -43,26 +43,20 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="panel-designer.css?v=1">
-<link rel="stylesheet" href="../../assets/more.css?v=1">
+<link rel="stylesheet" href="../../assets/more.css?v=2">
 </head>
 <body>
-<div class="page">
-
-<header class="topbar">
-  <a class="brand" href="../../" aria-label="labmate.tools home">
-    <svg width="22" height="32" viewBox="0 0 22 32" aria-hidden="true"><rect x="5" y="1" width="12" height="5" fill="currentColor"/><rect x="6.5" y="6" width="9" height="24" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="8.5" y="17" width="5" height="11" rx="2.5" fill="#2E9E5B"/></svg>
-    <span class="wordmark">labmate<svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#2E9E5B"/><path d="M4.3 8.3l2.4 2.4 5-5" fill="none" stroke="#fff" stroke-width="2"/></svg>tools</span>
+<header class="lm-top is-shared">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
   </a>
-  <nav class="nav mono" aria-label="Site">
-    <a href="../../#find">FIND A TOOL</a>
-    <a href="../../#know">GOOD TO KNOW</a>
-    <a href="../../#request">REQUEST A TOOL</a>
-  </nav>
+  <span class="lm-crumb">/ 7.1 PANEL DESIGNER</span>
+  <span class="lm-spacer"></span>
+  <span class="saved lm-saved" id="savedFlag">● AUTO-SAVED · STAYS IN THIS BROWSER</span>
+  <a class="lm-link" href="../../#cytometry">ALL TOOLS</a>
 </header>
-<div class="crumbs mono">
-  <span><a href="../../#find">INDEX</a> › <a href="../../#cytometry">07 CYTOMETRY</a> › 7.1 PANEL DESIGNER</span>
-  <span class="saved" id="savedFlag">● AUTO-SAVED · STAYS IN THIS BROWSER</span>
-</div>
+<div class="page">
 
 <section class="hero">
   <figure class="fig">
@@ -79,7 +73,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
     <figcaption class="mono">FIG. 7.1 — LASER, FILTER, SPILL</figcaption>
   </figure>
   <div class="hero-text">
-    <h1 class="serif">Panel Designer.</h1>
+    <h1 class="serif">Panel Designer</h1>
     <p class="serif lede">Lay your markers onto your own cytometer and see, before you stain, where every colour will spill.</p>
     <div class="mono flow">PICK INSTRUMENT → ASSIGN FLUORS → CHECK SPILLOVER</div>
   </div>
@@ -182,7 +176,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
   <h2>Good to know</h2>
   <ol>
     <li>Spillover here is a theoretical estimate from spectra and your filters. Real values also depend on detector voltages and laser power, so compensation always comes from single-stain controls on your instrument; spreading error is not modelled.</li>
-    <li id="knowSpectra">Spectra come from published peak values.</li>
+    <li id="knowSpectra">Measured spectra: <a href="https://www.fpbase.org" rel="noopener" target="_blank">FPbase</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>). Dyes not on FPbase are modelled from their published peak wavelengths.</li>
     <li>Instrument presets are published default or core-facility configurations. Facilities often swap filters — check the labels on your instrument and use EDIT FILTERS.</li>
     <li>Vendor-neutral: dyes from every supplier are listed side by side; nothing is sponsored. Peak values come from each maker's published tables.</li>
     <li>Your panels, instruments and dyes stay in this browser. Clearing site data or switching browsers loses them — export a copy if they matter.</li>
@@ -214,8 +208,8 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </section>
 <!-- more:end -->
 <footer class="footer mono">
-  <span>LABMATE.TOOLS · VOL. 1</span>
-  <span><a href="https://unjamkit.com">UNJAMKIT</a> · <a href="../../privacy/">PRIVACY</a></span>
+  <span>LABMATE.TOOLS · VOL. 1 · SPECTRA: <a href="https://www.fpbase.org" rel="noopener" target="_blank">FPBASE</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a></span>
+  <span><a href="../../">INDEX</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
   <span>P. 7.1</span>
 </footer>
 </div>

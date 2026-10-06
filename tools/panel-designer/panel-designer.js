@@ -469,7 +469,7 @@
     $('chart').innerHTML = s;
     $('chartCap').textContent = 'FIG. 7.1a — ' + (m.spectral ? 'BLACK RULES = LASERS' : exView ? 'DASHED = EXCITATION · BLACK RULES = LASERS' : 'SHADED = DETECTORS IN USE · BLACK RULES = LASERS');
     var nReal = m.act.filter(function (o) { return !o.sp.approx; }).length;
-    $('chartSrc').textContent = !m.act.length ? '' : nReal === m.act.length ? 'MEASURED SPECTRA' : nReal ? nReal + ' MEASURED · ' + (m.act.length - nReal) + ' MODELLED FROM PEAKS' : 'ALL MODELLED FROM PEAKS';
+    $('chartSrc').textContent = !m.act.length ? '' : nReal === m.act.length ? 'MEASURED SPECTRA · FPBASE' : nReal ? nReal + ' MEASURED (FPBASE) · ' + (m.act.length - nReal) + ' MODELLED FROM PEAKS' : 'ALL MODELLED FROM PEAKS';
   }
 
   /* ---------- render: matrix / similarity ---------- */
@@ -569,7 +569,7 @@
     $('approxNote').hidden = !t;
     $('approxText').textContent = t;
     $('knowSpectra').innerHTML = anyReal
-      ? 'Measured spectra: <a href="https://www.fpbase.org" rel="noopener" target="_blank">FPbase</a> (CC BY-SA 4.0), fetched ' + esc(SPEC.fetched || '') + '. Dyes not on FPbase are modelled from their published peak wavelengths.'
+      ? 'Measured spectra: <a href="https://www.fpbase.org" rel="noopener" target="_blank">FPbase</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>), fetched ' + esc(SPEC.fetched || '') + '. Dyes not on FPbase are modelled from their published peak wavelengths.'
       : 'Curves are modelled from each dye’s published excitation and emission peaks; measured spectra from <a href="https://www.fpbase.org" rel="noopener" target="_blank">FPbase</a> (CC BY-SA 4.0) replace them once loaded.';
   }
 
