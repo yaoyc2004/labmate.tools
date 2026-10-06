@@ -91,6 +91,45 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
     </div>
     <div class="pp-example" id="exampleNote" hidden>Showing example readings — type over them with yours.</div>
 
+    <div class="pp-tools" id="assayTools">
+      <div class="pp-std-presets">
+        <span class="presets-k">STANDARDS FROM THE KIT</span>
+        <button type="button" class="chip" data-std="bca">BCA <small>2000 → 25 µg/mL</small></button>
+        <button type="button" class="chip" data-std="micro">Micro BCA <small>200 → 0.5 µg/mL</small></button>
+        <button type="button" class="chip" data-std="brad">Bradford, BSA <small>2000 → 125 µg/mL</small></button>
+        <span class="presets-note">Typical kit dilution series, with a 0 blank. Check your kit's insert.</span>
+      </div>
+
+      <details class="pp-paste" id="pasteBox">
+        <summary><span class="presets-k">PASTE FROM THE PLATE READER</span> Copy the 8 × 12 block of readings straight from the reader's export</summary>
+        <div class="pp-paste-body">
+          <div>
+            <label for="plateText" class="pp-paste-k">READINGS · ROWS A–H, COLUMNS 1–12</label>
+            <textarea id="plateText" rows="8" spellcheck="false" placeholder="Paste the grid here. Row letters and column numbers are fine — they are skipped."></textarea>
+          </div>
+          <div class="pp-paste-opts">
+            <span class="pp-paste-k">REPLICATES SIT</span>
+            <div class="lm-seg" role="group" aria-label="Replicates" id="pRepSeg">
+              <button type="button" data-v="1">SINGLE</button>
+              <button type="button" data-v="2">2 ACROSS</button>
+              <button type="button" data-v="3">3 ACROSS</button>
+            </div>
+            <span class="pp-paste-k">READ THE PLATE</span>
+            <div class="lm-seg" role="group" aria-label="Order" id="pOrdSeg">
+              <button type="button" data-v="col">DOWN THE COLUMNS</button>
+              <button type="button" data-v="row">ALONG THE ROWS</button>
+            </div>
+            <p class="cs-hint">Standards come first, in the order of the standards table above (<span id="pStdN">9</span> of them). Every filled well after that is a sample.</p>
+            <button type="button" class="btn" id="pUse" disabled>USE THESE READINGS</button>
+          </div>
+          <div class="pp-paste-prev">
+            <div class="pp-mini" id="pMini" aria-label="Preview of how the wells are read"></div>
+            <p class="pp-paste-msg" id="pMsg" role="status"></p>
+          </div>
+        </div>
+      </details>
+    </div>
+
     <div class="pp-curve" id="curveBox">
       <div>
         <table class="pp-table" id="stdTable">
@@ -175,7 +214,8 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div>
         <h2>How to use</h2>
         <ol class="lm-num">
-          <li>Enter your standards (e.g. BSA for BCA) and their absorbance readings. Several replicates? Type them in one box separated by spaces — they're averaged.</li>
+          <li>Enter your standards (e.g. BSA for BCA) and their absorbance readings, or tap a kit series to fill the concentrations. Several replicates? Type them in one box separated by spaces — they're averaged.</li>
+          <li>Readings in a plate reader export? Open <b>Paste from the plate reader</b>, paste the 8 × 12 block and say how replicates sit. Standards are read first, then every filled well is a sample.</li>
           <li>Keep the 0 µg/mL standard: it's used as the blank. Choose <b>LINEAR</b> or <b>QUADRATIC</b> — pick the one with R² closer to 1 that follows your points.</li>
           <li>Enter each sample's readings, and the dilution if you diluted the lysate before the assay.</li>
           <li>Already know the concentrations? Choose <b>CONCENTRATIONS ALREADY</b> and type them in µg/µL (= mg/mL).</li>
@@ -238,6 +278,6 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="protein-loading.js?v=1"></script>
+<script src="protein-loading.js?v=2"></script>
 </body>
 </html>

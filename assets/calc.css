@@ -479,3 +479,31 @@ sub { font-size: 0.6em; }
 .mm-targets-body p { grid-column: 2; grid-row: 1 / span 2; margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
 @media (max-width: 700px) { .mm-targets-body { grid-template-columns: minmax(0, 1fr); } .mm-targets-body p { grid-column: 1; grid-row: auto; } }
 @media print { .mm-targets { display: none !important; } }
+
+/* Protein Loading: kit series + plate reader paste (2026-10-05) */
+.pp-tools[hidden] { display: none; }
+.pp-std-presets { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0 0 12px; }
+.pp-std-presets .presets-k, .pp-std-presets .presets-note { margin: 0; }
+.pp-std-presets .chip small { margin-left: 6px; }
+.pp-paste { margin: 0 0 16px; border: 1.5px solid var(--ink); background: var(--card); }
+.pp-paste > summary { cursor: pointer; padding: 10px 12px; font-size: 15px; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.pp-paste > summary::-webkit-details-marker { display: none; }
+.pp-paste > summary::after { content: "+"; margin-left: auto; font-family: var(--mono); color: var(--teal); }
+.pp-paste[open] > summary::after { content: "−"; }
+.pp-paste > summary .presets-k { margin: 0; }
+.pp-paste-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 0 12px 14px; align-items: start; }
+.pp-paste-k { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+.pp-paste textarea { width: 100%; box-sizing: border-box; font-family: var(--mono); font-size: 12px; padding: 8px; border: 1.5px solid var(--ink); background: #fff; resize: vertical; white-space: pre; }
+.pp-paste-opts { display: flex; flex-direction: column; gap: 6px; }
+.pp-paste-opts .lm-seg { margin-bottom: 8px; }
+.pp-paste-opts .lm-seg button { min-height: 38px; font-size: 11px; }
+.pp-paste-opts .cs-hint { margin: 0 0 8px; }
+.pp-mini { display: grid; grid-template-columns: 14px repeat(var(--nc, 12), minmax(0, 1fr)); gap: 2px; font-family: var(--mono); font-size: 9px; color: var(--muted); text-align: center; align-items: center; }
+.pp-mini i { display: block; aspect-ratio: 1; border-radius: 50%; border: 1px solid var(--ink); background: #fff; }
+.pp-mini i.std { background: #2E9E5B; border-color: #1F7A45; }
+.pp-mini i.smp { background: #E9C988; border-color: #B7791F; }
+.pp-mini i.e { border-style: dashed; border-color: var(--dot); }
+.pp-paste-msg { font-size: 14px; margin: 8px 0 0; }
+@media (max-width: 900px) { .pp-paste-body { grid-template-columns: minmax(0, 1fr); } }
+@media print { .pp-tools { display: none !important; } }
+.pp-mini { max-width: 360px; }

@@ -45,6 +45,7 @@
     $("sRows").innerHTML = state.samples.map(sRow).join("");
     var known = state.src === "known";
     $("curveBox").hidden = known;
+    $("assayTools").hidden = known;
     document.querySelectorAll("#sTable th.a, #sTable th.d").forEach(function (th) { th.hidden = known; });
     $("dilHint").hidden = known;
     $("samplesSub").textContent = known ? "TYPE µg/µL (= mg/mL)" : "ABSORBANCE → µg/µL";
@@ -300,7 +301,108 @@
   });
   $("print").addEventListener("click", function () { window.print(); });
 
+  // ---------- kit standard series ----------
+  var STD_SETS = {
+    bca: ["2000", "1500", "1000", "750", "500", "250", "125", "25", "0"],
+    micro: ["200", "40", "20", "10", "5", "2.5", "1", "0.5", "0"],
+    brad: ["2000", "1500", "1000", "750", "500", "250", "125", "0"]
+  };
+  document.querySelectorAll("[data-std]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      readRows();
+      var set = STD_SETS[b.getAttribute("data-std")];
+      // keep readings already typed, row by row
+      state.stds = set.map(function (c, i) { return [c, state.example ? "" : (state.stds[i] ? state.stds[i][1] : "")]; });
+      if (state.example) state.samples = [["", "", "1", ""], ["", "", "1", ""], ["", "", "1", ""]];
+      state.example = false;
+      render(); paintPaste();
+    });
+  });
+
+  // ---------- paste a plate reader block ----------
+  var paste = { rep: 2, ord: "col", grid: null };
+  var ROWS = "ABCDEFGHIJKLMNOP";
+  function parseGrid(text) {
+    var lines = String(text || "").split(/\r?\n/).map(function (l) { return l.replace(/\s+$/, ""); }).filter(function (l) { return l.trim(); });
+    var grid = [], headN = 0;
+    lines.forEach(function (l) {
+      var cells = l.indexOf("\t") >= 0 ? l.split("\t") : l.indexOf(";") >= 0 ? l.split(";") : l.indexOf(",") >= 0 && !/\d,\d/.test(l) ? l.split(",") : l.trim().split(/\s+/);
+      cells = cells.map(function (c) { return c.trim(); });
+      if (cells.length && /^[A-Pa-p]$/.test(cells[0])) cells = cells.slice(1);          // row letter
+      var nums = cells.map(function (c) { var v = LM.parse(c.replace(",", ".")); return v == null || isNaN(v) ? null : v; });
+      var isHeader = nums.every(function (v, i) { return v === null || v === i + 1 || v === i; }) && nums.filter(function (v) { return v !== null; }).length > 2;
+      if (isHeader) { headN = Math.max(headN, nums.filter(function (v) { return v !== null; }).length); return; } // 1 2 3 … 12
+      if (!nums.some(function (v) { return v !== null; })) return;
+      grid.push(nums);
+    });
+    if (!grid.length) return null;
+    var nc = Math.max(headN, Math.max.apply(null, grid.map(function (r) { return r.length; })));
+    grid = grid.slice(0, 16).map(function (r) { while (r.length < nc) r.push(null); return r.slice(0, 24); });
+    return grid;
+  }
+  function groups(grid) {
+    var nr = grid.length, nc = grid[0].length, rep = paste.rep, out = [];
+    function unit(r, c0) {
+      var cells = [], vals = [];
+      for (var k = 0; k < rep && c0 + k < nc; k++) { cells.push([r, c0 + k]); if (grid[r][c0 + k] !== null) vals.push(grid[r][c0 + k]); }
+      return vals.length ? { cells: cells, vals: vals } : null;
+    }
+    var nG = Math.ceil(nc / rep), r, g, u;
+    if (paste.ord === "col") { for (g = 0; g < nG; g++) for (r = 0; r < nr; r++) { u = unit(r, g * rep); if (u) out.push(u); } }
+    else { for (r = 0; r < nr; r++) for (g = 0; g < nG; g++) { u = unit(r, g * rep); if (u) out.push(u); } }
+    return out;
+  }
+  function nStd() { return state.stds.filter(function (r) { return String(r[0]).trim() !== ""; }).length; }
+  function paintPaste() {
+    $("pStdN").textContent = nStd();
+    ["pRepSeg", "pOrdSeg"].forEach(function (id, i) {
+      $(id).querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-v") === String(i ? paste.ord : paste.rep))); });
+    });
+    var grid = paste.grid = parseGrid($("plateText").value);
+    if (!grid) { $("pMini").innerHTML = ""; $("pMsg").textContent = $("plateText").value.trim() ? "No numbers found in what you pasted." : ""; $("pUse").disabled = true; return; }
+    var gs = groups(grid), ns = nStd(), role = {};
+    gs.forEach(function (u, i) { u.cells.forEach(function (c) { role[c[0] + "," + c[1]] = i < ns ? "s" : "x"; }); });
+    var nc = grid[0].length, h = ['<span></span>'];
+    for (var c = 0; c < nc; c++) h.push("<span>" + (c + 1) + "</span>");
+    grid.forEach(function (row, r) {
+      h.push("<span>" + ROWS[r] + "</span>");
+      row.forEach(function (v, c) {
+        var k = role[r + "," + c];
+        h.push('<i class="' + (v === null ? "e" : k === "s" ? "std" : "smp") + '" title="' + ROWS[r] + (c + 1) + (v === null ? " — empty" : " — " + v) + '"></i>');
+      });
+    });
+    $("pMini").style.setProperty("--nc", nc);
+    $("pMini").innerHTML = h.join("");
+    var nSmp = Math.max(0, gs.length - ns);
+    $("pMsg").innerHTML = "Read <b>" + grid.length + " × " + nc + "</b> wells → <b>" + Math.min(ns, gs.length) + "</b> standards" + (gs.length < ns ? " (table has " + ns + ")" : "") +
+      " and <b>" + nSmp + "</b> sample" + (nSmp === 1 ? "" : "s") + (paste.rep > 1 ? ", " + paste.rep + " readings each" : "") + ".";
+    $("pUse").disabled = !gs.length;
+  }
+  function useReadings() {
+    if (!paste.grid) return;
+    readRows();
+    var gs = groups(paste.grid), ns = nStd(), k = 0;
+    var join = function (u) { return u.vals.map(function (v) { return LM.fmtPlain(v, 4); }).join(" "); };
+    state.stds.forEach(function (r) { if (String(r[0]).trim() !== "" && k < gs.length) { r[1] = join(gs[k]); k++; } });
+    var rest = gs.slice(Math.min(ns, gs.length)), dil = state.samples.length ? state.samples[0][2] || "1" : "1";
+    var keepNames = !state.example;
+    state.samples = rest.map(function (u, i) {
+      var old = keepNames && state.samples[i] ? state.samples[i] : null;
+      return [old && old[0] ? old[0] : "Sample " + (i + 1), join(u), old ? old[2] : dil, ""];
+    });
+    if (!state.samples.length) state.samples = [["", "", dil, ""]];
+    state.example = false;
+    render();
+    $("pMsg").innerHTML += " <b>Filled in ✓</b> — name your samples below.";
+  }
+  $("plateText").addEventListener("input", paintPaste);
+  $("pRepSeg").addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; paste.rep = +b.getAttribute("data-v"); paintPaste(); });
+  $("pOrdSeg").addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; paste.ord = b.getAttribute("data-v"); paintPaste(); });
+  $("pUse").addEventListener("click", useReadings);
+  $("stdRows").addEventListener("input", function () { $("pStdN").textContent = nStd(); });
+
   $("ug").value = state.ug || "20"; $("lv").value = state.lv || "20"; $("buf").value = state.buf || "4"; $("extra").value = state.extra == null ? "0" : state.extra;
   sync();
   render();
+  paintPaste();
 })();

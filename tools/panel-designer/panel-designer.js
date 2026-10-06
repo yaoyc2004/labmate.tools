@@ -213,6 +213,87 @@
     return (compatCache[key] = best);
   }
 
+  /* ---------- suggestions: a few dyes that fit an open row ---------- */
+  // Scores every usable dye for row i against the rest of the panel on this instrument:
+  // detector clash, spill sent and received (or spectral similarity), brightness against expression.
+  var suggestFor = null;
+  function bestDetIndex(sp, sigs, dets, spectral) {
+    var bi = 0;
+    if (spectral) { sigs.forEach(function (v, k) { if (v > sigs[bi]) bi = k; }); return bi; }
+    var exL = {}, exMaxL = 0;
+    dets.forEach(function (d) { if (exL[d.laser] == null) { exL[d.laser] = exAt(sp, d.laser); exMaxL = Math.max(exMaxL, exL[d.laser]); } });
+    bi = -1;
+    sigs.forEach(function (v, k) { if (exL[dets[k].laser] >= 0.75 * exMaxL && (bi < 0 || v > sigs[bi])) bi = k; });
+    return bi < 0 ? 0 : bi;
+  }
+  function suggest(i, m) {
+    var I = m.inst, dets = m.dets, row = state.rows[i];
+    var others = m.act.filter(function (o) { return o.idx !== i; });
+    var used = {}, usedDet = {};
+    m.rows.forEach(function (o) { if (o.idx !== i && o.f) used[o.f.id] = 1; });
+    others.forEach(function (o) { usedDet[o.det.key] = 1; });
+    var er = exprRank(row.expr), out = [];
+    allFluors().forEach(function (f) {
+      if (used[f.id] || bestEff(f, I, dets) < Math.max(COMPAT, 0.15)) return;
+      var fam = f.family || '', mk = row.marker || '';
+      // what kind of row is this? viability, DNA, proliferation, reporter — or an antibody (the default)
+      var want = /celltrace|cfse|prolif|tracking/i.test(mk) ? 'prolif'
+        : /dapi|7-?aad|^pi$|propidium|dna|cell cycle/i.test(mk) ? 'dna'
+        : /live|dead|viab|zombie/i.test(mk) ? 'via'
+        : /gfp|yfp|cfp|bfp|rfp|tomato|cherry|scarlet|kate|turquoise|emerald|sirius|irfp|reporter/i.test(mk) ? 'fp' : 'ab';
+      var kind = /viability/i.test(fam) ? 'via' : /proliferation/i.test(fam) ? 'prolif' : /DNA dye/i.test(fam) ? 'dna' : /fluorescent protein/i.test(fam) ? 'fp' : 'ab';
+      if (want === 'dna' ? (kind !== 'dna' && kind !== 'via') : kind !== want) return;
+      var sp = spectra(f), sigs = dets.map(function (d) { return sig(f, d); });
+      var bi = bestDetIndex(sp, sigs, dets, m.spectral), d = dets[bi], s0 = sigs[bi];
+      if (!s0) return;
+      var cost = 0, why = [], worst = 0, worstWho = null;
+      if (!m.spectral) {
+        if (usedDet[d.key]) return;                                     // detector already taken
+        others.forEach(function (o) {
+          var inn = 100 * (o.sigs[dets.indexOf(d)] || 0) / o.detSig;      // what this dye would receive
+          var outp = 100 * (sigs[dets.indexOf(o.det)] || 0) / s0;         // what it would send
+          var wIn = er === 1 ? 1.5 : 1, wOut = exprRank(o.r.expr) === 1 ? 1.5 : 1;
+          var v = Math.max(inn * wIn, outp * wOut);
+          cost += 0.25 * (inn + outp);
+          if (v > worst) { worst = v; worstWho = o; }
+        });
+        cost += worst;
+        why.push(d.id + ' ' + d.label);
+        if (worstWho) why.push((worst < 1 ? '<1' : Math.round(worst)) + ' % worst spill' + (worst >= 1 ? ' with ' + (worstWho.r.marker || worstWho.f.name) : ''));
+      } else {
+        var n = Math.sqrt(sigs.reduce(function (a, v) { return a + v * v; }, 0)) || 1;
+        others.forEach(function (o) {
+          var dot = 0; for (var k = 0; k < sigs.length; k++) dot += sigs[k] / n * o.unit[k];
+          if (dot > worst) { worst = dot; worstWho = o; }
+        });
+        if (worst >= 0.92) return;                                      // would be hard to unmix
+        cost += 100 * Math.max(0, worst - 0.4) + 20 * worst;
+        why.push('peak ' + d.id);
+        if (worstWho) why.push('max similarity ' + worst.toFixed(2) + ' (' + (worstWho.r.marker || worstWho.f.name) + ')');
+      }
+      var b = f.brightness || null;
+      if (b != null) {
+        if (er === 1 && b <= 2) cost += 25;
+        if (er === 1 && b >= 4) { cost -= 6; why.push('bright dye for a dim marker'); }
+        if (er === 3 && b >= 5) cost += 4;                             // keep the brightest for dim markers
+      }
+      var eff = sigs[bi] / sp.total;
+      cost += 12 * Math.max(0, 0.5 - eff);
+      if (sp.approx) { cost += 6; why.push('≈ modelled spectrum'); }
+      out.push({ f: f, cost: cost, why: why });
+    });
+    out.sort(function (a, b) { return a.cost - b.cost; });
+    return out.slice(0, 4);
+  }
+  function suggestRow(m, i) {
+    var list = suggest(i, m);
+    var body = list.length ? list.map(function (x) {
+      return '<button type="button" class="sg-pick" data-act="sgUse" data-fid="' + esc(x.f.id) + '"><span class="sw" style="background:' + waveColor(x.f.emMax || defaultEx(x.f.laser) + 30) + '"></span><b>' + esc(x.f.name) + '</b><small>' + esc(x.why.join(' · ')) + '</small></button>';
+    }).join('') : '<span class="muted">No dye left that fits this instrument without clashing — free a detector, or add your own dye.</span>';
+    return '<tr class="sg-row" data-i="' + i + '"><td></td><td colspan="8"><div class="sg"><span class="sg-k">SUGGESTED FOR ' + esc((state.rows[i].marker || 'ROW ' + (i + 1)).toUpperCase()) + '</span>' + body +
+      '<button type="button" class="sg-x" data-act="sgClose" aria-label="Close suggestions">CLOSE</button></div><p class="sg-note">Ranked by detector, spillover' + (m.spectral ? ' / similarity' : '') + ' and brightness against the panel as it is now — a starting point, not a verdict.</p></td></tr>';
+  }
+
   /* ---------- analysis ---------- */
   var model = null;
   function analyse() {
@@ -385,6 +466,8 @@
       var exprSel = '<select data-k="expr" aria-label="Expression, row ' + (i + 1) + '">' + [['', '—'], ['high', 'HIGH'], ['med', 'MED'], ['low', 'LOW']].map(function (x) { return '<option value="' + x[0] + '"' + (r.expr === x[0] ? ' selected' : '') + '>' + x[1] + '</option>'; }).join('') + '</select>';
       var fb = f ? '<button type="button" class="fluor-btn" data-act="pick" aria-label="Fluor for row ' + (i + 1) + ': ' + esc(f.name) + '. Change"><span class="sw" style="background:' + o.color + '"></span><span class="nm">' + esc(f.name) + '</span>' + (f.origin === 'user' ? ' <span class="tag mine">MINE</span>' : '') + '</button>'
         : '<button type="button" class="fluor-btn empty" data-act="pick">CHOOSE…</button>';
+      var hasCheck = o.checks.some(function (c) { return c[0] === 'check'; });
+      if (!f || hasCheck) fb += ' <button type="button" class="sg-btn" data-act="sg" aria-expanded="' + (suggestFor === r.id) + '" aria-label="Suggest a dye for row ' + (i + 1) + '">SUGGEST</button>';
       var bv = r.bright != null ? String(r.bright) : (f && f.brightness ? String(f.brightness) : '');
       var bSel = '<select data-k="bright" aria-label="Dye brightness, row ' + (i + 1) + '"' + (f && f.brightness && r.bright == null ? ' title="From ' + esc(f.brightnessSrc || 'vendor') + '"' : '') + '><option value="">—</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option value="' + n + '"' + (bv === String(n) ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>';
       var det = '';
@@ -410,6 +493,7 @@
         '<td>' + exprSel + '</td><td>' + fb + '</td><td>' + bSel + '</td><td>' + det + '</td>' +
         '<td class="recv">' + recv + '</td><td class="chk" title="' + esc(o.checks.map(function (c) { return c[1]; }).join('\n')) + '">' + chk + '</td>' +
         '<td><button type="button" class="rm" data-act="rm" aria-label="Remove row ' + (i + 1) + '">×</button></td></tr>';
+      if (suggestFor === r.id) h += suggestRow(m, i);
     });
     if (!m.rows.length) h = '<tr><td colspan="9" class="muted" style="padding:18px 6px">No markers yet — add one, or paste a list.</td></tr>';
     $('rows').innerHTML = h;
@@ -607,6 +691,13 @@
     var i = +b.closest('tr').getAttribute('data-i');
     if (b.getAttribute('data-act') === 'rm') { state.rows.splice(i, 1); save(); renderAll({ keepSelect: true }); var nx = document.querySelector('#rows tr[data-i="' + Math.min(i, state.rows.length - 1) + '"] .rm'); if (nx) nx.focus(); }
     if (b.getAttribute('data-act') === 'pick') openPicker(i);
+    if (b.getAttribute('data-act') === 'sg') { suggestFor = suggestFor === state.rows[i].id ? null : state.rows[i].id; renderAll({ keepSelect: true }); }
+    if (b.getAttribute('data-act') === 'sgClose') { suggestFor = null; renderAll({ keepSelect: true }); }
+    if (b.getAttribute('data-act') === 'sgUse') {
+      var r = state.rows[i]; r.fluorId = b.getAttribute('data-fid'); r.det = null; suggestFor = null;
+      save(); renderAll({ keepSelect: true });
+      var fbtn = document.querySelector('#rows tr[data-i="' + i + '"] .fluor-btn'); if (fbtn) fbtn.focus();
+    }
   });
   $('addRow').addEventListener('click', function () {
     state.rows.push(newRow()); save(); renderAll({ keepSelect: true });
