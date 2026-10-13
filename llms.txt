@@ -1,0 +1,42 @@
+# labmate.tools
+
+> Free, browser-based calculators and bench tools for life science labs. Independent and vendor-neutral; no sign-up; what users type stays in their browser. Each tool page shows its formula, a worked example, reference values and an FAQ.
+
+## Plates
+
+- [Well Plate Pipetting Tracker (96 & 384)](https://labmate.tools/tools/plate-tracker/): Free well plate pipetting tracker for iPad, laptop and phone. Tap each well as you load a 96 or 384 well plate and track up to 8 reagents in rounds.
+- [96 & 384 Well Plate Layout Maker](https://labmate.tools/tools/plate-layout/): Free 96 and 384 well plate layout maker. Paste samples, add controls and replicates, skip edge wells, then print the plate map or download a CSV.
+
+## Calculators
+
+- [Master Mix Calculator for PCR & qPCR](https://labmate.tools/tools/master-mix/): Free PCR and qPCR master mix calculator. List reagents per reaction, set reactions and overage, top up with water, then copy or print the table.
+- [Dilution Calculator (C1V1 = C2V2)](https://labmate.tools/tools/dilution/): Free C1V1 = C2V2 dilution calculator. Solve for stock or final volume or concentration in any unit, with stock and diluent volumes ready to pipette.
+- [Molarity Calculator — Mass & mg/mL to µM](https://labmate.tools/tools/molarity/): Free molarity calculator: grams to weigh for any volume and concentration, or the molarity you made. Convert mg/mL and ng/µL to µM with the molecular weight.
+- [Serial Dilution Calculator, Tube by Tube](https://labmate.tools/tools/serial-dilution/): Free serial dilution calculator. Set top concentration, fold, tubes and volume; get diluent and transfer volumes for every tube and a printable plan.
+
+## Converters
+
+- [RPM to g Calculator (RCF Converter)](https://labmate.tools/tools/rpm-to-g/): Free centrifuge RPM to g (RCF) converter. Enter your rotor radius to turn × g into rpm or rpm into × g, and match a protocol written for another centrifuge.
+
+## Labels
+
+- [Cryo Label Maker for Laser Label Sheets](https://labmate.tools/tools/cryo-labels/): Free cryo label maker: turn a list of sample IDs into a print-ready PDF for laser cryogenic label sheets, with a calibration page for your printer.
+
+## Cells & Protein
+
+- [Cell Seeding & Hemocytometer Calculator](https://labmate.tools/tools/cell-seeding/): Free hemocytometer and cell seeding calculator: square counts to live cells/mL and viability, then cell suspension and medium volumes for any plate or flask.
+- [Western Blot Loading Calculator (BCA)](https://labmate.tools/tools/protein-loading/): Free BCA/Bradford standard curve and Western blot loading calculator: protein per sample, then sample, buffer and water volumes for equal µg per lane.
+
+## Print
+
+- [Conference Poster Print Check](https://labmate.tools/tools/poster-check/): Free conference poster print check: compare your PDF or PPTX with the print size and board limit, and check image resolution and text size. Never uploaded.
+
+## Cytometry
+
+- [Flow Cytometry Panel Designer](https://labmate.tools/tools/panel-designer/): Free, vendor-neutral flow cytometry panel designer. Pick your cytometer, assign fluorochromes and see spectra, estimated spillover and spectral similarity.
+
+## About
+
+- [About labmate.tools](https://labmate.tools/about/): who makes it, where values come from and how they are checked.
+- [Privacy](https://labmate.tools/privacy/): no accounts; tool inputs never leave the browser.
+- [Changelog](https://labmate.tools/CHANGELOG.md): what changed, newest first.
