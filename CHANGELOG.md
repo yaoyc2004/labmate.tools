@@ -2,6 +2,25 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-10-12
+
+Making every page easier for search engines and AI assistants to read, trust and quote.
+
+### Every tool page
+- New **REFERENCE** block above the FAQ: the values each tool uses, as plain tables on the page instead of only inside the script — plate and flask areas (Cell Count & Seeding), the 13 cytometer presets with their source sheets and the dye list by laser (Panel Designer), the built-in cryo label sheets (Cryo Labels), poster sizes, check thresholds and text sizes (Poster Check), samples per plate by replicate (Plate Layout), SLAS plate geometry (Plate Tracker), 1× from concentrated stocks (Dilution), common buffer reagents (Molarity), rpm for common × g (RPM ↔ g), kit standard series (Protein Loading), overage (Master Mix) and two common series (Serial Dilution).
+- Worked examples added where there were none: Plate Layout, Plate Tracker, Cryo Labels, Poster Check, Panel Designer. Every example was run through the tool itself.
+- 2–4 more questions per FAQ (37 in all), answered in a sentence or two with numbers; the structured data matches the visible text.
+- "Last updated" date on every tool page, with `dateModified` in the structured data.
+- Section headings no longer run their two parts together when read as text.
+
+### Site
+- New **About** page: what the site is, who it is for, where the values come from and how they are checked. Linked from the homepage, Privacy and every tool page.
+- Homepage: one-sentence definition of labmate.tools under Good to know, and a short FAQ.
+- The organisation's LinkedIn page is linked in the structured data of every page.
+- New `llms.txt`: a plain list of every tool with its address and what it does.
+- Sitemap: About page added; dates updated.
+- IndexNow key file added, so Bing can be told about updates straight away.
+
 ## 2026-10-05
 
 Review of all 12 live tools, then the changes below.
