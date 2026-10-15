@@ -35,6 +35,10 @@
 
 - [Flow Cytometry Panel Designer](https://labmate.tools/tools/panel-designer/): Free, vendor-neutral flow cytometry panel designer. Pick your cytometer, assign fluorochromes and see spectra, estimated spillover and spectral similarity.
 
+## Imaging
+
+- [Microscopy Scale Bar Maker](https://labmate.tools/tools/scale-bar/): Free batch scale bar maker for microscope images. Enter µm per pixel, measure a stage micrometer or read the Fiji / OME-TIFF scale, add the same bar to PNG, JPG or TIFF images and export copies with a CSV calibration record. Never uploaded.
+
 ## About
 
 - [About labmate.tools](https://labmate.tools/about/): who makes it, where values come from and how they are checked.

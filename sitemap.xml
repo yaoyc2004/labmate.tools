@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://labmate.tools/</loc><lastmod>2026-10-12</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><image:image><image:loc>https://labmate.tools/assets/og/home.png</image:loc></image:image></url>
+  <url><loc>https://labmate.tools/</loc><lastmod>2026-10-15</lastmod><changefreq>weekly</changefreq><priority>1.0</priority><image:image><image:loc>https://labmate.tools/assets/og/home.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/tools/plate-tracker/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/plate-tracker.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/tools/plate-layout/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/plate-layout.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/tools/master-mix/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/master-mix.png</image:loc></image:image></url>
@@ -13,6 +13,7 @@
   <url><loc>https://labmate.tools/tools/protein-loading/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/protein-loading.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/tools/poster-check/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/poster-check.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/tools/panel-designer/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/panel-designer.png</image:loc></image:image></url>
+  <url><loc>https://labmate.tools/tools/scale-bar/</loc><lastmod>2026-10-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority><image:image><image:loc>https://labmate.tools/assets/og/scale-bar.png</image:loc></image:image></url>
   <url><loc>https://labmate.tools/about/</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://labmate.tools/privacy/</loc><lastmod>2026-10-12</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

@@ -2,6 +2,28 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-10-15
+
+New section and tool: **SECTION 08 — IMAGING · Scale Bar Maker (8.1)**.
+
+### Scale Bar (8.1) — new
+- Drop a batch of microscope images (PNG, JPG, WebP, BMP, TIFF). Images are opened in the browser and never uploaded.
+- Calibration three ways: type µm/px (or nm/px, px/µm); **MEASURE** — drag a line across a stage micrometer or any known length, with 1-px nudges and a horizontal lock; **CAMERA** — camera pixel × binning ÷ magnification, marked as an estimate.
+- Named **presets** per microscope set-up (objective, camera, binning, image size), kept in this browser; export/import as JSON. A preset used on images of a different size is flagged ("fine if cropped, wrong if resized").
+- Reads the scale saved in **ImageJ / Fiji TIFFs, OME-TIFF PhysicalSizeX**, centimetre TIFF resolution tags and PNG pHYs; shown as a suggestion and checked against the value in use. Print DPI values are ignored.
+- Built-in TIFF reader: 1/8/16/32-bit grey, RGB, palette; uncompressed, LZW, PackBits, Deflate; first page of a stack. 16/32-bit images become an 8-bit display copy (MIN–MAX or FULL RANGE), noted per image. Tiled TIFF, BigTIFF and vendor formats (.czi, .nd2, .lif, .oib) are refused with a clear message.
+- One bar for the whole batch: AUTO picks the largest 1-2-5 round length up to 20% of the narrowest field, or FIXED length in nm/µm/mm. Corner, colour, label above/below/none, Arial or Plex Sans, background box, outline; thickness, text and margin scale with each image.
+- Drag the bar on any image; USE THIS SPOT ON ALL; per-image calibration (batch, from the file, or its own / a preset).
+- Checks per image: calibration and source, scale in file, bar length in px with rounding error (flagged > 1%), fits on the image, contrast behind the bar, bit depth, stack pages, > 16.7 MP on iPad.
+- Export: ZIP of copies at the original pixel size (PNG, JPG or same as file) + `calibration.csv` + settings JSON; single image; CSV only; COPY LEGEND ("Scale bars, 50 µm."). Own ZIP writer, no libraries.
+- SAMPLE BATCH: a drawn stage micrometer (measured automatically), three fictional micrographs and a 16-bit ImageJ TIFF, all at 0.5 µm/px.
+- Tested in headless Chromium: 10 TIFF variants decoded pixel-identical to the source; bars measured in the exported PNGs at exactly 80 px (20 µm at 0.25 µm/px) and 100 px (50 µm at 0.5 µm/px); no horizontal scroll at 1440 / 834 / 390 px; no JS errors.
+
+### Site
+- Homepage: SECTION 08 — IMAGING in the catalog, INDEX and filter chips; intro mentions the microscope; structured data lists 13 tools.
+- 404 index, `llms.txt`, sitemap and social card (`assets/og/scale-bar.png`) added; every tool page now says ALL 13 TOOLS.
+- Poster Check's related tools now include Scale Bar.
+
 ## 2026-10-12
 
 Making every page easier for search engines and AI assistants to read, trust and quote.

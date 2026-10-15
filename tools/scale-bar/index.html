@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microscopy Scale Bar Maker — Batch, in Your Browser | labmate.tools</title>
+<meta name="description" content="Free scale bar maker for microscope images: enter µm per pixel or measure a stage micrometer, add the same scale bar to a batch of PNG, JPG or TIFF images, export copies and a CSV record. Never uploaded.">
+<link rel="canonical" href="https://labmate.tools/tools/scale-bar/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scale Bar Maker — free, in your browser | labmate.tools">
+<meta property="og:description" content="Add the same, correctly sized scale bar to a batch of microscope images and keep a record of the calibration. Images never leave your browser.">
+<meta property="og:url" content="https://labmate.tools/tools/scale-bar/">
+<meta property="og:image" content="https://labmate.tools/assets/og/scale-bar.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Scale Bar Maker — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Scale Bar Maker — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Add the same, correctly sized scale bar to a batch of microscope images and keep a record of the calibration. Images never leave your browser.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/scale-bar.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/scale-bar/#app","name":"Scale Bar Maker","url":"https://labmate.tools/tools/scale-bar/","description":"Free scale bar maker for microscope images: enter µm per pixel or measure a stage micrometer, add the same scale bar to a batch of PNG, JPG or TIFF images, export copies and a CSV record. Never uploaded.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Batch scale bars on PNG, JPG and TIFF images","µm per pixel, stage micrometer line or camera pixel size","Reads ImageJ / Fiji and OME-TIFF calibration","Named calibration presets","Same bar length and style on every image","Contrast and fit checks per image","ZIP of copies plus CSV calibration record","Images never uploaded"],"audience":{"@type":"Audience","audienceType":"Life science researchers, microscopists, lab technicians and students"},"image":"https://labmate.tools/assets/og/scale-bar.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-10-15"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Imaging","item":"https://labmate.tools/#imaging"},{"@type":"ListItem","position":3,"name":"Scale Bar Maker","item":"https://labmate.tools/tools/scale-bar/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/scale-bar/#faq","mainEntity":[{"@type":"Question","name":"Are my images uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Images are opened and drawn on in your browser and never uploaded. Only your calibration presets and bar style are saved, on this device."}},{"@type":"Question","name":"Which image files can it open?","acceptedAnswer":{"@type":"Answer","text":"PNG, JPG, WebP and BMP, plus TIFF: 8-, 16- and 32-bit greyscale, RGB and palette, uncompressed, LZW, PackBits or Deflate. For multi-page TIFF the first page is used. Proprietary formats such as .czi, .nd2, .lif and .oib need exporting from the microscope software or Fiji first."}},{"@type":"Question","name":"How do I find the µm per pixel of my images?","acceptedAnswer":{"@type":"Answer","text":"Best: image a stage micrometer with the same objective, camera, binning and zoom, draw a line across a known distance and let the tool divide. Second best: the value your acquisition software or Fiji (Image › Properties) reports for that configuration."}},{"@type":"Question","name":"Can I work out the scale from the objective magnification alone?","acceptedAnswer":{"@type":"Answer","text":"No. It also depends on the camera's pixel size, binning, any adapter or zoom, and whether the image was resized after export. The camera method here estimates µm/px = camera pixel × binning ÷ total magnification; confirm it with a stage micrometer."}},{"@type":"Question","name":"Does it change my images?","acceptedAnswer":{"@type":"Answer","text":"It draws the bar (and optional label and background box) onto a copy at the original pixel size. Nothing is resampled or adjusted. 16- and 32-bit TIFFs are converted to an 8-bit display copy, which is noted for each image."}},{"@type":"Question","name":"How long should a scale bar be?","acceptedAnswer":{"@type":"Answer","text":"A round number (1, 2 or 5 × a power of ten) that spans roughly 10–25% of the image width. AUTO picks the largest round length up to 20% of the narrowest field in the batch, so every image gets the same bar."}},{"@type":"Question","name":"How many pixels long is a 50 µm scale bar?","acceptedAnswer":{"@type":"Answer","text":"50 divided by the µm per pixel: 200 px at 0.25 µm/px, 154 px at 0.325 µm/px (153.85 rounded, 0.1% off). The tool shows the exact and rounded length and flags rounding above 1%."}},{"@type":"Question","name":"Can it read the scale saved by Fiji or ImageJ?","acceptedAnswer":{"@type":"Answer","text":"Yes, from TIFFs saved by ImageJ / Fiji and from OME-TIFF PhysicalSizeX. It is shown as a suggestion; you choose whether to use it."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scale-bar.css?v=1">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+</head>
+<body>
+<header class="lm-top is-shared">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 8.1 SCALE BAR</span>
+  <span class="lm-spacer"></span>
+  <span class="saved lm-saved">● IMAGES STAY ON THIS COMPUTER · NOTHING UPLOADED</span>
+  <a class="lm-link" href="../../#imaging">ALL TOOLS</a>
+</header>
+<div class="page">
+
+<section class="hero">
+  <figure class="fig">
+    <svg viewBox="0 0 170 96" aria-hidden="true">
+      <rect x="6" y="8" width="70" height="80" fill="#1B2224"/>
+      <circle cx="26" cy="30" r="9" fill="#9CC7B6"/><circle cx="52" cy="24" r="6" fill="#9CC7B6"/><circle cx="44" cy="52" r="11" fill="#9CC7B6"/><circle cx="22" cy="62" r="5" fill="#9CC7B6"/>
+      <rect x="46" y="77" width="24" height="3" fill="#fff"/>
+      <path d="M82 48 H98" stroke="#1B2224" stroke-width="1.6"/><path d="M94 44l5 4-5 4" fill="none" stroke="#1B2224" stroke-width="1.6"/>
+      <rect x="104" y="8" width="60" height="80" fill="#fff" stroke="#1B2224" stroke-width="1.6"/>
+      <line x1="110" y1="20" x2="158" y2="20" stroke="#1B2224" stroke-width="1"/>
+      <line x1="110" y1="34" x2="158" y2="34" stroke="#1B2224" stroke-width="1" stroke-dasharray="2 2"/>
+      <line x1="110" y1="48" x2="158" y2="48" stroke="#1B2224" stroke-width="1" stroke-dasharray="2 2"/>
+      <line x1="110" y1="62" x2="158" y2="62" stroke="#1B2224" stroke-width="1" stroke-dasharray="2 2"/>
+      <text x="110" y="30" font-family="IBM Plex Mono, monospace" font-size="7" fill="#1B2224">µm/px</text>
+      <text x="110" y="80" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="11" fill="#1B2224">.csv</text>
+      <circle cx="152" cy="76" r="6" fill="#2E9E5B"/><path d="M149 76.2 l2 2 l3.6 -3.8" fill="none" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+    <figcaption class="mono">FIG. 8.1 — IMAGE → BAR → RECORD</figcaption>
+  </figure>
+  <div class="hero-text">
+    <h1 class="serif">Scale Bar</h1>
+    <p class="serif lede">Same bar, right length, every image in the batch — with a record of where the µm per pixel came from.</p>
+    <div class="mono flow">IMAGES → CALIBRATE → STYLE → CHECK → EXPORT</div>
+  </div>
+  <ul class="facts mono">
+    <li>READS PNG · JPG · TIFF (8/16/32-BIT)</li>
+    <li>READS FIJI / IMAGEJ &amp; OME-TIFF SCALE</li>
+    <li>OUTPUT · COPIES (ZIP) + CSV RECORD</li>
+    <li class="muted">NEVER GUESSES µm/px FROM THE OBJECTIVE</li>
+  </ul>
+</section>
+
+<main class="work">
+  <div class="steps">
+
+    <section class="box" aria-labelledby="s1">
+      <h2 class="bar mono" id="s1"><span>01 — IMAGES</span><span id="imgCountBar"></span></h2>
+      <div class="box-body">
+        <label class="drop" id="drop">
+          <input type="file" id="fileInput" multiple accept=".png,.jpg,.jpeg,.tif,.tiff,.webp,.bmp,image/png,image/jpeg,image/tiff,image/webp,image/bmp">
+          <span class="sans drop-main">Drop images here — or <span class="drop-link">choose files</span>. Add as many as you like.</span>
+          <span class="mono drop-sub">PNG · JPG · TIFF · WEBP · BMP — OPENED ON THIS COMPUTER, NEVER UPLOADED</span>
+        </label>
+        <div class="samples">
+          <span class="mono samples-label">OR TRY:</span>
+          <div class="tabs mono" role="group" aria-label="Sample images">
+            <button type="button" id="sampleBtn">SAMPLE BATCH</button>
+            <button type="button" id="clearBtn" disabled>CLEAR ALL</button>
+          </div>
+        </div>
+        <p class="hint sans" id="sampleHint" hidden>Sample images are drawn in your browser: a stage micrometer with 10 µm divisions and three fictional micrographs, all at 0.5 µm/px. Use them to try every step.</p>
+        <p class="hint sans" id="loadNote" aria-live="polite"></p>
+        <p class="error sans" id="fileError" role="alert" hidden></p>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s2">
+      <h2 class="bar mono" id="s2"><span>02 — CALIBRATION</span> <span class="bar-note">ONE PER MICROSCOPE SET-UP</span></h2>
+      <div class="box-body">
+        <label class="field mono">PRESET
+          <select id="presetSel"></select>
+        </label>
+        <div class="unit-row">
+          <span class="mono unit-label">HOW</span>
+          <div class="tabs mono" role="group" aria-label="Calibration method">
+            <button type="button" data-method="value" aria-pressed="true">I KNOW µm/px</button>
+            <button type="button" data-method="measure" aria-pressed="false">MEASURE</button>
+            <button type="button" data-method="camera" aria-pressed="false">CAMERA</button>
+          </div>
+        </div>
+
+        <div class="method" id="mValue">
+          <div class="grid2">
+            <label class="field mono">PIXEL SIZE<input id="calValue" type="number" min="0" step="any" inputmode="decimal" placeholder="e.g. 0.325"></label>
+            <label class="field mono">UNIT
+              <select id="calUnit">
+                <option value="umpp">µm per pixel</option>
+                <option value="nmpp">nm per pixel</option>
+                <option value="ppum">pixels per µm</option>
+              </select>
+            </label>
+          </div>
+          <p class="hint sans">From your acquisition software or Fiji (Image › Properties), for the same objective, camera, binning and zoom as these images.</p>
+        </div>
+
+        <div class="method" id="mMeasure" hidden>
+          <p class="hint sans">Select an image with a known length — a stage micrometer is best — and drag a line across it in the preview. Drag the ends to adjust; use the nudge buttons for single pixels.</p>
+          <div class="grid2">
+            <label class="field mono">LINE LENGTH · PX<input id="lineLen" type="number" min="0" step="any" inputmode="decimal" placeholder="draw, or type"></label>
+            <label class="field mono">KNOWN LENGTH
+              <span class="inline-pair"><input id="knownLen" type="number" min="0" step="any" inputmode="decimal" value="100"><select id="knownUnit"><option value="um">µm</option><option value="nm">nm</option><option value="mm">mm</option></select></span>
+            </label>
+          </div>
+          <div class="nudge mono" role="group" aria-label="Nudge line ends by one pixel">
+            <span>START</span><button type="button" data-nudge="s,-1">◀</button><button type="button" data-nudge="s,1">▶</button>
+            <span>END</span><button type="button" data-nudge="e,-1">◀</button><button type="button" data-nudge="e,1">▶</button>
+            <label class="check-inline"><input type="checkbox" id="lockH" checked> KEEP HORIZONTAL</label>
+          </div>
+          <p class="hint sans" id="measureHint">Measure across many divisions (e.g. 100 µm, not 10 µm): a one-pixel error then matters less.</p>
+        </div>
+
+        <div class="method" id="mCamera" hidden>
+          <div class="grid2">
+            <label class="field mono">CAMERA PIXEL · µm<input id="camPix" type="number" min="0" step="any" inputmode="decimal" value="6.5"></label>
+            <label class="field mono">BINNING<select id="camBin"><option>1</option><option>2</option><option>3</option><option>4</option><option>8</option></select></label>
+            <label class="field mono">OBJECTIVE · ×<input id="camObj" type="number" min="0" step="any" inputmode="decimal" value="20"></label>
+            <label class="field mono">EXTRA MAGNIFICATION · ×<input id="camExtra" type="number" min="0" step="any" inputmode="decimal" value="1"></label>
+          </div>
+          <p class="hint sans"><b>Estimate only.</b> µm/px = camera pixel × binning ÷ (objective × adapter or zoom). Real optics differ by a few percent — confirm with a stage micrometer before you publish.</p>
+        </div>
+
+        <div class="cal-result" id="calResult" aria-live="polite"></div>
+
+        <div class="filecal" id="fileCal" hidden></div>
+
+        <details class="save-preset" id="savePreset">
+          <summary class="mono">SAVE AS PRESET</summary>
+          <div class="preset-form">
+            <label class="field mono">NAME<input id="pName" autocomplete="off" placeholder="e.g. Zeiss AxioObserver · 20× · no binning"></label>
+            <div class="grid2">
+              <label class="field mono">OBJECTIVE<input id="pObj" autocomplete="off" placeholder="20× / 0.8 Plan-Apo"></label>
+              <label class="field mono">CAMERA<input id="pCam" autocomplete="off" placeholder="model"></label>
+              <label class="field mono">BINNING · ZOOM<input id="pBin" autocomplete="off" placeholder="1×1 · 1.0×"></label>
+              <label class="field mono">IMAGE SIZE · PX<input id="pSize" autocomplete="off" placeholder="from the images"></label>
+            </div>
+            <div class="grid2">
+              <button type="button" class="primary small mono" id="pSave">SAVE PRESET <span aria-hidden="true">＋</span></button>
+              <button type="button" class="secondary mono" id="pDelete" disabled>DELETE THIS PRESET</button>
+            </div>
+            <div class="preset-io mono">
+              <button type="button" class="linkish" id="pExport">EXPORT PRESETS (.JSON)</button>
+              <label class="linkish file-link">IMPORT PRESETS<input type="file" id="pImport" accept=".json,application/json"></label>
+            </div>
+            <p class="hint sans">Presets are kept in this browser. A preset only holds for images taken with the same objective, camera, binning and zoom and exported at full size.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s3">
+      <h2 class="bar mono" id="s3"><span>03 — SCALE BAR</span> <span class="bar-note">SAME ON EVERY IMAGE</span></h2>
+      <div class="box-body">
+        <div class="unit-row">
+          <span class="mono unit-label">LENGTH</span>
+          <div class="tabs mono" role="group" aria-label="Bar length">
+            <button type="button" data-len="auto" aria-pressed="true">AUTO</button>
+            <button type="button" data-len="fixed" aria-pressed="false">FIXED</button>
+          </div>
+        </div>
+        <div class="grid2">
+          <label class="field mono">BAR LENGTH<input id="barLen" type="number" min="0" step="any" inputmode="decimal" value="50"></label>
+          <label class="field mono">UNIT<select id="barUnit"><option value="nm">nm</option><option value="um" selected>µm</option><option value="mm">mm</option></select></label>
+        </div>
+        <p class="hint sans" id="lenHint"></p>
+
+        <div class="unit-row">
+          <span class="mono unit-label">CORNER</span>
+          <div class="tabs mono" role="group" aria-label="Corner">
+            <button type="button" data-corner="tl" aria-pressed="false" aria-label="Top left">↖</button>
+            <button type="button" data-corner="tr" aria-pressed="false" aria-label="Top right">↗</button>
+            <button type="button" data-corner="bl" aria-pressed="false" aria-label="Bottom left">↙</button>
+            <button type="button" data-corner="br" aria-pressed="true" aria-label="Bottom right">↘</button>
+          </div>
+        </div>
+        <div class="unit-row">
+          <span class="mono unit-label">COLOUR</span>
+          <div class="tabs mono" role="group" aria-label="Colour">
+            <button type="button" data-color="#FFFFFF" aria-pressed="true">WHITE</button>
+            <button type="button" data-color="#000000" aria-pressed="false">BLACK</button>
+            <button type="button" data-color="custom" aria-pressed="false">OTHER</button>
+          </div>
+          <input type="color" id="customColor" value="#FFD400" aria-label="Custom colour" hidden>
+        </div>
+        <div class="unit-row">
+          <span class="mono unit-label">LABEL</span>
+          <div class="tabs mono" role="group" aria-label="Label">
+            <button type="button" data-label="above" aria-pressed="true">ABOVE</button>
+            <button type="button" data-label="below" aria-pressed="false">BELOW</button>
+            <button type="button" data-label="none" aria-pressed="false">NONE</button>
+          </div>
+        </div>
+        <div class="unit-row">
+          <span class="mono unit-label">FONT</span>
+          <div class="tabs mono" role="group" aria-label="Font">
+            <button type="button" data-font="arial" aria-pressed="true">ARIAL</button>
+            <button type="button" data-font="plex" aria-pressed="false">PLEX SANS</button>
+            <button type="button" data-bold="1" aria-pressed="true">BOLD</button>
+          </div>
+        </div>
+        <div class="unit-row">
+          <span class="mono unit-label">BACKGROUND</span>
+          <div class="tabs mono" role="group" aria-label="Background box">
+            <button type="button" data-box="none" aria-pressed="true">NONE</button>
+            <button type="button" data-box="dark" aria-pressed="false">DARK</button>
+            <button type="button" data-box="light" aria-pressed="false">LIGHT</button>
+            <button type="button" data-halo="1" aria-pressed="false">OUTLINE</button>
+          </div>
+        </div>
+        <div class="sliders">
+          <label class="field mono"><span>BAR THICKNESS <b id="thickOut"></b></span><input id="thick" type="range" min="0.3" max="4" step="0.1" value="1.2"></label>
+          <label class="field mono"><span>TEXT SIZE <b id="fontOut"></b></span><input id="fontSize" type="range" min="1.5" max="10" step="0.25" value="4"></label>
+          <label class="field mono"><span>MARGIN <b id="marginOut"></b></span><input id="margin" type="range" min="0" max="15" step="0.5" value="4"></label>
+        </div>
+        <p class="hint sans">Thickness, text size and margin are a percentage of each image’s shorter side, so the bar looks the same on images of different sizes.</p>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s4">
+      <h2 class="bar mono" id="s4"><span>04 — EXPORT</span></h2>
+      <div class="box-body">
+        <div class="unit-row">
+          <span class="mono unit-label">FORMAT</span>
+          <div class="tabs mono" role="group" aria-label="Output format">
+            <button type="button" data-fmt="png" aria-pressed="true">PNG</button>
+            <button type="button" data-fmt="jpeg" aria-pressed="false">JPG</button>
+            <button type="button" data-fmt="same" aria-pressed="false">SAME AS FILE</button>
+          </div>
+        </div>
+        <label class="field mono">FILE NAME ENDING<input id="suffix" autocomplete="off" value="_scalebar" maxlength="40"></label>
+        <div class="unit-row">
+          <span class="mono unit-label">16/32-BIT TIFF</span>
+          <div class="tabs mono" role="group" aria-label="High bit depth display">
+            <button type="button" data-hb="minmax" aria-pressed="true">MIN–MAX</button>
+            <button type="button" data-hb="full" aria-pressed="false">FULL RANGE</button>
+          </div>
+        </div>
+        <p class="hint sans">PNG keeps every pixel as it was. JPG is smaller but re-compresses the image. TIFF files are saved as PNG. High-bit-depth TIFFs are mapped to 8 bits for display: MIN–MAX stretches each image’s own range; FULL RANGE maps 0 → black and the type’s maximum → white.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="output">
+    <h2 class="bar mono"><span id="previewTitle">PREVIEW</span><span id="previewMode"></span></h2>
+    <div id="verdict" class="status empty" aria-live="polite"></div>
+
+    <div class="stage-box">
+      <div class="stage-nav mono">
+        <button type="button" id="prevImg" aria-label="Previous image" disabled>◀ PREV</button>
+        <span id="imgPos">—</span>
+        <button type="button" id="nextImg" aria-label="Next image" disabled>NEXT ▶</button>
+      </div>
+      <div class="stage" id="stage">
+        <canvas id="view" width="800" height="500" aria-label="Preview of the selected image with its scale bar"></canvas>
+        <div class="stage-empty sans" id="stageEmpty">Add images, or try the sample batch.</div>
+      </div>
+      <div class="legend mono" id="legend"></div>
+    </div>
+
+    <div class="per-image" id="perImage" hidden>
+      <div class="unit-row">
+        <span class="mono unit-label">THIS IMAGE USES</span>
+        <div class="tabs mono" role="group" aria-label="Calibration for this image">
+          <button type="button" data-own="batch" aria-pressed="true">BATCH</button>
+          <button type="button" data-own="file" aria-pressed="false" disabled>FILE</button>
+          <button type="button" data-own="own" aria-pressed="false">ITS OWN</button>
+        </div>
+      </div>
+      <div class="grid2" id="ownWrap" hidden>
+        <label class="field mono">µm PER PIXEL FOR THIS IMAGE<input id="ownValue" type="number" min="0" step="any" inputmode="decimal"></label>
+        <label class="field mono">OR FROM A PRESET<select id="ownPreset"></select></label>
+      </div>
+      <div class="pos-row mono">
+        <span id="posNote">DRAG THE BAR IN THE PREVIEW TO MOVE IT ON THIS IMAGE</span>
+        <span class="pos-btns"><button type="button" class="linkish" id="posReset" disabled>BACK TO CORNER</button> · <button type="button" class="linkish" id="posAll" disabled>USE THIS SPOT ON ALL</button> · <button type="button" class="linkish" id="removeImg">REMOVE IMAGE</button></span>
+      </div>
+    </div>
+
+    <ul class="checks mono" id="checks" aria-label="Checks for this image"></ul>
+
+    <div class="strip-box" id="stripBox" hidden>
+      <div class="mono strip-title"><span>BATCH</span><span id="stripSum"></span></div>
+      <ol class="strip" id="strip"></ol>
+    </div>
+
+    <div class="note-box">
+      <div class="mono note-title">WHAT THIS TOOL DOES NOT DO</div>
+      <p class="sans">Guess the scale from the objective · adjust brightness or contrast of 8-bit images · resize · open .czi, .nd2, .lif, .oib or other vendor formats · Z-stacks. Export those from Fiji or the microscope software first, at full size.</p>
+    </div>
+
+    <button type="button" class="primary mono" id="downloadZip" disabled>DOWNLOAD ALL (ZIP + CSV) <span aria-hidden="true">→</span></button>
+    <div class="grid3">
+      <button type="button" class="secondary mono" id="downloadOne" disabled>THIS IMAGE <span aria-hidden="true">↓</span></button>
+      <button type="button" class="secondary mono" id="downloadCsv" disabled>CSV RECORD <span aria-hidden="true">↓</span></button>
+      <button type="button" class="secondary mono" id="copyLegend" disabled>COPY LEGEND <span aria-hidden="true">⧉</span></button>
+    </div>
+    <p class="hint sans" id="exportNote">The ZIP holds every image with its bar, <span class="mono">calibration.csv</span> (file, µm/px, where it came from, bar length in µm and px) and your settings as JSON. Originals are never changed.</p>
+    <p class="error sans" id="exportError" role="alert" hidden></p>
+  </div>
+</main>
+
+<!-- ref:start -->
+<section class="lm-ref is-wide" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · SCALE BAR</div>
+  <h2>The arithmetic</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Quantity</th><th scope="col">Formula</th></tr></thead><tbody><tr><th scope="row">Bar length in pixels</th><td>bar length (µm) ÷ µm per pixel, rounded to a whole pixel</td></tr><tr><th scope="row">µm per pixel from a line</th><td>known length (µm) ÷ line length (px)</td></tr><tr><th scope="row">µm per pixel from the camera <small>(estimate)</small></th><td>camera pixel (µm) × binning ÷ (objective × adapter / zoom)</td></tr><tr><th scope="row">Pixels per µm</th><td>1 ÷ µm per pixel</td></tr><tr><th scope="row">Rounding error</th><td>|rounded px − exact px| ÷ exact px — flagged above 1%</td></tr></tbody></table></div><h2>Where the <span style="text-transform:none">µm</span> per pixel comes from</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Source</th><th scope="col">How good</th><th scope="col">Recorded in the CSV as</th></tr></thead><tbody><tr><th scope="row">Stage micrometer, same set-up</th><td>best — measures the real optics</td><td>measured</td></tr><tr><th scope="row">Acquisition software / Fiji value</th><td>good, if the image was not resized after export</td><td>entered · or file (ImageJ / OME-TIFF)</td></tr><tr><th scope="row">Camera pixel ÷ magnification</th><td>estimate — a few percent off is common</td><td>camera estimate</td></tr><tr><th scope="row">Objective magnification alone</th><td>not usable — depends on camera, binning and zoom</td><td>—</td></tr></tbody></table></div><h2>Round lengths AUTO chooses from</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Series</th><th scope="col">Lengths</th></tr></thead><tbody><tr><th scope="row">1 · 2 · 5 × 10ⁿ</th><td>… 0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500 µm, 1, 2 mm …</td></tr><tr><th scope="row">Target</th><td>largest round length ≤ 20% of the narrowest field in the batch</td></tr><tr><th scope="row">Unit</th><td>nm below 1 µm, mm from 1000 µm</td></tr></tbody></table></div><h2>Files it opens</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Format</th><th scope="col">Supported</th><th scope="col">Scale read from file</th></tr></thead><tbody><tr><th scope="row">PNG · JPG · WebP · BMP</th><td>as the browser shows them (8-bit)</td><td>PNG pHYs in metres only; print DPI values ignored</td></tr><tr><th scope="row">TIFF</th><td>8 / 16 / 32-bit grey, RGB, palette; uncompressed, LZW, PackBits, Deflate; first page of a stack</td><td>ImageJ / Fiji description + resolution; OME-TIFF PhysicalSizeX; centimetre resolution tag</td></tr><tr><th scope="row">Not supported</th><td>tiled or BigTIFF; .czi, .nd2, .lif, .oib, .ims and other vendor formats</td><td>—</td></tr></tbody></table></div><h2>Worked example</h2><p class="example"><b>Example.</b> A 2048 × 2048 image from a 6.5 µm camera pixel with a 20× objective and no binning is <b>0.325 µm/px</b> (a 666 µm field). AUTO picks <b>100 µm</b> (≤ 20% of 666 µm), drawn as <b>308 px</b> (307.69 exact, 0.1% off). With 2 × 2 binning the same field is 1024 px wide at 0.65 µm/px, and the 100 µm bar is 154 px.</p>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-10-15">15 OCTOBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more is-wide" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · SCALE BAR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Are my images uploaded?</summary><p>No. Images are opened and drawn on in your browser and never uploaded. Only your calibration presets and bar style are saved, on this device.</p></details>
+      <details><summary>Which image files can it open?</summary><p>PNG, JPG, WebP and BMP, plus TIFF: 8-, 16- and 32-bit greyscale, RGB and palette, uncompressed, LZW, PackBits or Deflate. For multi-page TIFF the first page is used. Proprietary formats such as .czi, .nd2, .lif and .oib need exporting from the microscope software or Fiji first.</p></details>
+      <details><summary>How do I find the µm per pixel of my images?</summary><p>Best: image a stage micrometer with the same objective, camera, binning and zoom, draw a line across a known distance and let the tool divide. Second best: the value your acquisition software or Fiji (Image › Properties) reports for that configuration.</p></details>
+      <details><summary>Can I work out the scale from the objective magnification alone?</summary><p>No. It also depends on the camera’s pixel size, binning, any adapter or zoom, and whether the image was resized after export. The camera method here estimates µm/px = camera pixel × binning ÷ total magnification; confirm it with a stage micrometer.</p></details>
+      <details><summary>Does it change my images?</summary><p>It draws the bar (and optional label and background box) onto a copy at the original pixel size. Nothing is resampled or adjusted. 16- and 32-bit TIFFs are converted to an 8-bit display copy, which is noted for each image.</p></details>
+      <details><summary>How long should a scale bar be?</summary><p>A round number (1, 2 or 5 × a power of ten) that spans roughly 10–25% of the image width. AUTO picks the largest round length up to 20% of the narrowest field in the batch, so every image gets the same bar.</p></details>
+      <details><summary>How many pixels long is a 50 µm scale bar?</summary><p>50 divided by the µm per pixel: 200 px at 0.25 µm/px, 154 px at 0.325 µm/px (153.85 rounded, 0.1% off). The tool shows the exact and rounded length and flags rounding above 1%.</p></details>
+      <details><summary>Can it read the scale saved by Fiji or ImageJ?</summary><p>Yes, from TIFFs saved by ImageJ / Fiji and from OME-TIFF PhysicalSizeX. It is shown as a suggestion; you choose whether to use it.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../poster-check/"><span class="n">6.1</span><span class="t">Poster Check</span><span class="d">Check that your poster prints at the size you order — image resolution and text size included.</span></a></li>
+        <li><a href="../panel-designer/"><span class="n">7.1</span><span class="t">Flow Cytometry Panel Designer</span><span class="d">Lay your markers onto your cytometer and see where every colour will spill.</span></a></li>
+        <li><a href="../cryo-labels/"><span class="n">4.1</span><span class="t">Cryo Label Maker</span><span class="d">Batch-print freezer-box labels onto laser sheets, lined up to your printer.</span></a></li>
+      </ul>
+      <a class="all" href="../../#imaging">ALL 13 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+<footer class="footer mono">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 8.1</span>
+</footer>
+</div>
+
+<script src="scale-bar.js?v=1"></script>
+</body>
+</html>
