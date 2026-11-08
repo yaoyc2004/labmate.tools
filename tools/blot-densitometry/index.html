@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Western Blot Densitometry — Band Quantification in Your Browser | labmate.tools</title>
+<meta name="description" content="Free Western blot densitometry: open the 16-bit TIFF or PNG from your imager, place equal-size band boxes with local background, normalise to a loading control, and save image, boxes and numbers in one file. Never uploaded.">
+<link rel="canonical" href="https://labmate.tools/tools/blot-densitometry/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blot Densitometry — free, in your browser | labmate.tools">
+<meta property="og:description" content="Quantify Western blot bands from the raw pixel values, normalise to a loading control and keep the image, boxes and numbers together in one re-openable file.">
+<meta property="og:url" content="https://labmate.tools/tools/blot-densitometry/">
+<meta property="og:image" content="https://labmate.tools/assets/og/blot-densitometry.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Blot Densitometry — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blot Densitometry — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Quantify Western blot bands from the raw pixel values, normalise to a loading control and keep the image, boxes and numbers together in one re-openable file.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/blot-densitometry.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/blot-densitometry/#app","name":"Blot Densitometry","url":"https://labmate.tools/tools/blot-densitometry/","description":"Free Western blot densitometry: open the 16-bit TIFF or PNG from your imager, place equal-size band boxes with local background, normalise to a loading control, and save image, boxes and numbers in one file. Never uploaded.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Reads raw values from 8-, 16- and 32-bit greyscale TIFF and PNG","Equal-size band boxes placed a whole row at a time","Local background box per band, mean or median","Dark or light bands","Saturation, edge, negative and background-overlap checks","Normalisation to a loading control and a reference lane","CSV, ImageJ macro, annotated PNG and a re-openable project file","Images never uploaded"],"audience":{"@type":"Audience","audienceType":"Life science researchers, graduate students and lab technicians running Western blots"},"image":"https://labmate.tools/assets/og/blot-densitometry.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-08"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cells & Protein","item":"https://labmate.tools/#cells"},{"@type":"ListItem","position":3,"name":"Blot Densitometry","item":"https://labmate.tools/tools/blot-densitometry/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/blot-densitometry/#faq","mainEntity":[{"@type":"Question","name":"Is my blot image uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The image is opened and measured in your browser and never uploaded. Only your settings, and the box positions for the last image, are kept on this device."}},{"@type":"Question","name":"Which image should I quantify?","acceptedAnswer":{"@type":"Answer","text":"The original from your imager, exported as a 16-bit TIFF if it offers one, without contrast or brightness changes. 8-bit and JPEG exports are often already adjusted or compressed, which changes the numbers."}},{"@type":"Question","name":"How is the band value calculated?","acceptedAnswer":{"@type":"Answer","text":"Integrated density (the sum of pixel values in the box, ImageJ's RawIntDen) minus the background value times the box area. For dark bands on a light background the sign is flipped: background × area − sum."}},{"@type":"Question","name":"Why must all boxes in a row be the same size?","acceptedAnswer":{"@type":"Answer","text":"Integrated density grows with the area of the box. Equal boxes for one protein make the lanes comparable; the tool keeps every box in a row at the same width and height."}},{"@type":"Question","name":"What does a saturated pixel mean?","acceptedAnswer":{"@type":"Answer","text":"A pixel at the detector's limit (0 for dark bands, 65535 or 255 for light ones) has lost information, so the band is underestimated. Re-image with a shorter exposure; the tool flags every band with such pixels."}},{"@type":"Question","name":"How do I normalise to a loading control?","acceptedAnswer":{"@type":"Answer","text":"Add a row for the loading control (β-actin, GAPDH, tubulin or a total-protein stain) and set NORMALISE TO on the target row. Each lane's target value is divided by the control in the same lane, then expressed relative to the reference lane."}},{"@type":"Question","name":"Can I check the numbers in ImageJ or Fiji?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download the ImageJ macro, open the same unchanged image in Fiji and run it: it draws the same rectangles and measures them, and RawIntDen should match raw_int_den in the CSV."}},{"@type":"Question","name":"Can I reopen the analysis later?","acceptedAnswer":{"@type":"Answer","text":"Yes. The project file holds the original image, every box, the settings and the algorithm version. Open it here and the numbers are recomputed and compared with the saved ones."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blot-densitometry.css?v=1">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+</head>
+<body>
+<header class="lm-top is-shared">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 5.3 BLOT DENSITOMETRY</span>
+  <span class="lm-spacer"></span>
+  <span class="saved lm-saved">● IMAGE STAYS ON THIS COMPUTER · NOTHING UPLOADED</span>
+  <a class="lm-link" href="../../#cells">ALL TOOLS</a>
+</header>
+<div class="page">
+
+<section class="hero">
+  <figure class="fig">
+    <svg viewBox="0 0 170 96" aria-hidden="true">
+      <rect x="6" y="10" width="92" height="76" fill="#fff" stroke="#1B2224" stroke-width="1.4"/>
+      <rect x="12" y="27" width="16" height="6" rx="3" fill="#1B2224"/><rect x="32" y="27.5" width="16" height="5" rx="2.5" fill="#1B2224" opacity=".6"/><rect x="52" y="28" width="16" height="4" rx="2" fill="#1B2224" opacity=".35"/><rect x="72" y="26.5" width="16" height="7" rx="3.5" fill="#1B2224"/>
+      <rect x="12" y="62" width="16" height="5" rx="2.5" fill="#1B2224" opacity=".75"/><rect x="32" y="62" width="16" height="5" rx="2.5" fill="#1B2224" opacity=".72"/><rect x="52" y="62" width="16" height="5" rx="2.5" fill="#1B2224" opacity=".78"/><rect x="72" y="62" width="16" height="5" rx="2.5" fill="#1B2224" opacity=".74"/>
+      <rect x="10.5" y="24" width="19" height="12" fill="none" stroke="#2E9E5B" stroke-width="1.3"/><rect x="30.5" y="24" width="19" height="12" fill="none" stroke="#2E9E5B" stroke-width="1.3"/><rect x="50.5" y="24" width="19" height="12" fill="none" stroke="#2E9E5B" stroke-width="1.3"/><rect x="70.5" y="24" width="19" height="12" fill="none" stroke="#2E9E5B" stroke-width="1.3"/>
+      <rect x="10.5" y="40" width="19" height="12" fill="none" stroke="#1B2224" stroke-width=".8" stroke-dasharray="2 2"/>
+      <path d="M104 48 H120" stroke="#1B2224" stroke-width="1.6"/><path d="M116 44l5 4-5 4" fill="none" stroke="#1B2224" stroke-width="1.6"/>
+      <line x1="128" y1="84" x2="164" y2="84" stroke="#1B2224" stroke-width="1.2"/>
+      <rect x="130" y="54" width="6" height="30" fill="#9CC7B6"/><rect x="138" y="70" width="6" height="14" fill="#9CC7B6"/><rect x="146" y="74" width="6" height="10" fill="#9CC7B6"/><rect x="154" y="44" width="6" height="40" fill="#2E9E5B"/>
+      <line x1="128" y1="54" x2="164" y2="54" stroke="#1B2224" stroke-width=".8" stroke-dasharray="2 2"/>
+      <text x="128" y="22" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="11" fill="#1B2224">Σ − bg</text>
+    </svg>
+    <figcaption class="mono">FIG. 5.3 — BANDS → BOXES → RELATIVE</figcaption>
+  </figure>
+  <div class="hero-text">
+    <h1 class="serif">Blot Densitometry</h1>
+    <p class="serif lede">Band intensities from the raw pixel values — with the image, every box and the arithmetic saved together, so the numbers can be reopened and checked.</p>
+    <div class="mono flow">IMAGE → LANES → PLACE ROWS → CHECK → NORMALISE → EXPORT</div>
+  </div>
+  <ul class="facts mono">
+    <li>READS 8 / 16 / 32-BIT TIFF &amp; PNG RAW VALUES</li>
+    <li>EQUAL BOXES · LOCAL BACKGROUND</li>
+    <li>÷ LOADING CONTROL · RELATIVE TO A LANE</li>
+    <li class="muted">FLAGS SATURATED PIXELS · NEVER ZEROES NEGATIVES</li>
+  </ul>
+</section>
+
+<main class="work">
+  <div class="steps" id="steps">
+
+    <section class="box" aria-labelledby="s1">
+      <h2 class="bar mono" id="s1"><span>01 — BLOT IMAGE</span><span class="bar-note">THE ORIGINAL, UNADJUSTED</span></h2>
+      <div class="box-body">
+        <label class="drop" id="drop">
+          <input type="file" id="fileInput" accept=".tif,.tiff,.png,.jpg,.jpeg,.webp,.bmp,.json,image/tiff,image/png,image/jpeg,application/json">
+          <span class="sans drop-main">Drop the blot image here — or <span class="drop-link">choose a file</span>. A saved <span class="mono">.blot.json</span> project opens here too.</span>
+          <span class="mono drop-sub">16-BIT TIFF BEST · PNG · OPENED ON THIS COMPUTER, NEVER UPLOADED</span>
+        </label>
+        <div class="samples">
+          <span class="mono samples-label">OR TRY:</span>
+          <div class="tabs mono" role="group" aria-label="Sample">
+            <button type="button" id="sampleBtn">SAMPLE BLOT</button>
+            <button type="button" id="clearBtn" disabled>CLEAR</button>
+          </div>
+        </div>
+        <p class="hint sans" id="sampleHint" hidden>The sample is a fictional 16-bit blot drawn in your browser: six lanes, a target protein and β-actin, with the brightest target band over-exposed so you can see the saturation check.</p>
+        <p class="hint sans" id="loadNote" aria-live="polite"></p>
+        <p class="error sans" id="fileError" role="alert" hidden></p>
+        <div class="restore" id="restore" hidden>
+          <p class="sans">You measured this image before (<span id="restoreWhen"></span>). Put the boxes back where they were?</p>
+          <div class="filecal-btns mono"><button type="button" class="secondary small" id="restoreBtn">RESTORE BOXES</button><button type="button" class="linkish" id="restoreNo">START AGAIN</button></div>
+        </div>
+        <div class="fileinfo" id="fileInfo" hidden>
+          <div class="file-head"><span class="file-name sans" id="fileName"></span><span class="file-meta mono" id="fileMeta"></span></div>
+          <dl class="facts-list mono" id="fileFacts"></dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s2">
+      <h2 class="bar mono" id="s2"><span>02 — LANES</span><span class="bar-note">LEFT TO RIGHT</span></h2>
+      <div class="box-body">
+        <div class="grid2">
+          <label class="field mono">NUMBER OF LANES<input id="laneCount" type="number" min="1" max="60" step="1" inputmode="numeric" value="6"></label>
+          <label class="field mono">REFERENCE LANE = 1.0<select id="refLane"></select></label>
+        </div>
+        <label class="field mono">SAMPLE NAMES · ONE PER LINE<textarea id="laneNames" rows="4" placeholder="Control&#10;Knockdown 1&#10;Knockdown 2&#10;…" spellcheck="false"></textarea></label>
+        <p class="hint sans">Paste a column from Excel or your loading table. Leave out the marker lane — only lanes you measure. Lane names can also come from <a href="../protein-loading/">Protein Loading</a>.</p>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s3">
+      <h2 class="bar mono" id="s3"><span>03 — BAND ROWS</span><span class="bar-note">ONE ROW PER PROTEIN</span></h2>
+      <div class="box-body">
+        <p class="hint sans"><b>PLACE ROW</b>, then click the middle of the first band and the middle of the last band: a box goes on every lane, evenly spaced. Drag any box to fine-tune it, or select it and use the arrow keys (Shift = 10 px). The dashed box next to each band is its background.</p>
+        <div id="rows"></div>
+        <button type="button" class="secondary mono" id="addRow">ADD A ROW <span aria-hidden="true">＋</span></button>
+      </div>
+    </section>
+
+    <section class="box" aria-labelledby="s4">
+      <h2 class="bar mono" id="s4"><span>04 — MEASURE</span></h2>
+      <div class="box-body">
+        <div class="unit-row">
+          <span class="mono unit-label">BANDS ARE</span>
+          <div class="tabs mono" role="group" aria-label="Band polarity">
+            <button type="button" data-pol="dark" aria-pressed="true">DARK ON LIGHT</button>
+            <button type="button" data-pol="light" aria-pressed="false">LIGHT ON DARK</button>
+          </div>
+        </div>
+        <p class="hint sans">As the values are stored, not as you have the display set. Most chemiluminescence exports are dark bands on white; fluorescence scans are usually light on dark.</p>
+        <div class="unit-row">
+          <span class="mono unit-label">BACKGROUND</span>
+          <div class="tabs mono" role="group" aria-label="Background">
+            <button type="button" data-bg="mean" aria-pressed="true">MEAN</button>
+            <button type="button" data-bg="median" aria-pressed="false">MEDIAN</button>
+            <button type="button" data-bg="none" aria-pressed="false">NONE</button>
+          </div>
+        </div>
+        <p class="hint sans">Of the equal-size box next to each band. Median ignores a speck or a scratch in the box; NONE reports raw integrated density.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="output">
+    <h2 class="bar mono"><span>IMAGE &amp; BOXES</span><span class="zoom tabs" role="group" aria-label="Zoom"><button type="button" data-zoom="fit" aria-pressed="true">FIT</button><button type="button" data-zoom="2" aria-pressed="false">2×</button><button type="button" data-zoom="4" aria-pressed="false">4×</button></span></h2>
+    <div id="verdict" class="status empty" aria-live="polite"></div>
+    <p class="place-hint sans" id="placeHint" hidden></p>
+
+    <div class="stage-box">
+      <div class="stage" id="stage">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="base" width="1" height="1" aria-hidden="true"></canvas>
+          <canvas id="over" width="1" height="1" aria-label="Blot image with band and background boxes"></canvas>
+        </div>
+        <div class="stage-empty sans" id="stageEmpty">Open a blot image, or try the sample blot.</div>
+      </div>
+      <div class="disp mono">
+        <span class="disp-k">DISPLAY ONLY</span>
+        <label class="disp-r">BLACK<input type="range" id="dispLo" disabled></label>
+        <label class="disp-r">WHITE<input type="range" id="dispHi" disabled></label>
+        <span id="dispOut" class="muted"></span>
+        <span class="disp-b"><button type="button" class="linkish" id="dispAuto">AUTO</button> · <button type="button" class="linkish" id="dispFull">FULL RANGE</button> · <label class="check-inline"><input type="checkbox" id="dispInvert"> INVERT</label> · <label class="check-inline"><input type="checkbox" id="showLabels" checked> LANE NUMBERS</label></span>
+      </div>
+    </div>
+
+    <div class="sel-box" id="selBox" hidden>
+      <div class="sel-head"><span class="sans sel-title" id="selTitle"></span><span class="mono muted" id="selPos"></span></div>
+      <div class="sel-grid">
+        <dl class="facts-list mono" id="selVals"></dl>
+        <figure class="profile"><svg id="profile" viewBox="0 0 300 90" preserveAspectRatio="none" aria-label="Brightness down through the box: shaded = band box, dashed = background box and its level"></svg><figcaption class="mono">PROFILE DOWN THE BOX · SHADED = BAND · DASHED = BACKGROUND</figcaption></figure>
+      </div>
+      <div class="nudge mono" role="group" aria-label="Move the selected box by one pixel">
+        <span>MOVE</span><button type="button" data-nudge="-1,0" aria-label="Left">◀</button><button type="button" data-nudge="1,0" aria-label="Right">▶</button><button type="button" data-nudge="0,-1" aria-label="Up">▲</button><button type="button" data-nudge="0,1" aria-label="Down">▼</button>
+        <label class="check-inline"><input type="checkbox" id="moveRow"> MOVE WHOLE ROW</label>
+      </div>
+      <div class="sel-btns mono"><button type="button" class="linkish" id="selExclude">EXCLUDE THIS LANE</button> · <button type="button" class="linkish" id="selRef">MAKE THIS THE REFERENCE LANE</button></div>
+    </div>
+
+    <ul class="checks mono" id="checks" aria-label="Checks"></ul>
+
+    <div class="res-box">
+      <div class="mono strip-title"><span>RESULTS</span><span class="muted">CLICK A ROW TO SELECT ITS BOX</span></div>
+      <div class="res-scroll" id="results"></div>
+      <div class="chart" id="chart"></div>
+    </div>
+
+    <div class="note-box">
+      <div class="mono note-title">WHAT THIS TOOL DOES NOT DO</div>
+      <p class="sans">Find bands for you · correct over-exposure · compare blots imaged separately · run statistics · tell you whether the experiment worked. It measures the pixels you box, the same way each time.</p>
+    </div>
+
+    <button type="button" class="primary mono" id="dlProject" disabled>SAVE PROJECT FILE (IMAGE + BOXES) <span aria-hidden="true">↓</span></button>
+    <div class="grid3">
+      <button type="button" class="secondary mono" id="dlCsv" disabled>CSV <span aria-hidden="true">↓</span></button>
+      <button type="button" class="secondary mono" id="copyTable" disabled>COPY TABLE <span aria-hidden="true">⧉</span></button>
+      <button type="button" class="secondary mono" id="dlPng" disabled>IMAGE WITH BOXES <span aria-hidden="true">↓</span></button>
+      <button type="button" class="secondary mono" id="dlMacro" disabled>IMAGEJ MACRO <span aria-hidden="true">↓</span></button>
+      <button type="button" class="secondary mono" id="copyMethods" disabled>COPY METHODS <span aria-hidden="true">⧉</span></button>
+    </div>
+    <p class="hint sans">The project file (<span class="mono">.blot.json</span>) holds the original image, every box, the settings and the algorithm version; open it here to see the same numbers again. The CSV has one line per band with every intermediate value. The ImageJ macro draws the same rectangles in Fiji so you can check RawIntDen yourself.</p>
+  </div>
+</main>
+
+<!-- ref:start -->
+<section class="lm-ref is-wide" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · BLOT DENSITOMETRY</div>
+  <h2>The arithmetic</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Quantity</th><th scope="col">Formula</th></tr></thead><tbody><tr><th scope="row">Raw integrated density</th><td>Σ pixel values in the band box (ImageJ RawIntDen)</td></tr><tr><th scope="row">Background</th><td>mean (or median) of an equal-size box on empty membrane next to the band</td></tr><tr><th scope="row">Corrected · light bands on dark</th><td>Σ − background × area</td></tr><tr><th scope="row">Corrected · dark bands on light</th><td>background × area − Σ</td></tr><tr><th scope="row">Normalised</th><td>target corrected ÷ loading control corrected, same lane</td></tr><tr><th scope="row">Relative</th><td>normalised ÷ normalised in the reference lane</td></tr><tr><th scope="row">Close to background</th><td>corrected &lt; 3 × background SD × √area — flagged WEAK</td></tr></tbody></table></div><h2>What gets flagged</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Check</th><th scope="col">Rule</th><th scope="col">Why it matters</th></tr></thead><tbody><tr><th scope="row">Saturated</th><td>any band pixel at 0 (dark bands) or at the type maximum — 255, 65535 (light bands)</td><td>the band’s true value is higher than measured</td></tr><tr><th scope="row">Outside</th><td>a box reaches past the image edge</td><td>fewer pixels than the other lanes</td></tr><tr><th scope="row">Negative</th><td>corrected ≤ 0 — reported as is, never set to zero</td><td>box or background in the wrong place, or wrong polarity</td></tr><tr><th scope="row">Background overlap</th><td>a background box touches any band box</td><td>background too high, band too low</td></tr><tr><th scope="row">Loading control spread</th><td>highest ÷ lowest control &gt; 1.5</td><td>normalisation can hide a loading or transfer problem</td></tr></tbody></table></div><h2>Files it opens</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Format</th><th scope="col">Values used</th></tr></thead><tbody><tr><th scope="row">TIFF</th><td>raw values: 8 / 16 / 32-bit grey (incl. float); uncompressed, LZW, PackBits, Deflate; first page of a stack. White-is-zero files are flipped to match the display.</td></tr><tr><th scope="row">PNG</th><td>raw values: 1–16-bit grey, read by this page (no browser colour or gamma correction)</td></tr><tr><th scope="row">RGB TIFF / PNG</th><td>one channel if R = G = B; otherwise (R + G + B) ÷ 3, as ImageJ measures RGB — flagged</td></tr><tr><th scope="row">JPEG · WebP · BMP</th><td>8-bit as decoded by the browser — JPEG and WebP flagged as lossy</td></tr><tr><th scope="row">Not opened</th><td>.scn, .1sc, .gel and other imager formats; tiled or BigTIFF — export a TIFF first</td></tr></tbody></table></div><h2>Worked example</h2><p class="example"><b>Example.</b> A 3-pixel box over a dark band holds 110, 120 and 130 (Σ = 360); its background box averages 200. Corrected = 200 × 3 − 360 = <b>240</b>. If the β-actin band in the same lane is 400, the normalised value is 240 ÷ 400 = <b>0.60</b>; if the reference lane’s normalised value is 0.75, this lane is <b>0.80</b> relative.</p>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-08">8 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more is-wide" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · BLOT DENSITOMETRY</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Is my blot image uploaded?</summary><p>No. The image is opened and measured in your browser and never uploaded. Only your settings, and the box positions for the last image, are kept on this device.</p></details>
+      <details><summary>Which image should I quantify?</summary><p>The original from your imager, exported as a 16-bit TIFF if it offers one, without contrast or brightness changes. 8-bit and JPEG exports are often already adjusted or compressed, which changes the numbers.</p></details>
+      <details><summary>How is the band value calculated?</summary><p>Integrated density (the sum of pixel values in the box, ImageJ’s RawIntDen) minus the background value times the box area. For dark bands on a light background the sign is flipped: background × area − sum.</p></details>
+      <details><summary>Why must all boxes in a row be the same size?</summary><p>Integrated density grows with the area of the box. Equal boxes for one protein make the lanes comparable; the tool keeps every box in a row at the same width and height.</p></details>
+      <details><summary>What does a saturated pixel mean?</summary><p>A pixel at the detector’s limit (0 for dark bands, 65535 or 255 for light ones) has lost information, so the band is underestimated. Re-image with a shorter exposure; the tool flags every band with such pixels.</p></details>
+      <details><summary>How do I normalise to a loading control?</summary><p>Add a row for the loading control (β-actin, GAPDH, tubulin or a total-protein stain) and set NORMALISE TO on the target row. Each lane’s target value is divided by the control in the same lane, then expressed relative to the reference lane.</p></details>
+      <details><summary>Can I check the numbers in ImageJ or Fiji?</summary><p>Yes. Download the ImageJ macro, open the same unchanged image in Fiji and run it: it draws the same rectangles and measures them, and RawIntDen should match raw_int_den in the CSV.</p></details>
+      <details><summary>Can I reopen the analysis later?</summary><p>Yes. The project file holds the original image, every box, the settings and the algorithm version. Open it here and the numbers are recomputed and compared with the saved ones.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t">Protein Loading Calculator</span><span class="d">BCA or Bradford standard curve to an equal-loading table for your Western.</span></a></li>
+        <li><a href="../scale-bar/"><span class="n">8.1</span><span class="t">Scale Bar Maker</span><span class="d">Add the same, correctly sized scale bar to a batch of microscope images.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">C1V1 = C2V2 for antibodies and stocks, with a two-step dilution when volumes get small.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cells">ALL 14 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+<footer class="footer mono">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 5.3</span>
+</footer>
+</div>
+
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="blot-densitometry.js?v=1"></script>
+</body>
+</html>

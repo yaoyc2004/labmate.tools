@@ -2,6 +2,27 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-08
+
+New tool: **Blot Densitometry (5.3)** in SECTION 05 — CELLS & PROTEIN.
+
+### Blot Densitometry (5.3) — new
+- Open the blot image from your imager; it is measured in the browser and never uploaded. Own PNG and TIFF readers take the **raw pixel values** (no browser colour or gamma correction): 1–16-bit grey PNG; 8/16/32-bit grey TIFF incl. float, uncompressed, LZW, PackBits, Deflate. RGB with equal channels is used as grey; true colour is measured as (R+G+B) ÷ 3 like ImageJ and flagged; JPEG/WebP open but are flagged as lossy. White-is-zero TIFFs are flipped to match the display. Vendor formats (.scn, .1sc…) get an "export a TIFF" message. Up to 40 MP.
+- Lanes: count, reference lane, sample names pasted one per line (or sent from Protein Loading).
+- Band rows (up to 6): name, role (target / loading control), NORMALISE TO, one box size per row. **PLACE ROW** — click the first and last band, boxes go on every lane evenly spaced; drag, arrow keys (Shift = 10 px), MOVE WHOLE ROW; background box per band, placed above or below; exclude a lane.
+- Arithmetic: corrected = Σ − background × area (light bands) or background × area − Σ (dark bands); background = mean or median of the equal-size box, or none. Normalised = target ÷ control in the same lane; relative to the reference lane. Negatives are reported as they are.
+- Checks: file type and bit depth, polarity vs. the image, saturated pixels (0 or the type maximum) per band, boxes past the edge, background overlapping a band, bands within 3× background noise, missing lanes, loading-control spread > 1.5×, unusable reference lane.
+- Display contrast (black/white, auto, full range, invert) never changes the numbers. Selected-box panel with values and a profile down the box.
+- Results table + bar chart. Export: **project file** (`.blot.json`: original image, boxes, settings, algorithm `labmate-bd-1`, saved results — reopening recomputes and says whether every value matches), CSV with every intermediate value, COPY TABLE for Excel, image with boxes (PNG), **ImageJ macro** that draws and measures the same rectangles in Fiji, COPY METHODS sentence.
+- Box positions for the last image are remembered on this device; reopening the same file offers RESTORE BOXES.
+- SAMPLE BLOT: a fictional 16-bit blot (6 lanes, target + β-actin, one over-exposed band).
+- Tested in headless Chromium: 11 file variants (16-bit TIFF ×4 compressions, 16/8-bit PNG, 8-bit TIFF, RGB equal/unequal PNG, 32-bit float TIFF, white-is-zero TIFF) — box sums, areas and median backgrounds match NumPy exactly; project file round-trip matches all 12 values; no horizontal scroll at 1440 / 834 / 390 px; no JS errors.
+
+### Site
+- Homepage: Blot Densitometry in SECTION 05 (now "Counting, seeding, loading & blots"), INDEX shows 3 tools; structured data lists 14 tools.
+- 404 index, `llms.txt`, sitemap and social card (`assets/og/blot-densitometry.png`) added; every tool page now says ALL 14 TOOLS.
+- Protein Loading: **QUANTIFY THE BLOT →** sends the sample names as lanes; related tools include Blot Densitometry.
+
 ## 2026-10-15
 
 New section and tool: **SECTION 08 — IMAGING · Scale Bar Maker (8.1)**.

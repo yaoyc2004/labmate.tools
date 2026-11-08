@@ -292,6 +292,13 @@
     state.example = false;
     render();
   });
+  // hand the sample names, in lane order, to Blot Densitometry
+  $("toBlot").addEventListener("click", function () {
+    readRows();
+    var names = state.samples.map(function (r) { return String(r[0] || "").trim(); }).filter(function (n, i) { return n || state.samples[i][1]; });
+    if (!window.LMH) { window.location.href = "../blot-densitometry/"; return; }
+    LMH.send("blot-densitometry", { lanes: names, from: "Protein Loading" }, "../blot-densitometry/");
+  });
   $("copy").addEventListener("click", function () {
     if (!lastText) return;
     LM.copy(lastText, function (ok) {

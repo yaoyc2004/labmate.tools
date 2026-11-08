@@ -202,6 +202,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
     <div class="ans-actions pp-actions">
       <button type="button" class="btn" id="copy">COPY TABLE</button>
       <button type="button" class="lm-link" id="print">PRINT</button>
+      <button type="button" class="lm-link" id="toBlot" title="Open Blot Densitometry with these sample names as lanes">QUANTIFY THE BLOT →</button>
       <span class="btn-copied" id="copied" role="status"></span>
       <span class="pp-say" id="loadSay"></span>
     </div>
@@ -269,11 +270,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="lm-more-k">SEE ALSO</div>
       <h2>Related tools</h2>
       <ul>
+        <li><a href="../blot-densitometry/"><span class="n">5.3</span><span class="t">Blot Densitometry</span><span class="d">After the run: box the bands, subtract background and normalise to a loading control.</span></a></li>
         <li><a href="../cell-seeding/"><span class="n">5.1</span><span class="t">Cell Count &amp; Seeding Calculator</span><span class="d">Hemocytometer counts to cells/mL, then exact volumes to seed your plate.</span></a></li>
         <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit. Stock and diluent volumes, ready to pipette.</span></a></li>
         <li><a href="../molarity/"><span class="n">2.3</span><span class="t">Molarity Calculator</span><span class="d">How many grams to weigh, and mg/mL ↔ µM with the molecular weight.</span></a></li>
       </ul>
-      <a class="all" href="../../#cells">ALL 13 TOOLS →</a>
+      <a class="all" href="../../#cells">ALL 14 TOOLS →</a>
     </nav>
   </div>
 </section>
@@ -287,6 +289,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="protein-loading.js?v=2"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="protein-loading.js?v=3"></script>
 </body>
 </html>
