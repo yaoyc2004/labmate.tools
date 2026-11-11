@@ -27,6 +27,7 @@
 - [Cell Seeding & Hemocytometer Calculator](https://labmate.tools/tools/cell-seeding/): Free hemocytometer and cell seeding calculator: square counts to live cells/mL and viability, then cell suspension and medium volumes for any plate or flask.
 - [Western Blot Loading Calculator (BCA)](https://labmate.tools/tools/protein-loading/): Free BCA/Bradford standard curve and Western blot loading calculator: protein per sample, then sample, buffer and water volumes for equal µg per lane.
 - [Western Blot Densitometry](https://labmate.tools/tools/blot-densitometry/): Free in-browser Western blot band quantification: reads raw values from 8/16/32-bit TIFF and PNG, equal-size band boxes with local background, saturation checks, normalisation to a loading control, CSV, ImageJ macro and a re-openable project file. Never uploaded.
+- [Cell Doubling Time Calculator](https://labmate.tools/tools/doubling-time/): Free cell doubling time calculator for a whole batch of cultures: start and end counts with times give population doublings, doubling time and specific growth rate μ, with the working shown, split correction, cumulative doublings per cell line, CSV/JSON export and a printable worksheet.
 
 ## Print
 

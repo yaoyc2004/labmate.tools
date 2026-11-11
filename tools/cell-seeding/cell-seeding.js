@@ -230,11 +230,13 @@
     lastText = "";
   }
 
+  var lastCount = {};
   function update() {
     FIELDS.forEach(function (id) { state[id] = $(id).value; });
     state.pre = $("preOn").checked;
     LM.save(KEY, state);
-    seed(count());
+    lastCount = count();
+    seed(lastCount);
   }
   function setMode(m) {
     state.mode = m;
@@ -273,6 +275,15 @@
     });
   });
   $("print").addEventListener("click", function () { window.print(); });
+  // send this count to 5.4 Doubling Time (total cells = cells/mL × mL)
+  $("toGrowth").addEventListener("click", function () {
+    var ct = lastCount, msg = $("growthMsg");
+    if (!ct || !ct.conc) { msg.textContent = "Count first."; return; }
+    if (!ct.have) { msg.textContent = "Type how many mL you have — doubling time needs total cells."; $("have").focus(); return; }
+    var data = { cells: ct.conc * ct.have, conc: ct.conc, have: ct.have, via: ct.via, at: Date.now() };
+    if (!window.LMH) { window.location.href = "../doubling-time/"; return; }
+    LMH.send("doubling-time", data, "../doubling-time/");
+  });
 
   FIELDS.forEach(function (id) { if (state[id] != null) $(id).value = state[id]; });
   $("preOn").checked = !!state.pre;

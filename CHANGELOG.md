@@ -2,6 +2,28 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-10
+
+New tool: **Doubling Time & Growth Rate (5.4)** in SECTION 05 — CELLS & PROTEIN.
+
+### Doubling Time (5.4) — new
+- One table for a whole batch of cultures: name/batch, start count N₀, end count N, optional split factor, interval, note. Up to 300 rows; Enter on the last row adds the next one (P14 → P15).
+- Time as an **interval** (hours or days — switching converts the numbers) or as **start and end date-times**; the interval is then worked out and locked.
+- Counts are total cells, or cells/mL with a warning that the volume must not have changed.
+- For each row: fold change, **population doublings**, **doubling time** and **specific growth rate μ** (/h and /day), kept apart; doublings per hour is shown separately and labelled "not μ".
+- Tap a row for the full **working**, plus the doubling-time range if each count is off by 10%.
+- Checks: NO NET GROWTH (no doubling time given, nothing forced positive), SMALL CHANGE (< 1.5-fold), SHORT INTERVAL (< 12 h), LONG INTERVAL (> 7 days), VERY FAST (< 10 h), SPLIT (assumed exact). Bad inputs are highlighted and the row says why.
+- **By cell line**: rows with the same name (a trailing passage number like P14 ignored) give cumulative doublings and an overall doubling time = total time × ln 2 ÷ total ln(fold).
+- Import: paste from Excel or open a CSV — columns by position, or found by header name (start, end, hours/days, split, start time, end time, note).
+- Export: COPY TABLE, CSV with every intermediate value, **SAVE RECORD** (`.growth.json` with inputs, settings, results, algorithm `labmate-dt-1`; reopening recalculates and says whether every value matches), **PRINT WORKSHEET** (landscape, with formula line and Counted by / Checked by).
+- Table kept on this device; CLEAR empties it. Example cultures on first visit.
+- Tested in headless Chromium: 100,000 → 400,000 in 48 h gives 2 doublings, 24 h, μ 0.02888 /h; hours ↔ days and date-time intervals give the same result; per-line overall values checked by hand; record round-trip matches; Cell Count hand-off; no horizontal scroll at 1440 / 834 / 390 px; no JS errors.
+
+### Site
+- Cell Count & Seeding: **LOG FOR DOUBLING TIME →** sends this count (cells/mL × mL you have) with the time now. The first count starts a row, the next one finishes it. Related tools include Doubling Time.
+- Homepage: Doubling Time in SECTION 05 (now "Counting, growth, loading & blots"), INDEX shows 4 tools; structured data lists 15 tools.
+- 404 index, `llms.txt`, sitemap and social card (`assets/og/doubling-time.png`) added; every tool page now says ALL 15 TOOLS.
+
 ## 2026-11-08
 
 New tool: **Blot Densitometry (5.3)** in SECTION 05 — CELLS & PROTEIN.

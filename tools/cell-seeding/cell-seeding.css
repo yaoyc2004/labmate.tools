@@ -174,3 +174,7 @@
   .hc .cs-result { background: #fff; color: var(--ink); border: 1.5px solid var(--ink); }
   .hc .cs-k, .hc .cs-said, .hc .cs-via { color: var(--ink); }
 }
+
+/* hand-off to 5.4 Doubling Time (2026-11-10) */
+.cs-send { margin-top: 10px; }
+.cs-send-msg { color: var(--warn); letter-spacing: .02em; }

@@ -44,7 +44,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/calc.css?v=3">
 <link rel="stylesheet" href="../../assets/more.css?v=3">
-<link rel="stylesheet" href="cell-seeding.css?v=1">
+<link rel="stylesheet" href="cell-seeding.css?v=2">
 </head>
 <body>
 
@@ -212,6 +212,11 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <input id="have" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="optional">
         <span>mL of cell suspension</span>
       </div>
+      <div class="lm-send cs-send">
+        <span>TRACKING GROWTH?</span>
+        <button type="button" id="toGrowth" title="Log this count, with the time now, in Doubling Time &amp; Growth Rate">LOG FOR DOUBLING TIME →</button>
+        <span class="cs-send-msg" id="growthMsg" role="status"></span>
+      </div>
     </div>
     </div>
   </div>
@@ -356,11 +361,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="lm-more-k">SEE ALSO</div>
       <h2>Related tools</h2>
       <ul>
+        <li><a href="../doubling-time/"><span class="n">5.4</span><span class="t">Doubling Time &amp; Growth Rate</span><span class="d">Start and end counts → doublings, doubling time and μ for every culture.</span></a></li>
         <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t">Protein Loading Calculator</span><span class="d">BCA standard curve → protein concentration → Western blot loading table.</span></a></li>
         <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
         <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit. Stock and diluent volumes, ready to pipette.</span></a></li>
       </ul>
-      <a class="all" href="../../#cells">ALL 14 TOOLS →</a>
+      <a class="all" href="../../#cells">ALL 15 TOOLS →</a>
     </nav>
   </div>
 </section>
@@ -374,6 +380,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 
 <script src="../../assets/calc-core.js?v=1"></script>
-<script src="cell-seeding.js?v=2"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="cell-seeding.js?v=3"></script>
 </body>
 </html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cell Doubling Time Calculator — batch growth rate worksheet | labmate.tools</title>
+<meta name="description" content="Free cell doubling time calculator for a whole batch of cultures: start and end counts with times give population doublings, doubling time and specific growth rate μ, with the working shown, split correction, CSV/JSON export and a printable worksheet.">
+<link rel="canonical" href="https://labmate.tools/tools/doubling-time/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Doubling Time &amp; Growth Rate Worksheet — free, in your browser | labmate.tools">
+<meta property="og:description" content="Start and end counts for every culture → population doublings, doubling time and μ, kept with the raw inputs.">
+<meta property="og:url" content="https://labmate.tools/tools/doubling-time/">
+<meta property="og:image" content="https://labmate.tools/assets/og/doubling-time.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doubling Time &amp; Growth Rate Worksheet — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Doubling Time &amp; Growth Rate Worksheet — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Start and end counts for every culture → population doublings, doubling time and μ, kept with the raw inputs.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/doubling-time.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/doubling-time/#app","name":"Doubling Time & Growth Rate Worksheet","url":"https://labmate.tools/tools/doubling-time/","description":"Free cell doubling time calculator for a whole batch of cultures: start and end counts with times give population doublings, doubling time and specific growth rate μ, with the working shown, split correction, CSV/JSON export and a printable worksheet.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Batch of cultures in one table","Population doublings, doubling time and specific growth rate μ","Interval in hours or days, or start and end date-times","Split / passage correction","Overall doubling time and cumulative doublings per cell line","Paste or CSV import","CSV, JSON record and printable worksheet"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/doubling-time.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-10"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cells & Protein","item":"https://labmate.tools/#cells"},{"@type":"ListItem","position":3,"name":"Doubling Time & Growth Rate Worksheet","item":"https://labmate.tools/tools/doubling-time/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/doubling-time/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate cell doubling time?","acceptedAnswer":{"@type":"Answer","text":"Doubling time = t × ln 2 ÷ ln(N ÷ N₀), where N₀ and N are the cell numbers at the start and end of an interval of length t. From 100,000 to 400,000 cells in 48 hours: 48 × 0.693 ÷ 1.386 = 24 hours."}},{"@type":"Question","name":"What is the difference between doubling time, population doublings and growth rate μ?","acceptedAnswer":{"@type":"Answer","text":"Population doublings = log₂(N ÷ N₀): how many times the population doubled. Doubling time = time ÷ population doublings. The specific growth rate μ = ln(N ÷ N₀) ÷ t, in 1/h; μ = ln 2 ÷ doubling time. Doublings per hour (doublings ÷ t) is a different number from μ — it is μ ÷ ln 2."}},{"@type":"Question","name":"I split the cells during the interval. Can I still calculate doubling time?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you know the split exactly. Enter the split factor (4 for a 1:4 split, i.e. a quarter of the cells kept): the end count is multiplied by it. This assumes the split was exact and that no cells were lost — counting the cells at the split and starting a new row is more reliable."}},{"@type":"Question","name":"Should I use total cells or cells per mL?","acceptedAnswer":{"@type":"Answer","text":"Total cells in the vessel. Cells/mL only works if the volume did not change between the two counts — feeding or topping up a suspension culture changes it."}},{"@type":"Question","name":"Why is my doubling time different from the published value?","acceptedAnswer":{"@type":"Answer","text":"Doubling time depends on the medium, serum lot, seeding density, passage number and growth phase. Two counts give the average over the interval; if it includes the lag phase after seeding or the plateau at confluence, the value is longer than the log-phase doubling time. Count in mid-log phase for a value comparable to the literature."}},{"@type":"Question","name":"How accurate is a doubling time from two counts?","acceptedAnswer":{"@type":"Answer","text":"It is only as good as the counts. With a small change in cell number the result is very sensitive: the tool shows how far the doubling time moves if each count is off by 10%, and flags intervals under 12 hours or less than a 1.5-fold change."}},{"@type":"Question","name":"How do I calculate cumulative population doublings over several passages?","acceptedAnswer":{"@type":"Answer","text":"Add up the population doublings of each passage. Give the rows the same cell line name (a trailing passage number such as P14 is ignored) and the tool sums them per line, along with an overall doubling time (total time × ln 2 ÷ total ln fold change)."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="doubling-time.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 5.4 DOUBLING TIME</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#cells">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 5.4</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <path d="M8 58 H72 M8 58 V4" stroke="#1B2224" stroke-width="1.4" fill="none"/>
+        <g stroke="#8A918C" stroke-width="0.8" stroke-dasharray="2 2"><path d="M8 46 H72 M8 33 H72 M8 20 H72"/></g>
+        <path d="M12 52 L68 12" stroke="#17403D" stroke-width="1.8"/>
+        <circle cx="12" cy="52" r="3.2" fill="#9CC7B6" stroke="#17403D" stroke-width="1"/>
+        <circle cx="68" cy="12" r="3.2" fill="#2E9E5B"/>
+        <text x="74" y="23" font-family="IBM Plex Mono, monospace" font-size="8" fill="#6B7472">×2</text>
+        <text x="74" y="36" font-family="IBM Plex Mono, monospace" font-size="8" fill="#6B7472">×2</text>
+        <text x="74" y="49" font-family="IBM Plex Mono, monospace" font-size="8" fill="#6B7472">×2</text>
+        <text x="94" y="28" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="13" fill="#1B2224">t·ln2</text>
+        <path d="M94 33 H134" stroke="#1B2224" stroke-width="1"/>
+        <text x="92" y="47" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="13" fill="#1B2224">ln(N/N₀)</text>
+      </svg>
+    </figure>
+    <div>
+      <h1>Doubling Time &amp; Growth Rate</h1>
+      <p class="lm-lede">Start and end counts for every culture in one table: population doublings, doubling time and specific growth rate μ — each with its working, kept together with the numbers you typed.</p>
+    </div>
+  </div>
+
+  <!-- 1 · counts -->
+  <h2 class="lm-bar"><span>1 · COUNTS</span> <small>SECTION 05 — CELLS &amp; PROTEIN · 5.4</small></h2>
+  <div class="lm-sheet">
+    <div class="dt-opts">
+      <div class="dt-opt">
+        <span class="presets-k" id="timeLabel">TIME AS</span>
+        <div class="lm-seg" role="group" aria-labelledby="timeLabel" id="timeSeg">
+          <button type="button" data-v="interval">INTERVAL</button>
+          <button type="button" data-v="dates">DATE &amp; TIME</button>
+        </div>
+      </div>
+      <div class="dt-opt">
+        <span class="presets-k" id="unitLabel">INTERVAL IN</span>
+        <div class="lm-seg" role="group" aria-labelledby="unitLabel" id="unitSeg">
+          <button type="button" data-v="h">HOURS</button>
+          <button type="button" data-v="d">DAYS</button>
+        </div>
+      </div>
+      <div class="dt-opt">
+        <span class="presets-k" id="basisLabel">COUNTS ARE</span>
+        <div class="lm-seg" role="group" aria-labelledby="basisLabel" id="basisSeg">
+          <button type="button" data-v="total">TOTAL CELLS</button>
+          <button type="button" data-v="permL">CELLS / mL</button>
+        </div>
+      </div>
+    </div>
+    <p class="dt-basis-note" id="basisNote" hidden><b>Cells/mL only works if the culture volume was the same at both counts.</b> Feeding or topping up a suspension culture changes it — use total cells (cells/mL × mL) instead.</p>
+    <div class="pp-example" id="exampleNote" hidden>Showing example cultures — type over them, or CLEAR to start with an empty table.</div>
+
+    <div class="mm-wrap">
+      <table class="pp-table dt-in" id="inTable">
+        <thead><tr>
+          <th class="i">#</th>
+          <th class="nm">CELL LINE / BATCH</th>
+          <th class="c">START N₀</th>
+          <th class="c">END N</th>
+          <th class="sp" title="Passaged in between? 4 for a 1:4 split (a quarter of the cells kept). Leave empty if not split.">SPLIT ×</th>
+          <th class="dt dt-date">START TIME</th>
+          <th class="dt dt-date">END TIME</th>
+          <th class="t" id="tHead">INTERVAL h</th>
+          <th class="nt">NOTE</th>
+          <th class="x"><span class="sr">Remove</span></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="pp-row-actions">
+      <button type="button" class="mm-add" id="addRow">+ CULTURE</button>
+      <span class="dt-count" id="rowCount"></span>
+    </div>
+    <p class="cs-hint pp-hint" id="inHint">Counts: <b>live cells</b>, both counted the same way. Scientific notation works: <b>2e5</b> = 200,000. SPLIT ×: passaged in between? Type 4 for a 1:4 split; leave empty if not.</p>
+
+    <details class="pp-paste dt-import" id="importBox">
+      <summary><span class="presets-k">PASTE OR IMPORT</span> From Excel, a CSV file or a saved labmate record</summary>
+      <div class="dt-import-body">
+        <div>
+          <label for="pasteText" class="pp-paste-k">ONE CULTURE PER LINE</label>
+          <textarea id="pasteText" rows="7" spellcheck="false" placeholder="name	start	end	hours	note
+HEK293 P14	2e5	1.6e6	72	T25, 10% FBS"></textarea>
+        </div>
+        <div class="dt-import-side">
+          <p class="cs-hint">Columns in this order: <b>name, start count, end count, interval</b>, then optional <b>note</b>. Or give a header row and the columns are found by name — <i>start, end, hours</i> or <i>days</i>, <i>split</i>, <i>start time</i>, <i>end time</i>, <i>note</i>. Tabs, commas or semicolons.</p>
+          <div class="dt-import-btns">
+            <button type="button" class="btn" id="pasteAdd" disabled>ADD THESE ROWS</button>
+            <button type="button" class="lm-link" id="pasteReplace" disabled>REPLACE TABLE</button>
+          </div>
+          <div class="dt-import-btns">
+            <label class="lm-link dt-file">OPEN CSV OR .growth.json<input type="file" id="fileIn" accept=".csv,.tsv,.txt,.json,text/csv,application/json"></label>
+          </div>
+          <p class="pp-paste-msg" id="pasteMsg" role="status"></p>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 2 · results -->
+  <h2 class="lm-bar"><span>2 · RESULTS</span> <small>N₀ → N → DOUBLINGS</small></h2>
+  <div class="lm-sheet">
+    <div class="mm-wrap">
+      <table class="pp-table dt-out" id="outTable">
+        <thead><tr>
+          <th class="i">#</th>
+          <th class="nm">CELL LINE / BATCH</th>
+          <th class="n">FOLD</th>
+          <th class="n">DOUBLINGS</th>
+          <th class="n dtc">DOUBLING TIME</th>
+          <th class="n"><span class="mu">μ</span> /h</th>
+          <th class="ck">CHECK</th>
+        </tr></thead>
+        <tbody id="outRows"></tbody>
+      </table>
+    </div>
+    <p class="cs-hint pp-hint">Tap a row to see its working. Every value is the <b>average over the interval</b>.</p>
+
+    <div class="dt-work" id="work" aria-live="polite"></div>
+
+    <div class="dt-sum-wrap" id="sumWrap" hidden>
+      <div class="presets-k dt-sum-k">BY CELL LINE · same name, a trailing passage number (P14, P15…) is ignored</div>
+      <div class="mm-wrap">
+        <table class="pp-table dt-sum" id="sumTable">
+          <thead><tr>
+            <th class="nm">CELL LINE / BATCH</th>
+            <th class="n">ROWS</th>
+            <th class="n">TOTAL TIME</th>
+            <th class="n">CUMULATIVE DOUBLINGS</th>
+            <th class="n">OVERALL DOUBLING TIME</th>
+            <th class="n">RANGE</th>
+          </tr></thead>
+          <tbody id="sumRows"></tbody>
+        </table>
+      </div>
+      <p class="cs-hint pp-hint">Overall doubling time = total time × ln 2 ÷ total ln(fold) — the same as one long interval, not the average of the row values.</p>
+    </div>
+
+    <div class="ans-actions dt-actions">
+      <button type="button" class="btn" id="copy">COPY TABLE</button>
+      <button type="button" class="lm-link" id="csv">CSV</button>
+      <button type="button" class="lm-link" id="json" title="Inputs, settings and results in one file you can open here again">SAVE RECORD (.json)</button>
+      <button type="button" class="lm-link" id="print">PRINT WORKSHEET</button>
+      <span class="btn-copied" id="copied" role="status"></span>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <!-- printed worksheet (built by the script) -->
+  <section class="dt-print" id="printSheet" aria-hidden="true"></section>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>One row per culture and interval: name or batch, the live cell count at the start (N₀) and at the end (N), and the time between them.</li>
+          <li>Use <b>total cells</b> in the vessel — cells/mL × mL. Cells/mL alone is fine only if the volume didn't change.</li>
+          <li>Logged the clock times? Switch to <b>DATE &amp; TIME</b> and the interval is worked out for you.</li>
+          <li>Passaged in between? Put the split in <b>SPLIT ×</b> (4 for 1:4). Better still: count at the split and start a new row.</li>
+          <li>Coming from <a href="../cell-seeding/">Cell Count &amp; Seeding</a>? Fill in <b>You have … mL</b> there and press <b>LOG FOR DOUBLING TIME</b> — the first count starts a row, the next one ends it, with the clock times filled in.</li>
+          <li>Tap a result to see the working. Several rows for one line (HEK293 · P14, HEK293 · P15…) give cumulative doublings and an overall doubling time for that line.</li>
+          <li>Keep the record: CSV for Excel, <b>SAVE RECORD</b> to reopen it here later, or <b>PRINT WORKSHEET</b> for the notebook.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">DT = t × ln 2 ÷ ln(N ÷ N₀)</span>
+          <table>
+            <tr><td>doublings</td><td>log₂(N ÷ N₀) = ln(N ÷ N₀) ÷ ln 2</td></tr>
+            <tr><td><span class="mu">μ</span></td><td>ln(N ÷ N₀) ÷ t, per hour; μ = ln 2 ÷ DT</td></tr>
+            <tr><td>split ×s</td><td>N is replaced by N × s</td></tr>
+            <tr><td>t</td><td>time between the two counts</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 100,000 → 400,000 cells in 48 h: fold 4, 2 doublings, DT = 48 × 0.6931 ÷ 1.3863 = <b>24 h</b>, μ = 1.3863 ÷ 48 = <b>0.02888 /h</b>. Doublings per hour, 2 ÷ 48 = 0.04167, is a different number — don't report it as μ.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you type leaves your browser; the table is kept on this device until you clear it.</li>
+          <li>Two counts give an <b>average</b> over the interval. They can't show whether the cells were in log phase — counts that include the lag after seeding or the plateau at confluence give a longer doubling time.</li>
+          <li>If the cell number didn't go up, no doubling time is given. Numbers are never turned positive.</li>
+          <li>The tool can't tell you <i>why</i> a culture grew slowly — medium, serum lot, density, passage number and contamination all matter.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · DOUBLING TIME &amp; GROWTH RATE</div>
+  <h2>Three numbers, not one</h2><p>The same two counts give three different numbers. They are easy to mix up in a methods section or a spreadsheet — the tool shows them side by side.</p><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Quantity</th><th scope="col">Formula</th><th scope="col">Unit</th><th scope="col">100,000 → 400,000 in 48 h</th></tr></thead><tbody><tr><th scope="row">Population doublings</th><td>log₂(N ÷ N₀)</td><td>—</td><td>2</td></tr><tr><th scope="row">Doubling time</th><td>t × ln 2 ÷ ln(N ÷ N₀)</td><td>h</td><td>24 h</td></tr><tr><th scope="row">Specific growth rate <span class="mu">μ</span></th><td>ln(N ÷ N₀) ÷ t</td><td>1/h</td><td>0.02888 /h</td></tr><tr><th scope="row">Doublings per hour <small>(not μ)</small></th><td>doublings ÷ t</td><td>1/h</td><td>0.04167 /h</td></tr></tbody></table></div><p class="lm-note">μ uses the natural log; doublings per hour uses log₂. They differ by a factor of ln 2 ≈ 0.693.</p><h2>Checks the tool runs on every row</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Flag</th><th scope="col">When</th><th scope="col">Why</th></tr></thead><tbody><tr><th scope="row">NO NET GROWTH</th><td>End count ≤ start count</td><td>No doubling time exists; μ and doublings are shown as they are (zero or negative).</td></tr><tr><th scope="row">SMALL CHANGE</th><td>Less than 1.5-fold</td><td>A 10% counting error moves the doubling time a lot.</td></tr><tr><th scope="row">SHORT INTERVAL</th><td>Under 12 h</td><td>Counting error dominates; few cells have divided.</td></tr><tr><th scope="row">LONG INTERVAL</th><td>Over 7 days</td><td>Likely to include lag or plateau — check the cells stayed sub-confluent and fed.</td></tr><tr><th scope="row">VERY FAST</th><td>Doubling time under 10 h</td><td>Faster than nearly all mammalian lines — check the counts and the time unit.</td></tr><tr><th scope="row">SPLIT</th><td>Split factor entered</td><td>Assumes the split was exact and no cells were lost.</td></tr></tbody></table></div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-10">10 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · DOUBLING TIME CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate cell doubling time?</summary><p>Doubling time = t × ln 2 ÷ ln(N ÷ N₀), where N₀ and N are the cell numbers at the start and end of an interval of length t. From 100,000 to 400,000 cells in 48 hours: 48 × 0.693 ÷ 1.386 = 24 hours.</p></details>
+      <details><summary>What is the difference between doubling time, population doublings and growth rate μ?</summary><p>Population doublings = log₂(N ÷ N₀): how many times the population doubled. Doubling time = time ÷ population doublings. The specific growth rate μ = ln(N ÷ N₀) ÷ t, in 1/h; μ = ln 2 ÷ doubling time. Doublings per hour (doublings ÷ t) is a different number from μ — it is μ ÷ ln 2.</p></details>
+      <details><summary>I split the cells during the interval. Can I still calculate doubling time?</summary><p>Yes, if you know the split exactly. Enter the split factor (4 for a 1:4 split, i.e. a quarter of the cells kept): the end count is multiplied by it. This assumes the split was exact and that no cells were lost — counting the cells at the split and starting a new row is more reliable.</p></details>
+      <details><summary>Should I use total cells or cells per mL?</summary><p>Total cells in the vessel. Cells/mL only works if the volume did not change between the two counts — feeding or topping up a suspension culture changes it.</p></details>
+      <details><summary>Why is my doubling time different from the published value?</summary><p>Doubling time depends on the medium, serum lot, seeding density, passage number and growth phase. Two counts give the average over the interval; if it includes the lag phase after seeding or the plateau at confluence, the value is longer than the log-phase doubling time. Count in mid-log phase for a value comparable to the literature.</p></details>
+      <details><summary>How accurate is a doubling time from two counts?</summary><p>It is only as good as the counts. With a small change in cell number the result is very sensitive: the tool shows how far the doubling time moves if each count is off by 10%, and flags intervals under 12 hours or less than a 1.5-fold change.</p></details>
+      <details><summary>How do I calculate cumulative population doublings over several passages?</summary><p>Add up the population doublings of each passage. Give the rows the same cell line name (a trailing passage number such as P14 is ignored) and the tool sums them per line, along with an overall doubling time (total time × ln 2 ÷ total ln fold change).</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../cell-seeding/"><span class="n">5.1</span><span class="t">Cell Count &amp; Seeding Calculator</span><span class="d">Hemocytometer counts to cells/mL — then log the count here.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Paste samples, add controls and replicates, print a 96 or 384 well plate map.</span></a></li>
+        <li><a href="../cryo-labels/"><span class="n">4.1</span><span class="t">Cryo Label Maker</span><span class="d">Batch-print freezer-box labels onto laser sheets, lined up to your printer.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cells">ALL 15 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../cell-seeding/">CELL COUNT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 5.4</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="doubling-time.js?v=1"></script>
+</body>
+</html>
