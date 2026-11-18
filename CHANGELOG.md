@@ -8,7 +8,7 @@ New tool: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS.
 
 ### qPCR Relative Quantification (2.5) — new
 - Open or drop the results export from the qPCR instrument (several files at once): Bio-Rad CFX (Quantification Cq Results, .csv/.xlsx), Thermo QuantStudio / ViiA 7 / 7500 / StepOne (.txt with its [Results] section, or .xlsx), Roche LightCycler 480 (text, one file per channel — name the gene) and LightCycler 96, Qiagen Rotor-Gene, RDML, or any table with sample, gene and Cq columns. Paste from Excel works too, including a samples × genes table. Semicolon files with decimal commas are read correctly. The header row is found automatically; the columns used can be changed per file. Old .xls and run files (.eds) get a message saying what to export instead.
-- **Can't read your instrument?** A link on the page and in the reference table opens an email to hello@labmate.tools asking for it to be added, with a template for the instrument, software version and an example export.
+- **Can't read your instrument?** A link on the page and in the reference table opens the contact form set to qPCR, with a template for the instrument, software version and export menu.
 - Design: samples are biological replicates, grouped from names like Ctrl_1 / KO 3 (or CFX's Biological Set Name); common reference genes are recognised; control group and calibrator (control-group mean or one sample) can be chosen.
 - Efficiency per gene: 100% (2^−ΔΔCq), a typed value (95 or 1.95), or fitted from the standard wells in the file (slope, E, R², number of levels, flags outside 90–110%, R² < 0.98, < 5 levels).
 - Check: plate map (96/384) coloured by gene — tap a well to exclude it; replicate table with HIGH SD, NO AMP, NOT DETECTED, LATE Cq and SINGLE WELL flags; for triplicates the well furthest from the median is pointed out when dropping it brings the SD below 0.2. Nothing is removed automatically. Undetermined wells are never set to 40. NTC / no-RT wells within 5 cycles of the samples are flagged.
@@ -17,6 +17,11 @@ New tool: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS.
 - Results: fold-change chart (log₂ or linear axis, dots for every replicate, p-values optional) as PNG or SVG; table; per-replicate values with a WORKING panel that puts the numbers into the formula; COPY TABLE; CSV with groups, replicates, efficiencies and every well (and why it was excluded); COPY METHODS paragraph with efficiencies, references, calibrator, exclusions, statistics and geNorm M; SAVE RECORD (`.qpcr.json`, algorithm `labmate-qpcr-1`; reopening recalculates and says whether every result matches); PRINT.
 - Example run (QuantStudio text export) on first visit; the file can be downloaded.
 - Tested: results match an independent NumPy/SciPy implementation (relative difference ≤ 3 × 10⁻⁶ on three test sets, including three groups, three references and typed efficiencies); the same run written as CFX .csv/.xlsx, QuantStudio .txt/.xlsx, 7500, LightCycler 480 (incl. a UTF-16 file), LightCycler 96, Rotor-Gene, RDML, a semicolon/decimal-comma file and a wide table gives identical fold changes; excluding a well, the record round-trip and all exports work; no horizontal scroll at 1440 / 834 / 390 px; no JS errors. The export layouts were written from the instruments' documented formats, not from files exported in a lab.
+
+### Contact form — new
+- New **Contact** page (`/contact/`) replaces the hello@labmate.tools email links everywhere. Pick what it's about from a list of every tool (or the site in general, or a new tool request), choose Question / Problem / Request, add a name and email if you want a reply, and send. Messages go through Formspree; the Privacy page says so.
+- Every tool page has a CONTACT link in the footer and "Question or problem? Contact us" under Related tools; both open the form with that tool already selected.
+- Homepage "Send a request", the FAQ, About and Privacy now point to the form.
 
 ### Site
 - Homepage: qPCR ΔΔCq in SECTION 02 (now "Mixes, dilutions, molarity, qPCR"), INDEX shows 5 calculators; structured data lists 16 tools.
