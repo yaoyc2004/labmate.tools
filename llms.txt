@@ -46,4 +46,5 @@
 
 - [About labmate.tools](https://labmate.tools/about/): who makes it, where values come from and how they are checked.
 - [Privacy](https://labmate.tools/privacy/): no accounts; tool inputs never leave the browser.
+- [Contact](https://labmate.tools/contact/): question, problem report or tool request form; `?topic=<tool-slug>` preselects the tool.
 - [Changelog](https://labmate.tools/CHANGELOG.md): what changed, newest first.

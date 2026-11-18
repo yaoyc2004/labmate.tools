@@ -1,0 +1,57 @@
+/* labmate.tools — contact page */
+.ct-eyebrow { margin: 0 0 8px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--pass-dark); }
+.ct-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px; align-items: start; }
+.ct-form { display: grid; gap: 18px; }
+.ct-field { display: grid; gap: 6px; align-content: start; min-width: 0; margin: 0; padding: 0; border: 0; }
+.ct-field > label, .ct-field > legend { padding: 0; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.ct-field > label i { font-style: normal; font-weight: 400; color: var(--muted); text-transform: none; letter-spacing: 0.02em; }
+.ct-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.ct-form input[type="text"], .ct-form input[type="email"], .ct-form select, .ct-form textarea {
+  width: 100%; min-width: 0; border: 1.5px solid var(--ink); border-radius: 0; background: #fff;
+  font-family: var(--sans); font-size: 16px; color: var(--ink);
+}
+.ct-form input[type="text"], .ct-form input[type="email"] { height: 46px; padding: 0 12px; }
+.ct-form select {
+  height: 48px; padding: 0 40px 0 12px; font-family: var(--mono); font-size: 15px; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231B2224' stroke-width='1.8'/%3E%3C/svg%3E") no-repeat right 14px center;
+}
+.ct-form textarea { padding: 10px 12px; line-height: 1.5; resize: vertical; min-height: 180px; }
+.ct-form input:focus, .ct-form select:focus, .ct-form textarea:focus { outline: 2px solid var(--pass); outline-offset: 0; border-color: var(--pass-dark); }
+.ct-form .is-preset { border-color: var(--pass-dark); box-shadow: inset 4px 0 0 var(--pass); }
+.ct-help { margin: 0; font-size: 14px; color: var(--muted); }
+.ct-seg { display: flex; flex-wrap: wrap; }
+.ct-seg label { position: relative; cursor: pointer; }
+.ct-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ct-seg span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+  border: 1.5px solid var(--ink); margin-left: -1.5px; background: transparent;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em;
+}
+.ct-seg label:first-child span { margin-left: 0; }
+.ct-seg input:checked + span { background: var(--ink); color: var(--paper); }
+.ct-seg input:focus-visible + span { outline: 2px solid var(--pass); outline-offset: 2px; position: relative; z-index: 1; }
+.ct-seg label:hover input:not(:checked) + span { background: var(--card); }
+.ct-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.ct-actions { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.ct-status { margin: 0; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.ct-status.is-err { color: var(--err); }
+.ct-legal { margin: 0; font-size: 13px; color: var(--faint); }
+.ct-legal a { color: inherit; }
+.ct-done { padding: 8px 0; }
+.ct-done:focus { outline: none; }
+.ct-done-k { margin: 0 0 6px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--pass-dark); }
+.ct-done h2 { margin: 0 0 8px; font-family: var(--serif); font-size: 28px; font-weight: 700; }
+.ct-done p { color: var(--ink-2); }
+.ct-done-links { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-family: var(--mono); font-size: 13px; }
+.ct-side .lm-prose h2:first-child { margin-top: 4px; }
+.ct-side .lm-prose p { font-size: 16px; }
+@media (max-width: 860px) {
+  .ct-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .ct-row { grid-template-columns: minmax(0, 1fr); }
+  .ct-seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ct-seg span { justify-content: center; padding: 0 6px; font-size: 12px; width: 100%; }
+  .ct-actions .btn { width: 100%; justify-content: center; }
+}

@@ -7,8 +7,7 @@
   var esc = LM.esc;
   var PAL = ["#2E9E5B", "#17403D", "#B7791F", "#6B4FA0", "#A3341F", "#2C6E9B", "#8A918C", "#C05A8B", "#4F7A28", "#7A5A3A"];
   var BAR = ["#D3E6DD", "#9CC7B6", "#6FA595", "#3F7A6B", "#2B5C53", "#17403D"];
-  var REQ = "mailto:hello@labmate.tools?subject=" + encodeURIComponent("qPCR analyser: please support my instrument") +
-    "&body=" + encodeURIComponent("Instrument and software version:\n\nExport menu I used:\n\nWhat went wrong (no columns found, wrong genes, …):\n\nIf you can, attach the exported file — sample names can be replaced with codes.\n");
+  var REQ = "../../contact/?topic=qpcr&about=instrument";
 
   // ---------------------------------------------------------------- state
   function fresh() {
