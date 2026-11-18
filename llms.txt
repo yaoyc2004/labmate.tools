@@ -13,6 +13,7 @@
 - [Dilution Calculator (C1V1 = C2V2)](https://labmate.tools/tools/dilution/): Free C1V1 = C2V2 dilution calculator. Solve for stock or final volume or concentration in any unit, with stock and diluent volumes ready to pipette.
 - [Molarity Calculator — Mass & mg/mL to µM](https://labmate.tools/tools/molarity/): Free molarity calculator: grams to weigh for any volume and concentration, or the molarity you made. Convert mg/mL and ng/µL to µM with the molecular weight.
 - [Serial Dilution Calculator, Tube by Tube](https://labmate.tools/tools/serial-dilution/): Free serial dilution calculator. Set top concentration, fold, tubes and volume; get diluent and transfer volumes for every tube and a printable plan.
+- [qPCR ΔΔCt & Pfaffl Relative Quantification](https://labmate.tools/tools/qpcr/): Free qPCR relative quantification in the browser: open the Cq export from Bio-Rad CFX, QuantStudio, LightCycler, Rotor-Gene or RDML, average and check replicates, correct for efficiency, normalise to the geometric mean of several reference genes, and get fold changes with log-scale error bars, Welch t-tests, CSV, chart and a methods paragraph.
 
 ## Converters
 

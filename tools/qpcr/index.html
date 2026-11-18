@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>qPCR ΔΔCt Calculator — relative quantification with efficiency &amp; multiple reference genes | labmate.tools</title>
+<meta name="description" content="Free qPCR relative quantification in your browser: open the Cq export from Bio-Rad CFX, QuantStudio, LightCycler or Rotor-Gene, average replicates, flag outliers, correct for efficiency (Pfaffl), normalise to several reference genes and get fold changes with proper error bars, p-values, CSV and a chart.">
+<link rel="canonical" href="https://labmate.tools/tools/qpcr/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="qPCR Relative Quantification (ΔΔCq / Pfaffl) — free, in your browser | labmate.tools">
+<meta property="og:description" content="Drop in the Cq export from your qPCR instrument → fold changes normalised to several reference genes, efficiency-corrected, with honest error bars.">
+<meta property="og:url" content="https://labmate.tools/tools/qpcr/">
+<meta property="og:image" content="https://labmate.tools/assets/og/qpcr.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="qPCR Relative Quantification — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="qPCR Relative Quantification (ΔΔCq / Pfaffl) — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Drop in the Cq export from your qPCR instrument → fold changes normalised to several reference genes, efficiency-corrected, with honest error bars.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/qpcr.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/qpcr/#app","name":"qPCR Relative Quantification","alternateName":["ΔΔCt calculator","Pfaffl calculator","qPCR fold change calculator"],"url":"https://labmate.tools/tools/qpcr/","description":"Free qPCR relative quantification in your browser: open the Cq export from Bio-Rad CFX, QuantStudio, LightCycler or Rotor-Gene, average replicates, flag outliers, correct for efficiency (Pfaffl), normalise to several reference genes and get fold changes with proper error bars, p-values, CSV and a chart.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Reads Bio-Rad CFX, Thermo QuantStudio / 7500 / StepOne, Roche LightCycler 480 / 96, Qiagen Rotor-Gene and RDML exports, .csv, .txt or .xlsx","Technical replicate averaging with outlier flags and one-click exclusion","Efficiency from standard wells or entered per gene (Pfaffl / qbase method)","Geometric mean of several reference genes and geNorm M","Error bars on the log scale from biological replicates (SEM, SD or 95% CI)","Welch t-test against the control group with Holm correction","Fold-change chart as PNG or SVG, CSV with every intermediate value, methods paragraph"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/qpcr.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-18"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"qPCR Relative Quantification","item":"https://labmate.tools/tools/qpcr/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/qpcr/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate fold change with the ΔΔCt method?","acceptedAnswer":{"@type":"Answer","text":"For each sample, ΔCt = Ct(target gene) − Ct(reference gene). ΔΔCt = ΔCt(sample) − ΔCt(calibrator, usually the mean of the control group). Fold change = 2^−ΔΔCt. Example: target Ct 25.0 and reference 18.0 in treated cells (ΔCt 7.0), 27.0 and 18.0 in control (ΔCt 9.0): ΔΔCt = −2.0, fold change = 4."}},{"@type":"Question","name":"When should I use the Pfaffl method instead of 2^−ΔΔCt?","acceptedAnswer":{"@type":"Answer","text":"2^−ΔΔCt assumes every assay doubles its product each cycle (efficiency 100%, E = 2). If your standard curves give efficiencies that differ from 100% or from each other, use the efficiency-corrected (Pfaffl) calculation: RQ = E^(Cq calibrator − Cq sample) for each gene, then target RQ ÷ reference RQ. With E = 2 for every gene the two give the same answer."}},{"@type":"Question","name":"How do I normalise to more than one reference gene?","acceptedAnswer":{"@type":"Answer","text":"Divide the target's relative quantity by the geometric mean of the reference genes' relative quantities (Vandesompele 2002, Hellemans 2007). If the efficiencies differ, averaging the reference Ct values first is not the same thing — compute each reference's efficiency-corrected quantity, then take the geometric mean."}},{"@type":"Question","name":"How should I calculate error bars for qPCR fold change?","acceptedAnswer":{"@type":"Answer","text":"Work on the log scale. Compute log₂ relative expression (−ΔΔCq) for each biological replicate, then take the mean and SD or SEM of those values. The fold change is 2^mean and the error bar runs from 2^(mean − SEM) to 2^(mean + SEM), so it is not symmetric. Averaging fold changes directly, or putting the SD of the fold changes on the bar, overstates up-regulation and understates down-regulation."}},{"@type":"Question","name":"Which calibrator should I use?","acceptedAnswer":{"@type":"Answer","text":"Usually the mean of the control group. Then the control group's geometric mean is exactly 1 but each control replicate keeps its own value, so the control bar has an error bar too. Picking a single control sample as the calibrator makes every result depend on that one sample."}},{"@type":"Question","name":"What should I do with a replicate well that is far from the others?","acceptedAnswer":{"@type":"Answer","text":"Look at it before you drop it. Technical replicates usually agree within 0.2–0.3 cycles. The tool flags sets with SD above your limit and, for triplicates, points to the well furthest from the median when dropping it brings the SD below 0.2. It never removes a well by itself; the wells you exclude are listed in the CSV and the methods text."}},{"@type":"Question","name":"What does 'Undetermined' mean, and should I set it to 40?","acceptedAnswer":{"@type":"Answer","text":"Undetermined means the well never crossed the threshold. Replacing it with 40 invents a number. The tool leaves such wells out of the mean and flags the set; if a gene is undetermined in every well of a sample, that sample is not calculated for that gene."}},{"@type":"Question","name":"Is my data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Files are read and calculated in your browser and are not sent anywhere. The last analysis is kept on this device until you press CLEAR."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","email":"hello@labmate.tools","sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="qpcr.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.5 qPCR ΔΔCq</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.5</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <path d="M6 58 H66 M6 58 V4" stroke="#1B2224" stroke-width="1.4" fill="none"/>
+        <path d="M8 56 C24 56 28 54 34 40 C40 24 44 12 64 10" fill="none" stroke="#2E9E5B" stroke-width="1.8"/>
+        <path d="M8 56 C30 56 36 55 44 44 C50 34 54 20 64 18" fill="none" stroke="#17403D" stroke-width="1.4" stroke-dasharray="3 2"/>
+        <path d="M6 32 H66" stroke="#8A918C" stroke-width="0.8" stroke-dasharray="2 2"/>
+        <rect x="80" y="34" width="14" height="24" fill="#D3E6DD" stroke="#1B2224" stroke-width="1.2"/>
+        <rect x="102" y="12" width="14" height="46" fill="#3F7A6B" stroke="#1B2224" stroke-width="1.2"/>
+        <path d="M109 6 V18 M105 6 H113 M105 18 H113" stroke="#1B2224" stroke-width="1.2"/>
+        <path d="M76 58 H124" stroke="#1B2224" stroke-width="1.2"/>
+        <text x="122" y="30" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="11" fill="#1B2224">2ⁿ</text>
+      </svg>
+    </figure>
+    <div>
+      <h1>qPCR Relative Quantification</h1>
+      <p class="lm-lede">Open the Cq export from your instrument. Replicates are averaged and checked, each gene is corrected for its efficiency, targets are normalised to the geometric mean of your reference genes, and fold changes come out with error bars done on the log scale — every step shown.</p>
+    </div>
+  </div>
+
+  <!-- 1 · load -->
+  <h2 class="lm-bar qp-noprint"><span>1 · LOAD</span> <small>SECTION 02 — CALCULATORS · 2.5</small></h2>
+  <div class="lm-sheet qp-noprint">
+    <div class="pp-example" id="exampleNote" hidden>Showing an example run (QuantStudio export, LPS-stimulated macrophages, IL6 and MYC against GAPDH and ACTB). Open your own file to replace it.</div>
+    <div class="qp-load">
+      <label class="qp-drop" id="drop">
+        <input type="file" id="fileIn" multiple accept=".csv,.tsv,.txt,.xlsx,.rdml,.xml,.json,text/csv,text/plain">
+        <b>OPEN OR DROP EXPORT FILES</b>
+        <span>.csv · .txt · .xlsx · .rdml — several files at once is fine (one per plate or per gene)</span>
+        <span class="qp-inst-list">Bio-Rad CFX · QuantStudio / ViiA 7 · 7500 · StepOne · LightCycler 480 / 96 · Rotor-Gene · RDML · any table with sample, gene and Cq columns</span>
+      </label>
+      <div class="qp-load-side">
+        <button type="button" class="btn" id="example">TRY THE EXAMPLE</button>
+        <a class="lm-link" href="example-quantstudio.txt" download>EXAMPLE FILE</a>
+        <p class="cs-hint">Instrument not on the list, or columns not found? <a class="qp-req" href="mailto:hello@labmate.tools">Ask for it to be added</a> — with an example export if you can.</p>
+      </div>
+    </div>
+    <details class="pp-paste qp-paste">
+      <summary><span class="presets-k">PASTE A TABLE</span> From Excel: one row per well, or samples × genes</summary>
+      <div class="qp-paste-body">
+        <textarea id="pasteText" rows="7" spellcheck="false" placeholder="Sample	Target	Cq
+Ctrl_1	GAPDH	18.21
+Ctrl_1	GAPDH	18.25
+Ctrl_1	IL6	27.40
+…"></textarea>
+        <div>
+          <p class="cs-hint">Include the header row. Long format needs columns for <b>sample</b>, <b>gene</b> (Target, Detector, Gene…) and <b>Cq</b> (Ct, Cp, Cq); optional well, type (Unknown / Standard / NTC) and quantity. Or a wide table: first column samples, one column of Cq values per gene.</p>
+          <button type="button" class="btn" id="pasteUse">USE THIS TABLE</button>
+        </div>
+      </div>
+    </details>
+    <div class="qp-msg" id="loadMsg" role="status"></div>
+    <div id="files"></div>
+  </div>
+
+  <!-- 2 · design -->
+  <h2 class="lm-bar qp-needs qp-noprint"><span>2 · DESIGN</span> <small>GROUPS · GENES · EFFICIENCY</small></h2>
+  <div class="lm-sheet qp-needs qp-noprint">
+    <div class="qp-two">
+      <div>
+        <div class="presets-k">SAMPLES = BIOLOGICAL REPLICATES <span class="dt-count" id="sampleCount"></span></div>
+        <div class="mm-wrap qp-scroll">
+          <table class="pp-table qp-samples">
+            <thead><tr><th>SAMPLE</th><th>GROUP</th><th class="u">USE</th></tr></thead>
+            <tbody id="sampleRows"></tbody>
+          </table>
+        </div>
+        <p class="cs-hint pp-hint">Groups are read from names like <b>Ctrl_1, Ctrl_2</b> or <b>KO 3</b>. Samples with the same group are averaged as biological replicates. Untick a sample to leave it out.</p>
+      </div>
+      <div>
+        <div class="presets-k">GENES</div>
+        <div class="mm-wrap">
+          <table class="pp-table qp-targets">
+            <thead><tr><th>GENE</th><th>ROLE</th><th>EFFICIENCY</th><th class="n">USED</th></tr></thead>
+            <tbody id="targetRows"></tbody>
+          </table>
+        </div>
+        <p class="cs-hint pp-hint">Common reference genes (GAPDH, ACTB, B2M, 18S, RPLP0, HPRT1, TBP…) are marked as references. Efficiency: 100% is the 2<sup>−ΔΔCq</sup> method; a measured value (95 or 1.95) or the file's standard wells gives the efficiency-corrected (Pfaffl) result.</p>
+        <div class="qp-opts">
+          <label><span class="presets-k">CONTROL GROUP</span><select id="control"></select></label>
+          <label><span class="presets-k">CALIBRATOR</span><select id="calSample"></select></label>
+          <label><span class="presets-k">FLAG SD ABOVE</span><input type="text" class="pp-in qp-num" id="sdMax" inputmode="decimal"> cycles</label>
+          <label><span class="presets-k">LATE Cq ABOVE</span><input type="text" class="pp-in qp-num" id="cqMax" inputmode="decimal"></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 · QC -->
+  <h2 class="lm-bar qp-needs qp-noprint"><span>3 · CHECK</span> <small id="qcSum"></small></h2>
+  <div class="lm-sheet qp-needs qp-noprint">
+    <div class="presets-k">PLATE — tap a well to exclude it or use it again</div>
+    <div id="plates"></div>
+    <div class="qp-legend" id="plateLegend"></div>
+
+    <div class="qp-rep-h">
+      <div class="presets-k">TECHNICAL REPLICATES — tap a Cq to exclude that well</div>
+      <label class="qp-check"><input type="checkbox" id="onlyFlagged"> only sets with a flag</label>
+    </div>
+    <div class="mm-wrap qp-scroll">
+      <table class="pp-table qp-reps">
+        <thead><tr><th>SAMPLE</th><th>GENE</th><th>WELLS (Cq)</th><th class="n">MEAN</th><th class="n">SD</th><th class="ck">CHECK</th></tr></thead>
+        <tbody id="repRows"></tbody>
+      </table>
+    </div>
+
+    <div class="qp-qc3">
+      <div><div class="presets-k">STANDARD CURVES</div><div id="effBox"></div></div>
+      <div><div class="presets-k">REFERENCE GENES</div><div id="refBox"></div>
+        <div class="presets-k qp-gap">NO-TEMPLATE CONTROLS</div><div id="ntcBox"></div></div>
+    </div>
+  </div>
+
+  <!-- 4 · results -->
+  <h2 class="lm-bar"><span>4 · RESULTS</span> <small>FOLD CHANGE = 2 ^ MEAN log₂ NRQ</small></h2>
+  <div class="lm-sheet">
+    <ul class="dt-work-flags qp-warn" id="warnings"></ul>
+    <div class="qp-chart-opts qp-needs">
+      <div class="dt-opt"><span class="presets-k" id="errLabel">ERROR BARS</span>
+        <div class="lm-seg" role="group" aria-labelledby="errLabel" id="errSeg"><button type="button" data-v="sem">SEM</button><button type="button" data-v="sd">SD</button><button type="button" data-v="ci">95% CI</button></div></div>
+      <div class="dt-opt"><span class="presets-k" id="scaleLabel">Y AXIS</span>
+        <div class="lm-seg" role="group" aria-labelledby="scaleLabel" id="scaleSeg"><button type="button" data-v="log">LOG₂</button><button type="button" data-v="lin">LINEAR</button></div></div>
+      <label class="qp-check"><input type="checkbox" id="pvals"> p-values (Welch t-test vs control, Holm)</label>
+    </div>
+    <div class="qp-chart" id="chart"></div>
+
+    <div class="mm-wrap qp-needs">
+      <table class="pp-table qp-res">
+        <thead><tr><th>GENE</th><th>GROUP</th><th class="n">n</th><th class="n">FOLD CHANGE</th><th class="n" id="errHead">SEM</th><th class="n">log₂ ± </th><th class="n">p (Holm)</th></tr></thead>
+        <tbody id="resRows"></tbody>
+      </table>
+    </div>
+
+    <div class="ans-actions dt-actions qp-needs">
+      <button type="button" class="btn" id="copy">COPY TABLE</button>
+      <button type="button" class="lm-link" id="csv">CSV</button>
+      <button type="button" class="lm-link" id="png">CHART PNG</button>
+      <button type="button" class="lm-link" id="svg">CHART SVG</button>
+      <button type="button" class="lm-link" id="copyMethods">COPY METHODS</button>
+      <button type="button" class="lm-link" id="json" title="Wells, settings and results in one file you can open here again">SAVE RECORD (.json)</button>
+      <button type="button" class="lm-link" id="print">PRINT</button>
+      <span class="btn-copied" id="copied" role="status"></span>
+    </div>
+
+    <details class="qp-per qp-needs" open>
+      <summary><span class="presets-k">EACH BIOLOGICAL REPLICATE</span> tap a row for the working</summary>
+      <div class="mm-wrap qp-scroll">
+        <table class="pp-table qp-pert">
+          <thead><tr><th>SAMPLE</th><th>GROUP</th><th>GENE</th><th class="n">MEAN Cq</th><th class="n">log₂ RQ</th><th class="n">log₂ NF</th><th class="n">log₂ NRQ</th><th class="n">NRQ</th></tr></thead>
+          <tbody id="perRows"></tbody>
+        </table>
+      </div>
+    </details>
+    <div class="dt-work qp-needs" id="work" aria-live="polite"></div>
+    <div class="qp-methods qp-needs">
+      <div class="presets-k">METHODS PARAGRAPH — check it against what you did</div>
+      <p id="methods"></p>
+    </div>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Export the results table (Cq per well) from the instrument software — see the table below — and open it here. Several plates or one file per gene are fine.</li>
+          <li>Check the <b>groups</b>: one row per biological sample, same group name for replicates of a condition. Mark the <b>reference genes</b>.</li>
+          <li>Set the <b>efficiency</b> per gene if you have measured it. Standard-curve wells in the file are picked up and fitted.</li>
+          <li>In step 3, look at the flagged replicate sets. Tap a Cq to leave that well out — nothing is removed for you.</li>
+          <li>Read the fold changes, then take the chart (PNG/SVG), the CSV with every intermediate value and the methods paragraph. <b>SAVE RECORD</b> keeps the wells and your choices so you can reopen the analysis later.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">NRQ = RQ<sub>target</sub> ÷ geomean(RQ<sub>refs</sub>)</span>
+          <table>
+            <tr><td>RQ</td><td>E ^ (Cq<sub>calibrator</sub> − Cq<sub>sample</sub>) for each gene</td></tr>
+            <tr><td>E</td><td>10 ^ (−1 ÷ slope) of the standard curve; 2 = 100%</td></tr>
+            <tr><td>fold change</td><td>2 ^ mean(log₂ NRQ) of the biological replicates</td></tr>
+            <tr><td>error bar</td><td>2 ^ (mean ± SEM), on the log₂ scale</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> With E = 2: target Cq 25.0 and reference 18.0 in treated cells, 27.0 and 18.0 in the control. log₂ RQ target = 27 − 25 = 2, reference = 18 − 18 = 0, log₂ NRQ = 2 → <b>4-fold</b>. With a target efficiency of 1.90 instead: log₂ 1.90 × 2 = 1.852 → <b>3.61-fold</b>.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free. Nothing you open leaves your browser; the last analysis stays on this device until you press CLEAR.</li>
+          <li>Statistics are on biological replicates only. Technical wells tell you how well you pipetted, not how variable the biology is.</li>
+          <li>The tool can't judge melt curves, amplification plots or primer specificity — check those in the instrument software.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · qPCR RELATIVE QUANTIFICATION</div>
+  <h2>Exporting from your instrument</h2><p>Open the results table (one Cq per well), not the run file. Menu names change between software versions; these are the usual routes.</p><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Instrument</th><th scope="col">Export</th><th scope="col">What the tool reads</th></tr></thead><tbody><tr><th scope="row">Bio-Rad CFX (Maestro, CFX Manager)</th><td>Export → all data sheets, then open the “Quantification Cq Results” file (.csv or .xlsx)</td><td>Well, Target (or Fluor), Content (Unkn / Std / NTC / NRT), Sample, Biological Set Name, Cq, Starting Quantity</td></tr><tr><th scope="row">Thermo QuantStudio, ViiA 7, 7500, StepOne</th><td>Export → Results, as .xlsx or .txt (an old .xls: save it as .xlsx first)</td><td>Well Position, Omit, Sample Name, Target Name or Detector, Task, CT / Cq, Quantity — the [Results] section of a text export</td></tr><tr><th scope="row">Roche LightCycler 480</th><td>Abs Quant results table → export as text; one file per channel</td><td>Include, Pos, Name, Cp, Standard. There is no gene column — name the gene for each file after opening</td></tr><tr><th scope="row">Roche LightCycler 96</th><td>Export the analysis results to Excel</td><td>Well, Sample Name, Gene Name, Cq</td></tr><tr><th scope="row">Qiagen Rotor-Gene Q</th><td>Quantitation results → export to Excel or .csv</td><td>No., Name, Type, Ct, Given Conc</td></tr><tr><th scope="row">Any instrument</th><td>RDML (.rdml) from the instrument or RDML tools; or paste from Excel</td><td>Sample, target, Cq per reaction; sample type and standard quantity</td></tr></tbody></table></div><p class="lm-note">Not on the list, or the columns aren't found? <a class="qp-req" href="mailto:hello@labmate.tools">Send us the instrument and an example export</a> and we'll add it. Old binary .xls and run files (.eds, .pcrd, .ixo) can't be read — export the results table instead.</p>
+  <h2>Checks the tool runs</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Flag</th><th scope="col">When</th><th scope="col">What to do</th></tr></thead><tbody><tr><th scope="row">HIGH SD</th><td>Replicate SD above your limit (0.3 cycles by default)</td><td>Look at the wells. For triplicates the tool points to the well furthest from the median when dropping it brings the SD below 0.2.</td></tr><tr><th scope="row">NO AMP / NOT DETECTED</th><td>Undetermined wells</td><td>Left out of the mean, never set to 40. A gene not detected in a sample is not calculated for it.</td></tr><tr><th scope="row">LATE Cq</th><td>Mean Cq above 35 (adjustable)</td><td>Low copy number: expect more scatter; consider more template.</td></tr><tr><th scope="row">EFFICIENCY / R² / FEW POINTS</th><td>Standard curve outside 90–110%, R² below 0.98, fewer than 5 dilution levels</td><td>Check the dilutions and primer design; MIQE asks for a curve over at least 5 points.</td></tr><tr><th scope="row">geNorm M</th><td>Two or more reference genes</td><td>Below 0.5 is stable for homogeneous samples, below 1 acceptable for tissue.</td></tr><tr><th scope="row">REFERENCE SHIFT</th><td>Reference level differs by more than 0.5 log₂ units between groups</td><td>The treatment may change your reference genes — validate them.</td></tr><tr><th scope="row">NTC AMPLIFIED</th><td>NTC or no-RT well within 5 cycles of the latest sample</td><td>Contamination or genomic DNA; primer dimers show in the melt curve.</td></tr></tbody></table></div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-18">18 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · qPCR ΔΔCt CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate fold change with the ΔΔCt method?</summary><p>For each sample, ΔCt = Ct(target gene) − Ct(reference gene). ΔΔCt = ΔCt(sample) − ΔCt(calibrator, usually the mean of the control group). Fold change = 2<sup>−ΔΔCt</sup>. Example: target Ct 25.0 and reference 18.0 in treated cells (ΔCt 7.0), 27.0 and 18.0 in control (ΔCt 9.0): ΔΔCt = −2.0, fold change = 4.</p></details>
+      <details><summary>When should I use the Pfaffl method instead of 2<sup>−ΔΔCt</sup>?</summary><p>2<sup>−ΔΔCt</sup> assumes every assay doubles its product each cycle (efficiency 100%, E = 2). If your standard curves give efficiencies that differ from 100% or from each other, use the efficiency-corrected (Pfaffl) calculation: RQ = E<sup>(Cq calibrator − Cq sample)</sup> for each gene, then target RQ ÷ reference RQ. With E = 2 for every gene the two give the same answer.</p></details>
+      <details><summary>How do I normalise to more than one reference gene?</summary><p>Divide the target's relative quantity by the geometric mean of the reference genes' relative quantities (Vandesompele 2002, Hellemans 2007). If the efficiencies differ, averaging the reference Ct values first is not the same thing — compute each reference's efficiency-corrected quantity, then take the geometric mean.</p></details>
+      <details><summary>How should I calculate error bars for qPCR fold change?</summary><p>Work on the log scale. Compute log₂ relative expression (−ΔΔCq) for each biological replicate, then take the mean and SD or SEM of those values. The fold change is 2<sup>mean</sup> and the error bar runs from 2<sup>mean − SEM</sup> to 2<sup>mean + SEM</sup>, so it is not symmetric. Averaging fold changes directly, or putting the SD of the fold changes on the bar, overstates up-regulation and understates down-regulation.</p></details>
+      <details><summary>Which calibrator should I use?</summary><p>Usually the mean of the control group. Then the control group's geometric mean is exactly 1 but each control replicate keeps its own value, so the control bar has an error bar too. Picking a single control sample as the calibrator makes every result depend on that one sample.</p></details>
+      <details><summary>What should I do with a replicate well that is far from the others?</summary><p>Look at it before you drop it. Technical replicates usually agree within 0.2–0.3 cycles. The tool flags sets with SD above your limit and, for triplicates, points to the well furthest from the median when dropping it brings the SD below 0.2. It never removes a well by itself; the wells you exclude are listed in the CSV and the methods text.</p></details>
+      <details><summary>What does “Undetermined” mean, and should I set it to 40?</summary><p>Undetermined means the well never crossed the threshold. Replacing it with 40 invents a number. The tool leaves such wells out of the mean and flags the set; if a gene is undetermined in every well of a sample, that sample is not calculated for that gene.</p></details>
+      <details><summary>Is my data uploaded?</summary><p>No. Files are read and calculated in your browser and are not sent anywhere. The last analysis is kept on this device until you press CLEAR.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../master-mix/"><span class="n">2.1</span><span class="t">Master Mix Calculator</span><span class="d">Scale the qPCR reaction mix for every well, with overage built in.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution Calculator</span><span class="d">Plan the 10-fold or 5-fold series for a standard curve.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Map samples, NTCs and standards to a 96 or 384 well plate before the run.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 16 TOOLS →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../master-mix/">MASTER MIX</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.5</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="qpcr-core.js?v=1"></script>
+<script src="qpcr.js?v=1"></script>
+</body>
+</html>

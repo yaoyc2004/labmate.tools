@@ -2,6 +2,26 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-18
+
+New tool: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS.
+
+### qPCR Relative Quantification (2.5) — new
+- Open or drop the results export from the qPCR instrument (several files at once): Bio-Rad CFX (Quantification Cq Results, .csv/.xlsx), Thermo QuantStudio / ViiA 7 / 7500 / StepOne (.txt with its [Results] section, or .xlsx), Roche LightCycler 480 (text, one file per channel — name the gene) and LightCycler 96, Qiagen Rotor-Gene, RDML, or any table with sample, gene and Cq columns. Paste from Excel works too, including a samples × genes table. Semicolon files with decimal commas are read correctly. The header row is found automatically; the columns used can be changed per file. Old .xls and run files (.eds) get a message saying what to export instead.
+- **Can't read your instrument?** A link on the page and in the reference table opens an email to hello@labmate.tools asking for it to be added, with a template for the instrument, software version and an example export.
+- Design: samples are biological replicates, grouped from names like Ctrl_1 / KO 3 (or CFX's Biological Set Name); common reference genes are recognised; control group and calibrator (control-group mean or one sample) can be chosen.
+- Efficiency per gene: 100% (2^−ΔΔCq), a typed value (95 or 1.95), or fitted from the standard wells in the file (slope, E, R², number of levels, flags outside 90–110%, R² < 0.98, < 5 levels).
+- Check: plate map (96/384) coloured by gene — tap a well to exclude it; replicate table with HIGH SD, NO AMP, NOT DETECTED, LATE Cq and SINGLE WELL flags; for triplicates the well furthest from the median is pointed out when dropping it brings the SD below 0.2. Nothing is removed automatically. Undetermined wells are never set to 40. NTC / no-RT wells within 5 cycles of the samples are flagged.
+- Reference genes: geNorm M with two or more references, and a REFERENCE SHIFT warning when the reference level differs by more than 0.5 log₂ units between groups.
+- Calculation: efficiency-corrected relative quantities normalised to the geometric mean of the references (Hellemans 2007); with E = 2 this is exactly −ΔΔCq, with one reference it is Pfaffl. Group fold change = 2^mean of the replicates' log₂ values, with error bars (SEM, SD or 95% CI) on the log scale; one sample per group shows the technical error only and is labelled so. Welch t-test against the control with Holm correction (n ≥ 3 per group).
+- Results: fold-change chart (log₂ or linear axis, dots for every replicate, p-values optional) as PNG or SVG; table; per-replicate values with a WORKING panel that puts the numbers into the formula; COPY TABLE; CSV with groups, replicates, efficiencies and every well (and why it was excluded); COPY METHODS paragraph with efficiencies, references, calibrator, exclusions, statistics and geNorm M; SAVE RECORD (`.qpcr.json`, algorithm `labmate-qpcr-1`; reopening recalculates and says whether every result matches); PRINT.
+- Example run (QuantStudio text export) on first visit; the file can be downloaded.
+- Tested: results match an independent NumPy/SciPy implementation (relative difference ≤ 3 × 10⁻⁶ on three test sets, including three groups, three references and typed efficiencies); the same run written as CFX .csv/.xlsx, QuantStudio .txt/.xlsx, 7500, LightCycler 480 (incl. a UTF-16 file), LightCycler 96, Rotor-Gene, RDML, a semicolon/decimal-comma file and a wide table gives identical fold changes; excluding a well, the record round-trip and all exports work; no horizontal scroll at 1440 / 834 / 390 px; no JS errors. The export layouts were written from the instruments' documented formats, not from files exported in a lab.
+
+### Site
+- Homepage: qPCR ΔΔCq in SECTION 02 (now "Mixes, dilutions, molarity, qPCR"), INDEX shows 5 calculators; structured data lists 16 tools.
+- 404 index, `llms.txt`, sitemap, social card (`assets/og/qpcr.png`) and the About page's sources list updated; every tool page now says ALL 16 TOOLS.
+
 ## 2026-11-10
 
 New tool: **Doubling Time & Growth Rate (5.4)** in SECTION 05 — CELLS & PROTEIN.
