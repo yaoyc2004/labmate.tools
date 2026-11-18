@@ -4,7 +4,22 @@ Newest first. One entry per working day; each line says what changed for someone
 
 ## 2026-11-18
 
-New tool: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS.
+New tools: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS, and **Rodent Dosing Sheet (9.1)** in a new SECTION 09 — ANIMALS.
+
+### Rodent Dosing Sheet (9.1) — new
+- Paste the batch from Excel or a weighing log (ID, cage, group, weight in g), or open a CSV. Columns are found by header name, or by position without one; tabs, commas, semicolons, decimal commas and "25.3 g" are read. A list that looks like it was typed in kg can be converted with one click.
+- Species (mouse, rat, other) and route (PO, IP, SC, IV bolus, IV slow injection, IM). Two ways to dose: a known working concentration (mg/mL), or a fixed volume (mL/kg) that gives the concentration to make. Doses per group in mg/kg or µg/kg; a dose of 0 is a vehicle group and gets the same mL/kg as the dosed groups.
+- Each volume is rounded to the chosen syringe's graduations (0.3 / 0.5 / 1 / 3 / 5 mL, 100 µL Hamilton, or your own), with the change in dose shown; TOO SMALL (under 2 graduations) and ROUNDING (over 5%) flags suggest a finer syringe or the dilution that fixes it. OVER SYRINGE when one dose won't fit.
+- Volume limits: good-practice (amber) and maximum (red) from Diehl et al. 2001, a CONSERVATIVE set (lower of Diehl and the ULAM-based tables of Wayne State / WVU), or MY INSTITUTION — your own table, kept in the browser. IM is checked per site with the number of sites needed; mouse SC over 1 mL is told to split sites. When a group is over, the page gives the lowest concentration that brings it back to good practice. Also flagged: unusual weights, missing weights, duplicate IDs, oil or suspension vehicles for IV, more than 10% DMSO for IP/IV.
+- Recipe per group: days × doses per day, overage %, dead volume per animal, salt factor and purity; drug to weigh, or stock to take (the stock counts toward its solvent, e.g. the 10% DMSO, and the page says when the stock is too weak to fit); each vehicle component in order of addition. Presets: saline, PBS, corn oil, 0.5% CMC-Na, 10% DMSO / 40% PEG300 / 5% Tween-80 / 45% saline, 10% DMSO in corn oil, 10% DMSO in 20% SBE-β-CD, or custom.
+- WORKING panel puts any animal's numbers into the formula. COPY TABLE, CSV, SAVE RECORD (`.dosing.json`, algorithm `labmate-dosing-1`; reopening recalculates and says whether every volume matches).
+- PRINT DOSING SHEET: study, protocol, compound/lot, date and operator; per group, large-type volumes, a check box per dose day, time, initials and notes columns, flagged animals marked ⚠, the preparation recipe with prepared-by / checked-by lines; optionally a new page per group.
+- Example on first visit: tamoxifen 75 mg/kg IP in corn oil, 5 days, two cages.
+- Tested: every per-animal dose, volume, rounding, mL/kg, limit flag and recipe total matched an independent Python implementation on four test sets (120 values, largest relative difference 2 × 10⁻¹⁶), including fixed mL/kg with four dose groups, a DMSO stock with salt factor and purity, a rat SC course in µg/kg and IM per-site limits; kg conversion, stock and vehicle-sum errors, custom limits, CSV, record round-trip and printing (A4 / Letter, one page per group) work; no horizontal scroll at 1440 / 834 / 390 px; no JS errors.
+- Contact: "9.1 Dosing Sheet" in the contact form; "Send it to us" next to the limits opens the form with a template for an institution's volume table.
+
+### Site (dosing)
+- Homepage: new SECTION 09 — ANIMALS with its filter chip and INDEX line; structured data lists 17 tools; every tool page says ALL 17 TOOLS. 404 index, `llms.txt`, sitemap, social card (`assets/og/dosing.png`) and the About page's sources list updated.
 
 ### qPCR Relative Quantification (2.5) — new
 - Open or drop the results export from the qPCR instrument (several files at once): Bio-Rad CFX (Quantification Cq Results, .csv/.xlsx), Thermo QuantStudio / ViiA 7 / 7500 / StepOne (.txt with its [Results] section, or .xlsx), Roche LightCycler 480 (text, one file per channel — name the gene) and LightCycler 96, Qiagen Rotor-Gene, RDML, or any table with sample, gene and Cq columns. Paste from Excel works too, including a samples × genes table. Semicolon files with decimal commas are read correctly. The header row is found automatically; the columns used can be changed per file. Old .xls and run files (.eds) get a message saying what to export instead.

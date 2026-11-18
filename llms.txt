@@ -42,6 +42,10 @@
 
 - [Microscopy Scale Bar Maker](https://labmate.tools/tools/scale-bar/): Free batch scale bar maker for microscope images. Enter µm per pixel, measure a stage micrometer or read the Fiji / OME-TIFF scale, add the same bar to PNG, JPG or TIFF images and export copies with a CSV calibration record. Never uploaded.
 
+## Animals
+
+- [Rodent Dosing Calculator & Dosing Sheet (mg/kg)](https://labmate.tools/tools/dosing/): Free mouse and rat dosing calculator. Paste a batch of body weights to get every animal's dose volume in mL, rounded to your syringe, the formulation recipe (vehicle components, stock, overage, multi-day courses), checks against good-practice and maximum dosing volumes per route (Diehl 2001, a conservative set, or your institution's limits), and a printable dosing sheet.
+
 ## About
 
 - [About labmate.tools](https://labmate.tools/about/): who makes it, where values come from and how they are checked.
