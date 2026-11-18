@@ -83,6 +83,7 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         <li><b>Cryo label sheets</b> take label sizes and grids from the makers' product pages. Margins aren't published, so they are estimated; the calibration page lines them up with your printer.</li>
         <li><b>Cytometer presets</b> (Panel Designer) are published default or core-facility configurations, each linked to its source sheet on the tool page. Measured spectra come from <a href="https://www.fpbase.org" rel="noopener">FPbase</a> (CC BY-SA 4.0); dye peaks from each maker's published tables. Spillover is an estimate — compensation always comes from single-stain controls.</li>
         <li><b>Protein standard series</b> follow the usual BCA, Micro BCA and Bradford kit inserts.</li>
+        <li><b>qPCR relative quantification</b> follows the efficiency-corrected, multi-reference method of Hellemans et al. 2007 (qbase), which reduces to Livak &amp; Schmittgen's 2<sup>−ΔΔCq</sup> when every efficiency is 100%; reference stability is geNorm M (Vandesompele et al. 2002) and the reporting points follow MIQE 2.0 (Bustin et al. 2025). The results were checked against an independent NumPy/SciPy implementation, and the same run written in each supported export layout gives identical numbers.</li>
         <li><b>Poster sizes and checks</b> use common conference print sizes and widely used guides for image resolution and printed text size.</li>
       </ul>
       <h2>How values are checked</h2>
