@@ -20,6 +20,10 @@
       kind: "Request",
       text: "Please add my qPCR instrument.\n\nInstrument and software version:\n\nExport menu I used:\n\nWhat went wrong (no columns found, wrong genes, …):\n\n(We'll reply by email to ask for an example export — sample names can be replaced with codes.)\n"
     },
+    limits: {
+      kind: "Request",
+      text: "Please add my institution's dosing volume limits as a preset.\n\nInstitution / guideline name and link:\n\nSpecies and routes covered:\n\nGood-practice and maximum volumes (mL/kg or mL/site):\n"
+    },
     tool: {
       kind: "Request",
       text: "The step that slows me down:\n\nHow I handle it today:\n\nHow often it comes up:\n"

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rodent Dosing Calculator &amp; Dosing Sheet (mg/kg) | labmate.tools</title>
+<meta name="description" content="Free mouse and rat dosing calculator. Paste a batch of body weights to get every animal's dose volume in mL, rounded to your syringe, the formulation recipe, and a check against maximum dosing volumes per route. Print the dosing sheet.">
+<link rel="canonical" href="https://labmate.tools/tools/dosing/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rodent Dosing Sheet — free, in your browser | labmate.tools">
+<meta property="og:description" content="Paste the batch's weights: dose volume per mouse or rat, the formulation recipe, maximum-volume checks by route, and a printable dosing sheet.">
+<meta property="og:url" content="https://labmate.tools/tools/dosing/">
+<meta property="og:image" content="https://labmate.tools/assets/og/dosing.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rodent Dosing Sheet — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rodent Dosing Sheet — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Paste the batch's weights: dose volume per mouse or rat, the formulation recipe, maximum-volume checks by route, and a printable dosing sheet.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/dosing.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/dosing/#app","name":"Rodent Dosing Sheet","url":"https://labmate.tools/tools/dosing/","description":"Free mouse and rat dosing calculator. Paste a batch of body weights to get every animal's dose volume in mL, rounded to your syringe, the formulation recipe, and a check against maximum dosing volumes per route. Print the dosing sheet.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Dose volume for every animal from its body weight (mg/kg or µg/kg)","Known working concentration, or a fixed mL/kg that gives the concentration to make","Volumes rounded to the syringe's graduations, with the dose error shown","Dose groups and vehicle controls","Formulation recipe with overage, stock solution and co-solvent vehicles (DMSO, PEG300, Tween-80, saline, corn oil)","Checks against good-practice and maximum dosing volumes for PO, IP, SC, IV and IM (Diehl 2001, or your institution's limits)","Printable dosing sheet with check boxes, CSV and a saved record"],"audience":{"@type":"Audience","audienceType":"Researchers and technicians dosing laboratory mice and rats"},"image":"https://labmate.tools/assets/og/dosing.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-18"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Animals","item":"https://labmate.tools/#animals"},{"@type":"ListItem","position":3,"name":"Rodent Dosing Sheet","item":"https://labmate.tools/tools/dosing/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/dosing/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate the injection volume for a mouse from a mg/kg dose?","acceptedAnswer":{"@type":"Answer","text":"Volume (mL) = dose (mg/kg) × body weight (kg) ÷ concentration (mg/mL). A 25 g mouse at 75 mg/kg from a 20 mg/mL solution: 75 × 0.025 ÷ 20 = 0.094 mL (94 µL)."}},{"@type":"Question","name":"What is the maximum injection volume for a mouse or rat?","acceptedAnswer":{"@type":"Answer","text":"Diehl et al. (2001) give good-practice volumes with possible maximums in brackets. Mouse: oral 10 (50) mL/kg, SC 10 (40), IP 20 (80), IV bolus 5, slow IV up to 25, IM 0.05 (0.1) mL per site. Rat: oral 10 (40), SC 5 (10), IP 10 (20), IV bolus 5, slow IV up to 20, IM 0.1 (0.2) mL per site. Your approved protocol and your institution's guidelines take precedence."}},{"@type":"Question","name":"My institution's limits are different. Can I use them?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose MY INSTITUTION under volume limits and type your own good-practice and maximum values per route. They are kept in your browser and printed on the dosing sheet."}},{"@type":"Question","name":"Why round the volume to the syringe?","acceptedAnswer":{"@type":"Answer","text":"You can only draw what the syringe shows. The tool rounds each volume to the nearest graduation and shows how much that changes the dose. If the change is over 5% or the volume is under two graduations, it suggests a finer syringe or a more dilute solution."}},{"@type":"Question","name":"How much solution should I prepare?","acceptedAnswer":{"@type":"Answer","text":"The sum of the rounded volumes for every animal, times the number of doses, plus overage (20% by default) and any dead volume per animal for the needle hub. For daily dosing, weigh the animals again each day and print a new sheet."}},{"@type":"Question","name":"How do I make 10% DMSO, 40% PEG300, 5% Tween-80, 45% saline?","acceptedAnswer":{"@type":"Answer","text":"For 1 mL: dissolve the drug in 100 µL DMSO (or use a DMSO stock), add 400 µL PEG300 and mix, add 50 µL Tween-80 and mix, then add 450 µL saline. If you use a DMSO stock, the stock counts toward the 10% DMSO."}},{"@type":"Question","name":"Does the calculator check solubility, stability or toxicity?","acceptedAnswer":{"@type":"Answer","text":"No. It does the arithmetic and checks volumes. Whether the compound dissolves, stays stable in the vehicle, or is safe at that dose has to come from the literature, the supplier and your approved protocol."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="dosing.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 9.1 DOSING SHEET</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#animals">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head ds-noprint">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 9.1</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <path d="M8 30 H64" stroke="#1B2224" stroke-width="1.4"/>
+        <rect x="14" y="22" width="40" height="16" fill="#FAF7EE" stroke="#1B2224" stroke-width="1.5"/>
+        <rect x="14" y="22" width="22" height="16" fill="#9CC7B6"/>
+        <rect x="14" y="22" width="40" height="16" fill="none" stroke="#1B2224" stroke-width="1.5"/>
+        <path d="M20 22 V27 M26 22 V27 M32 22 V27 M38 22 V27 M44 22 V27 M50 22 V27" stroke="#1B2224" stroke-width="1"/>
+        <path d="M54 30 H70" stroke="#1B2224" stroke-width="1.2"/>
+        <path d="M4 26 V34 M4 30 H14" stroke="#1B2224" stroke-width="1.6"/>
+        <path d="M86 44 C86 30 98 24 110 26 C120 27 128 34 128 42 C128 48 122 50 114 50 H92 C88 50 86 48 86 44 Z" fill="#FAF7EE" stroke="#1B2224" stroke-width="1.5"/>
+        <circle cx="96" cy="27" r="5" fill="#FAF7EE" stroke="#1B2224" stroke-width="1.4"/>
+        <circle cx="91" cy="39" r="1.6" fill="#1B2224"/>
+        <path d="M128 44 C134 46 136 52 132 58" fill="none" stroke="#1B2224" stroke-width="1.4"/>
+        <text x="80" y="16" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="12" fill="#1B2224">mg/kg</text>
+      </svg>
+    </figure>
+    <div>
+      <h1>Rodent Dosing Sheet</h1>
+      <p class="lm-lede">Paste the batch's body weights. Every mouse or rat gets its dose volume, rounded to your syringe; you get the formulation recipe for the whole batch, a check against good-practice and maximum volumes for the route, and a dosing sheet to print.</p>
+    </div>
+  </div>
+
+  <!-- 1 · animals -->
+  <h2 class="lm-bar ds-noprint"><span>1 · WEIGH</span> <small>SECTION 09 — ANIMALS · 9.1</small></h2>
+  <div class="lm-sheet ds-noprint">
+    <div class="pp-example" id="exampleNote" hidden>Showing an example: tamoxifen 75 mg/kg IP in corn oil, 5 days, two cages. Paste your own animals to replace it.</div>
+    <div class="ds-weigh">
+      <div>
+        <label class="presets-k" for="animals">ANIMALS — one per line: ID, cage, group, weight (g)</label>
+        <textarea id="animals" rows="10" spellcheck="false" autocomplete="off" placeholder="ID	Cage	Group	Weight (g)
+M1	C1	Drug	24.8
+M2	C1	Drug	26.1
+M3	C2	Vehicle	23.9
+…"></textarea>
+      </div>
+      <div class="ds-weigh-side">
+        <p class="cs-hint">Paste from Excel or your weighing log. With a header row, columns are found by name (<b>ID</b>, <b>Cage</b>, <b>Group</b>, <b>Weight</b>). Without one: the last numeric column is the weight, the first is the ID, and a second text column is the group. Tabs, commas or semicolons; <b>25,3</b> and <b>25.3 g</b> both work.</p>
+        <label class="ds-file btn"><input type="file" id="fileIn" accept=".csv,.tsv,.txt,text/csv,text/plain"> OPEN CSV</label>
+        <button type="button" class="lm-link" id="example">TRY THE EXAMPLE</button>
+        <div class="qp-msg" id="parseMsg" role="status"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 · dose -->
+  <h2 class="lm-bar ds-noprint"><span>2 · DOSE</span> <small>SPECIES · ROUTE · GROUPS</small></h2>
+  <div class="lm-sheet ds-noprint">
+    <div class="ds-opts">
+      <div class="dt-opt"><span class="presets-k" id="spLabel">SPECIES</span>
+        <div class="lm-seg" role="group" aria-labelledby="spLabel" id="spSeg"></div></div>
+      <label class="dt-opt"><span class="presets-k">ROUTE</span><select id="route" class="ds-sel"></select></label>
+      <div class="dt-opt"><span class="presets-k" id="modeLabel">I KNOW THE</span>
+        <div class="lm-seg" role="group" aria-labelledby="modeLabel" id="modeSeg"><button type="button" data-v="conc">CONCENTRATION</button><button type="button" data-v="vol">mL/kg TO GIVE</button></div></div>
+      <div class="dt-opt" id="volKgBox"><span class="presets-k"><label for="volKg">DOSE VOLUME</label></span>
+        <span class="ds-unit-in"><input type="text" class="pp-in" id="volKg" inputmode="decimal"> mL/kg</span></div>
+    </div>
+
+    <div class="ds-groups">
+      <div class="presets-k">GROUPS <span class="dt-count" id="groupCount"></span></div>
+      <div class="mm-wrap">
+        <table class="pp-table ds-gtable">
+          <thead><tr><th>GROUP</th><th class="n">ANIMALS</th><th class="n">DOSE <select id="doseUnit" class="ds-mini-sel" aria-label="Dose unit"><option value="mgkg">mg/kg</option><option value="ugkg">µg/kg</option></select></th><th class="n" id="concHead">CONC. mg/mL</th><th class="n">mL/kg</th></tr></thead>
+          <tbody id="groupRows"></tbody>
+        </table>
+      </div>
+      <p class="cs-hint pp-hint" id="groupHint">Groups come from the Group column. A dose of <b>0</b> is a vehicle group: it gets the same mL/kg as the dosed groups.</p>
+    </div>
+
+    <div class="ds-opts ds-opts-2">
+      <div class="dt-opt"><label class="presets-k" for="syringe">SYRINGE (rounds to its graduations)</label>
+        <select id="syringe" class="ds-sel"></select></div>
+      <div class="dt-opt" id="synCustom"><span class="presets-k">GRADUATION · CAPACITY</span>
+        <span class="ds-unit-in"><input type="text" class="pp-in" id="step" inputmode="decimal" aria-label="Graduation in mL"> mL · <input type="text" class="pp-in" id="cap" inputmode="decimal" aria-label="Capacity in mL"> mL</span></div>
+      <div class="dt-opt"><span class="presets-k" id="limLabel">VOLUME LIMITS</span>
+        <div class="lm-seg" role="group" aria-labelledby="limLabel" id="limSeg"></div></div>
+    </div>
+    <details class="pp-paste ds-limits" id="limBox">
+      <summary><span class="presets-k">LIMITS IN USE</span> <span id="limSay"></span></summary>
+      <div class="ds-limits-body">
+        <div class="mm-wrap">
+          <table class="pp-table ds-ltable">
+            <thead><tr><th>ROUTE</th><th class="n">GOOD PRACTICE</th><th class="n">MAXIMUM</th><th>UNIT</th></tr></thead>
+            <tbody id="limRows"></tbody>
+          </table>
+        </div>
+        <p class="cs-hint" id="limNote"></p>
+        <p class="cs-hint">Want your institution's table built in? <a href="../../contact/?topic=dosing&amp;about=limits">Send it to us</a> with a link to the guideline.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- 3 · prepare -->
+  <h2 class="lm-bar ds-noprint"><span>3 · PREPARE</span> <small>VEHICLE · STOCK · OVERAGE</small></h2>
+  <div class="lm-sheet ds-noprint">
+    <div class="ds-prep">
+      <div>
+        <label class="presets-k" for="vehicle">VEHICLE (v/v)</label>
+        <select id="vehicle" class="ds-sel"></select>
+        <div class="mm-wrap ds-vwrap">
+          <table class="pp-table ds-vtable">
+            <thead><tr><th>COMPONENT, IN ORDER OF ADDITION</th><th class="n">%</th><th class="x"><span class="sr">Remove</span></th></tr></thead>
+            <tbody id="vehRows"></tbody>
+          </table>
+        </div>
+        <div class="ds-vfoot"><button type="button" class="lm-link" id="vehAdd">+ COMPONENT</button><span class="ds-sum" id="vehSum"></span></div>
+        <label class="qp-check ds-stock-on"><input type="checkbox" id="stockOn"> Dilute from a stock solution</label>
+        <div class="ds-stock" id="stockBox">
+          <label><span class="presets-k">STOCK CONC.</span><span class="ds-unit-in"><input type="text" class="pp-in" id="stockConc" inputmode="decimal"> mg/mL</span></label>
+          <label><span class="presets-k">STOCK IS IN</span><select id="stockSolv" class="ds-sel"></select></label>
+        </div>
+      </div>
+      <div class="ds-prep-grid">
+        <label><span class="presets-k">DAYS</span><input type="text" class="pp-in" id="days" inputmode="numeric"></label>
+        <label><span class="presets-k">DOSES PER DAY</span><input type="text" class="pp-in" id="perDay" inputmode="numeric"></label>
+        <label><span class="presets-k">OVERAGE</span><span class="ds-unit-in"><input type="text" class="pp-in" id="overage" inputmode="decimal"> %</span></label>
+        <label><span class="presets-k">DEAD VOLUME / ANIMAL</span><span class="ds-unit-in"><input type="text" class="pp-in" id="dead" inputmode="decimal"> mL</span></label>
+        <label><span class="presets-k">SALT FACTOR</span><input type="text" class="pp-in" id="salt" inputmode="decimal"></label>
+        <label><span class="presets-k">PURITY</span><span class="ds-unit-in"><input type="text" class="pp-in" id="purity" inputmode="decimal"> %</span></label>
+        <p class="cs-hint">Salt factor = MW of the salt ÷ MW of the free base, when the dose is stated as free base (1 otherwise). Dead volume covers what stays in the needle hub — 0 if you draw each dose separately from a vial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 · check -->
+  <h2 class="lm-bar"><span>4 · CHECK</span> <small id="sumLine"></small></h2>
+  <div class="lm-sheet">
+    <ul class="dt-work-flags" id="warnings"></ul>
+    <div class="mm-wrap ds-noprint">
+      <table class="pp-table ds-rtable">
+        <thead><tr><th>ID</th><th class="ds-o">CAGE</th><th class="ds-o">GROUP</th><th class="n">WEIGHT g</th><th class="n ds-o">DOSE mg</th><th class="n ds-o">EXACT mL</th><th class="n">GIVE mL</th><th class="n ds-o">mL/kg</th><th>CHECK</th></tr></thead>
+        <tbody id="resRows"></tbody>
+      </table>
+    </div>
+    <div class="ds-preps" id="preps"></div>
+    <div class="dt-work ds-noprint" id="work"></div>
+    <div class="ans-actions dt-actions ds-noprint">
+      <button type="button" class="btn" id="copy">COPY TABLE</button>
+      <button type="button" class="lm-link" id="csv">CSV</button>
+      <button type="button" class="lm-link" id="json" title="Animals, settings and volumes in one file you can open here again">SAVE RECORD (.json)</button>
+      <label class="lm-link ds-open"><input type="file" id="jsonIn" accept=".json,application/json"> OPEN RECORD</label>
+      <span class="btn-copied" id="copied" role="status"></span>
+    </div>
+  </div>
+
+  <!-- 5 · print -->
+  <h2 class="lm-bar ds-noprint"><span>5 · PRINT</span> <small>THE DOSING SHEET</small></h2>
+  <div class="lm-sheet ds-noprint">
+    <div class="ds-rec">
+      <label><span class="presets-k">STUDY</span><input type="text" class="pp-in ds-txt" id="fStudy"></label>
+      <label><span class="presets-k">PROTOCOL NO.</span><input type="text" class="pp-in ds-txt" id="fProto"></label>
+      <label><span class="presets-k">COMPOUND · LOT</span><input type="text" class="pp-in ds-txt" id="fDrug"></label>
+      <label><span class="presets-k">DATE</span><input type="text" class="pp-in ds-txt" id="fDate"></label>
+      <label><span class="presets-k">OPERATOR</span><input type="text" class="pp-in ds-txt" id="fOp"></label>
+    </div>
+    <div class="ans-actions">
+      <button type="button" class="btn" id="print">PRINT DOSING SHEET</button>
+      <label class="qp-check"><input type="checkbox" id="pageEach"> new page for each group</label>
+    </div>
+    <p class="cs-hint pp-hint">The sheet has the animals with their volumes in large type, check boxes (one per day for a multi-day course), time and initials columns, the preparation recipe and sign-off lines. Animals with a flag are marked ⚠. Your approved protocol's doses and volumes take precedence over this tool.</p>
+  </div>
+
+  <div id="sheet" class="ds-sheet" aria-hidden="true"></div>
+
+  <section class="lm-about ds-noprint">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Weigh the animals and paste the list: ID, cage, group and weight in grams. One group is fine — leave the Group column out.</li>
+          <li>Pick the species and route. Under <b>I KNOW THE</b>, choose <b>CONCENTRATION</b> if your solution is already made (or the concentration is fixed), or <b>mL/kg TO GIVE</b> if you dose at a fixed volume such as 10 mL/kg and need the concentration to make.</li>
+          <li>Type each group's dose. A dose of 0 makes a vehicle group.</li>
+          <li>Pick the syringe you will use. Volumes are rounded to its graduations, and the change in dose is shown.</li>
+          <li>Set the vehicle, days and overage to get the recipe: how much drug to weigh (or stock to take) and each vehicle component, in order.</li>
+          <li>Fix anything marked in <b>CHECK</b>, fill in the study details and print the sheet.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">V = D × W ÷ C</span>
+          <table>
+            <tr><td>V</td><td>volume to give (mL)</td></tr>
+            <tr><td>D</td><td>dose (mg/kg)</td></tr>
+            <tr><td>W</td><td>body weight (kg) = grams ÷ 1000</td></tr>
+            <tr><td>C</td><td>working concentration (mg/mL)</td></tr>
+          </table>
+          <p>Fixed dose volume v (mL/kg): C = D ÷ v and V = v × W. Every animal in a group gets the same mL/kg = D ÷ C.</p>
+          <p>To prepare: (sum of rounded volumes + dead volume × animals) × doses × (1 + overage). Drug to weigh = C × that volume × salt factor ÷ purity.</p>
+        </div>
+        <p class="example"><b>Example.</b> A 25.0 g mouse, tamoxifen 75 mg/kg IP from 20 mg/mL in corn oil: 75 × 0.025 = 1.875 mg, ÷ 20 = 0.094 mL (3.75 mL/kg, well under the 20 mL/kg good-practice IP volume). On a 1 mL syringe that is 0.09 mL, 4.0% under the dose; on a 0.3 mL insulin syringe, 0.095 mL, 1.3% over.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. Nothing you type leaves your browser. Settings (not the animals) are remembered on this device.</li>
+          <li>Weigh again on each dosing day and print a fresh sheet; the recipe for a multi-day course uses today's weights plus the overage.</li>
+          <li>The tool does not judge solubility, stability, pH, osmolality or toxicity.</li>
+          <li>A calculator, not a protocol: your IACUC-approved doses and volumes come first.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref ds-noprint" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · DOSING VOLUMES</div>
+  <h2>Good-practice volumes (and possible maximum) by route</h2>
+  <p>From Diehl et al. (2001), the table most IACUC guidelines reproduce. mL/kg except IM, which is mL per site. The volume columns are for a 25 g mouse and a 250 g rat. Diehl's notes: no more than 2 IM sites and 2–3 SC sites per day; the left-hand figures are meant for single or repeated dosing.</p>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Route</th><th scope="col">Mouse</th><th scope="col">25 g mouse</th><th scope="col">Rat</th><th scope="col">250 g rat</th></tr></thead><tbody>
+    <tr><th scope="row">Oral (gavage)</th><td>10 (50)</td><td>0.25 mL (1.25)</td><td>10 (40)</td><td>2.5 mL (10)</td></tr>
+    <tr><th scope="row">Subcutaneous</th><td>10 (40)</td><td>0.25 mL (1.0)</td><td>5 (10)</td><td>1.25 mL (2.5)</td></tr>
+    <tr><th scope="row">Intraperitoneal</th><td>20 (80)</td><td>0.5 mL (2.0)</td><td>10 (20)</td><td>2.5 mL (5)</td></tr>
+    <tr><th scope="row">IV bolus</th><td>5</td><td>0.125 mL</td><td>5</td><td>1.25 mL</td></tr>
+    <tr><th scope="row">IV slow injection</th><td>(25)</td><td>(0.625 mL)</td><td>(20)</td><td>(5 mL)</td></tr>
+    <tr><th scope="row">Intramuscular</th><td>0.05 (0.1) mL/site</td><td>0.05 mL (0.1)</td><td>0.1 (0.2) mL/site</td><td>0.1 mL (0.2)</td></tr>
+  </tbody></table></div>
+  <p>Institutions differ. The ULAM-based tables used by <a href="https://research.wayne.edu/iacuc/administrationofsubstances" rel="noopener">Wayne State</a> and WVU give an oral maximum of 20 mL/kg for both species and 20 mL/kg SC for rats; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3189662/" rel="noopener">Turner et al. (2011)</a> suggest an optimal 5 mL/kg for gavage, at most 10 mL/kg IP and 5 mL/kg per SC site. <b>CONSERVATIVE</b> on this page takes the lower of Diehl and the ULAM tables in every cell; <b>MY INSTITUTION</b> lets you type your own.</p>
+  <h2>Common vehicles</h2>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Vehicle</th><th scope="col">Used for</th><th scope="col">Order of addition</th></tr></thead><tbody>
+    <tr><th scope="row">Saline or PBS</th><td>Water-soluble compounds, any route</td><td>Dissolve, filter if IV</td></tr>
+    <tr><th scope="row">Corn oil</th><td>Tamoxifen, lipophilic compounds; PO, IP, SC (never IV)</td><td>Dissolve with shaking at 37 °C, protect from light</td></tr>
+    <tr><th scope="row">0.5% CMC-Na</th><td>Suspensions for oral gavage</td><td>Wet the powder, add CMC gradually, vortex before each dose</td></tr>
+    <tr><th scope="row">10% DMSO + 40% PEG300 + 5% Tween-80 + 45% saline</th><td>Poorly soluble small molecules; PO, IP</td><td>DMSO (with drug) → PEG300 → Tween-80 → saline, mixing to clear after each</td></tr>
+    <tr><th scope="row">10% DMSO + 90% corn oil</th><td>Lipophilic small molecules; PO, IP, SC</td><td>DMSO (with drug) → corn oil</td></tr>
+    <tr><th scope="row">10% DMSO + 90% (20% SBE-β-CD in saline)</th><td>Poorly soluble compounds; IP, IV</td><td>DMSO (with drug) → cyclodextrin solution</td></tr>
+  </tbody></table></div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-18">18 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more ds-noprint" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq" id="faq">
+      <div class="lm-more-k">QUESTIONS · RODENT DOSING SHEET</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate the injection volume for a mouse from a mg/kg dose?</summary><p>Volume (mL) = dose (mg/kg) × body weight (kg) ÷ concentration (mg/mL). A 25 g mouse at 75 mg/kg from a 20 mg/mL solution: 75 × 0.025 ÷ 20 = 0.094 mL (94 µL).</p></details>
+      <details><summary>What is the maximum injection volume for a mouse or rat?</summary><p>Diehl et al. (2001) give good-practice volumes with possible maximums in brackets. Mouse: oral 10 (50) mL/kg, SC 10 (40), IP 20 (80), IV bolus 5, slow IV up to 25, IM 0.05 (0.1) mL per site. Rat: oral 10 (40), SC 5 (10), IP 10 (20), IV bolus 5, slow IV up to 20, IM 0.1 (0.2) mL per site. Your approved protocol and your institution's guidelines take precedence.</p></details>
+      <details><summary>My institution's limits are different. Can I use them?</summary><p>Yes. Choose MY INSTITUTION under volume limits and type your own good-practice and maximum values per route. They are kept in your browser and printed on the dosing sheet.</p></details>
+      <details><summary>Why round the volume to the syringe?</summary><p>You can only draw what the syringe shows. The tool rounds each volume to the nearest graduation and shows how much that changes the dose. If the change is over 5% or the volume is under two graduations, it suggests a finer syringe or a more dilute solution.</p></details>
+      <details><summary>How much solution should I prepare?</summary><p>The sum of the rounded volumes for every animal, times the number of doses, plus overage (20% by default) and any dead volume per animal for the needle hub. For daily dosing, weigh the animals again each day and print a new sheet.</p></details>
+      <details><summary>How do I make 10% DMSO, 40% PEG300, 5% Tween-80, 45% saline?</summary><p>For 1 mL: dissolve the drug in 100 µL DMSO (or use a DMSO stock), add 400 µL PEG300 and mix, add 50 µL Tween-80 and mix, then add 450 µL saline. If you use a DMSO stock, the stock counts toward the 10% DMSO.</p></details>
+      <details><summary>Does the calculator check solubility, stability or toxicity?</summary><p>No. It does the arithmetic and checks volumes. Whether the compound dissolves, stays stable in the vehicle, or is safe at that dose has to come from the literature, the supplier and your approved protocol.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../molarity/"><span class="n">2.3</span><span class="t">Molarity Calculator</span><span class="d">How many grams to weigh, and mg/mL ↔ µM with the molecular weight.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">C₁V₁ = C₂V₂ for a stock into a working solution, ready to pipette.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution Calculator</span><span class="d">Plan a 2-fold, 10-fold or any-fold series, tube by tube, ready to print.</span></a></li>
+        <li><a href="../cryo-labels/"><span class="n">4.1</span><span class="t">Cryo Labels</span><span class="d">Print labels for tubes and vials, sized for common label sheets.</span></a></li>
+      </ul>
+      <a class="all" href="../../#animals">ALL 17 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=dosing">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in ds-noprint">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../molarity/">MOLARITY</a> · <a href="../../contact/?topic=dosing">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 9.1</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="dosing-core.js?v=1"></script>
+<script src="dosing.js?v=1"></script>
+</body>
+</html>
