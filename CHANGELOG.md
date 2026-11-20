@@ -2,6 +2,22 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-20
+
+New tool: **Cloning Reaction Calculator (2.6)** in SECTION 02 — CALCULATORS.
+
+### Cloning Reaction Calculator (2.6) — new
+- One fragment table for three systems: ligation with T4 DNA ligase, Gibson and NEBuilder HiFi assembly, and Golden Gate with BsaI-HFv2 or BsmBI-v2. Switching keeps your fragments and changes only the rules and the mix.
+- Per fragment: length in bp and a concentration in ng/µL or nM give pmol/µL, nM and the µL to take, with the pmol and ng that volume really delivers and the molar ratio it really gives after rounding to your pipette (0.1, 0.25 or 0.5 µL).
+- Ratios start at what the protocol asks for and can be typed over: a 2-fold excess of each insert for 2–3 fragments by NEBuilder HiFi, 1:1 for 4–6, 5-fold for an insert under 200 bp, 2:1 insert:vector for Golden Gate, 1:3 for a ligation (1:10 at 100 bp or less).
+- Set the amount by the vector in ng, the way protocols are written, or by the total pmol you want in the tube.
+- Checks with the number that fixes them: the fragments will not fit in the reaction (run it in 25 or 50 µL, scale the DNA down if the lower total stays in range, or concentrate the fragment that takes the most room — one tap applies it), a volume under 0.5 µL (the dilution that makes it 1 µL), unpurified PCR product over 20% of the reaction, total DNA outside the vendor's range, vector outside 50–100 ng, a short insert below the 5-fold excess, a ratio rule that changed at 4 fragments, rounding over 10%, and a concentration that looks like the wrong unit.
+- Master mix, buffer, enzyme and water are worked out from the reaction volume, with the incubation for the system and fragment count printed beside it. Scale to any number of reactions with overage.
+- WORKING panel shows the arithmetic for any fragment. COPY RECIPE and PRINT SHEET (components, per-reaction and master-mix volumes, check boxes, the fragment table, incubation, checks and sign-off lines).
+- On a phone each fragment becomes a card, so TAKE µL is never off-screen.
+- Tested: every pmol/µL, volume, rounded amount, molar ratio, water volume and total matched an independent Python implementation on five test sets (two-fragment HiFi, five-fragment HiFi by total pmol, a ligation with a short insert, a nine-insert Golden Gate and an nM-input Gibson in 25 µL at 0.5 µL steps), 0 mismatches; fix buttons, paste, printing and the example were checked in a headless browser, no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+- Reference section: total DNA and molar ratio by system with the vendor sources, and an ng-per-pmol table by fragment length. Contact topic "2.6 Cloning Reaction".
+
 ## 2026-11-18
 
 New tools: **qPCR Relative Quantification (2.5)** in SECTION 02 — CALCULATORS, and **Rodent Dosing Sheet (9.1)** in a new SECTION 09 — ANIMALS.
