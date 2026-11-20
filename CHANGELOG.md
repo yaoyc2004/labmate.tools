@@ -6,6 +6,12 @@ Newest first. One entry per working day; each line says what changed for someone
 
 New tool: **Cloning Reaction Calculator (2.6)** in SECTION 02 — CALCULATORS.
 
+### Panel Designer (7.1) — SUGGEST explains its picks
+- Two suggested dyes that need the same detector (conventional) or have near-identical signatures (spectral), such as BV421 and Alexa Fluor 405, are now labelled "either this or …, not both". The list says it holds alternatives for one row; dyes already in the panel were, and still are, kept off a detector they would share.
+- Each suggestion shows the brightness it was scored with, or "brightness unknown". The note under the list says how many of the four have a known brightness, and that only 9 of the 199 built-in dyes have one so far, so EXPRESSION can move only those.
+- On a row marked CHECK, your own DYE 1–5 rating for the dye already on it is now used when that dye is scored again, the same way the CHECK column uses it.
+- Rankings are otherwise unchanged. Tested: 13 headless-browser regression tests (same-row and cross-row BV421 / Alexa Fluor 405 on the Attune NxT and Cytek Aurora, expression with known and unknown brightness, your own rating, share-link restore), no JS errors, no horizontal scroll at 1440 / 390 px.
+
 ### Cloning Reaction Calculator (2.6) — new
 - One fragment table for three systems: ligation with T4 DNA ligase, Gibson and NEBuilder HiFi assembly, and Golden Gate with BsaI-HFv2 or BsmBI-v2. Switching keeps your fragments and changes only the rules and the mix.
 - Per fragment: length in bp and a concentration in ng/µL or nM give pmol/µL, nM and the µL to take, with the pmol and ng that volume really delivers and the molar ratio it really gives after rounding to your pipette (0.1, 0.25 or 0.5 µL).
