@@ -6,6 +6,13 @@ Newest first. One entry per working day; each line says what changed for someone
 
 New tool: **Cloning Reaction Calculator (2.6)** in SECTION 02 — CALCULATORS.
 
+### Panel Designer (7.1) — SUGGEST explains its picks
+- Two suggested dyes that need the same detector (conventional) or have near-identical signatures (spectral), such as BV421 and Alexa Fluor 405, are now labelled "either this or …, not both". The list says it holds alternatives for one row; dyes already in the panel were, and still are, kept off a detector they would share.
+- Brightness values from the BioLegend Fluorophore Brightness Index (1–5) added for 18 more dyes: BV421, BV510, BV570, BV605, BV650, BV711, BV750, FITC, Alexa Fluor 488, PerCP, PerCP-Cy5.5, PE-Cy5, PE-Cy7, APC, Alexa Fluor 647, Alexa Fluor 700, APC-Cy7 and APC-Fire 810 — 27 of the 199 built-in dyes now have one, including every antibody dye in the sample panel. EXPRESSION now changes the suggestions for most common panels (on the sample Attune NxT panel, LOW brings in BV605 and drops PerCP).
+- Each suggestion shows the brightness it was scored with and whose rating it is (e.g. "4/5, BioLegend"), or "brightness unknown". The page now says plainly that brightness is each vendor's relative rating for its own conjugates, not one absolute scale across vendors (DYE 1–5 header, the hover on each value, the note under SUGGEST and a new FAQ). Pick a number in DYE 1–5 to use your own.
+- On a row marked CHECK, your own DYE 1–5 rating for the dye already on it is now used when that dye is scored again, the same way the CHECK column uses it.
+- Rankings are otherwise unchanged. Tested: 14 headless-browser regression tests (same-row and cross-row BV421 / Alexa Fluor 405 on the Attune NxT and Cytek Aurora, expression with known and unknown brightness, your own rating, share-link restore), no JS errors, no horizontal scroll at 1440 / 390 px.
+
 ### Cloning Reaction Calculator (2.6) — new
 - One fragment table for three systems: ligation with T4 DNA ligase, Gibson and NEBuilder HiFi assembly, and Golden Gate with BsaI-HFv2 or BsmBI-v2. Switching keeps your fragments and changes only the rules and the mix.
 - Per fragment: length in bp and a concentration in ng/µL or nM give pmol/µL, nM and the µL to take, with the pmol and ng that volume really delivers and the molar ratio it really gives after rounding to your pipette (0.1, 0.25 or 0.5 µL).

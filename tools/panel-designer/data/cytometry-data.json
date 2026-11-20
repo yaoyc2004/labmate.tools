@@ -2188,7 +2188,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv421"
+   "id": "bv421",
+   "brightness": 5,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "Super Bright 436",
@@ -2437,7 +2439,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv510"
+   "id": "bv510",
+   "brightness": 2,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "StarBright Violet 515",
@@ -2546,7 +2550,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv570"
+   "id": "bv570",
+   "brightness": 2,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "LIVE/DEAD Fixable Yellow",
@@ -2577,7 +2583,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv605"
+   "id": "bv605",
+   "brightness": 4,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "StarBright Violet 610",
@@ -2620,7 +2628,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv650"
+   "id": "bv650",
+   "brightness": 4,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "StarBright Violet 670",
@@ -2663,7 +2673,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv711"
+   "id": "bv711",
+   "brightness": 5,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "StarBright Violet 710",
@@ -2706,7 +2718,9 @@
    "family": "Brilliant Violet",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "bv750"
+   "id": "bv750",
+   "brightness": 3,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "StarBright Violet 760",
@@ -2857,7 +2871,9 @@
    "family": "Alexa Fluor",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "alexa-fluor-488"
+   "id": "alexa-fluor-488",
+   "brightness": 3,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "CellTrace CFSE",
@@ -2878,7 +2894,9 @@
    "family": "small dye",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "fitc"
+   "id": "fitc",
+   "brightness": 3,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor B520",
@@ -3100,7 +3118,9 @@
    "family": "protein",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "percp"
+   "id": "percp",
+   "brightness": 1,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor B675",
@@ -3121,7 +3141,9 @@
    "family": "tandem",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "percp-cy5-5"
+   "id": "percp-cy5-5",
+   "brightness": 2,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "PerCP-Vio700",
@@ -3571,7 +3593,9 @@
    ],
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "pe-cy5"
+   "id": "pe-cy5",
+   "brightness": 5,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "NovaFluor Yellow 690",
@@ -3682,7 +3706,9 @@
    ],
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "pe-cy7"
+   "id": "pe-cy7",
+   "brightness": 4,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor BYG781",
@@ -3761,7 +3787,9 @@
    "family": "protein",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "apc"
+   "id": "apc",
+   "brightness": 4,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "CellTrace Far Red",
@@ -3804,7 +3832,9 @@
    "family": "Alexa Fluor",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "alexa-fluor-647"
+   "id": "alexa-fluor-647",
+   "brightness": 4,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "Spark NIR 685",
@@ -3914,7 +3944,9 @@
    "family": "Alexa Fluor",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "alexa-fluor-700"
+   "id": "alexa-fluor-700",
+   "brightness": 2,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor R720",
@@ -4023,7 +4055,9 @@
    "family": "tandem",
    "status": "source",
    "src": "BD Lasers and Dyes",
-   "id": "apc-cy7"
+   "id": "apc-cy7",
+   "brightness": 2,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor R780",
@@ -4087,7 +4121,9 @@
    "family": "BioLegend Fire",
    "status": "source",
    "src": "BioLegend Fluorophore Families",
-   "id": "apc-fire-810"
+   "id": "apc-fire-810",
+   "brightness": 3,
+   "brightnessSrc": "BioLegend brightness index (1–5)"
   },
   {
    "name": "cFluor R840",

@@ -226,7 +226,7 @@
     sigs.forEach(function (v, k) { if (exL[dets[k].laser] >= 0.75 * exMaxL && (bi < 0 || v > sigs[bi])) bi = k; });
     return bi < 0 ? 0 : bi;
   }
-  function suggest(i, m) {
+  function suggest(i, m, limit) {
     var I = m.inst, dets = m.dets, row = state.rows[i];
     var others = m.act.filter(function (o) { return o.idx !== i; });
     var used = {}, usedDet = {};
@@ -271,19 +271,39 @@
         why.push('peak ' + d.id);
         if (worstWho) why.push('max similarity ' + worst.toFixed(2) + ' (' + (worstWho.r.marker || worstWho.f.name) + ')');
       }
-      var b = f.brightness || null;
+      // the row's own DYE 1–5 rating wins for the dye already on it, as it does in the CHECK column
+      var ownB = f.id === row.fluorId && row.bright != null && row.bright !== '';
+      var b = ownB ? +row.bright : (f.brightness || null);
       if (b != null) {
-        if (er === 1 && b <= 2) cost += 25;
-        if (er === 1 && b >= 4) { cost -= 6; why.push('bright dye for a dim marker'); }
+        // ratings are each vendor's own relative scale, so always say whose number it is
+        var bWho = ownB ? 'your rating' : brightWho(f);
+        if (er === 1 && b <= 2) { cost += 25; why.push('dim dye (' + b + '/5, ' + bWho + ') for a dim marker'); }
+        if (er === 1 && b >= 4) { cost -= 6; why.push('bright dye (' + b + '/5, ' + bWho + ') for a dim marker'); }
         if (er === 3 && b >= 5) cost += 4;                             // keep the brightest for dim markers
-      }
+        if (er && !(er === 1 && (b <= 2 || b >= 4))) why.push('brightness ' + b + '/5 (' + bWho + ')');
+      } else if (er) why.push('brightness unknown');
       var eff = sigs[bi] / sp.total;
       cost += 12 * Math.max(0, 0.5 - eff);
       if (sp.approx) { cost += 6; why.push('≈ modelled spectrum'); }
-      out.push({ f: f, cost: cost, why: why });
+      out.push({ f: f, cost: cost, why: why, det: d, sigs: sigs, b: b });
     });
     out.sort(function (a, b) { return a.cost - b.cost; });
-    return out.slice(0, 4);
+    out = out.slice(0, limit || 4);
+    // These are alternatives for one row. Say so when two of them need the same detector
+    // (conventional) or have near-identical signatures (spectral), e.g. BV421 and Alexa Fluor 405.
+    out.forEach(function (x, k) {
+      for (var j = 0; j < k; j++) {
+        var y = out[j], same;
+        if (!m.spectral) same = x.det.key === y.det.key;
+        else {
+          var dot = 0, nx = 0, ny = 0;
+          for (var q = 0; q < x.sigs.length; q++) { dot += x.sigs[q] * y.sigs[q]; nx += x.sigs[q] * x.sigs[q]; ny += y.sigs[q] * y.sigs[q]; }
+          same = dot / (Math.sqrt(nx * ny) || 1) >= 0.92;
+        }
+        if (same) { x.altOf = y; x.why.push('either this or ' + y.f.name + (m.spectral ? ' (near-identical signature)' : ' (same ' + x.det.id + ')') + ', not both'); break; }
+      }
+    });
+    return out;
   }
   function suggestRow(m, i) {
     var list = suggest(i, m);
@@ -291,7 +311,13 @@
       return '<button type="button" class="sg-pick" data-act="sgUse" data-fid="' + esc(x.f.id) + '"><span class="sw" style="background:' + waveColor(x.f.emMax || defaultEx(x.f.laser) + 30) + '"></span><b>' + esc(x.f.name) + '</b><small>' + esc(x.why.join(' · ')) + '</small></button>';
     }).join('') : '<span class="muted">No dye left that fits this instrument without clashing — free a detector, or add your own dye.</span>';
     return '<tr class="sg-row" data-i="' + i + '"><td></td><td colspan="8"><div class="sg"><span class="sg-k">SUGGESTED FOR ' + esc((state.rows[i].marker || 'ROW ' + (i + 1)).toUpperCase()) + '</span>' + body +
-      '<button type="button" class="sg-x" data-act="sgClose" aria-label="Close suggestions">CLOSE</button></div><p class="sg-note">Ranked by detector, spillover' + (m.spectral ? ' / similarity' : '') + ' and brightness against the panel as it is now — a starting point, not a verdict.</p></td></tr>';
+      '<button type="button" class="sg-x" data-act="sgClose" aria-label="Close suggestions">CLOSE</button></div><p class="sg-note">Alternatives for this one row — pick one. Ranked by detector, spillover' + (m.spectral ? ' / similarity' : '') + ' and brightness against the panel as it is now — a starting point, not a verdict.' + sgBrightNote(list, state.rows[i]) + '</p></td></tr>';
+  }
+  function sgBrightNote(list, row) {
+    if (!list.length) return '';
+    var known = list.filter(function (x) { return x.b != null; }).length;
+    if (!exprRank(row.expr)) return ' Set EXPRESSION to weigh dye brightness.';
+    return ' Brightness is each vendor\'s relative rating for its own conjugates, not one absolute scale across vendors.' + (known === list.length ? '' : ' It is known for ' + known + ' of these ' + list.length + '. A dye with unknown brightness is neither helped nor held back by EXPRESSION (only ' + DATA.fluors.filter(function (f) { return f.brightness; }).length + ' of the ' + DATA.fluors.length + ' built-in dyes have a brightness value so far).');;
   }
 
   /* ---------- analysis ---------- */
@@ -358,6 +384,7 @@
   }
 
   function exprRank(e) { return { high: 3, med: 2, low: 1 }[e] || 0; }
+  function brightWho(f) { return f.origin === 'user' ? 'your rating' : String(f.brightnessSrc || 'vendor').split(' ')[0]; }
   function brightOf(o) { return o.r.bright != null ? +o.r.bright : (o.f && o.f.brightness ? o.f.brightness : null); }
 
   function checks(m) {
@@ -469,7 +496,7 @@
       var hasCheck = o.checks.some(function (c) { return c[0] === 'check'; });
       if (!f || hasCheck) fb += ' <button type="button" class="sg-btn" data-act="sg" aria-expanded="' + (suggestFor === r.id) + '" aria-label="Suggest a dye for row ' + (i + 1) + '">SUGGEST</button>';
       var bv = r.bright != null ? String(r.bright) : (f && f.brightness ? String(f.brightness) : '');
-      var bSel = '<select data-k="bright" aria-label="Dye brightness, row ' + (i + 1) + '"' + (f && f.brightness && r.bright == null ? ' title="From ' + esc(f.brightnessSrc || 'vendor') + '"' : '') + '><option value="">—</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option value="' + n + '"' + (bv === String(n) ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>';
+      var bSel = '<select data-k="bright" aria-label="Dye brightness, row ' + (i + 1) + '"' + (f && f.brightness && r.bright == null ? ' title="From ' + esc(f.brightnessSrc || 'vendor') + ' — that vendor\'s relative rating, not an absolute or cross-vendor scale. Pick a number to use your own."' : '') + '><option value="">—</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option value="' + n + '"' + (bv === String(n) ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>';
       var det = '';
       if (f && o.det) {
         if (m.spectral) det = '<span class="mono" style="font-size:12px">' + esc(o.det.id) + '</span>';
@@ -1181,4 +1208,10 @@
   $('factCounts').textContent = DATA.instruments.length + ' PRESETS · ' + DATA.fluors.length + ' FLUORS';
   save();
   renderAll();
+
+  // Test hook: tests set window.LMT_PD_TEST = {} before this script loads to reach the scoring code.
+  if (window.LMT_PD_TEST) window.LMT_PD_TEST.api = {
+    state: function () { return state; }, analyse: analyse, suggest: suggest, fluor: function (id) { return fluorById[id]; },
+    setPanel: function (instId, rows) { state.instId = instId; state.rows = rows.map(function (r) { var o = newRow(r[0], r[1], r[2]); if (r[3] != null) o.bright = r[3]; return o; }); rebuildRegistry(); return analyse(); }
+  };
 })();
