@@ -275,10 +275,12 @@
       var ownB = f.id === row.fluorId && row.bright != null && row.bright !== '';
       var b = ownB ? +row.bright : (f.brightness || null);
       if (b != null) {
-        if (er === 1 && b <= 2) { cost += 25; why.push('dim dye (' + b + '/5) for a dim marker'); }
-        if (er === 1 && b >= 4) { cost -= 6; why.push('bright dye (' + b + '/5) for a dim marker'); }
+        // ratings are each vendor's own relative scale, so always say whose number it is
+        var bWho = ownB ? 'your rating' : brightWho(f);
+        if (er === 1 && b <= 2) { cost += 25; why.push('dim dye (' + b + '/5, ' + bWho + ') for a dim marker'); }
+        if (er === 1 && b >= 4) { cost -= 6; why.push('bright dye (' + b + '/5, ' + bWho + ') for a dim marker'); }
         if (er === 3 && b >= 5) cost += 4;                             // keep the brightest for dim markers
-        if (er && !(er === 1 && (b <= 2 || b >= 4))) why.push('brightness ' + b + '/5' + (ownB ? ' (your rating)' : ''));
+        if (er && !(er === 1 && (b <= 2 || b >= 4))) why.push('brightness ' + b + '/5 (' + bWho + ')');
       } else if (er) why.push('brightness unknown');
       var eff = sigs[bi] / sp.total;
       cost += 12 * Math.max(0, 0.5 - eff);
@@ -315,7 +317,7 @@
     if (!list.length) return '';
     var known = list.filter(function (x) { return x.b != null; }).length;
     if (!exprRank(row.expr)) return ' Set EXPRESSION to weigh dye brightness.';
-    return known === list.length ? '' : ' Brightness is known for ' + known + ' of these ' + list.length + '. A dye with unknown brightness is neither helped nor held back by EXPRESSION (only ' + DATA.fluors.filter(function (f) { return f.brightness; }).length + ' of the ' + DATA.fluors.length + ' built-in dyes have a brightness value so far).';
+    return ' Brightness is each vendor\'s relative rating for its own conjugates, not one absolute scale across vendors.' + (known === list.length ? '' : ' It is known for ' + known + ' of these ' + list.length + '. A dye with unknown brightness is neither helped nor held back by EXPRESSION (only ' + DATA.fluors.filter(function (f) { return f.brightness; }).length + ' of the ' + DATA.fluors.length + ' built-in dyes have a brightness value so far).');;
   }
 
   /* ---------- analysis ---------- */
@@ -382,6 +384,7 @@
   }
 
   function exprRank(e) { return { high: 3, med: 2, low: 1 }[e] || 0; }
+  function brightWho(f) { return f.origin === 'user' ? 'your rating' : String(f.brightnessSrc || 'vendor').split(' ')[0]; }
   function brightOf(o) { return o.r.bright != null ? +o.r.bright : (o.f && o.f.brightness ? o.f.brightness : null); }
 
   function checks(m) {
@@ -493,7 +496,7 @@
       var hasCheck = o.checks.some(function (c) { return c[0] === 'check'; });
       if (!f || hasCheck) fb += ' <button type="button" class="sg-btn" data-act="sg" aria-expanded="' + (suggestFor === r.id) + '" aria-label="Suggest a dye for row ' + (i + 1) + '">SUGGEST</button>';
       var bv = r.bright != null ? String(r.bright) : (f && f.brightness ? String(f.brightness) : '');
-      var bSel = '<select data-k="bright" aria-label="Dye brightness, row ' + (i + 1) + '"' + (f && f.brightness && r.bright == null ? ' title="From ' + esc(f.brightnessSrc || 'vendor') + '"' : '') + '><option value="">—</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option value="' + n + '"' + (bv === String(n) ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>';
+      var bSel = '<select data-k="bright" aria-label="Dye brightness, row ' + (i + 1) + '"' + (f && f.brightness && r.bright == null ? ' title="From ' + esc(f.brightnessSrc || 'vendor') + ' — that vendor\'s relative rating, not an absolute or cross-vendor scale. Pick a number to use your own."' : '') + '><option value="">—</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option value="' + n + '"' + (bv === String(n) ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select>';
       var det = '';
       if (f && o.det) {
         if (m.spectral) det = '<span class="mono" style="font-size:12px">' + esc(o.det.id) + '</span>';

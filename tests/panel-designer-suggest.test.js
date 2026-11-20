@@ -72,8 +72,9 @@ const ATTUNE = 'thermo-attune-nxt-4l-14c', AURORA = 'cytek-aurora-5l';
     const base = [['CD3', 'high', 'bv421']];
     const lo = await all(ATTUNE, base.concat([['X', 'low', null]]), 1), hi = await all(ATTUNE, base.concat([['X', 'high', null]]), 1), md = await all(ATTUNE, base.concat([['X', 'med', null]]), 1);
     assert(lo.pe.cost < md.pe.cost && md.pe.cost < hi.pe.cost, JSON.stringify([lo.pe, md.pe, hi.pe]));
-    assert(/bright dye \(5\/5\) for a dim marker/.test(lo.pe.why), lo.pe.why);
-    assert(/brightness unknown/.test(lo['bv711'] ? lo['bv711'].why : lo['percp-cy5-5'].why));
+    assert(/bright dye \(5\/5, BioLegend\) for a dim marker/.test(lo.pe.why), lo.pe.why);
+    const unkId = Object.keys(lo).find((id) => /brightness unknown/.test(lo[id].why));
+    assert(unkId, 'some candidate without a brightness value should say so');
     for (const id of Object.keys(lo)) {
       const f = await page.evaluate((id) => window.LMT_PD_TEST.api.fluor(id).brightness || null, id);
       // LOW also weights spill received x1.5 (by design), so compare MED and HIGH, which differ only in brightness terms
@@ -83,20 +84,30 @@ const ATTUNE = 'thermo-attune-nxt-4l-14c', AURORA = 'cytek-aurora-5l';
   await t('known-dim dye (Pacific Blue, 1/5) is penalised for a LOW marker and the reason is shown', async () => {
     const lo = await all(ATTUNE, [['X', 'low', null]], 0), hi = await all(ATTUNE, [['X', 'high', null]], 0);
     assert(lo['pacific-blue'].cost > hi['pacific-blue'].cost);
-    assert(/dim dye \(1\/5\) for a dim marker/.test(lo['pacific-blue'].why), lo['pacific-blue'].why);
+    assert(/dim dye \(1\/5, BioLegend\) for a dim marker/.test(lo['pacific-blue'].why), lo['pacific-blue'].why);
   });
   await t("row's own DYE 1-5 rating is used for the dye already on a CHECK row", async () => {
     const r = await page.evaluate(() => {
       const A = window.LMT_PD_TEST.api;
-      const run = (b) => { const m = A.setPanel('thermo-attune-nxt-4l-14c', [['X', 'low', 'bv421', b]]); const x = A.suggest(0, m, 9999).find((y) => y.f.id === 'bv421'); return x && { cost: x.cost, why: x.why.join('|') }; };
+      const run = (b) => { const m = A.setPanel('thermo-attune-nxt-4l-14c', [['X', 'low', 'super-bright-436', b]]); const x = A.suggest(0, m, 9999).find((y) => y.f.id === 'super-bright-436'); return x && { cost: x.cost, why: x.why.join('|') }; };
       return { none: run(null), five: run(5) };
     });
     assert(r.none && /brightness unknown/.test(r.none.why));
-    assert(r.five && /bright dye \(5\/5\)/.test(r.five.why) && r.five.cost < r.none.cost, JSON.stringify(r));
+    assert(r.five && /bright dye \(5\/5, your rating\)/.test(r.five.why) && r.five.cost < r.none.cost, JSON.stringify(r));
   });
   await t('no expression set -> no brightness reasoning attached', async () => {
     const l = await sg(ATTUNE, [['X', '', null]], 0);
     l.forEach((x) => assert(!/brightness/.test(x.why), x.why));
+  });
+
+  await t('BioLegend index values are in the data, labelled by source, and named in the reason', async () => {
+    const r = await page.evaluate(() => { const A = window.LMT_PD_TEST.api; return ['bv421', 'percp-cy5-5', 'percp', 'apc', 'fitc', 'super-bright-436'].map((id) => [id, A.fluor(id).brightness || null, A.fluor(id).brightnessSrc || null]); });
+    assert.deepStrictEqual(r.map((x) => x[1]), [5, 2, 1, 4, 3, null]);
+    r.filter((x) => x[1]).forEach((x) => assert(/^BioLegend brightness index/.test(x[2]), x));
+    const lo = await all(ATTUNE, [['X', 'low', null]], 0);
+    assert(/dim dye \(2\/5, BioLegend\)/.test(lo['percp-cy5-5'].why), lo['percp-cy5-5'].why);
+    const md = await all(ATTUNE, [['X', 'med', null]], 0);
+    assert(/brightness 2\/5 \(BioLegend\)/.test(md['percp-cy5-5'].why), md['percp-cy5-5'].why);
   });
 
   // ---- F03: PerCP-Cy5.5 candidate is scored, not forced ----
@@ -138,9 +149,9 @@ const ATTUNE = 'thermo-attune-nxt-4l-14c', AURORA = 'cytek-aurora-5l';
     await p3.locator('tr[data-i="1"] .sg-btn').click();
     const note = await p3.locator('.sg-note').innerText();
     assert(/Alternatives for this one row/.test(note), note);
-    assert(/Brightness is known for \d of these/.test(note), note);
+    assert(/each vendor's relative rating/.test(note), note);
     const picks = await p3.locator('.sg-pick small').allInnerTexts();
-    assert(picks.some((x) => /brightness/.test(x)), picks.join(' / '));
+    assert(picks.some((x) => /BioLegend/.test(x)), picks.join(' / '));
     await p3.close();
   });
 
