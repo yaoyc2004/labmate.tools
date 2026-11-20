@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cloning Reaction Calculator — Ligation, Gibson &amp; Golden Gate | labmate.tools</title>
+<meta name="description" content="Free cloning reaction calculator. Enter each fragment's length and ng/µL to get ng ↔ pmol, the insert:vector molar ratio and the µL to pipette for a ligation, NEBuilder HiFi or Gibson assembly, or Golden Gate — with the fix when it will not fit in 20 µL.">
+<link rel="canonical" href="https://labmate.tools/tools/cloning/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cloning Reaction Calculator — free, in your browser | labmate.tools">
+<meta property="og:description" content="Fragment lengths and ng/µL in, pmol and the µL to pipette out: ligation, Gibson/HiFi and Golden Gate, with the molar ratio and volume checks done for you.">
+<meta property="og:url" content="https://labmate.tools/tools/cloning/">
+<meta property="og:image" content="https://labmate.tools/assets/og/cloning.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cloning Reaction Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cloning Reaction Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Fragment lengths and ng/µL in, pmol and the µL to pipette out: ligation, Gibson/HiFi and Golden Gate, with the molar ratio and volume checks done for you.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/cloning.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/cloning/#app","name":"Cloning Reaction Calculator","url":"https://labmate.tools/tools/cloning/","description":"Free cloning reaction calculator for ligation, NEBuilder HiFi and Gibson assembly and Golden Gate: ng to pmol for every fragment, the insert:vector molar ratio from the protocol in force, the µL to pipette, water and master mix, and a fix when the reaction will not fit.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["ng to pmol and nM for every fragment from its length (650 Da per bp)","Insert:vector molar ratios from the protocol in force, by fragment count","Volume to pipette for each fragment, master mix, buffer, enzyme and water","Recommended total DNA checked against the vendor range","Fix when the reaction will not fit: a larger reaction, less DNA, or the concentration to reach","Unpurified PCR product kept under 20% of the reaction","Scale to any number of reactions with overage","Incubation temperature and time for the system and fragment count","Printable pipetting sheet"],"audience":{"@type":"Audience","audienceType":"Molecular biology researchers and students doing plasmid cloning"},"image":"https://labmate.tools/assets/og/cloning.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"Cloning Reaction Calculator","item":"https://labmate.tools/tools/cloning/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/cloning/#faq","mainEntity":[{"@type":"Question","name":"How do I convert ng of DNA to pmol?","acceptedAnswer":{"@type":"Answer","text":"pmol = ng × 1000 ÷ (bp × 650), taking 650 daltons per base pair of double-stranded DNA. 50 ng of a 5000 bp plasmid is about 0.015 pmol; 50 ng of a 500 bp fragment is about 0.15 pmol — ten times more, which is why equal masses are not equal moles."}},{"@type":"Question","name":"What insert to vector ratio should I use for NEBuilder HiFi or Gibson assembly?","acceptedAnswer":{"@type":"Answer","text":"For 2–3 fragments NEB recommends a 2-fold molar excess of each insert over the vector and 0.03–0.2 pmol of total DNA for NEBuilder HiFi (0.02–0.5 pmol for Gibson). For 4–6 fragments it is a 1:1 molar ratio and 0.2–0.5 pmol total (0.2–1.0 pmol for Gibson). Inserts under 200 bp go in at a 5-fold excess."}},{"@type":"Question","name":"How much vector should go into a Golden Gate reaction?","acceptedAnswer":{"@type":"Answer","text":"The NEBridge Golden Gate protocols use 75 ng of destination plasmid — 0.05 pmol for the 2155 bp pGGAselect — with each insert at a 2:1 molar ratio to the vector, in 20 µL with 2 µL of 10X T4 DNA Ligase Buffer and 1 µL of enzyme mix (2 µL for more than 10 inserts)."}},{"@type":"Question","name":"How much insert do I add to a ligation?","acceptedAnswer":{"@type":"Answer","text":"Start with 50 ng of vector and a 1:3 vector:insert molar ratio, or 1:1 if the two are a similar size. Short inserts need more: about 1:10 at 100 bp or less. Total DNA of 1–10 µg/mL in the reaction is the usual target."}},{"@type":"Question","name":"My fragments do not fit in a 20 µL reaction. What do I do?","acceptedAnswer":{"@type":"Answer","text":"A 20 µL assembly leaves only 10 µL for DNA once the master mix is in. Either scale every fragment down, if the lower total stays inside the recommended range, concentrate the fragment that takes the most room, or run the reaction in 25 or 50 µL with the mix scaled in proportion. The calculator gives you all three with the numbers filled in."}},{"@type":"Question","name":"How much unpurified PCR product can I put in an assembly?","acceptedAnswer":{"@type":"Answer","text":"NEB limits unpurified PCR product to 20% of the reaction volume — 4 µL in a 20 µL reaction. Tick the PCR box on a row and the calculator adds up those volumes and warns you when they go over."}},{"@type":"Question","name":"Does the calculator design the overlaps or check the restriction sites?","acceptedAnswer":{"@type":"Answer","text":"No. It does the amounts: moles, ratios and volumes. Overlap and primer design, Type IIS site orientation and overhang compatibility are a separate job — the NEBuilder Assembly Tool and NEBridge Ligase Fidelity tools cover those."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="cloning.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.6 CLONING</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head cl-noprint">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.6</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <circle cx="34" cy="32" r="21" fill="none" stroke="#1B2224" stroke-width="2"/>
+        <path d="M34 11 A21 21 0 0 1 51 20" fill="none" stroke="#2E9E5B" stroke-width="5"/>
+        <path d="M62 32 H84" stroke="#1B2224" stroke-width="1.6"/>
+        <path d="M78 27 L84 32 L78 37" fill="none" stroke="#1B2224" stroke-width="1.6"/>
+        <rect x="92" y="24" width="40" height="16" fill="#9CC7B6" stroke="#1B2224" stroke-width="1.6"/>
+        <path d="M100 24 V40 M108 24 V40 M116 24 V40 M124 24 V40" stroke="#1B2224" stroke-width="0.9"/>
+        <text x="112" y="18" text-anchor="middle" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="12" fill="#1B2224">pmol</text>
+        <text x="112" y="56" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1B2224">µL</text>
+      </svg>
+    </figure>
+    <div>
+      <h1>Cloning Reaction Calculator</h1>
+      <p class="lm-lede">Type each fragment's length and concentration. You get the moles, the insert:vector ratio the protocol asks for, and the microlitres to pipette — plus what to change when the fragments will not fit in the tube. Ligation, Gibson and NEBuilder HiFi, and Golden Gate.</p>
+    </div>
+  </div>
+
+  <!-- 1 · system -->
+  <h2 class="lm-bar cl-noprint"><span>1 · SYSTEM</span> <small>SECTION 02 — CALCULATORS · 2.6</small></h2>
+  <div class="lm-sheet cl-noprint">
+    <div class="cl-opts">
+      <div class="dt-opt"><span class="presets-k" id="sysLabel">ASSEMBLY</span>
+        <div class="lm-seg" role="group" aria-labelledby="sysLabel" id="sysSeg"></div></div>
+      <label class="dt-opt"><span class="presets-k">KIT / ENZYME</span><select id="kit" class="cl-sel"></select></label>
+      <label class="dt-opt"><span class="presets-k">REACTION VOLUME</span>
+        <span class="cl-unit-in"><select id="totalVol" class="cl-sel"></select> µL</span></label>
+      <label class="dt-opt"><span class="presets-k">ROUND VOLUMES TO</span><select id="step" class="cl-sel"></select></label>
+    </div>
+    <div class="cl-opts cl-opts-2">
+      <div class="dt-opt"><span class="presets-k" id="basisLabel">SET THE AMOUNT BY</span>
+        <div class="lm-seg" role="group" aria-labelledby="basisLabel" id="basisSeg"><button type="button" data-v="vector">VECTOR ng</button><button type="button" data-v="total">TOTAL pmol</button></div></div>
+      <label class="dt-opt" id="vecBox"><span class="presets-k" for="vectorNg">VECTOR IN THE REACTION</span>
+        <span class="cl-unit-in"><input type="text" class="pp-in" id="vectorNg" inputmode="decimal" aria-label="Vector amount in ng"> ng</span></label>
+      <label class="dt-opt" id="totBox"><span class="presets-k" for="totalPmol">TOTAL DNA</span>
+        <span class="cl-unit-in"><input type="text" class="pp-in" id="totalPmol" inputmode="decimal" aria-label="Total DNA in pmol"> pmol</span></label>
+      <div class="dt-opt cl-rule"><span class="presets-k">PROTOCOL IN FORCE</span><span class="cl-rule-say" id="ruleSay"></span></div>
+    </div>
+  </div>
+
+  <!-- 2 · fragments -->
+  <h2 class="lm-bar cl-noprint"><span>2 · FRAGMENTS</span> <small>LENGTH · CONCENTRATION · RATIO</small></h2>
+  <div class="lm-sheet cl-noprint">
+    <div class="pp-example" id="exampleNote" hidden>Showing an example: a 5.2 kb vector and a 1.1 kb insert by NEBuilder HiFi. Type over it with your own.</div>
+    <div class="mm-wrap">
+      <table class="pp-table cl-ftable">
+        <thead><tr>
+          <th>FRAGMENT · ROLE</th><th class="n">LENGTH bp</th><th class="n">CONC.</th>
+          <th class="n">RATIO ×</th><th class="c" title="Unpurified PCR product">PCR</th>
+          <th class="n cl-o">pmol/µL</th><th class="n cl-o">nM</th><th class="n">TAKE µL</th><th class="x" aria-label="Remove"></th>
+        </tr></thead>
+        <tbody id="fragRows"></tbody>
+      </table>
+    </div>
+    <div class="cl-ffoot">
+      <button type="button" class="lm-link" id="addFrag">+ FRAGMENT</button>
+      <button type="button" class="lm-link" id="example">TRY THE EXAMPLE</button>
+      <span class="cl-fcount" id="fragCount"></span>
+    </div>
+    <details class="pp-paste" id="pasteBox">
+      <summary><span class="presets-k">PASTE A LIST</span> <span class="cl-muted">name, bp, concentration — one fragment per line</span></summary>
+      <div class="pp-paste-body">
+        <textarea id="pasteIn" rows="5" spellcheck="false" autocomplete="off" placeholder="Name	bp	ng/µL
+pUC19 backbone	2686	42
+GFP insert	750	18"></textarea>
+        <div class="pp-paste-opts">
+          <button type="button" class="btn" id="pasteGo">USE THIS LIST</button>
+          <span class="cl-muted">The first row is the vector unless a column says otherwise. Tabs, commas or semicolons; a header row is skipped.</span>
+        </div>
+        <div class="qp-msg" id="pasteMsg" role="status"></div>
+      </div>
+    </details>
+    <p class="cs-hint pp-hint">Concentrations are read as double-stranded DNA at <b id="bpDaSay">650</b> Da per base pair. <button type="button" class="lm-link cl-inline" id="bpDaBtn">USE 660</button></p>
+  </div>
+
+  <!-- 3 · mix -->
+  <h2 class="lm-bar"><span>3 · MIX</span> <small id="sumLine"></small></h2>
+  <div class="lm-sheet">
+    <ul class="dt-work-flags" id="flags"></ul>
+    <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+      <span class="ans-k" id="ansK">PIPETTE</span>
+      <div class="ans-big" id="ansBig"></div>
+      <p class="ans-say" id="ansSay"></p>
+      <div class="ans-actions cl-noprint">
+        <button type="button" class="btn" id="copy">COPY RECIPE</button>
+        <button type="button" class="lm-link" id="print">PRINT SHEET</button>
+        <span class="btn-copied" id="copied" role="status"></span>
+      </div>
+    </section>
+    <div class="cl-mixgrid">
+      <section class="slip cl-slip" id="slip" aria-label="Reaction">
+        <div class="slip-title"><span>REACTION</span><span id="slipName"></span></div>
+        <div class="mm-wrap">
+          <table class="pp-table cl-mtable">
+            <thead><tr><th>COMPONENT</th><th class="n">1 RXN µL</th><th class="n" id="nHead">× n µL</th></tr></thead>
+            <tbody id="mixRows"></tbody>
+          </table>
+        </div>
+      </section>
+      <div class="cl-side">
+        <div class="cl-opts cl-opts-3">
+          <label class="dt-opt"><span class="presets-k">REACTIONS</span><input type="text" class="pp-in cl-narrow" id="reactions" inputmode="numeric"></label>
+          <label class="dt-opt"><span class="presets-k">OVERAGE</span><span class="cl-unit-in"><input type="text" class="pp-in cl-narrow" id="overage" inputmode="decimal"> %</span></label>
+        </div>
+        <div class="cl-incub" id="incub"></div>
+        <ul class="cl-fixes" id="fixes"></ul>
+      </div>
+    </div>
+    <div class="dt-work cl-noprint" id="work"></div>
+  </div>
+
+  <div id="sheet" class="cl-sheet" aria-hidden="true"></div>
+
+  <section class="lm-about cl-noprint">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Pick the assembly: <b>LIGATION</b> for sticky or blunt ends with T4 ligase, <b>GIBSON / HiFi</b> for overlap assembly, <b>GOLDEN GATE</b> for a Type IIS one-tube reaction. The kit list sets the master mix and the incubation.</li>
+          <li>Type each fragment's length in bp and its concentration. Nanodrop readings go in as <b>ng/µL</b>; a quantified library or an oligo duplex can go in as <b>nM</b>.</li>
+          <li>Mark one row as the <b>VECTOR</b>. The ratio column starts at what the protocol asks for — a 2-fold excess of each insert for 2–3 fragments by HiFi, 1:1 for 4–6, 5-fold for an insert under 200 bp — and you can type over it.</li>
+          <li>Set the amount either by the <b>vector in ng</b> (the way most protocols are written) or by the <b>total pmol</b> you want in the tube.</li>
+          <li>Read the µL per fragment from the table. Anything in <b>3 · MIX</b> marked in amber or red comes with the number that fixes it: a dilution, a larger reaction, or less DNA.</li>
+          <li>Set the number of reactions and overage for a master mix, then copy or print the sheet.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">pmol = ng × 1000 ÷ (bp × 650)</span>
+          <table>
+            <tr><td>bp</td><td>length of the fragment in base pairs</td></tr>
+            <tr><td>650</td><td>average mass of one base pair of dsDNA, in daltons</td></tr>
+            <tr><td>nM</td><td>pmol/µL × 1000</td></tr>
+          </table>
+          <p>Volume to take = wanted pmol ÷ (pmol per µL). Each insert's wanted pmol = the vector's pmol × its ratio. Water = reaction volume − master mix (or buffer + enzyme) − every DNA volume.</p>
+        </div>
+        <p class="example"><b>Example.</b> A 5200 bp vector at 50 ng/µL is 0.0148 pmol/µL. For 50 ng (0.0148 pmol) take 1.0 µL. A 1100 bp insert at 25 ng/µL is 0.035 pmol/µL; at a 2-fold excess you want 0.0296 pmol, so 0.85 µL. With 10 µL of HiFi master mix in a 20 µL reaction, that leaves 8.2 µL of water.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. Nothing you type leaves your browser. Your settings are remembered on this device.</li>
+          <li>It does the amounts, not the design: overlaps, primers, Type IIS sites and overhang fidelity are a different job.</li>
+          <li>Garbage in, garbage out: a Nanodrop reading on a dilute or primer-contaminated sample can be well off, and the moles follow the reading.</li>
+          <li>A calculator, not a protocol. The insert in your tube behaves the way it behaves; the vendor's current protocol wins over this page.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref cl-noprint" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · CLONING REACTIONS</div>
+  <h2>Total DNA and molar ratio, by system</h2>
+  <p>What each protocol asks for in a 20 µL reaction. The fragment count includes the vector, the way the vendor tables are written. Ratios are vector:insert, so 1:2 means a 2-fold molar excess of each insert.</p>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">System</th><th scope="col">Fragments</th><th scope="col">Total DNA</th><th scope="col">Vector:insert</th><th scope="col">Mix &amp; enzyme in 20 µL</th><th scope="col">Incubation</th></tr></thead><tbody>
+    <tr><th scope="row">NEBuilder HiFi</th><td>2–3</td><td>0.03–0.2 pmol</td><td>1:2</td><td>10 µL master mix (2X)</td><td>50 °C, 15 min</td></tr>
+    <tr><th scope="row">NEBuilder HiFi</th><td>4–6</td><td>0.2–0.5 pmol</td><td>1:1</td><td>10 µL master mix (2X)</td><td>50 °C, 60 min</td></tr>
+    <tr><th scope="row">Gibson Assembly</th><td>2–3</td><td>0.02–0.5 pmol</td><td>1:2 to 1:3</td><td>10 µL master mix (2X)</td><td>50 °C, 15 min</td></tr>
+    <tr><th scope="row">Gibson Assembly</th><td>4–6</td><td>0.2–1.0 pmol</td><td>1:1</td><td>10 µL master mix (2X)</td><td>50 °C, 60 min</td></tr>
+    <tr><th scope="row">Golden Gate, BsaI-HFv2</th><td>any</td><td>75 ng vector (0.05 pmol at 2155 bp)</td><td>1:2</td><td>2 µL 10X T4 buffer + 1 µL mix (2 µL above 10 inserts)</td><td>37 °C / 16 °C cycles → 60 °C, 5 min</td></tr>
+    <tr><th scope="row">Golden Gate, BsmBI-v2</th><td>any</td><td>75 ng vector</td><td>1:2</td><td>2 µL 10X T4 buffer + 1 µL mix</td><td>42 °C / 16 °C cycles → 60 °C, 5 min</td></tr>
+    <tr><th scope="row">Ligation, T4</th><td>2</td><td>1–10 µg/mL total (20–200 ng in 20 µL)</td><td>1:3 (1:1 for similar sizes)</td><td>2 µL 10X T4 buffer + 1 µL ligase</td><td>16 °C overnight, or 25 °C 10 min</td></tr>
+  </tbody></table></div>
+  <p>Two further rules the calculator applies for Gibson and HiFi: inserts shorter than 200 bp go in at a 5-fold molar excess, and unpurified PCR product must stay under 20% of the reaction volume (4 µL in 20 µL). Above 6 fragments, NEB scales the whole reaction up and adds master mix in proportion. Ligation amounts are not vendor-fixed; the 1:3 start, the 1:10 for inserts of 100 bp or less and the 1–10 µg/mL total come from NEB's ligation guidance.</p>
+  <h2>ng per pmol, by fragment length</h2>
+  <p>At 650 Da per base pair. Read it the other way for the mass of a given number of moles: 0.05 pmol of a 5 kb plasmid is 163 ng.</p>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Length</th><th scope="col">1 pmol</th><th scope="col">0.05 pmol</th><th scope="col">50 ng is</th><th scope="col">50 ng/µL is</th></tr></thead><tbody>
+    <tr><th scope="row">100 bp</th><td>65 ng</td><td>3.3 ng</td><td>0.77 pmol</td><td>769 nM</td></tr>
+    <tr><th scope="row">500 bp</th><td>325 ng</td><td>16 ng</td><td>0.15 pmol</td><td>154 nM</td></tr>
+    <tr><th scope="row">1 kb</th><td>650 ng</td><td>33 ng</td><td>0.077 pmol</td><td>77 nM</td></tr>
+    <tr><th scope="row">2.7 kb (pUC19)</th><td>1755 ng</td><td>88 ng</td><td>0.028 pmol</td><td>28 nM</td></tr>
+    <tr><th scope="row">5 kb</th><td>3250 ng</td><td>163 ng</td><td>0.015 pmol</td><td>15 nM</td></tr>
+    <tr><th scope="row">10 kb</th><td>6500 ng</td><td>325 ng</td><td>0.0077 pmol</td><td>7.7 nM</td></tr>
+  </tbody></table></div>
+  <p>Sources: <a href="https://www.neb.com/en-us/tools-and-resources/usage-guidelines/optimization-tips-for-nebuilder-hifi-dna-assembly-and-neb-gibson-assembly" rel="noopener">NEB optimization tips for NEBuilder HiFi and Gibson Assembly</a>, the <a href="https://www.neb.com/en-us/protocols/2014/11/26/nebuilder-hifi-dna-assembly-reaction-protocol" rel="noopener">NEBuilder HiFi assembly protocol</a>, the NEBridge Golden Gate protocols for <a href="https://www.neb.com/en-us/protocols/2018/10/02/golden-gate-assembly-protocol-for-using-neb-golden-gate-assembly-mix-e1601" rel="noopener">BsaI-HFv2 (E1601)</a> and <a href="https://www.neb.com/en-us/protocols/2020/01/15/golden-gate-assembly-protocol-for-using-neb-golden-gate-assembly-kit-bsmbi-v2-neb-e1602" rel="noopener">BsmBI-v2 (E1602)</a>, the <a href="https://www.neb.com/en-us/protocols/0001/01/01/dna-ligation-with-t4-dna-ligase-m0202" rel="noopener">T4 DNA ligase protocol</a> and NEB's <a href="https://www.neb.com/en/faqs/how-to-calculate-the-molarity-of-ends" rel="noopener">molarity of ends FAQ</a>.</p>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-20">20 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more cl-noprint" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq" id="faq">
+      <div class="lm-more-k">QUESTIONS · CLONING REACTION CALCULATOR</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I convert ng of DNA to pmol?</summary><p>pmol = ng × 1000 ÷ (bp × 650), taking 650 daltons per base pair of double-stranded DNA. 50 ng of a 5000 bp plasmid is about 0.015 pmol; 50 ng of a 500 bp fragment is about 0.15 pmol — ten times more, which is why equal masses are not equal moles.</p></details>
+      <details><summary>What insert to vector ratio should I use for NEBuilder HiFi or Gibson assembly?</summary><p>For 2–3 fragments NEB recommends a 2-fold molar excess of each insert over the vector and 0.03–0.2 pmol of total DNA for NEBuilder HiFi (0.02–0.5 pmol for Gibson). For 4–6 fragments it is a 1:1 molar ratio and 0.2–0.5 pmol total (0.2–1.0 pmol for Gibson). Inserts under 200 bp go in at a 5-fold excess.</p></details>
+      <details><summary>How much vector should go into a Golden Gate reaction?</summary><p>The NEBridge Golden Gate protocols use 75 ng of destination plasmid — 0.05 pmol for the 2155 bp pGGAselect — with each insert at a 2:1 molar ratio to the vector, in 20 µL with 2 µL of 10X T4 DNA Ligase Buffer and 1 µL of enzyme mix (2 µL for more than 10 inserts).</p></details>
+      <details><summary>How much insert do I add to a ligation?</summary><p>Start with 50 ng of vector and a 1:3 vector:insert molar ratio, or 1:1 if the two are a similar size. Short inserts need more: about 1:10 at 100 bp or less. Total DNA of 1–10 µg/mL in the reaction is the usual target.</p></details>
+      <details><summary>My fragments do not fit in a 20 µL reaction. What do I do?</summary><p>A 20 µL assembly leaves only 10 µL for DNA once the master mix is in. Either scale every fragment down, if the lower total stays inside the recommended range, concentrate the fragment that takes the most room, or run the reaction in 25 or 50 µL with the mix scaled in proportion. The calculator gives you all three with the numbers filled in.</p></details>
+      <details><summary>How much unpurified PCR product can I put in an assembly?</summary><p>NEB limits unpurified PCR product to 20% of the reaction volume — 4 µL in a 20 µL reaction. Tick the PCR box on a row and the calculator adds up those volumes and warns you when they go over.</p></details>
+      <details><summary>Does the calculator design the overlaps or check the restriction sites?</summary><p>No. It does the amounts: moles, ratios and volumes. Overlap and primer design, Type IIS site orientation and overhang compatibility are a separate job — the NEBuilder Assembly Tool and NEBridge Ligase Fidelity tools cover those.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../master-mix/"><span class="n">2.1</span><span class="t">Master Mix Calculator</span><span class="d">Scale any reaction mix for a plate's worth of tubes, with overage built in.</span></a></li>
+        <li><a href="../molarity/"><span class="n">2.3</span><span class="t">Molarity Calculator</span><span class="d">How many grams to weigh, and mg/mL ↔ µM with the molecular weight.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">C₁V₁ = C₂V₂ for a stock into a working solution, ready to pipette.</span></a></li>
+        <li><a href="../qpcr/"><span class="n">2.5</span><span class="t">qPCR Relative Quantification</span><span class="d">ΔΔCt and Pfaffl from your Cq export, with replicate checks and error bars.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 18 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=cloning">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in cl-noprint">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../master-mix/">MASTER MIX</a> · <a href="../../contact/?topic=cloning">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.6</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="cloning-core.js?v=1"></script>
+<script src="cloning.js?v=1"></script>
+</body>
+</html>

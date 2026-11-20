@@ -14,6 +14,7 @@
 - [Molarity Calculator — Mass & mg/mL to µM](https://labmate.tools/tools/molarity/): Free molarity calculator: grams to weigh for any volume and concentration, or the molarity you made. Convert mg/mL and ng/µL to µM with the molecular weight.
 - [Serial Dilution Calculator, Tube by Tube](https://labmate.tools/tools/serial-dilution/): Free serial dilution calculator. Set top concentration, fold, tubes and volume; get diluent and transfer volumes for every tube and a printable plan.
 - [qPCR ΔΔCt & Pfaffl Relative Quantification](https://labmate.tools/tools/qpcr/): Free qPCR relative quantification in the browser: open the Cq export from Bio-Rad CFX, QuantStudio, LightCycler, Rotor-Gene or RDML, average and check replicates, correct for efficiency, normalise to the geometric mean of several reference genes, and get fold changes with log-scale error bars, Welch t-tests, CSV, chart and a methods paragraph.
+- [Cloning Reaction Calculator (Ligation, Gibson/HiFi, Golden Gate)](https://labmate.tools/tools/cloning/): Free cloning reaction calculator: every fragment’s length and ng/µL give ng ↔ pmol ↔ nM, the insert:vector molar ratio the protocol in force asks for, the µL to pipette with master mix, buffer, enzyme and water, checks on total DNA, unpurified PCR product and volumes that will not fit, and a printable pipetting sheet.
 
 ## Converters
 
