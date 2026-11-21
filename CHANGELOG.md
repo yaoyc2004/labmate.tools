@@ -4,7 +4,27 @@ Newest first. One entry per working day; each line says what changed for someone
 
 ## 2026-11-21
 
-New tool: **ELISA Standard Curve Analyzer (5.5)** in SECTION 05 — CELLS & PROTEIN.
+New tools: **ELISA Standard Curve Analyzer (5.5)** and **SDS-PAGE Gel Recipe Calculator (5.6)** in SECTION 05 — CELLS & PROTEIN, and **Buffer Recipe Calculator (2.7)** in SECTION 02 — CALCULATORS.
+
+### SDS-PAGE Gel Recipe Calculator (5.6) — new
+- Pick the plates — Bio-Rad Mini-PROTEAN 0.75, 1.0 or 1.5 mm (4.2 / 5.6 / 8.4 mL cassettes, from the Mini-PROTEAN Tetra manual) or any glass size by width × height × spacer — and the number of gels. Up to four resolving percentages in one batch (e.g. two 10% and two 12% gels), one stacking gel for all of them.
+- Overage (10% by default) and an optional round-up of each mix to 0.5, 1 or 5 mL. The resolving gel takes 75% of the cassette by default (about 1.5–2 cm left for the stacking gel and comb on a mini gel); the share can be changed, and the page shows what to pour per gel.
+- YOUR STOCKS, kept in the browser: 30% or 40% acrylamide/bis (ratio label 37.5:1, 29:1 or 19:1), Tris-HCl pH 8.8 and pH 6.8 molarities, SDS and APS strengths, and the final concentration of every component (Laemmli defaults: 0.375 M / 0.125 M Tris, 0.1% SDS, 0.05% APS, 0.05% / 0.1% TEMED). Any of them can be 0, e.g. no SDS for a native gel. A link opens the stocks in the Buffer Recipe Calculator.
+- Water EXACT TOTAL (the mix is exactly the volume shown) or AS PRINTED (APS and TEMED left out of the water sum, the way most printed recipes are written).
+- One recipe card per mix in order of addition — water, Tris, acrylamide, SDS, then APS and TEMED last — with a tick box per component, the total and the volume to pour per gel. Flags volumes under 2 µL, a stacking gel not below the resolving gel and percentages above 20%; refuses a gel percentage at or above the acrylamide stock and mixes whose components add up to more than the volume.
+- COPY RECIPE and PRINT (recipe cards only, with tick boxes).
+- Tested: every volume matched an independent Python implementation on six single mixes and three multi-gel plans (largest relative difference 3 × 10⁻¹⁶), and reproduces the Bio-Rad manual's 10 mL 10% gel (4.1 mL water as printed, 3.33 mL acrylamide, 2.5 mL Tris, 0.1 mL SDS, 50 µL APS, 5 µL TEMED) and the Robertson lab's 40% acrylamide resolving and stacking gels; 8 headless-browser tests (stocks kept after reload, ticking, refusals, extra percentages, notes, copy), no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+
+### Buffer Recipe Calculator (2.7) — new
+- 14 built-in recipes, each with its 1× composition and source on the page: Tris-glycine-SDS running buffer, Towbin transfer buffer, TBS, TBST, PBS, PBST, RIPA, TAE, TBE, 1.5 M Tris-HCl pH 8.8, 0.5 M Tris-HCl pH 6.8, 10% SDS, 10% APS and 0.5 M EDTA pH 8.0, plus a custom recipe.
+- MAKE FROM POWDER: any strength (5×, 10×, 50× or 1×) and volume gives the grams or millilitres of each component, the pH step and the volume to make up to. DILUTE A STOCK: stock, water and the at-use additions for any volume and strength.
+- Every row can be edited: concentration at 1× in M, mM, µM, % w/v or % v/v; powder (needs the MW), neat liquid (methanol, Tween-20, NP-40, glacial acetic acid as 17.5 M) or a stock solution you already have; AT USE for what goes in only at working strength, such as the methanol in transfer buffer or the Tween in TBST. Hydrates: type the MW on the bottle (Na₂HPO₄ forms listed). Edited recipes are marked and can be restored.
+- Notes when a stock is stronger than the usual one, a mass is under 10 mg, a stock solution is too weak for the strength asked, or the liquids don't fit.
+- COPY RECIPE and PRINT. `?preset=` opens a recipe directly.
+- Tested: every amount matched an independent Python implementation on nine recipes and four dilutions, and reproduces 10× PBS (Fisher: 80 g NaCl, 2 g KCl, 14.4 g Na₂HPO₄, 2.4 g KH₂PO₄), 5× TBE (CSH Protocols: 54 g, 27.5 g, 20 mL) and 10× TAE (Fisher: 48.4 g, 11.4 mL); 8 headless-browser tests (presets, Towbin dilution 100 + 200 + 700 mL, hydrate MW, editing a row's form, weak-stock refusal, `?preset=`, copy), no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+
+### Site (gels & buffers)
+- Homepage cards in SECTION 02 (7 tools) and SECTION 05 (6 tools), structured data lists 21 tools, every tool page says ALL 21 TOOLS; 404 index, `llms.txt`, sitemap, social cards (`assets/og/sds-page-gel.png`, `assets/og/buffer-recipes.png`), About page sources, and contact topics "2.7 Buffer Recipes" and "5.6 SDS-PAGE Gel Recipe".
 
 ### ELISA Standard Curve Analyzer (5.5) — new
 - Open or drop the plate reader export, or paste the 8×12 block from Excel (with or without the A–H / 1–12 labels, or as a well + value list). Reads BioTek Gen5 (also two reads on alternate lines), SoftMax Pro plate format (wavelengths side by side, UTF-16), Tecan i-control / Magellan, BMG MARS (plate or list, decimal commas), Thermo SkanIt and PerkinElmer EnVision / VICTOR layouts, .txt, .csv or .xlsx. With several reads the 450 nm signal and the 570–690 nm reference are picked and the reference is subtracted per well; both can be changed. Overflow marks (OVRFLW, Over, Range?, ***) count as saturated wells. REPORT A FORMAT PROBLEM (step 1, opens by itself when a file can't be read) sends what went wrong, the reader and what the page detected through the site's contact form, optionally with the file's first rows with every digit masked; the preview shows exactly what is sent and the file is never uploaded.
