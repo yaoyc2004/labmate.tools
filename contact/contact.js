@@ -11,7 +11,7 @@
 
   // Older links or loose spellings → option values
   var ALIAS = { "qpcr-relative-quantification": "qpcr", "ddcq": "qpcr", "ddct": "qpcr", "rpm": "rpm-to-g", "cell-count": "cell-seeding",
-    "western": "protein-loading", "densitometry": "blot-densitometry", "poster": "poster-check", "panel": "panel-designer",
+    "western": "protein-loading", "4pl": "elisa", "5pl": "elisa", "densitometry": "blot-densitometry", "poster": "poster-check", "panel": "panel-designer",
     "scalebar": "scale-bar", "tool-request": "request", "new-tool": "request", "home": "general", "about": "general" };
 
   // Message templates a page can ask for with ?about=
@@ -19,6 +19,10 @@
     instrument: {
       kind: "Request",
       text: "Please add my qPCR instrument.\n\nInstrument and software version:\n\nExport menu I used:\n\nWhat went wrong (no columns found, wrong genes, …):\n\n(We'll reply by email to ask for an example export — sample names can be replaced with codes.)\n"
+    },
+    reader: {
+      kind: "Request",
+      text: "Please add my plate reader to the ELISA analyzer.\n\nReader and software version:\n\nExport menu I used (plate view or list, .txt / .csv / .xlsx):\n\nWhat went wrong (no plate found, wrong read, …):\n\n(We'll reply by email to ask for an example export — sample names can be replaced with codes.)\n"
     },
     limits: {
       kind: "Request",
