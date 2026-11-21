@@ -936,7 +936,7 @@
             ps.forEach(function (p) { p.sheet = s.name; p.label = (sheets.length > 1 ? s.name + (p.label ? " · " : "") : "") + p.label; plates.push(p); });
             inst = inst || E.instrument(s.grid, [s.name]);
           });
-          return { plates: plates, instrument: inst, format: "xlsx" };
+          return { plates: plates, instrument: inst, format: "xlsx", sheets: sheets.map(function (s) { return { name: s.name, grid: s.grid.slice(0, 80) }; }) };
         });
       });
     }
@@ -945,7 +945,22 @@
   };
   E.readText = function (text) {
     var grid = E.textGrid(text);
-    return { plates: E.findPlates(grid), instrument: E.instrument(grid), format: "text", grid: grid };
+    return { plates: E.findPlates(grid), instrument: E.instrument(grid), format: "text", grid: grid, sheets: [{ name: "", grid: grid.slice(0, 80) }] };
+  };
+
+  // The layout of a file for a format report: the first rows, every digit replaced by 9 so readings are not sent
+  // (decimal separators, overflow marks, labels and column positions stay). Sample names stay — the user sees and can edit it.
+  E.skeleton = function (sheets, maxRows, maxChars) {
+    maxRows = maxRows || 60; maxChars = maxChars || 6000;
+    var out = [];
+    (sheets || []).forEach(function (sh) {
+      if (sheets.length > 1 || sh.name) out.push("=== sheet: " + sh.name);
+      var rows = sh.grid.slice(0, maxRows);
+      while (rows.length && !rows[rows.length - 1].some(function (c) { return String(c).trim(); })) rows.pop();
+      rows.forEach(function (r) { out.push((r || []).map(function (c) { return String(c == null ? "" : c).replace(/\d/g, "9"); }).join("\t").replace(/\t+$/, "")); });
+    });
+    var t = out.join("\n");
+    return t.length > maxChars ? t.slice(0, maxChars) + "\n[…cut]" : t;
   };
 
   // the wavelength in a label, if any ("Read 1:450" → 450)

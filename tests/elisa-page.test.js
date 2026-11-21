@@ -137,6 +137,52 @@ const server = http.createServer((req, res) => {
     await page.emulateMedia({ media: 'screen' });
     await page.evaluate(() => window.dispatchEvent(new Event('afterprint')));
   });
+  await t('format report: preview masks every digit, sends only the shown text to the contact form endpoint', async () => {
+    await page.setInputFiles('#fileIn', path.join(ROOT, 'tests/fixtures/elisa/gen5-interleaved.txt'));
+    await page.waitForFunction(() => /gen5-interleaved/.test(document.getElementById('repPreview').textContent));
+    await page.click('a[data-open-report] >> nth=0');
+    assert(await page.isVisible('#repForm'));
+    assert(!(await page.isDisabled('#repLayout')));
+    await page.check('#repLayout');
+    await page.fill('#repReader', 'Synergy H1, Gen5 3.12');
+    await page.check('#repForm input[name="problem"][value="wrong read"]');
+    const pre = await page.textContent('#repPreview');
+    assert(pre.includes('Reader / software: Synergy H1, Gen5 3.12') && pre.includes('Problem: wrong read'), pre.slice(0, 300));
+    assert(pre.includes('Instrument detected:') && pre.includes('Reads found:'));
+    const lay = pre.split('every digit replaced by 9)')[1];
+    assert(lay && lay.length > 50 && !/[0-8]/.test(lay), 'layout section has unmasked digits');
+    let sent = null;
+    await page.route('https://formspree.io/**', (r) => { sent = r.request(); r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+    await page.fill('#repEmail', 'not-an-email');
+    await page.click('#repSend');
+    assert(sent === null && (await page.textContent('#repStatus')).includes("doesn't look right"));
+    await page.fill('#repEmail', 'a@b.org');
+    await page.click('#repSend');
+    await page.waitForSelector('#repDone:not([hidden])');
+    assert(sent && sent.url() === 'https://formspree.io/f/maenzgby' && sent.method() === 'POST');
+    const body = sent.postData();
+    for (const k of ['_subject', 'topic', 'kind', 'from_page', 'message', 'email']) assert(body.includes('name="' + k + '"'), k);
+    assert(body.includes('Synergy H1') && body.includes('a@b.org'));
+    assert(!body.includes('0.') && !/\t[0-8]/.test(body.split('every digit replaced by 9)')[1]), 'readings leaked into the report');
+    assert((await page.textContent('#repDoneSay')).includes('a@b.org'));
+    await page.click('#repAgain');
+    assert(await page.isVisible('#repForm'));
+    await page.unroute('https://formspree.io/**');
+  });
+  await t('format report: a file that cannot be read opens the report with "not recognised"', async () => {
+    await page.evaluate(() => { document.getElementById('report').open = false; });
+    await page.setInputFiles('#fileIn', { name: 'odd.csv', mimeType: 'text/csv', buffer: Buffer.from('hello,world\nno,plate,here\n') });
+    await page.waitForFunction(() => document.getElementById('report').open);
+    assert(await page.isChecked('#repForm input[name="problem"][value="not recognised"]'));
+    const pre = await page.textContent('#repPreview');
+    assert(pre.includes('File: odd.csv') && pre.includes('Error:'), pre.slice(0, 400));
+    assert((await page.textContent('#loadMsg')).includes('Report the format'));
+  });
+  await t('format report: 中文 labels', async () => {
+    await page.click('#langSeg button[data-v="zh"]');
+    assert((await page.textContent('#report summary')).includes('报告格式问题'));
+    await page.click('#langSeg button[data-v="en"]');
+  });
   for (const w of [1440, 834, 390]) {
     await t(`no horizontal scroll at ${w} px (en and 中文)`, async () => {
       for (const l of ['en', 'zh']) {
@@ -146,6 +192,7 @@ const server = http.createServer((req, res) => {
         p2.on('pageerror', (e) => errors.push(String(e)));
         await p2.goto(URL + '?lang=' + l);
         await p2.waitForTimeout(500);
+        await p2.evaluate(() => { document.getElementById('report').open = true; });
         const sw = await p2.evaluate(() => document.documentElement.scrollWidth);
         assert(sw <= w, `${l} scrollWidth ${sw}`);
         await p2.close();

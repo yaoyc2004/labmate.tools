@@ -232,3 +232,35 @@ tr.is-bad .pp-in { border-bottom-color: var(--err); color: var(--err); }
   .qp-methods { break-inside: avoid; }
   .el-summary b { font-size: 16pt; }
 }
+
+/* format report (same Formspree form as /contact/) */
+.el-report { margin-top: 14px; border: 1.5px dashed var(--dot); background: var(--card); }
+.el-report[open] { border-style: solid; border-color: var(--ink); background: #fff; }
+.el-report > summary { cursor: pointer; padding: 8px 12px; font-size: 14px; color: var(--muted); }
+.el-report > summary .presets-k { margin-right: 6px; color: var(--ink); }
+.el-rep-f, .el-rep-done { padding: 4px 12px 12px; }
+.el-rep-f[hidden], .el-rep-done[hidden] { display: none; }
+.el-rep-g { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 12px 22px; }
+.el-rep-what { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.el-rep-what legend { padding: 0; margin-bottom: 4px; }
+.el-rep-what label { display: flex; align-items: center; gap: 8px; min-height: 32px; cursor: pointer; }
+.el-rep-what input { width: 18px; height: 18px; accent-color: var(--teal); }
+.el-rep-in { display: flex; flex-direction: column; gap: 8px; }
+.el-rep-in > label:not(.el-ck), .el-rep-two label { display: flex; flex-direction: column; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--muted); }
+.el-rep-in input[type="text"], .el-rep-in input[type="email"] { font-family: var(--sans); font-size: 15px; color: var(--ink); }
+.el-rep-in textarea { width: 100%; font-family: var(--sans); font-size: 15px; color: var(--ink); border: 1.5px solid var(--ink); padding: 6px 8px; background: #fff; }
+.el-rep-in .el-ck { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; }
+.el-rep-in .el-ck input { flex: 0 0 auto; margin-top: 3px; }
+.el-rep-in .el-ck input:disabled + span { color: var(--faint); }
+.el-rep-two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.el-rep-k { margin-top: 12px; }
+.el-rep-pre { margin: 4px 0 0; max-height: 240px; overflow: auto; padding: 8px 10px; border: 1px solid var(--dot); background: var(--card); font-family: var(--mono); font-size: 12px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.el-gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.el-rep-act { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 10px; }
+.el-rep-status { font-family: var(--mono); font-size: 12px; color: var(--pass-dark); }
+.el-rep-status.is-err { color: var(--err); }
+.el-rep-legal { margin: 8px 0 0; }
+.el-rep-done { font-size: 15px; }
+.el-rep-done b { color: var(--pass-dark); }
+@media (max-width: 720px) { .el-rep-g, .el-rep-two { grid-template-columns: minmax(0, 1fr); } }
+@media print { .el-report { display: none !important; } }

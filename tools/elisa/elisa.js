@@ -5,7 +5,6 @@
   var KEY = "labmate.elisa.v1", LKEY = "labmate.lang";
   var $ = function (id) { return document.getElementById(id); };
   var esc = LM.esc;
-  var REQ = "../../contact/?topic=elisa&about=reader";
   var PRE = { std: "STD", smp: "S", ctl: "C" };
 
   // ---------------------------------------------------------------- language
@@ -82,20 +81,41 @@
     }[m] || [m, m];
     return { ok: false, en: (name ? name + ": " : "") + map[0], zh: (name ? name + "：" : "") + map[1] };
   }
+  // what the page saw in the last file, for a format report (never the readings themselves)
+  var lastFile = null;
+  function seen(name, size, p, err) {
+    lastFile = { name: name, size: size, error: err ? errMsg(err, "").en : "" };
+    if (p && !p.record) {
+      lastFile.format = p.format || ""; lastFile.instrument = p.instrument || "";
+      lastFile.reads = (p.plates || []).map(function (b) { return (b.label || "(no label)") + " [" + b.kind + ", " + b.n + " values]"; });
+      lastFile.layout = E.skeleton(p.sheets);
+    }
+    if (err) openReport(true);
+    renderReport();
+  }
   function readFile(file) {
+    var parsed = null;
     return file.arrayBuffer().then(function (buf) { return E.readAny(file.name, buf); }).then(function (p) {
+      parsed = p;
       takeParsed(p, file.name);
-    }).catch(function (e) { lastMsgs = [errMsg(e, file.name)]; }).then(function () { render(); });
+      seen(file.name, file.size, p, null);
+    }).catch(function (e) {
+      lastMsgs = [errMsg(e, file.name)];
+      // an .xls/zip error leaves nothing to show; a text file that had no plate still has its layout
+      seen(file.name, file.size, parsed, e);
+    }).then(function () { render(); });
   }
   function usePaste() {
     var t = $("pasteText").value;
     if (!t.trim()) return;
+    var p = null;
     try {
-      var p = E.readText(t);
+      p = E.readText(t);
       takeParsed(p, L("Pasted readings", "粘贴的读数"));
+      seen("(pasted)", t.length, p, null);
       $("pasteText").value = "";
       $("pasteBox").open = false;
-    } catch (e) { lastMsgs = [errMsg(e, L("Pasted readings", "粘贴的读数"))]; }
+    } catch (e) { lastMsgs = [errMsg(e, L("Pasted readings", "粘贴的读数"))]; seen("(pasted)", t.length, p, e); }
     render();
   }
   function loadExample() {
@@ -262,7 +282,7 @@
     var box = $("loadMsg");
     if (!lastMsgs && !recordCheck) { box.innerHTML = ""; return; }
     var h = (lastMsgs || []).map(function (m) { return "<span" + (m.ok ? "" : ' class="bad"') + ">" + (m.ok ? "" : "✗ ") + esc(L(m.en, m.zh)) + "</span>"; }).join("");
-    if (lastMsgs && lastMsgs.some(function (m) { return !m.ok; })) h += ' <span>' + L("Reader not recognised? ", "读不出你的酶标仪？") + '<a href="' + REQ + '">' + L("Ask for it to be added", "告诉我们型号") + "</a>.</span>";
+    if (lastMsgs && lastMsgs.some(function (m) { return !m.ok; })) h += ' <span>' + L("Reader not recognised? ", "读不出你的酶标仪？") + '<a href="#report" data-open-report>' + L("Report the format below", "在下方报告格式问题") + "</a>" + L(" — we'll add it.", "，我们会支持它。") + "</span>";
     if (recordCheck) h += "<span" + (recordCheck.ok ? "" : ' class="bad"') + ">" + esc(L(recordCheck.en, recordCheck.zh)) + "</span>";
     box.innerHTML = h;
   }
@@ -833,9 +853,85 @@
   });
   window.addEventListener("afterprint", function () { var old = $("printHead"); if (old) old.remove(); });
 
+  // ---------------------------------------------------------------- format report (Formspree, same form as /contact/)
+  function openReport(isError) {
+    var d = $("report");
+    if (!d.open) d.open = true;
+    if (isError) { var r = document.querySelector('#repForm input[name="problem"][value="not recognised"]'); if (r) r.checked = true; }
+  }
+  function repCompose() {
+    var f = lastFile, prob = document.querySelector('#repForm input[name="problem"]:checked');
+    var lines = ["labmate.tools 5.5 ELISA — plate reader format report", "",
+      "Problem: " + (prob ? prob.value : ""),
+      "Reader / software: " + ($("repReader").value.trim() || "(not given)")];
+    var d = $("repText").value.trim();
+    if (d) lines.push("Details: " + d);
+    lines.push("", "--- what the page saw");
+    if (!f) lines.push("No file opened in this visit.");
+    else {
+      lines.push("File: " + f.name + " (" + (f.size >= 1024 ? Math.round(f.size / 1024) + " KB" : f.size + " B") + (f.format ? ", " + f.format : "") + ")");
+      if (f.error) lines.push("Error: " + f.error);
+      if (f.instrument != null) lines.push("Instrument detected: " + (f.instrument || "none"));
+      if (f.reads) lines.push("Reads found: " + (f.reads.length ? f.reads.join(" | ") : "none"));
+      if (!f.error && state.plates.length) lines.push("Signal used: " + ((state.plates[state.sig] || {}).label || "") + (state.ref >= 0 && state.plates[state.ref] ? "; reference: " + state.plates[state.ref].label : "; no reference"));
+    }
+    lines.push("Algorithm: " + E.ALGO + " · page language: " + lang);
+    if ($("repLayout").checked) {
+      lines.push("", "--- file layout, first rows (every digit replaced by 9)");
+      lines.push(f && f.layout ? f.layout : "(no layout available — the file could not be read as text or a worksheet)");
+    }
+    return lines.join("\n");
+  }
+  function renderReport() {
+    var who = [];
+    if ($("repName").value.trim()) who.push("Name: " + $("repName").value.trim());
+    if ($("repEmail").value.trim()) who.push("Email: " + $("repEmail").value.trim());
+    $("repPreview").textContent = repCompose() + (who.length ? "\n\n" + who.join("\n") : "");
+    $("repLayout").disabled = !(lastFile && lastFile.layout);
+    if ($("repLayout").disabled) $("repLayout").checked = false;
+  }
+  function repStatus(t, bad) { $("repStatus").textContent = t; $("repStatus").classList.toggle("is-err", !!bad); }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-open-report]");
+    if (!a) return;
+    e.preventDefault(); openReport(false); renderReport();
+    $("report").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  $("report").addEventListener("toggle", renderReport);
+  ["repReader", "repText", "repName", "repEmail"].forEach(function (id) { on(id, "input", renderReport); });
+  on("repLayout", "change", renderReport);
+  on("repForm", "change", renderReport);
+  on("repForm", "submit", function (ev) {
+    ev.preventDefault();
+    var em = $("repEmail").value.trim();
+    if (em && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { repStatus(L("That email doesn't look right.", "邮箱格式似乎不对。"), true); $("repEmail").focus(); return; }
+    $("repMessage").value = repCompose();
+    var prob = document.querySelector('#repForm input[name="problem"]:checked');
+    $("repSubject").value = "[labmate.tools] Problem — 5.5 ELISA reader format" + ($("repReader").value.trim() ? ": " + $("repReader").value.trim().slice(0, 60) : "") + (prob ? " (" + prob.value + ")" : "");
+    $("repFrom").value = location.origin + location.pathname;
+    if (!window.fetch || !window.FormData) { $("repForm").submit(); return; }
+    $("repSend").disabled = true; repStatus(L("Sending…", "发送中…"));
+    fetch($("repForm").action, { method: "POST", body: new FormData($("repForm")), headers: { Accept: "application/json" } })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (x) {
+        $("repSend").disabled = false;
+        if (x.ok) {
+          repStatus("");
+          $("repDoneSay").textContent = em ? L("We'll reply to " + em + ".", "我们会回复到 " + em + "。") : L("You didn't leave an email, so we can't reply — but we read every report.", "你没有留邮箱，我们无法回复，但每份报告都会看。");
+          $("repForm").hidden = true; $("repDone").hidden = false; $("repDone").focus();
+          return;
+        }
+        var errs = x.d && x.d.errors;
+        repStatus((errs && errs.length ? errs.map(function (q) { return q.message; }).join(" ") : L("The report wasn't sent.", "报告没有发出。")) + L(" Please try again in a moment.", " 请稍后再试。"), true);
+      })
+      .catch(function () { $("repSend").disabled = false; repStatus(L("No connection — the report wasn't sent.", "网络不通，报告没有发出。"), true); });
+  });
+  on("repAgain", "click", function () { $("repDone").hidden = true; $("repForm").hidden = false; $("repText").value = ""; renderReport(); });
+
   // test hook
-  if (window.LMT_EL_TEST) window.LMT_EL_TEST.api = { state: function () { return state; }, res: function () { return res; }, render: render, setState: function (s) { state = s; render(); }, paint: paint, loadExample: loadExample, methods: methods, tableRows: tableRows, record: record, openRecord: function (r) { openRecord(r, "test.json"); render(); } };
+  if (window.LMT_EL_TEST) window.LMT_EL_TEST.api = { state: function () { return state; }, res: function () { return res; }, render: render, setState: function (s) { state = s; render(); }, paint: paint, loadExample: loadExample, methods: methods, tableRows: tableRows, record: record, openRecord: function (r) { openRecord(r, "test.json"); render(); }, repCompose: repCompose };
 
   applyLang();
+  renderReport();
   if (!state.plates.length && !LM.load(KEY)) loadExample(); else render();
 })();
