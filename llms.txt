@@ -30,6 +30,7 @@
 - [Western Blot Loading Calculator (BCA)](https://labmate.tools/tools/protein-loading/): Free BCA/Bradford standard curve and Western blot loading calculator: protein per sample, then sample, buffer and water volumes for equal µg per lane.
 - [Western Blot Densitometry](https://labmate.tools/tools/blot-densitometry/): Free in-browser Western blot band quantification: reads raw values from 8/16/32-bit TIFF and PNG, equal-size band boxes with local background, saturation checks, normalisation to a loading control, CSV, ImageJ macro and a re-openable project file. Never uploaded.
 - [Cell Doubling Time Calculator](https://labmate.tools/tools/doubling-time/): Free cell doubling time calculator for a whole batch of cultures: start and end counts with times give population doublings, doubling time and specific growth rate μ, with the working shown, split correction, cumulative doublings per cell line, CSV/JSON export and a printable worksheet.
+- [ELISA Standard Curve Analyzer (4PL / 5PL)](https://labmate.tools/tools/elisa/): Free ELISA analysis in the browser, in English or Chinese: open or paste the plate reader export (BioTek Gen5, SoftMax Pro, Tecan, BMG MARS, Thermo SkanIt, PerkinElmer, Bio-Rad or any 8×12 block), tap the 96-well layout, fit a weighted 4PL or 5PL curve with convergence checks, and get concentrations × each sample's dilution with replicate CV, standard and control recovery, LLOQ/ULOQ and LOD, how much to re-dilute out-of-range samples, a printable report, CSV and a re-openable record. Sandwich and competitive assays.
 
 ## Print
 

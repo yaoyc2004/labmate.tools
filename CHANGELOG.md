@@ -2,6 +2,25 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-21
+
+New tool: **ELISA Standard Curve Analyzer (5.5)** in SECTION 05 — CELLS & PROTEIN.
+
+### ELISA Standard Curve Analyzer (5.5) — new
+- Open or drop the plate reader export, or paste the 8×12 block from Excel (with or without the A–H / 1–12 labels, or as a well + value list). Reads BioTek Gen5 (also two reads on alternate lines), SoftMax Pro plate format (wavelengths side by side, UTF-16), Tecan i-control / Magellan, BMG MARS (plate or list, decimal commas), Thermo SkanIt and PerkinElmer EnVision / VICTOR layouts, .txt, .csv or .xlsx. With several reads the 450 nm signal and the 570–690 nm reference are picked and the reference is subtracted per well; both can be changed. Overflow marks (OVRFLW, Over, Range?, ***) count as saturated wells. REPORT A FORMAT PROBLEM (step 1, opens by itself when a file can't be read) sends what went wrong, the reader and what the page detected through the site's contact form, optionally with the file's first rows with every digit masked; the preview shows exactly what is sent and the file is never uploaded.
+- Layout on a tappable 8×12 plate: STANDARD, SAMPLE, CONTROL, BLANK, EXCLUDE or ERASE, 1–4 replicates across or down, auto-numbered; four common kit layouts in one tap. Standard concentrations typed or filled from the top and the fold (last one 0); a name and dilution per sample, typed, set for all, or pasted as a list; controls take an expected value.
+- Fit: 4PL or 5PL by weighted least squares (1/Y², 1/Y or none, weights from each standard level's mean OD so the fit can be reproduced elsewhere), Levenberg–Marquardt from many starting values. AUTO uses 5PL only when an F-test favours it and its parameters are well determined; otherwise it says why 4PL was used (no convergence, a parameter on its limit, asymmetry with SE larger than itself, starts disagreeing, too few points). Parameters with SE, R², S<sub>y.x</sub>, iterations and how many starts agree.
+- Zero standard fitted as a point or subtracted; blank wells subtracted when there are any. Sandwich and competitive assays (direction detected, %B/B0 shown, a warning if it contradicts the type you chose).
+- Standards read back off the curve with recovery; the quantification range (LLOQ–ULOQ) is the widest run recovering 80–120% with CV ≤ 20%, one more level at either end at 75–125% / 25% (FDA 2018, ICH M10), or simply all standards. LOD from the zero standard or blanks (mean ± 3 SD).
+- Results: in-well concentration, × dilution, the value to report (> ULOQ × dilution or < LLOQ × dilution when out of range, the extrapolated number only in grey), flags for > ULOQ, < LLOQ, above / below the curve, saturated, high replicate CV (15% by default), single well, < LOD and control recovery outside 80–120%. Each flagged sample gets the next step, e.g. "Dilute 10× more — re-run at 1:20", "Re-run less diluted, at 1:2", or "Replicates disagree", collected in a copyable re-run list. Tap a row for the working with its numbers.
+- Curve chart (log axis, zero standard on a broken axis, range shaded, samples on the curve) as SVG or PNG; COPY TABLE; CSV; COPY METHODS paragraph; PRINT REPORT (or save as PDF) with analyte, lot, operator, date, plate map, fit, standards, results and re-run list; SAVE RECORD (`.elisa.json`, algorithm `labmate-elisa-1`; reopening recalculates and says whether every result matches).
+- English and 中文: a switch in the top bar changes the whole page, results, methods paragraph and report; it follows `?lang=zh`, then your last choice, then the browser language.
+- Example on first visit: a simulated human IL-6 sandwich ELISA in Gen5 format; the file can be downloaded.
+- Tested: 4PL and 5PL parameters, standard errors, residual sums of squares and F-test p-values match SciPy's MINPACK Levenberg–Marquardt on four simulated curves × three weightings (largest relative parameter difference 5 × 10⁻⁶), and 5PL is refused on a curve with too few points; 11 rule tests (range, flags, advice, blank handling, competitive, exclusions); the same plate written in eight export layouts gives identical values; 15 page tests (layout painting, exclusion, settings, language switch, CSV, record round-trip and tamper check, paste, print), no JS errors, no horizontal scroll at 1440 / 834 / 390 px in both languages. The export layouts were written from the vendors' documented formats, not from files exported in a lab.
+
+### Site (ELISA)
+- Homepage card in SECTION 05 (5 tools), structured data lists 19 tools, every tool page says ALL 19 TOOLS; 404 index, `llms.txt`, sitemap, social card (`assets/og/elisa.png`), About page sources, and contact topic "5.5 ELISA Standard Curve" with a template for adding a plate reader.
+
 ## 2026-11-20
 
 New tool: **Cloning Reaction Calculator (2.6)** in SECTION 02 — CALCULATORS.

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ELISA Standard Curve Analyzer — 4PL / 5PL fit, concentrations, QC flags | labmate.tools</title>
+<meta name="description" content="Free ELISA analysis in your browser: open or paste the plate reader export, tap the 8×12 layout, fit a weighted 4PL or 5PL curve, and get concentrations × each sample's dilution with CV, recovery and out-of-range flags, re-dilution advice and a printable report. English and 中文.">
+<link rel="canonical" href="https://labmate.tools/tools/elisa/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ELISA Standard Curve Analyzer (4PL / 5PL) — free, in your browser | labmate.tools">
+<meta property="og:description" content="Plate reader export → weighted 4PL/5PL fit → concentrations × dilution, with CV, recovery and out-of-range flags and how much to re-dilute.">
+<meta property="og:url" content="https://labmate.tools/tools/elisa/">
+<meta property="og:image" content="https://labmate.tools/assets/og/elisa.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ELISA Standard Curve Analyzer — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ELISA Standard Curve Analyzer (4PL / 5PL) — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Plate reader export → weighted 4PL/5PL fit → concentrations × dilution, with CV, recovery and out-of-range flags and how much to re-dilute.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/elisa.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/elisa/#app","name":"ELISA Standard Curve Analyzer","alternateName":["ELISA 4PL calculator","5PL curve fitting","ELISA 标准曲线分析","四参数拟合"],"url":"https://labmate.tools/tools/elisa/","description":"Free ELISA analysis in your browser: open or paste the plate reader export, tap the 8×12 layout, fit a weighted 4PL or 5PL curve, and get concentrations × each sample's dilution with CV, recovery and out-of-range flags, re-dilution advice and a printable report.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Reads plate exports from BioTek Gen5, SoftMax Pro, Tecan, BMG MARS, Thermo SkanIt, PerkinElmer and Bio-Rad, or a pasted 8×12 block","Tap-to-assign 96-well layout with standards, samples, controls and blanks","Weighted 4PL and 5PL fitting (1/Y², 1/Y or none) with convergence checks and an F-test between them","Sandwich and competitive assays; zero standard fitted or subtracted","Per-sample dilution factors; replicate CV, standard recovery and control recovery flags","LLOQ / ULOQ from back-calculated standards, LOD from the zero standard","How much to re-dilute a sample above the range","Printable report, CSV and a re-openable record that recalculates","English and Chinese interface"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/elisa.png","inLanguage":["en","zh-CN"],"publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cells & Protein","item":"https://labmate.tools/#cells"},{"@type":"ListItem","position":3,"name":"ELISA Standard Curve Analyzer","item":"https://labmate.tools/tools/elisa/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/elisa/#faq","mainEntity":[{"@type":"Question","name":"Should I fit my ELISA standard curve with 4PL or 5PL?","acceptedAnswer":{"@type":"Answer","text":"Start with 4PL. 5PL adds an asymmetry parameter and helps when the curve bends differently at the top and bottom, but it needs more standard levels and can fit noise. The tool fits both, uses 5PL only when an F-test says it fits significantly better and its parameters are well determined, and tells you why."}},{"@type":"Question","name":"Why weight the fit by 1/Y²?","acceptedAnswer":{"@type":"Answer","text":"ELISA replicates scatter more at high OD than at low OD. An unweighted fit lets the top standards dominate and the low end, where most samples sit, fits worst. Weighting each point by 1/Y² (or 1/Y) evens that out. The weights here come from the mean OD of each standard level, so the result can be reproduced in R or Prism."}},{"@type":"Question","name":"How are LLOQ and ULOQ decided?","acceptedAnswer":{"@type":"Answer","text":"Each standard is read back off the fitted curve. The quantification range is the widest run of neighbouring standards that recover 80–120% of their nominal concentration with a CV of at most 20%, extended by one level at either end if that level is within 75–125% and 25% — the acceptance limits for ligand-binding assays in FDA and ICH M10 guidance."}},{"@type":"Question","name":"What do I do with a sample above the top standard?","acceptedAnswer":{"@type":"Answer","text":"Don't report the extrapolated number. The tool flags it > ULOQ and tells you how much more to dilute it so it lands in the middle of the range, for example 'dilute 5× more, re-run at 1:50'."}},{"@type":"Question","name":"Should I subtract the zero standard?","acceptedAnswer":{"@type":"Answer","text":"Either fit the zero standard as a point on the curve (the default) or subtract its mean OD from every well; both are common, so follow your kit insert. Subtracting and then also fitting the zero point is fine. If the plate has substrate-only blank wells, subtract those."}},{"@type":"Question","name":"Does it work for competitive ELISA?","acceptedAnswer":{"@type":"Answer","text":"Yes. The curve direction is detected from the standards (signal falling with concentration), %B/B0 is shown against the zero standard, and the limit of detection is taken below the zero-standard signal."}},{"@type":"Question","name":"Is my data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Files are read and fitted in your browser. Nothing is sent anywhere and there is no account. The last analysis stays on this device until you press CLEAR."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="../qpcr/qpcr.css?v=1">
+<link rel="stylesheet" href="elisa.css?v=1">
+<script>/* language before first paint: ?lang=, then the saved choice, then the browser */
+(function () {
+  var l = null;
+  try { var q = new URLSearchParams(location.search).get("lang"); if (q === "zh" || q === "en") l = q; } catch (e) {}
+  if (!l) { try { l = localStorage.getItem("labmate.lang"); } catch (e) {} }
+  if (l !== "zh" && l !== "en") l = /^zh/i.test(navigator.language || "") ? "zh" : "en";
+  document.documentElement.setAttribute("data-lang", l);
+  if (l === "zh") document.documentElement.lang = "zh-CN";
+})();</script>
+</head>
+<body class="el-empty">
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 5.5 ELISA</span>
+  <span class="lm-spacer"></span>
+  <div class="lm-seg el-lang" role="group" aria-label="Language / 语言" id="langSeg"><button type="button" data-v="en" lang="en">EN</button><button type="button" data-v="zh" lang="zh-CN">中文</button></div>
+  <button type="button" class="lm-link" id="clear" data-zh="清空">CLEAR</button>
+  <a class="lm-link el-hide-s" href="../../#cells" data-zh="全部工具">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 5.5</figcaption>
+      <svg width="140" height="64" viewBox="0 0 140 64">
+        <path d="M6 58 H70 M6 58 V4" stroke="#1B2224" stroke-width="1.4" fill="none"/>
+        <path d="M8 54 C26 54 30 52 36 40 C42 26 46 12 68 9" fill="none" stroke="#2E9E5B" stroke-width="1.8"/>
+        <g fill="#fff" stroke="#1B2224" stroke-width="1.1"><circle cx="12" cy="53" r="2.4"/><circle cx="24" cy="51" r="2.4"/><circle cx="33" cy="45" r="2.4"/><circle cx="40" cy="31" r="2.4"/><circle cx="50" cy="17" r="2.4"/><circle cx="64" cy="10" r="2.4"/></g>
+        <path d="M28 58 V4 M56 58 V4" stroke="#8A918C" stroke-width="0.8" stroke-dasharray="2 2"/>
+        <g fill="#fff" stroke="#1B2224" stroke-width="1"><circle cx="86" cy="14" r="5"/><circle cx="99" cy="14" r="5"/><circle cx="112" cy="14" r="5"/><circle cx="125" cy="14" r="5"/></g>
+        <g stroke="#1B2224" stroke-width="1"><circle cx="86" cy="28" r="5" fill="#9CC7B6"/><circle cx="99" cy="28" r="5" fill="#9CC7B6"/><circle cx="112" cy="28" r="5" fill="#F6E7C8"/><circle cx="125" cy="28" r="5" fill="#fff"/><circle cx="86" cy="42" r="5" fill="#3F7A6B"/><circle cx="99" cy="42" r="5" fill="#3F7A6B"/><circle cx="112" cy="42" r="5" fill="#fff"/><circle cx="125" cy="42" r="5" fill="#fff"/><circle cx="86" cy="56" r="5" fill="#17403D"/><circle cx="99" cy="56" r="5" fill="#17403D"/><circle cx="112" cy="56" r="5" fill="#fff"/><circle cx="125" cy="56" r="5" fill="#fff"/></g>
+      </svg>
+    </figure>
+    <div>
+      <h1 data-zh="ELISA 标准曲线与浓度分析">ELISA Standard Curve Analyzer</h1>
+      <p class="lm-lede" data-zh="打开或粘贴酶标仪导出的数据，在 8×12 板图上点选标准品和样本，用加权 4PL/5PL 拟合，反算浓度并乘以每个样本的稀释倍数。复孔 CV 偏高、回收率不合格、超出定量范围的样本都会标出来，并告诉你该再稀释多少倍重测。全部在浏览器里完成，不上传、不注册。">Open or paste the plate reader export, tap the 8×12 layout, fit a weighted 4PL or 5PL curve, and read concentrations multiplied by each sample's own dilution. High replicate CVs, poor recovery and samples outside the quantification range are flagged — with how much to re-dilute. Nothing leaves your browser; no account.</p>
+    </div>
+  </div>
+
+  <!-- 1 · load -->
+  <h2 class="lm-bar el-noprint"><span data-zh="1 · 读数">1 · READINGS</span> <small data-zh="第 05 部分 — 细胞与蛋白 · 5.5">SECTION 05 — CELLS &amp; PROTEIN · 5.5</small></h2>
+  <div class="lm-sheet el-noprint">
+    <div class="pp-example" id="exampleNote" hidden data-zh="正在显示示例：模拟的人 IL-6 夹心法 ELISA（BioTek Gen5 格式，450 nm 与 630 nm 参比，标准品 500–7.8 pg/mL 加零点，复孔）。打开或粘贴你自己的数据即可替换。">Showing an example: a simulated human IL-6 sandwich ELISA (BioTek Gen5 text export, 450 nm with a 630 nm reference, standards 500–7.8 pg/mL plus zero, in duplicate). Open or paste your own readings to replace it.</div>
+    <div class="qp-load">
+      <label class="qp-drop" id="drop">
+        <input type="file" id="fileIn" accept=".csv,.tsv,.txt,.xlsx,.json,text/csv,text/plain">
+        <b data-zh="打开或拖入酶标仪导出文件">OPEN OR DROP THE PLATE READER EXPORT</b>
+        <span data-zh=".csv · .txt · .xlsx — 板式（8×12）或列表（孔号 + 读数）都可以">.csv · .txt · .xlsx — plate layout (8×12) or a list of wells and values</span>
+        <span class="qp-inst-list">BioTek Gen5 · SoftMax Pro · Tecan i-control / Magellan · BMG MARS · Thermo SkanIt · PerkinElmer EnVision / VICTOR · Bio-Rad iMark · any 8×12 block</span>
+      </label>
+      <div class="qp-load-side">
+        <button type="button" class="btn" id="example" data-zh="试试示例">TRY THE EXAMPLE</button>
+        <a class="lm-link" href="example-gen5.txt" download data-zh="示例文件">EXAMPLE FILE</a>
+        <p class="cs-hint"><span data-zh="读不对你的酶标仪文件？">File not read right?</span> <a class="el-req" href="#report" data-open-report data-zh="报告格式问题">Report the format</a><span data-zh="，我们会修好。"> and we'll fix it.</span></p>
+      </div>
+    </div>
+    <details class="pp-paste qp-paste" id="pasteBox">
+      <summary><span class="presets-k" data-zh="粘贴读数">PASTE READINGS</span> <span data-zh="从 Excel 或读板软件复制 8 行 × 12 列（带或不带 A–H / 1–12 标签）">From Excel or the reader software: 8 rows × 12 columns, with or without the A–H / 1–12 labels</span></summary>
+      <div class="qp-paste-body">
+        <textarea id="pasteText" rows="8" spellcheck="false" placeholder="	1	2	3	…	12
+A	2.871	2.902	0.415	…
+B	1.912	1.954	…
+…"></textarea>
+        <div>
+          <p class="cs-hint" data-zh="也可以粘贴“孔号 + 读数”两列的列表（A1 或 A01）。数值里的逗号小数点会被识别；OVRFLW、Over、*** 等溢出标记按饱和处理。">A two-column list (well and value, A1 or A01) works too. Decimal commas are read; overflow marks such as OVRFLW, Over or *** count as saturated wells.</p>
+          <button type="button" class="btn" id="pasteUse" data-zh="使用这些读数">USE THESE READINGS</button>
+        </div>
+      </div>
+    </details>
+    <div class="qp-msg" id="loadMsg" role="status"></div>
+    <div class="el-blocks el-needs" id="blockBox">
+      <label><span class="presets-k" data-zh="信号读数">SIGNAL</span><select id="sigSel"></select></label>
+      <label><span class="presets-k" data-zh="减去参比波长">SUBTRACT REFERENCE</span><select id="refSel"></select></label>
+      <span class="el-src" id="srcInfo"></span>
+    </div>
+    <details class="el-report" id="report">
+      <summary><span class="presets-k" data-zh="报告格式问题">REPORT A FORMAT PROBLEM</span> <span data-zh="文件没读出来、读错了波长或孔位不对？告诉我们，我们会修好解析。">File not recognised, wrong read picked, values in the wrong wells? Tell us and we'll fix the reader.</span></summary>
+      <form class="el-rep-f" id="repForm" action="https://formspree.io/f/maenzgby" method="POST" accept-charset="UTF-8" novalidate>
+        <input type="hidden" name="_subject" id="repSubject" value="[labmate.tools] Problem — 5.5 ELISA reader format">
+        <input type="hidden" name="topic" value="elisa">
+        <input type="hidden" name="kind" value="Problem">
+        <input type="hidden" name="from_page" id="repFrom" value="">
+        <input type="hidden" name="message" id="repMessage" value="">
+        <div class="el-rep-g">
+          <fieldset class="el-rep-what">
+            <legend class="presets-k" data-zh="出了什么问题">WHAT WENT WRONG</legend>
+            <label><input type="radio" name="problem" value="not recognised" checked> <span data-zh="文件读不出来">the file isn't recognised</span></label>
+            <label><input type="radio" name="problem" value="wrong read"> <span data-zh="选错了波长 / 读数">the wrong wavelength or read was picked</span></label>
+            <label><input type="radio" name="problem" value="wrong wells"> <span data-zh="数值对不上孔位">values land in the wrong wells</span></label>
+            <label><input type="radio" name="problem" value="overflow"> <span data-zh="溢出 / 饱和标记没识别">overflow or saturated marks are missed</span></label>
+            <label><input type="radio" name="problem" value="other"> <span data-zh="其他">something else</span></label>
+          </fieldset>
+          <div class="el-rep-in">
+            <label><span data-zh="酶标仪和软件版本">READER AND SOFTWARE VERSION</span><input type="text" class="pp-in" id="repReader" maxlength="200" placeholder="e.g. Synergy H1, Gen5 3.12"></label>
+            <label><span data-zh="补充说明（可选）">DETAILS (OPTIONAL)</span><textarea id="repText" rows="3" maxlength="3000"></textarea></label>
+            <label class="el-ck"><input type="checkbox" id="repLayout"> <span data-zh="附上文件的版式（前 60 行，所有数字替换成 9，读数不会发送）">include the file's layout (first 60 rows, every digit replaced by 9 — no readings are sent)</span></label>
+            <div class="el-rep-two">
+              <label><span data-zh="姓名（可选）">NAME (OPTIONAL)</span><input type="text" class="pp-in" name="name" id="repName" maxlength="120" autocomplete="name"></label>
+              <label><span data-zh="邮箱（想要回复的话）">EMAIL (FOR A REPLY)</span><input type="email" class="pp-in" name="email" id="repEmail" maxlength="200" autocomplete="email"></label>
+            </div>
+          </div>
+        </div>
+        <div class="presets-k el-rep-k" data-zh="将要发送的全部内容">EXACTLY WHAT WILL BE SENT</div>
+        <pre class="el-rep-pre" id="repPreview"></pre>
+        <input type="text" name="_gotcha" class="el-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="el-rep-act">
+          <button type="submit" class="btn" id="repSend" data-zh="发送报告">SEND REPORT</button>
+          <span class="el-rep-status" id="repStatus" role="status"></span>
+        </div>
+        <p class="cs-hint el-rep-legal"><span data-zh="只有按下“发送报告”时，上面框里的内容才会通过">Only the text in the box above is sent, and only when you press send, through</span> <a href="https://formspree.io/legal/privacy-policy/" rel="noopener">Formspree</a><span data-zh="（与站内联系表单相同）。你的文件本身不会上传。"> (the same as the site's contact form). Your file itself is never uploaded.</span> <a href="../../privacy/" data-zh="隐私">Privacy</a></p>
+      </form>
+      <div class="el-rep-done" id="repDone" hidden tabindex="-1">
+        <b data-zh="谢谢，已收到。">Thanks — report received.</b> <span id="repDoneSay"></span>
+        <button type="button" class="lm-link" id="repAgain" data-zh="再报告一个">REPORT ANOTHER</button>
+      </div>
+    </details>
+  </div>
+
+  <!-- 2 · layout -->
+  <h2 class="lm-bar el-needs el-noprint"><span data-zh="2 · 板布局">2 · LAYOUT</span> <small data-zh="点选孔位：标准品 · 样本 · 质控 · 空白">TAP WELLS: STANDARDS · SAMPLES · CONTROLS · BLANKS</small></h2>
+  <div class="lm-sheet el-needs el-noprint">
+    <div class="el-tools">
+      <div class="dt-opt"><span class="presets-k" id="brushLabel" data-zh="点选设为">TAP TO SET</span>
+        <div class="lm-seg el-brush" role="group" aria-labelledby="brushLabel" id="brushSeg">
+          <button type="button" data-v="std" data-zh="标准品">STANDARD</button><button type="button" data-v="smp" data-zh="样本">SAMPLE</button><button type="button" data-v="ctl" data-zh="质控">CONTROL</button><button type="button" data-v="blk" data-zh="空白">BLANK</button><button type="button" data-v="off" data-zh="排除">EXCLUDE</button><button type="button" data-v="clr" data-zh="清除">ERASE</button>
+        </div></div>
+      <div class="dt-opt"><span class="presets-k" id="repLabel" data-zh="复孔">REPLICATES</span>
+        <div class="lm-seg" role="group" aria-labelledby="repLabel" id="repSeg"><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4</button></div></div>
+      <div class="dt-opt"><span class="presets-k" id="dirLabel" data-zh="方向">DIRECTION</span>
+        <div class="lm-seg" role="group" aria-labelledby="dirLabel" id="dirSeg"><button type="button" data-v="across" data-zh="横向 →">ACROSS →</button><button type="button" data-v="down" data-zh="纵向 ↓">DOWN ↓</button></div></div>
+      <label class="el-next"><span class="presets-k" data-zh="下一个编号">NEXT ID</span><span class="el-next-in"><b id="nextPre">S</b><input type="text" class="pp-in" id="nextNum" inputmode="numeric" aria-label="Next number"></span></label>
+    </div>
+    <div class="el-plate-wrap">
+      <div class="el-plate" id="plate" role="grid" aria-label="96-well plate"></div>
+    </div>
+    <div class="qp-legend el-legend" id="legend"></div>
+    <div class="el-preset">
+      <span class="presets-k" data-zh="常用布局">COMMON LAYOUTS</span>
+      <select id="presetSel">
+        <option value="cols12" data-zh="标准品第 1–2 列复孔，样本横向成对">Standards in columns 1–2 (duplicate), samples in pairs across</option>
+        <option value="cols12down" data-zh="标准品第 1–2 列复孔，样本纵向成对">Standards in columns 1–2 (duplicate), samples in pairs down</option>
+        <option value="cols123" data-zh="标准品第 1–3 列三复孔，样本横向三复孔">Standards in columns 1–3 (triplicate), samples in triplicate across</option>
+        <option value="rowsAB" data-zh="标准品在 A–B 行复孔，样本横向成对">Standards across rows A–B (duplicate), samples in pairs across</option>
+      </select>
+      <button type="button" class="lm-link" id="presetUse" data-zh="套用（覆盖当前布局）">APPLY (REPLACES THE LAYOUT)</button>
+    </div>
+
+    <div class="el-groups">
+      <div>
+        <div class="presets-k"><span data-zh="标准品">STANDARDS</span> <span class="dt-count" id="stdCount"></span></div>
+        <div class="el-series">
+          <label><span data-zh="最高浓度">TOP</span><input type="text" class="pp-in" id="serTop" inputmode="decimal"></label>
+          <label><span data-zh="倍比">FOLD</span><input type="text" class="pp-in" id="serFold" inputmode="decimal"></label>
+          <label class="el-ck"><input type="checkbox" id="serZero"> <span data-zh="最后一个是 0">last one is 0</span></label>
+          <button type="button" class="lm-link" id="serUse" data-zh="填入浓度">FILL</button>
+        </div>
+        <div class="mm-wrap">
+          <table class="pp-table el-std-t">
+            <thead><tr><th>ID</th><th data-zh="孔位">WELLS</th><th class="n"><span data-zh="浓度">CONC.</span> <small id="unitStd"></small></th></tr></thead>
+            <tbody id="stdRows"></tbody>
+          </table>
+        </div>
+        <label class="el-unit"><span class="presets-k" data-zh="浓度单位">UNIT</span>
+          <select id="unitSel"><option>pg/mL</option><option>ng/mL</option><option>µg/mL</option><option>ng/L</option><option>IU/mL</option><option>mIU/mL</option><option>U/mL</option><option>nM</option><option>pM</option><option>%</option></select></label>
+      </div>
+      <div>
+        <div class="presets-k"><span data-zh="样本">SAMPLES</span> <span class="dt-count" id="smpCount"></span></div>
+        <div class="el-bulk">
+          <label><span data-zh="全部稀释倍数 1 :">ALL DILUTIONS 1 :</span><input type="text" class="pp-in" id="dilAll" inputmode="decimal"></label>
+          <button type="button" class="lm-link" id="dilAllUse" data-zh="应用">APPLY</button>
+          <button type="button" class="lm-link" id="namesOpen" data-zh="粘贴名称和稀释倍数">PASTE NAMES &amp; DILUTIONS</button>
+        </div>
+        <div class="el-names" id="namesBox" hidden>
+          <textarea id="namesText" rows="5" spellcheck="false" placeholder="Serum 01	2
+Serum 02	2
+Sup LPS 4h	10"></textarea>
+          <p class="cs-hint" data-zh="每行一个样本：名称，可选再加 Tab 和稀释倍数（10 或 1:10）。按 S1、S2… 的顺序填入。">One sample per line: a name, optionally a tab and the dilution (10 or 1:10). Filled into S1, S2, … in order.</p>
+          <button type="button" class="btn" id="namesUse" data-zh="填入">FILL IN</button>
+        </div>
+        <div class="mm-wrap qp-scroll">
+          <table class="pp-table el-smp-t">
+            <thead><tr><th>ID</th><th data-zh="名称">NAME</th><th data-zh="孔位">WELLS</th><th class="n" data-zh="稀释 1 :">DILUTION 1 :</th></tr></thead>
+            <tbody id="smpRows"></tbody>
+          </table>
+        </div>
+        <div class="el-ctl-wrap" id="ctlWrap" hidden>
+          <div class="presets-k qp-gap" data-zh="质控（已知浓度，用来算回收率）">CONTROLS (KNOWN CONCENTRATION — FOR RECOVERY)</div>
+          <div class="mm-wrap">
+            <table class="pp-table el-smp-t">
+              <thead><tr><th>ID</th><th data-zh="名称">NAME</th><th data-zh="孔位">WELLS</th><th class="n" data-zh="预期浓度">EXPECTED</th><th class="n" data-zh="稀释 1 :">DILUTION 1 :</th></tr></thead>
+              <tbody id="ctlRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 · fit -->
+  <h2 class="lm-bar el-needs"><span data-zh="3 · 标准曲线">3 · STANDARD CURVE</span> <small id="fitSum"></small></h2>
+  <div class="lm-sheet el-needs">
+    <div class="el-opts el-noprint">
+      <div class="dt-opt"><span class="presets-k" id="modelLabel" data-zh="模型">MODEL</span>
+        <div class="lm-seg" role="group" aria-labelledby="modelLabel" id="modelSeg"><button type="button" data-v="auto" data-zh="自动">AUTO</button><button type="button" data-v="4pl">4PL</button><button type="button" data-v="5pl">5PL</button></div></div>
+      <div class="dt-opt"><span class="presets-k" id="weightLabel" data-zh="加权">WEIGHTING</span>
+        <div class="lm-seg" role="group" aria-labelledby="weightLabel" id="weightSeg"><button type="button" data-v="1/y2">1/Y²</button><button type="button" data-v="1/y">1/Y</button><button type="button" data-v="none" data-zh="不加权">NONE</button></div></div>
+      <div class="dt-opt"><span class="presets-k" id="fmtLabel" data-zh="方法">ASSAY</span>
+        <div class="lm-seg" role="group" aria-labelledby="fmtLabel" id="fmtSeg"><button type="button" data-v="auto" data-zh="自动">AUTO</button><button type="button" data-v="sandwich" data-zh="夹心/间接">SANDWICH</button><button type="button" data-v="competitive" data-zh="竞争法">COMPETITIVE</button></div></div>
+      <label class="el-sel"><span class="presets-k" data-zh="扣除本底">SUBTRACT</span>
+        <select id="blankSel">
+          <option value="auto" data-zh="空白孔均值（有空白孔时）">blank wells' mean (if any)</option>
+          <option value="none" data-zh="不扣除">nothing</option>
+          <option value="blk" data-zh="空白孔均值">blank wells' mean</option>
+          <option value="zero" data-zh="零浓度标准品均值">zero standard's mean</option>
+        </select></label>
+      <label class="qp-check"><input type="checkbox" id="zeroFit"> <span data-zh="零浓度标准品作为曲线上的点参与拟合">fit the zero standard as a point on the curve</span></label>
+      <div class="dt-opt"><span class="presets-k" id="rangeLabel" data-zh="定量范围">QUANTIFICATION RANGE</span>
+        <div class="lm-seg" role="group" aria-labelledby="rangeLabel" id="rangeSeg"><button type="button" data-v="recovery" data-zh="按回收率">BY RECOVERY</button><button type="button" data-v="standards" data-zh="全部标准品">ALL STANDARDS</button></div></div>
+      <label class="el-sel el-num"><span class="presets-k" data-zh="CV 上限">FLAG CV ABOVE</span><span><input type="text" class="pp-in qp-num" id="cvMax" inputmode="decimal"> %</span></label>
+    </div>
+
+    <div class="el-fit">
+      <figure class="el-chart" id="chart"></figure>
+      <div class="el-fitbox" id="fitBox"></div>
+    </div>
+    <div class="presets-k qp-gap" data-zh="标准品回算">STANDARDS, READ BACK OFF THE CURVE</div>
+    <div class="mm-wrap">
+      <table class="pp-table el-res el-stdres">
+        <thead><tr><th>ID</th><th class="n" data-zh="标示浓度">NOMINAL</th><th data-zh="孔位 (OD)">WELLS (OD)</th><th class="n" data-zh="平均 OD">MEAN OD</th><th class="n">CV %</th><th class="n" data-zh="回算浓度">BACK-CALC.</th><th class="n" data-zh="回收率">RECOVERY</th><th data-zh="范围">RANGE</th></tr></thead>
+        <tbody id="stdRes"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4 · results -->
+  <h2 class="lm-bar"><span data-zh="4 · 结果">4 · RESULTS</span> <small data-zh="浓度 = 曲线反算 × 稀释倍数">CONCENTRATION = FROM CURVE × DILUTION</small></h2>
+  <div class="lm-sheet">
+    <div class="el-wait" id="wait" data-zh="打开或粘贴读数，或者先试试示例。">Open or paste your readings, or try the example first.</div>
+    <ul class="dt-work-flags qp-warn" id="warnings"></ul>
+    <div class="el-summary el-needs" id="summary"></div>
+    <div class="mm-wrap el-needs">
+      <table class="pp-table el-res el-smpres">
+        <thead><tr><th>ID</th><th data-zh="名称">NAME</th><th class="n" data-zh="平均 OD">MEAN OD</th><th class="n">CV %</th><th class="n" data-zh="孔内浓度">IN WELL</th><th class="n" data-zh="稀释">DIL.</th><th class="n"><span data-zh="浓度">CONCENTRATION</span> <small id="unitRes"></small></th><th data-zh="状态">STATUS</th><th data-zh="下一步">NEXT STEP</th></tr></thead>
+        <tbody id="smpRes"></tbody>
+      </table>
+    </div>
+    <p class="cs-hint pp-hint el-needs el-noprint" data-zh="点一行查看计算过程。灰色数字超出定量范围，仅供参考，不应报告。">Tap a row for the working. Grey numbers are outside the quantification range — shown for reference, not for reporting.</p>
+    <div class="dt-work el-needs" id="work" aria-live="polite"></div>
+
+    <div class="el-rerun el-needs" id="rerunBox"></div>
+
+    <div class="ans-actions dt-actions el-needs el-noprint">
+      <button type="button" class="btn" id="copy" data-zh="复制结果表">COPY TABLE</button>
+      <button type="button" class="lm-link" id="csv">CSV</button>
+      <button type="button" class="lm-link" id="print" data-zh="打印报告 / PDF">PRINT REPORT / PDF</button>
+      <button type="button" class="lm-link" id="svg" data-zh="曲线 SVG">CURVE SVG</button>
+      <button type="button" class="lm-link" id="png" data-zh="曲线 PNG">CURVE PNG</button>
+      <button type="button" class="lm-link" id="copyMethods" data-zh="复制方法段落">COPY METHODS</button>
+      <button type="button" class="lm-link" id="json" title="Readings, layout, settings and results in one file you can open here again" data-zh="保存记录 (.json)">SAVE RECORD (.json)</button>
+      <span class="btn-copied" id="copied" role="status"></span>
+    </div>
+
+    <details class="el-meta el-needs" id="metaBox">
+      <summary><span class="presets-k" data-zh="报告信息">FOR THE REPORT</span> <span data-zh="检测项目、试剂盒批号、操作人——会印在报告和记录里">analyte, kit lot, operator — printed on the report and kept in the record</span></summary>
+      <div class="el-meta-g">
+        <label><span data-zh="检测项目 / 试剂盒">ANALYTE / KIT</span><input type="text" class="pp-in" id="mAssay"></label>
+        <label><span data-zh="批号">LOT</span><input type="text" class="pp-in" id="mLot"></label>
+        <label><span data-zh="操作人">OPERATOR</span><input type="text" class="pp-in" id="mOp"></label>
+        <label><span data-zh="检测日期">RUN DATE</span><input type="text" class="pp-in" id="mDate" placeholder="2026-11-21"></label>
+        <label class="el-meta-w"><span data-zh="备注">NOTES</span><input type="text" class="pp-in" id="mNotes"></label>
+      </div>
+    </details>
+    <div class="qp-methods el-needs">
+      <div class="presets-k" data-zh="方法段落——请对照你的实际操作核对">METHODS PARAGRAPH — check it against what you did</div>
+      <p id="methods"></p>
+    </div>
+    <p class="el-algo el-needs" id="algo"></p>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec" data-zh="关于这个工具">ABOUT THIS TOOL</div>
+    <div class="lm-cols i18n-en">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Export the plate from the reader software — the 8×12 plate view or a list of wells — and open it here, or paste the block from Excel. When there are several reads (450 and 570/630 nm), pick the signal and the reference to subtract.</li>
+          <li>Set the <b>layout</b>: pick a common layout, or choose STANDARD, SAMPLE, CONTROL or BLANK, the number of replicates and the direction, and tap the first well of each. Tap EXCLUDE then a well to leave a bad well out.</li>
+          <li>Type the <b>standard concentrations</b> (or the top and the fold), the <b>dilution of each sample</b> and the expected value of any control.</li>
+          <li>Check the <b>curve</b>: the fit, the back-calculated standards and the quantification range. AUTO picks 4PL or 5PL and says why.</li>
+          <li>Read the <b>results</b>: each flag comes with the next step. Print the report (or save it as PDF), take the CSV, and <b>SAVE RECORD</b> to reopen the same analysis later.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">y = D + (A − D) ÷ [1 + (x ÷ C)<sup>B</sup>]<sup>G</sup></span>
+          <table>
+            <tr><td>A</td><td>OD at zero concentration</td></tr>
+            <tr><td>D</td><td>OD at saturation</td></tr>
+            <tr><td>C</td><td>inflection point (EC50 for 4PL)</td></tr>
+            <tr><td>B, G</td><td>slope; asymmetry (G = 1 is 4PL)</td></tr>
+            <tr><td>x</td><td>C · {[(A − D) ÷ (y − D)]<sup>1/G</sup> − 1}<sup>1/B</sup> × dilution</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 4PL with A = 0.05, B = 1.2, C = 150 pg/mL, D = 3.0. A sample diluted 1:10 reads OD 1.20: (A − D) ÷ (y − D) = −2.95 ÷ −1.80 = 1.639; 1.639 − 1 = 0.639; 0.639<sup>1/1.2</sup> = 0.688; × 150 = <b>103.3 pg/mL in the well</b>, × 10 = <b>1033 pg/mL</b>.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free, no account, not tied to any kit or reader brand. Files are read in your browser and never uploaded; the last analysis stays on this device until you press CLEAR.</li>
+          <li>Concentrations come from the mean OD of the replicates; each well's own value is in the working and the CSV.</li>
+          <li>The tool never drops a well by itself and never reports an extrapolated value as a result.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="lm-cols i18n-zh" lang="zh-CN">
+      <div>
+        <h2>使用步骤</h2>
+        <ol class="lm-num">
+          <li>从读板软件导出整板数据（8×12 板式或孔号列表），在这里打开，或者从 Excel 直接粘贴。如果有多个波长（450 和 570/630 nm），选好信号读数和要减去的参比读数。</li>
+          <li>设定<b>板布局</b>：选一个常用布局，或者选“标准品 / 样本 / 质控 / 空白”、复孔数和方向，然后点每组的第一个孔。选“排除”再点某个孔，可以把坏孔剔除。</li>
+          <li>填入<b>标准品浓度</b>（或者最高浓度和倍比）、<b>每个样本的稀释倍数</b>，以及质控的预期浓度。</li>
+          <li>检查<b>标准曲线</b>：拟合参数、标准品回算和定量范围。“自动”会在 4PL 和 5PL 之间选择并说明理由。</li>
+          <li>查看<b>结果</b>：每个标记都附有下一步该怎么做。可以打印报告（或另存为 PDF）、导出 CSV，并用<b>保存记录</b>在以后重新打开同一份分析。</li>
+        </ol>
+      </div>
+      <div>
+        <h2>公式</h2>
+        <div class="formula">
+          <span class="eq">y = D + (A − D) ÷ [1 + (x ÷ C)<sup>B</sup>]<sup>G</sup></span>
+          <table>
+            <tr><td>A</td><td>浓度为零时的 OD</td></tr>
+            <tr><td>D</td><td>饱和时的 OD</td></tr>
+            <tr><td>C</td><td>拐点（4PL 时即 EC50）</td></tr>
+            <tr><td>B, G</td><td>斜率；不对称因子（G = 1 即 4PL）</td></tr>
+            <tr><td>x</td><td>C · {[(A − D) ÷ (y − D)]<sup>1/G</sup> − 1}<sup>1/B</sup> × 稀释倍数</td></tr>
+          </table>
+        </div>
+        <p class="example"><b>例子。</b>4PL 参数 A = 0.05，B = 1.2，C = 150 pg/mL，D = 3.0。某样本 1:10 稀释后 OD 为 1.20：(A − D) ÷ (y − D) = −2.95 ÷ −1.80 = 1.639；1.639 − 1 = 0.639；0.639<sup>1/1.2</sup> = 0.688；× 150 = <b>孔内 103.3 pg/mL</b>，× 10 = <b>1033 pg/mL</b>。</p>
+        <h2>须知</h2>
+        <ol class="lm-num">
+          <li>免费、免登录，不绑定任何试剂盒或酶标仪品牌。文件在浏览器里读取，从不上传；最近一次分析保存在本机，按“清空”即删除。</li>
+          <li>浓度由复孔的平均 OD 反算；每个孔各自的值在计算过程和 CSV 里。</li>
+          <li>工具不会自动剔除任何孔，也不会把外推值当作结果报告。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="i18n-en">
+  <div class="lm-more-k">REFERENCE · ELISA STANDARD CURVES</div>
+  <h2>Exporting from your plate reader</h2><p>Export the plate (all 96 values), not the protocol or experiment file. Menu names change between software versions; these are the usual routes. The layouts were written from the vendors' documented export formats.</p><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Reader software</th><th scope="col">Export</th><th scope="col">What the tool reads</th></tr></thead><tbody><tr><th scope="row">BioTek / Agilent Gen5 (Synergy, Epoch, ELx808, Cytation)</th><td>File → Export, or Report/Export Builder → plate view, to Excel or text</td><td>The 1–12 / A–H matrix for each read (“450”, “Read 1:630”), also two reads on alternate lines; OVRFLW as saturated</td></tr><tr><th scope="row">Molecular Devices SoftMax Pro (SpectraMax, FilterMax)</th><td>File → Export → plate format, .txt</td><td>Each “Plate:” block, wavelengths side by side (e.g. 450 and 570)</td></tr><tr><th scope="row">Tecan i-control, Magellan, SparkControl (Infinite, Sunrise, Spark)</th><td>Excel output, plate view</td><td>The block with the &lt;&gt; corner, one per wavelength; “OVER” as saturated</td></tr><tr><th scope="row">BMG LABTECH MARS (CLARIOstar, SPECTROstar, FLUOstar)</th><td>Export → Excel, plate or list view</td><td>“Raw Data (450)” matrices, or the Well / Content / value list</td></tr><tr><th scope="row">Thermo Scientific SkanIt (Multiskan, Varioskan)</th><td>Export results to Excel</td><td>The plate matrix on each measurement sheet</td></tr><tr><th scope="row">PerkinElmer / Revvity EnVision, VICTOR</th><td>Plate results as .csv</td><td>Well (A01) and Result / signal columns</td></tr><tr><th scope="row">Bio-Rad iMark (Microplate Manager)</th><td>Export raw data, text or Excel</td><td>The 8×12 matrix</td></tr><tr><th scope="row">Any reader</th><td>Copy the 8×12 values from the screen or Excel</td><td>8 rows of 12 values, labels optional; or a well + value list</td></tr></tbody></table></div><p class="lm-note">Reader not on the list, or the plate isn't read right? Use <a class="el-req" href="#report" data-open-report>REPORT A FORMAT PROBLEM</a> in step 1 — it can send the file's layout with every digit masked — or <a class="el-req" href="../../contact/?topic=elisa&amp;about=reader">the contact form</a>. Old binary .xls files can't be read — save them as .xlsx or .csv.</p>
+  <h2>Checks the tool runs</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Flag</th><th scope="col">When</th><th scope="col">What to do</th></tr></thead><tbody><tr><th scope="row">&gt; ULOQ</th><td>Concentration in the well above the highest standard that recovers within limits</td><td>Re-run diluted by the fold shown, which brings it to the middle of the range</td></tr><tr><th scope="row">ABOVE CURVE / SATURATED</th><td>OD at or above the top plateau, or a reader overflow mark</td><td>The value can't be estimated; dilute at least by the fold shown (the width of the range)</td></tr><tr><th scope="row">&lt; LLOQ, BELOW CURVE</th><td>Below the lowest standard that recovers within limits</td><td>Re-run less diluted if it was diluted; otherwise report &lt; LLOQ × dilution</td></tr><tr><th scope="row">&lt; LOD</th><td>Below the zero standard (or blank) mean + 3 SD (− 3 SD for competitive)</td><td>Indistinguishable from zero</td></tr><tr><th scope="row">HIGH CV</th><td>Replicate OD CV above your limit (15% by default; many kits ask ≤ 20%)</td><td>Look at the wells; exclude a clearly wrong one or repeat</td></tr><tr><th scope="row">RECOVERY</th><td>Control outside 80–120% of its expected value; standards outside 80–120% (75–125% at the ends)</td><td>Check the standard dilutions, the control and the curve fit</td></tr><tr><th scope="row">5PL NOT TRUSTED</th><td>5PL didn't converge, sits on a bound, has an asymmetry with SE larger than itself, or different starts disagree</td><td>4PL is used instead; add standard levels if you need 5PL</td></tr></tbody></table></div>
+  </div>
+  <div class="i18n-zh" lang="zh-CN">
+  <div class="lm-more-k">参考 · ELISA 标准曲线</div>
+  <h2>从酶标仪软件导出</h2><p>导出整板读数（全部 96 个值），而不是方案文件或实验文件。不同软件版本的菜单名可能不同，下面是常见路径。这些格式是根据厂商公开的导出格式编写的。</p><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">读板软件</th><th scope="col">导出</th><th scope="col">工具读取的内容</th></tr></thead><tbody><tr><th scope="row">BioTek / Agilent Gen5（Synergy、Epoch、ELx808、Cytation）</th><td>File → Export，或 Report/Export Builder → 板视图，导出 Excel 或文本</td><td>每个读数的 1–12 / A–H 矩阵（“450”“Read 1:630”），两个读数隔行排列也可以；OVRFLW 视为饱和</td></tr><tr><th scope="row">Molecular Devices SoftMax Pro（SpectraMax、FilterMax）</th><td>File → Export → plate 格式 .txt</td><td>每个“Plate:”块，多个波长并排（如 450 和 570）</td></tr><tr><th scope="row">Tecan i-control、Magellan、SparkControl（Infinite、Sunrise、Spark）</th><td>Excel 输出，板视图</td><td>左上角为 &lt;&gt; 的矩阵，每个波长一个；“OVER”视为饱和</td></tr><tr><th scope="row">BMG LABTECH MARS（CLARIOstar、SPECTROstar、FLUOstar）</th><td>Export → Excel，板视图或列表</td><td>“Raw Data (450)”矩阵，或 Well / Content / 读数列表</td></tr><tr><th scope="row">Thermo Scientific SkanIt（Multiskan、Varioskan）</th><td>结果导出到 Excel</td><td>每个测量工作表中的板矩阵</td></tr><tr><th scope="row">PerkinElmer / Revvity EnVision、VICTOR</th><td>板结果导出 .csv</td><td>Well（A01）和 Result / 信号列</td></tr><tr><th scope="row">Bio-Rad iMark（Microplate Manager）</th><td>导出原始数据，文本或 Excel</td><td>8×12 矩阵</td></tr><tr><th scope="row">国产及其他酶标仪</th><td>从屏幕或 Excel 复制 8×12 读数</td><td>8 行 12 列数值，标签可有可无；或“孔号 + 读数”列表</td></tr></tbody></table></div><p class="lm-note">你的酶标仪不在列表里，或者板数据读得不对？请用第 1 步里的<a class="el-req" href="#report" data-open-report>报告格式问题</a>——它可以附上数字已遮盖的文件版式——或者用<a class="el-req" href="../../contact/?topic=elisa&amp;about=reader">联系表单</a>。旧版二进制 .xls 读不了，请另存为 .xlsx 或 .csv。</p>
+  <h2>工具做的检查</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">标记</th><th scope="col">条件</th><th scope="col">怎么办</th></tr></thead><tbody><tr><th scope="row">&gt; ULOQ</th><td>孔内浓度高于回收率合格的最高标准品</td><td>按提示的倍数再稀释后重测，使其落在定量范围中段</td></tr><tr><th scope="row">高于曲线 / 饱和</th><td>OD 达到或超过曲线上平台，或酶标仪给出溢出标记</td><td>无法估算浓度；至少按提示倍数（即定量范围的跨度）稀释</td></tr><tr><th scope="row">&lt; LLOQ、低于曲线</th><td>低于回收率合格的最低标准品</td><td>若样本已稀释，降低稀释倍数重测；否则报告 &lt; LLOQ × 稀释倍数</td></tr><tr><th scope="row">&lt; LOD</th><td>低于零浓度标准品（或空白）均值 + 3 SD（竞争法为 − 3 SD）</td><td>与零无法区分</td></tr><tr><th scope="row">CV 偏高</th><td>复孔 OD 的 CV 超过设定上限（默认 15%，很多试剂盒要求 ≤ 20%）</td><td>检查各孔；剔除明显异常的孔或重测</td></tr><tr><th scope="row">回收率</th><td>质控在预期值 80–120% 之外；标准品在 80–120% 之外（两端 75–125%）</td><td>检查标准品稀释、质控品和曲线拟合</td></tr><tr><th scope="row">5PL 不可信</th><td>5PL 未收敛、参数卡在边界、不对称因子的标准误大于其本身，或不同初值结果不一致</td><td>改用 4PL；如确需 5PL，请增加标准品浓度点</td></tr></tbody></table></div>
+  </div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-21">21 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq i18n-en">
+      <div class="lm-more-k">QUESTIONS · ELISA STANDARD CURVE ANALYZER</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>Should I fit my ELISA standard curve with 4PL or 5PL?</summary><p>Start with 4PL. 5PL adds an asymmetry parameter and helps when the curve bends differently at the top and bottom, but it needs more standard levels and can fit noise. The tool fits both, uses 5PL only when an F-test says it fits significantly better and its parameters are well determined, and tells you why.</p></details>
+      <details><summary>Why weight the fit by 1/Y²?</summary><p>ELISA replicates scatter more at high OD than at low OD. An unweighted fit lets the top standards dominate and the low end, where most samples sit, fits worst. Weighting each point by 1/Y² (or 1/Y) evens that out. The weights here come from the mean OD of each standard level (at least 1% of the OD span), so the result can be reproduced in R or Prism.</p></details>
+      <details><summary>How are LLOQ and ULOQ decided?</summary><p>Each standard is read back off the fitted curve. The quantification range is the widest run of neighbouring standards that recover 80–120% of their nominal concentration with a CV of at most 20%, extended by one level at either end if that level is within 75–125% and 25% — the acceptance limits for ligand-binding assays in FDA and ICH M10 guidance. ALL STANDARDS uses the lowest and highest standard instead.</p></details>
+      <details><summary>What do I do with a sample above the top standard?</summary><p>Don't report the extrapolated number. The tool flags it &gt; ULOQ and tells you how much more to dilute it so it lands in the middle of the range, for example “dilute 5× more, re-run at 1:50”. A saturated well can't be estimated at all, so the advice is a minimum.</p></details>
+      <details><summary>Should I subtract the zero standard?</summary><p>Either fit the zero standard as a point on the curve (the default) or subtract its mean OD from every well; both are common, so follow your kit insert. If the plate has substrate-only blank wells, subtract those.</p></details>
+      <details><summary>Does it work for competitive ELISA?</summary><p>Yes. The curve direction is detected from the standards (signal falling with concentration), %B/B0 is shown against the zero standard, and the limit of detection is taken below the zero-standard signal.</p></details>
+      <details><summary>Is my data uploaded?</summary><p>No. Files are read and fitted in your browser. Nothing is sent anywhere and there is no account. The last analysis stays on this device until you press CLEAR.</p></details>
+    </div>
+    <div class="lm-faq i18n-zh" lang="zh-CN">
+      <div class="lm-more-k">常见问题 · ELISA 标准曲线分析</div>
+      <h2>常见问题</h2>
+      <details open><summary>标准曲线用 4PL 还是 5PL？</summary><p>先用 4PL。5PL 多了一个不对称参数，曲线上下两端弯曲程度不同时更贴合，但需要更多的标准品浓度点，也更容易拟合到噪声。工具会同时拟合两种模型，只有当 F 检验显示 5PL 明显更好、且参数估计稳定时才采用 5PL，并说明理由。</p></details>
+      <details><summary>为什么用 1/Y² 加权？</summary><p>ELISA 复孔在高 OD 处的离散度比低 OD 处大。不加权时高浓度标准品主导拟合，而大多数样本所在的低浓度端反而拟合得最差。按 1/Y²（或 1/Y）给每个点加权可以平衡这一点。这里的权重取自每个标准品浓度点的平均 OD（下限为 OD 跨度的 1%），因此结果可以在 R 或 Prism 里复现。</p></details>
+      <details><summary>LLOQ 和 ULOQ 怎么确定？</summary><p>把每个标准品代回拟合曲线反算浓度。定量范围是回收率在标示浓度 80–120%、CV 不超过 20% 的最长一段连续标准品；如果两端相邻的浓度点在 75–125%、CV 25% 以内，再各向外扩展一个点——这是 FDA 和 ICH M10 对配体结合分析的接受标准。选择“全部标准品”则直接用最低和最高标准品。</p></details>
+      <details><summary>样本超过最高标准品怎么办？</summary><p>不要报告外推值。工具会标记为 &gt; ULOQ，并告诉你需要再稀释多少倍才能落在定量范围中段，例如“再稀释 5 倍，按 1:50 重测”。饱和孔完全无法估算浓度，所以给出的是最低稀释倍数。</p></details>
+      <details><summary>零浓度标准品要不要扣除？</summary><p>可以把零浓度标准品作为曲线上的一个点参与拟合（默认），也可以从每个孔中减去它的平均 OD；两种做法都很常见，请按试剂盒说明书。如果板上有只加底物的空白孔，则扣除空白孔。</p></details>
+      <details><summary>支持竞争法 ELISA 吗？</summary><p>支持。曲线方向由标准品自动判断（信号随浓度下降），并以零浓度标准品为基准显示 %B/B0，检测限取在零浓度标准品信号之下。</p></details>
+      <details><summary>数据会上传吗？</summary><p>不会。文件在浏览器中读取和拟合，不会发送到任何地方，也不需要账号。最近一次分析保存在本机，按“清空”即删除。</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k" data-zh="相关工具">SEE ALSO</div>
+      <h2 data-zh="相关工具">Related tools</h2>
+      <ul>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t" data-zh="梯度稀释计算器">Serial Dilution Calculator</span><span class="d" data-zh="配制标准品的 2 倍梯度，逐管给出体积。">Plan the 2-fold standard series, tube by tube.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t" data-zh="孔板布局设计">Plate Layout Maker</span><span class="d" data-zh="上机前排好标准品、样本和复孔。">Map standards, samples and replicates before the run.</span></a></li>
+        <li><a href="../protein-loading/"><span class="n">5.2</span><span class="t" data-zh="蛋白上样计算器">Protein Loading Calculator</span><span class="d" data-zh="BCA / Bradford 线性标准曲线和上样体积。">BCA or Bradford linear standard curves and loading volumes.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cells" data-zh="全部 19 个工具 →">ALL 19 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=elisa" data-zh="有问题？联系我们 →">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../protein-loading/">PROTEIN LOADING</a> · <a href="../../contact/?topic=elisa">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 5.5</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="elisa-core.js?v=1"></script>
+<script src="elisa.js?v=1"></script>
+</body>
+</html>
