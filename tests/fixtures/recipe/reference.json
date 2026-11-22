@@ -1,0 +1,890 @@
+{
+ "mix": [
+  {
+   "inp": {
+    "kind": "resolving",
+    "volume": 10,
+    "pct": 10,
+    "stocks": {
+     "acryl": 30,
+     "resTris": 1.5,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "nominal"
+   },
+   "out": {
+    "tris": 2.5,
+    "acryl": 3.3333333333333335,
+    "sds": 0.1,
+    "aps": 0.05,
+    "temed": 0.005,
+    "water": 4.066666666666666,
+    "total": 10.055000000000001
+   }
+  },
+  {
+   "inp": {
+    "kind": "resolving",
+    "volume": 10,
+    "pct": 10,
+    "stocks": {
+     "acryl": 40,
+     "resTris": 1.5,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "strict"
+   },
+   "out": {
+    "tris": 2.5,
+    "acryl": 2.5,
+    "sds": 0.1,
+    "aps": 0.05,
+    "temed": 0.005,
+    "water": 4.845000000000001,
+    "total": 10.000000000000002
+   }
+  },
+  {
+   "inp": {
+    "kind": "stacking",
+    "volume": 10,
+    "pct": 4,
+    "stocks": {
+     "acryl": 40,
+     "resTris": 1.5,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "strict"
+   },
+   "out": {
+    "tris": 2.5,
+    "acryl": 1.0,
+    "sds": 0.1,
+    "aps": 0.05,
+    "temed": 0.01,
+    "water": 6.340000000000001,
+    "total": 10.0
+   }
+  },
+  {
+   "inp": {
+    "kind": "stacking",
+    "volume": 10,
+    "pct": 4,
+    "stocks": {
+     "acryl": 30,
+     "resTris": 1.5,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "nominal"
+   },
+   "out": {
+    "tris": 2.5,
+    "acryl": 1.3333333333333333,
+    "sds": 0.1,
+    "aps": 0.05,
+    "temed": 0.01,
+    "water": 6.066666666666667,
+    "total": 10.06
+   }
+  },
+  {
+   "inp": {
+    "kind": "resolving",
+    "volume": 18.5,
+    "pct": 12,
+    "stocks": {
+     "acryl": 30,
+     "resTris": 1.5,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "strict"
+   },
+   "out": {
+    "tris": 4.625,
+    "acryl": 7.4,
+    "sds": 0.185,
+    "aps": 0.0925,
+    "temed": 0.009250000000000001,
+    "water": 6.18825,
+    "total": 18.500000000000004
+   }
+  },
+  {
+   "inp": {
+    "kind": "resolving",
+    "volume": 7.3,
+    "pct": 7.5,
+    "stocks": {
+     "acryl": 30,
+     "resTris": 1.0,
+     "stkTris": 0.5,
+     "sds": 10,
+     "aps": 10,
+     "temed": 100
+    },
+    "water": "strict"
+   },
+   "out": {
+    "tris": 2.7375,
+    "acryl": 1.825,
+    "sds": 0.073,
+    "aps": 0.0365,
+    "temed": 0.00365,
+    "water": 2.6243499999999997,
+    "total": 7.300000000000001
+   }
+  }
+ ],
+ "plan": [
+  {
+   "inp": {
+    "cassette": 5.6,
+    "frac": 0.75,
+    "overage": 10,
+    "step": 0.5,
+    "resolving": [
+     {
+      "pct": 10,
+      "gels": 2
+     },
+     {
+      "pct": 12,
+      "gels": 2
+     }
+    ],
+    "stackPct": 4,
+    "water": "strict"
+   },
+   "out": {
+    "res": [
+     {
+      "volume": 9.5,
+      "tris": 2.375,
+      "acryl": 3.1666666666666665,
+      "sds": 0.095,
+      "aps": 0.0475,
+      "temed": 0.004750000000000001,
+      "water": 3.8110833333333334,
+      "total": 9.5
+     },
+     {
+      "volume": 9.5,
+      "tris": 2.375,
+      "acryl": 3.8,
+      "sds": 0.095,
+      "aps": 0.0475,
+      "temed": 0.004750000000000001,
+      "water": 3.17775,
+      "total": 9.5
+     }
+    ],
+    "stk": {
+     "volume": 6.5,
+     "tris": 1.625,
+     "acryl": 0.8666666666666667,
+     "sds": 0.065,
+     "aps": 0.0325,
+     "temed": 0.006500000000000001,
+     "water": 3.9043333333333328,
+     "total": 6.499999999999999
+    }
+   }
+  },
+  {
+   "inp": {
+    "cassette": 4.2,
+    "frac": 0.7,
+    "overage": 0,
+    "step": 0,
+    "resolving": [
+     {
+      "pct": 15,
+      "gels": 1
+     }
+    ],
+    "stackPct": 5,
+    "water": "strict"
+   },
+   "out": {
+    "res": [
+     {
+      "volume": 2.94,
+      "tris": 0.735,
+      "acryl": 1.47,
+      "sds": 0.0294,
+      "aps": 0.0147,
+      "temed": 0.00147,
+      "water": 0.6894300000000001,
+      "total": 2.9399999999999995
+     }
+    ],
+    "stk": {
+     "volume": 1.2600000000000002,
+     "tris": 0.31500000000000006,
+     "acryl": 0.21000000000000002,
+     "sds": 0.012600000000000004,
+     "aps": 0.006300000000000002,
+     "temed": 0.0012600000000000003,
+     "water": 0.71484,
+     "total": 1.26
+    }
+   }
+  },
+  {
+   "inp": {
+    "cassette": 8.4,
+    "frac": 0.75,
+    "overage": 15,
+    "step": 1,
+    "resolving": [
+     {
+      "pct": 8,
+      "gels": 3
+     },
+     {
+      "pct": 10,
+      "gels": 1
+     },
+     {
+      "pct": 12,
+      "gels": 6
+     }
+    ],
+    "stackPct": 4,
+    "water": "strict"
+   },
+   "out": {
+    "res": [
+     {
+      "volume": 22,
+      "tris": 5.5,
+      "acryl": 5.866666666666666,
+      "sds": 0.22000000000000003,
+      "aps": 0.11000000000000001,
+      "temed": 0.011000000000000001,
+      "water": 10.292333333333332,
+      "total": 21.999999999999996
+     },
+     {
+      "volume": 8,
+      "tris": 2.0,
+      "acryl": 2.6666666666666665,
+      "sds": 0.08,
+      "aps": 0.04,
+      "temed": 0.004,
+      "water": 3.2093333333333334,
+      "total": 7.999999999999999
+     },
+     {
+      "volume": 44,
+      "tris": 11.0,
+      "acryl": 17.6,
+      "sds": 0.44000000000000006,
+      "aps": 0.22000000000000003,
+      "temed": 0.022000000000000002,
+      "water": 14.717999999999998,
+      "total": 43.99999999999999
+     }
+    ],
+    "stk": {
+     "volume": 25,
+     "tris": 6.25,
+     "acryl": 3.3333333333333335,
+     "sds": 0.25,
+     "aps": 0.125,
+     "temed": 0.025,
+     "water": 15.016666666666666,
+     "total": 24.999999999999996
+    }
+   }
+  }
+ ],
+ "make": [
+  {
+   "inp": {
+    "recipe": "tgs",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 25,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Gly",
+      "c": 192,
+      "u": "mM",
+      "form": "powder",
+      "mw": 75.07
+     },
+     {
+      "name": "SDS",
+      "c": 0.1,
+      "u": "w/v",
+      "form": "powder"
+     }
+    ],
+    "x": 10,
+    "V": 1000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     30.285
+    ],
+    [
+     "g",
+     144.13439999999997
+    ],
+    [
+     "g",
+     10.0
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "pbs",
+    "components": [
+     {
+      "name": "NaCl",
+      "c": 137,
+      "u": "mM",
+      "form": "powder",
+      "mw": 58.44
+     },
+     {
+      "name": "KCl",
+      "c": 2.7,
+      "u": "mM",
+      "form": "powder",
+      "mw": 74.55
+     },
+     {
+      "name": "Na2HPO4",
+      "c": 10,
+      "u": "mM",
+      "form": "powder",
+      "mw": 141.96
+     },
+     {
+      "name": "KH2PO4",
+      "c": 1.8,
+      "u": "mM",
+      "form": "powder",
+      "mw": 136.09
+     }
+    ],
+    "x": 10,
+    "V": 1000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     80.06280000000001
+    ],
+    [
+     "g",
+     2.0128500000000003
+    ],
+    [
+     "g",
+     14.196000000000002
+    ],
+    [
+     "g",
+     2.4496200000000004
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "tae",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 40,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "AcOH",
+      "c": 20,
+      "u": "mM",
+      "form": "liquid",
+      "stock": 17.5
+     },
+     {
+      "name": "EDTA",
+      "c": 1,
+      "u": "mM",
+      "form": "stock",
+      "stock": 0.5
+     }
+    ],
+    "x": 50,
+    "V": 1000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     242.28
+    ],
+    [
+     "mL",
+     57.142857142857146
+    ],
+    [
+     "mL",
+     100.0
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "tae",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 40,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "AcOH",
+      "c": 20,
+      "u": "mM",
+      "form": "liquid",
+      "stock": 17.5
+     },
+     {
+      "name": "EDTA",
+      "c": 1,
+      "u": "mM",
+      "form": "stock",
+      "stock": 0.5
+     }
+    ],
+    "x": 10,
+    "V": 1000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     48.456
+    ],
+    [
+     "mL",
+     11.428571428571429
+    ],
+    [
+     "mL",
+     20.0
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "tbe",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 89,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Boric",
+      "c": 89,
+      "u": "mM",
+      "form": "powder",
+      "mw": 61.83
+     },
+     {
+      "name": "EDTA",
+      "c": 2,
+      "u": "mM",
+      "form": "stock",
+      "stock": 0.5
+     }
+    ],
+    "x": 5,
+    "V": 1000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     53.90729999999999
+    ],
+    [
+     "g",
+     27.514349999999997
+    ],
+    [
+     "mL",
+     20.0
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "ripa",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 50,
+      "u": "mM",
+      "form": "stock",
+      "stock": 1
+     },
+     {
+      "name": "NaCl",
+      "c": 150,
+      "u": "mM",
+      "form": "powder",
+      "mw": 58.44
+     },
+     {
+      "name": "NP40",
+      "c": 1,
+      "u": "v/v",
+      "form": "liquid"
+     },
+     {
+      "name": "DOC",
+      "c": 0.5,
+      "u": "w/v",
+      "form": "powder"
+     },
+     {
+      "name": "SDS",
+      "c": 0.1,
+      "u": "w/v",
+      "form": "stock",
+      "stock": 10
+     }
+    ],
+    "x": 1,
+    "V": 50,
+    "includeAtUse": true
+   },
+   "out": [
+    [
+     "mL",
+     2.5
+    ],
+    [
+     "g",
+     0.43829999999999997
+    ],
+    [
+     "mL",
+     0.5
+    ],
+    [
+     "g",
+     0.25
+    ],
+    [
+     "mL",
+     0.5
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "towbin",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 25,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Gly",
+      "c": 192,
+      "u": "mM",
+      "form": "powder",
+      "mw": 75.07
+     },
+     {
+      "name": "MeOH",
+      "c": 20,
+      "u": "v/v",
+      "form": "liquid",
+      "atUse": true
+     }
+    ],
+    "x": 10,
+    "V": 2000,
+    "includeAtUse": false
+   },
+   "out": [
+    [
+     "g",
+     60.57
+    ],
+    [
+     "g",
+     288.26879999999994
+    ],
+    null
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "edta",
+    "components": [
+     {
+      "name": "Na2EDTA",
+      "c": 0.5,
+      "u": "M",
+      "form": "powder",
+      "mw": 372.24
+     }
+    ],
+    "x": 1,
+    "V": 500,
+    "includeAtUse": true
+   },
+   "out": [
+    [
+     "g",
+     93.06
+    ]
+   ]
+  },
+  {
+   "inp": {
+    "recipe": "pbs",
+    "components": [
+     {
+      "name": "NaCl",
+      "c": 137,
+      "u": "mM",
+      "form": "powder",
+      "mw": 58.44
+     },
+     {
+      "name": "KCl",
+      "c": 2.7,
+      "u": "mM",
+      "form": "powder",
+      "mw": 74.55
+     },
+     {
+      "name": "Na2HPO4",
+      "c": 10,
+      "u": "mM",
+      "form": "powder",
+      "mw": 141.96
+     },
+     {
+      "name": "KH2PO4",
+      "c": 1.8,
+      "u": "mM",
+      "form": "powder",
+      "mw": 136.09
+     }
+    ],
+    "x": 1,
+    "V": 250,
+    "includeAtUse": true
+   },
+   "out": [
+    [
+     "g",
+     2.00157
+    ],
+    [
+     "g",
+     0.05032125
+    ],
+    [
+     "g",
+     0.35490000000000005
+    ],
+    [
+     "g",
+     0.06124050000000001
+    ]
+   ]
+  }
+ ],
+ "dilute": [
+  {
+   "inp": {
+    "recipe": "towbin",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 25,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Gly",
+      "c": 192,
+      "u": "mM",
+      "form": "powder",
+      "mw": 75.07
+     },
+     {
+      "name": "MeOH",
+      "c": 20,
+      "u": "v/v",
+      "form": "liquid",
+      "atUse": true
+     }
+    ],
+    "from_": 10,
+    "to": 1,
+    "V": 1000
+   },
+   "out": {
+    "stockV": 100.0,
+    "adds": [
+     200.0
+    ],
+    "water": 700.0
+   }
+  },
+  {
+   "inp": {
+    "recipe": "tgs",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 25,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Gly",
+      "c": 192,
+      "u": "mM",
+      "form": "powder",
+      "mw": 75.07
+     },
+     {
+      "name": "SDS",
+      "c": 0.1,
+      "u": "w/v",
+      "form": "powder"
+     }
+    ],
+    "from_": 10,
+    "to": 1,
+    "V": 500
+   },
+   "out": {
+    "stockV": 50.0,
+    "adds": [],
+    "water": 450.0
+   }
+  },
+  {
+   "inp": {
+    "recipe": "tbe",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 89,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Boric",
+      "c": 89,
+      "u": "mM",
+      "form": "powder",
+      "mw": 61.83
+     },
+     {
+      "name": "EDTA",
+      "c": 2,
+      "u": "mM",
+      "form": "stock",
+      "stock": 0.5
+     }
+    ],
+    "from_": 5,
+    "to": 0.5,
+    "V": 2000
+   },
+   "out": {
+    "stockV": 200.0,
+    "adds": [],
+    "water": 1800.0
+   }
+  },
+  {
+   "inp": {
+    "recipe": "towbin",
+    "components": [
+     {
+      "name": "Tris",
+      "c": 25,
+      "u": "mM",
+      "form": "powder",
+      "mw": 121.14
+     },
+     {
+      "name": "Gly",
+      "c": 192,
+      "u": "mM",
+      "form": "powder",
+      "mw": 75.07
+     },
+     {
+      "name": "MeOH",
+      "c": 20,
+      "u": "v/v",
+      "form": "liquid",
+      "atUse": true
+     }
+    ],
+    "from_": 20,
+    "to": 1,
+    "V": 1000
+   },
+   "out": {
+    "stockV": 50.0,
+    "adds": [
+     200.0
+    ],
+    "water": 750.0
+   }
+  }
+ ]
+}
