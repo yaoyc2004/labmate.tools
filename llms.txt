@@ -41,6 +41,8 @@
 ## Cytometry
 
 - [Flow Cytometry Panel Designer](https://labmate.tools/tools/panel-designer/): Free, vendor-neutral flow cytometry panel designer. Pick your cytometer, assign fluorochromes and see spectra, estimated spillover and spectral similarity.
+- [Flow Antibody Titration Calculator](https://labmate.tools/tools/antibody-titration/): Free flow cytometry antibody titration calculator: serial or tube-by-tube dilution series in µg or µL per test with predilutions under 0.5 µL, then paste a FlowJo / FCS Express statistics table to get the stain index (Maecker 2004), 84th-percentile separation index or signal-to-noise, the best and lowest near-best amount, chart and CSV.
+- [Flow Staining Cocktail Calculator](https://labmate.tools/tools/staining-cocktail/): Free flow cytometry staining cocktail calculator: antibodies in µL/test, µg/test or 1:X × number of tubes with % or whole-tube extra, buffer to volume, Brilliant Stain Buffer and Fc block, predilution for volumes under 0.5 µL, fixable viability dye listed apart, import from Panel Designer, printable sheet, CSV and share link.
 
 ## Imaging
 

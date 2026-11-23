@@ -1,0 +1,92 @@
+/* labmate.tools — shared styles for 7.2 Antibody Titration and 7.3 Staining Cocktail (with calc.css, recipe.css) */
+
+.fl-text { width: 100%; min-height: 150px; box-sizing: border-box; border: 1.5px solid var(--ink); background: #fff; padding: 10px; font-family: var(--mono); font-size: 14px; line-height: 1.45; resize: vertical; }
+.fl-text:focus { outline: none; border-color: var(--pass); }
+.fl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 10px; }
+.fl-row .rc-k { margin: 0; }
+.fl-file { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1.5px dashed var(--ink); font-family: var(--mono); font-size: 13px; letter-spacing: .06em; cursor: pointer; }
+.fl-file:hover { background: var(--card); }
+.fl-file input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.fl-cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.fl-cols label { display: flex; flex-direction: column; gap: 3px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--muted); }
+.fl-cols select { width: 100%; min-width: 0; height: 38px; border: 1px solid var(--dot); background: #fff; font-family: var(--mono); font-size: 13px; }
+.fl-mini { min-height: 32px; padding: 0 8px; border: 1px solid var(--ink); background: #fff; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; cursor: pointer; white-space: nowrap; }
+.fl-mini:hover { background: var(--teal); color: var(--on-teal); border-color: var(--teal); }
+.fl-chk { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; }
+.fl-chk input { width: 20px; height: 20px; accent-color: var(--teal); }
+
+/* result tables */
+.fl-out { width: 100%; border-collapse: collapse; background: #fff; border: 1.5px solid var(--ink); font-size: 15px; }
+.fl-out th { text-align: left; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .08em; color: var(--muted); padding: 8px; background: var(--card); border-bottom: 1px solid var(--ink); }
+.fl-out td { padding: 6px 8px; border-bottom: 1px dotted var(--dot); vertical-align: baseline; }
+.fl-out tr:last-child td { border-bottom: none; }
+.fl-out .c-num, .fl-out th.c-num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+.fl-out td.c-add { font-weight: 600; background: rgba(156, 199, 182, .18); }
+.fl-out td small, .fl-out .sub { display: block; font-size: 12px; color: var(--muted); font-family: var(--mono); font-weight: 400; }
+.fl-out tr.is-best td { background: rgba(46, 158, 91, .12); }
+.fl-out tr.is-lean td:first-child { box-shadow: inset 4px 0 0 var(--pass); }
+.fl-out tr.is-warn td.c-add, .fl-out td.is-warn { color: var(--err); }
+.fl-out tr.is-total td { border-top: 1.5px solid var(--ink); font-family: var(--mono); font-weight: 600; }
+.fl-out input[type="text"], .fl-out select { width: 100%; min-width: 0; height: 34px; border: none; border-bottom: 1.5px dashed var(--dot); background: transparent; font-size: 15px; padding: 0 2px; box-sizing: border-box; }
+.fl-out input.num { font-family: var(--mono); text-align: right; }
+.fl-out select { border: 1px solid var(--dot); font-family: var(--mono); font-size: 13px; }
+.fl-out input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--teal); }
+.fl-out tr.is-done td { color: var(--faint); text-decoration: line-through; }
+.fl-tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; padding: 1px 5px; border: 1px solid currentColor; margin-left: 4px; vertical-align: 1px; }
+.fl-tag.is-best { color: var(--pass-dark); }
+.fl-tag.is-lean { color: var(--teal); }
+.fl-tag.is-bg { color: var(--warn); }
+
+.fl-steps { margin: 14px 0 0; padding-left: 1.5em; font-size: 16px; }
+.fl-steps li { padding: 4px 0; }
+.fl-steps b { font-family: var(--mono); }
+.fl-chart { margin-top: 16px; border: 1.5px solid var(--ink); background: #fff; padding: 8px; }
+.fl-chart svg { display: block; width: 100%; height: auto; }
+.fl-chart-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--muted); padding: 6px 2px 0; }
+.fl-lib-warn { margin: 8px 0 0; font-size: 14px; color: var(--warn); }
+.fl-section-gap { margin-top: 16px; }
+.fl-scroll { overflow-x: auto; }
+
+@media (max-width: 860px) {
+  .fl-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .fl-cols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .fl-out { font-size: 14px; }
+  .fl-out th, .fl-out td { padding: 5px 5px; }
+  .fl-out.is-stack thead { display: none; }
+  .fl-out.is-stack, .fl-out.is-stack tbody { display: block; }
+  .fl-out.is-stack tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 8px; padding: 6px 4px; border-bottom: 1px dotted var(--dot); }
+  .fl-out.is-stack td { border: none; padding: 2px 4px; text-align: left; }
+  .fl-out.is-stack td[data-l]::before { content: attr(data-l); display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--muted); font-weight: 400; }
+  .fl-out.is-stack td.c-wide { grid-column: 1 / -1; }
+  .fl-out.is-stack tr.is-total { border-top: 1.5px solid var(--ink); }
+}
+@media print {
+  .lm-top, .lm-head, .ans-actions, .lm-about, .lm-foot, .lm-ref, .lm-more, .no-print, .notes .info, .fl-chart-actions { display: none !important; }
+  body { background: #fff; }
+  .lm-sheet { border: none; padding: 0; }
+  .lm-bar { border: none; background: none; color: var(--ink); padding: 0; margin: 10px 0 4px; }
+  .rc-print-head { display: block; font-family: var(--mono); font-size: 13px; margin-bottom: 10px; }
+  .fl-out { font-size: 12px; }
+  .fl-out input[type="checkbox"] { display: none; }
+  .fl-out td.c-chk::before { content: "☐"; font-size: 14px; }
+}
+
+/* chart marks (the exported SVG carries the same rules inline) */
+.fl-chart svg text { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+.fl-chart svg .g { stroke: #E2DED2; }
+.fl-chart svg .ax { stroke: var(--ink); stroke-width: 1.2; }
+.fl-chart svg .ln { fill: none; stroke: var(--teal); stroke-width: 2; }
+.fl-chart svg .pt { fill: #fff; stroke: var(--ink); stroke-width: 1.4; }
+.fl-chart svg .bst { fill: var(--pass); stroke: var(--ink); stroke-width: 1.4; }
+.fl-chart svg .ln2 { stroke: var(--pass); stroke-dasharray: 4 3; }
+.fl-chart svg .lean { fill: none; stroke: var(--teal); stroke-width: 2; }
+.fl-chart:has(#chart:empty) { display: none; }
+.rc-table.fl-ab select { min-width: 92px; }
+@media (max-width: 600px) {
+  .rc-table.fl-ab.is-stack tr { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); position: relative; padding-right: 40px; }
+  .rc-table.fl-ab.is-stack td.c-x { position: absolute; right: 0; top: 6px; }
+  .rc-table.fl-ab.is-stack td.c-num { text-align: left; }
+  .fl-out.is-stack td:empty { display: none; }
+}

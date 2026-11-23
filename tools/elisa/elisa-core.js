@@ -594,46 +594,10 @@
   // ===================================================================
   // 4. Reading plate-reader exports
   // ===================================================================
-  E.decode = function (bytes) {
-    var u = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
-    var enc = "utf-8", start = 0;
-    if (u[0] === 0xFF && u[1] === 0xFE) { enc = "utf-16le"; start = 2; }
-    else if (u[0] === 0xFE && u[1] === 0xFF) { enc = "utf-16be"; start = 2; }
-    else if (u[0] === 0xEF && u[1] === 0xBB && u[2] === 0xBF) start = 3;
-    else if (u.length > 4 && u[1] === 0 && u[3] === 0 && u[0] !== 0) enc = "utf-16le";
-    var txt;
-    try { txt = new TextDecoder(enc, { fatal: enc === "utf-8" }).decode(u.subarray(start)); }
-    catch (e) { txt = new TextDecoder("windows-1252").decode(u.subarray(start)); }
-    return txt;
-  };
-  function splitLine(line, d) {
-    if (d !== "," && d !== ";") return line.split(d);
-    var out = [], cur = "", q = false;
-    for (var i = 0; i < line.length; i++) {
-      var c = line[i];
-      if (q) { if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; }
-      else if (c === '"') q = true;
-      else if (c === d) { out.push(cur); cur = ""; }
-      else cur += c;
-    }
-    out.push(cur);
-    return out;
-  }
-  E.textGrid = function (text) {
-    var lines = String(text).replace(/^﻿/, "").split(/\r\n|\r|\n/);
-    var sample = lines.filter(function (l) { return l.trim(); }).slice(0, 200);
-    var count = function (ch) { return sample.reduce(function (a, l) { return a + (l.split(ch).length - 1); }, 0); };
-    var tabs = count("\t"), commas = count(","), semis = count(";");
-    var d;
-    if (tabs > 0 && tabs >= commas && tabs >= semis) d = "\t";
-    else if (semis > 0 && semis >= commas * 0.5) d = ";";
-    else if (commas > 0) d = ",";
-    else d = null; // whitespace-separated (pasted from some viewers)
-    return lines.map(function (l) {
-      var cells = d ? splitLine(l, d) : l.trim().split(/\s+/);
-      return cells.map(function (c) { return c.trim(); });
-    });
-  };
+  // file decoding and table splitting live in assets/grid-core.js (shared with 7.2 Antibody Titration)
+  var G = root && root.LMG ? root.LMG : (typeof require === "function" ? require("../../assets/grid-core.js") : null);
+  E.decode = G.decode;
+  E.textGrid = G.textGrid;
 
   function inflateRaw(bytes) {
     if (typeof DecompressionStream === "undefined") return Promise.reject(new Error("zip"));
