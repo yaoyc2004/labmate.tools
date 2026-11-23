@@ -2,6 +2,29 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-23
+
+New tools: **Flow Antibody Titration Calculator (7.2)** and **Flow Staining Cocktail Calculator (7.3)** in SECTION 07 — CYTOMETRY, sharing one antibody list saved in the browser.
+
+### Flow Antibody Titration Calculator (7.2) — new
+- Enter the antibody (target, fluor, clone, lot), the stock in mg/mL and the datasheet's amount per test in µg or µL. Set the staining volume, the cell suspension you add, the start (4× the recommendation by default), the step (2-fold) and the number of tubes (8).
+- SERIAL TRANSFER: one top mix carried from tube to tube, with the exact volumes (default: tube 1 = 11 µL antibody + 99 µL buffer, 55 µL into 55 µL buffer each step, 55 µL discarded from the last tube). The antibody mix is made concentrated for the cells you add (50 µL mix + 50 µL cells → 2×). TUBE BY TUBE: antibody and buffer per tube, with one shared predilution for every tube under 0.5 µL. Print with tick boxes, copy or CSV.
+- STAIN INDEX: paste a statistics table (FlowJo table editor, FCS Express, Diva, Kaluza, a spreadsheet; tab, comma or semicolon, decimal commas) or open a .csv. Columns are found by name (Median, Robust SD, 84th percentile, + / − populations) and can be changed; amounts are read from sample names (1:200, 0.25 µg, 2 µL, 4x) or taken in order from the series, and can be typed over.
+- Stain index (Maecker et al. 2004: (pos − neg) ÷ 2 rSD of the negative), 84th-percentile separation index, or positive ÷ negative when there is no spread column. Marks the best amount and the lowest amount within 90% of it, flags a negative population more than twice as bright as at the lowest amount, and says when the best is at the top or bottom of the series. Chart as SVG or PNG, results CSV.
+- SAVE TO MY ANTIBODIES keeps the chosen amount with the staining volume, cells, date and index; the list can be exported and imported as JSON.
+
+### Flow Staining Cocktail Calculator (7.3) — new
+- Tubes to stain with extra as a percentage or whole tubes, final staining volume and cocktail per tube. Antibodies in µL per test, µg per test (with stock) or 1:X of the staining volume; add them from MY ANTIBODIES (a titer from another staining volume is scaled to the same concentration) or send the panel from Panel Designer.
+- One table in order of addition — staining buffer, Brilliant Stain Buffer (presets 50 µL / Plus 10 µL per test, editable), Fc block, antibodies — with per-tube and total volumes, µg used, tick boxes, and the cocktail total.
+- Checks: totals under 0.5 µL (with a predilution and the tube count that avoids it), antibodies that don't fit the cocktail volume (with the smallest volume that works), two or more Brilliant polymer dyes without Brilliant Stain Buffer. Rows ticked VIABILITY go to their own table, to stain in protein-free PBS first.
+- PRINT SHEET, CSV and COPY SHARE LINK (the whole cocktail in the link).
+
+### Site (cytometry)
+- Panel Designer: new BUILD STAINING COCKTAIL button sends its markers and dyes to 7.3; related tools now point to 7.2 and 7.3.
+- The ELISA page's file reading moved to a shared `assets/grid-core.js`, also used by 7.2; ELISA behaves the same (its 50 tests pass unchanged).
+- Homepage cards in SECTION 07 (3 tools), structured data lists 23 tools, every tool page says ALL 23 TOOLS; 404 index, `llms.txt`, sitemap, social cards (`assets/og/antibody-titration.png`, `assets/og/staining-cocktail.png`), About page sources, and contact topics "7.2 Antibody Titration" and "7.3 Staining Cocktail".
+- Tested: series, indexes and cocktails matched an independent Python implementation (largest relative difference 2 × 10⁻¹⁶) in 23 Node tests; 17 headless-browser tests (series plan, shared predilution, paste → stain index, separation index from semicolon CSV, downloads, library across both pages, titer scaling, warnings, row removal right after typing, share link, Panel Designer hand-off), no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+
 ## 2026-11-21
 
 New tools: **ELISA Standard Curve Analyzer (5.5)** and **SDS-PAGE Gel Recipe Calculator (5.6)** in SECTION 05 — CELLS & PROTEIN, and **Buffer Recipe Calculator (2.7)** in SECTION 02 — CALCULATORS.

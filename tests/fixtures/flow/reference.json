@@ -1,0 +1,420 @@
+{
+ "series": [
+  {
+   "in": {
+    "stock": 0.2,
+    "rec": 0.25,
+    "finalVol": 100,
+    "cellVol": 50,
+    "top": 4,
+    "factor": 2,
+    "points": 8,
+    "extra": 0.1
+   },
+   "out": {
+    "keep": 55,
+    "transfer": 55.0,
+    "firstTotal": 110.0,
+    "firstStock": 11.0,
+    "tubes": [
+     {
+      "amount": 1.0,
+      "ulStock": 5.0,
+      "dil": 20.0,
+      "finalUgMl": 10.0
+     },
+     {
+      "amount": 0.5,
+      "ulStock": 2.5,
+      "dil": 40.0,
+      "finalUgMl": 5.0
+     },
+     {
+      "amount": 0.25,
+      "ulStock": 1.25,
+      "dil": 80.0,
+      "finalUgMl": 2.5
+     },
+     {
+      "amount": 0.125,
+      "ulStock": 0.625,
+      "dil": 160.0,
+      "finalUgMl": 1.25
+     },
+     {
+      "amount": 0.0625,
+      "ulStock": 0.3125,
+      "dil": 320.0,
+      "finalUgMl": 0.625
+     },
+     {
+      "amount": 0.03125,
+      "ulStock": 0.15625,
+      "dil": 640.0,
+      "finalUgMl": 0.3125
+     },
+     {
+      "amount": 0.015625,
+      "ulStock": 0.078125,
+      "dil": 1280.0,
+      "finalUgMl": 0.15625
+     },
+     {
+      "amount": 0.0078125,
+      "ulStock": 0.0390625,
+      "dil": 2560.0,
+      "finalUgMl": 0.078125
+     }
+    ]
+   }
+  },
+  {
+   "in": {
+    "stock": 0.5,
+    "rec": 1,
+    "finalVol": 200,
+    "cellVol": 100,
+    "top": 2,
+    "factor": 3,
+    "points": 6,
+    "extra": 0.05
+   },
+   "out": {
+    "keep": 105,
+    "transfer": 52.5,
+    "firstTotal": 157.5,
+    "firstStock": 6.3,
+    "tubes": [
+     {
+      "amount": 2.0,
+      "ulStock": 4.0,
+      "dil": 50.0,
+      "finalUgMl": 10.0
+     },
+     {
+      "amount": 0.6666666666666666,
+      "ulStock": 1.3333333333333333,
+      "dil": 150.0,
+      "finalUgMl": 3.333333333333333
+     },
+     {
+      "amount": 0.2222222222222222,
+      "ulStock": 0.4444444444444444,
+      "dil": 450.0,
+      "finalUgMl": 1.1111111111111112
+     },
+     {
+      "amount": 0.07407407407407407,
+      "ulStock": 0.14814814814814814,
+      "dil": 1350.0,
+      "finalUgMl": 0.37037037037037035
+     },
+     {
+      "amount": 0.024691358024691357,
+      "ulStock": 0.04938271604938271,
+      "dil": 4050.0,
+      "finalUgMl": 0.1234567901234568
+     },
+     {
+      "amount": 0.00823045267489712,
+      "ulStock": 0.01646090534979424,
+      "dil": 12149.999999999998,
+      "finalUgMl": 0.0411522633744856
+     }
+    ]
+   }
+  },
+  {
+   "in": {
+    "stock": null,
+    "rec": 5,
+    "finalVol": 100,
+    "cellVol": 50,
+    "top": 4,
+    "factor": 2,
+    "points": 10,
+    "extra": 0.1
+   },
+   "out": {
+    "keep": 55,
+    "transfer": 55.0,
+    "firstTotal": 110.0,
+    "firstStock": 44.0,
+    "tubes": [
+     {
+      "amount": 20.0,
+      "ulStock": 20.0,
+      "dil": 5.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 10.0,
+      "ulStock": 10.0,
+      "dil": 10.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 5.0,
+      "ulStock": 5.0,
+      "dil": 20.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 2.5,
+      "ulStock": 2.5,
+      "dil": 40.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 1.25,
+      "ulStock": 1.25,
+      "dil": 80.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 0.625,
+      "ulStock": 0.625,
+      "dil": 160.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 0.3125,
+      "ulStock": 0.3125,
+      "dil": 320.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 0.15625,
+      "ulStock": 0.15625,
+      "dil": 640.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 0.078125,
+      "ulStock": 0.078125,
+      "dil": 1280.0,
+      "finalUgMl": null
+     },
+     {
+      "amount": 0.0390625,
+      "ulStock": 0.0390625,
+      "dil": 2560.0,
+      "finalUgMl": null
+     }
+    ]
+   }
+  },
+  {
+   "in": {
+    "stock": 1,
+    "rec": 0.125,
+    "finalVol": 50,
+    "cellVol": 25,
+    "top": 8,
+    "factor": 2,
+    "points": 12,
+    "extra": 0.2
+   },
+   "out": {
+    "keep": 30,
+    "transfer": 30.0,
+    "firstTotal": 60.0,
+    "firstStock": 2.4,
+    "tubes": [
+     {
+      "amount": 1.0,
+      "ulStock": 1.0,
+      "dil": 50.0,
+      "finalUgMl": 20.0
+     },
+     {
+      "amount": 0.5,
+      "ulStock": 0.5,
+      "dil": 100.0,
+      "finalUgMl": 10.0
+     },
+     {
+      "amount": 0.25,
+      "ulStock": 0.25,
+      "dil": 200.0,
+      "finalUgMl": 5.0
+     },
+     {
+      "amount": 0.125,
+      "ulStock": 0.125,
+      "dil": 400.0,
+      "finalUgMl": 2.5
+     },
+     {
+      "amount": 0.0625,
+      "ulStock": 0.0625,
+      "dil": 800.0,
+      "finalUgMl": 1.25
+     },
+     {
+      "amount": 0.03125,
+      "ulStock": 0.03125,
+      "dil": 1600.0,
+      "finalUgMl": 0.625
+     },
+     {
+      "amount": 0.015625,
+      "ulStock": 0.015625,
+      "dil": 3200.0,
+      "finalUgMl": 0.3125
+     },
+     {
+      "amount": 0.0078125,
+      "ulStock": 0.0078125,
+      "dil": 6400.0,
+      "finalUgMl": 0.15625
+     },
+     {
+      "amount": 0.00390625,
+      "ulStock": 0.00390625,
+      "dil": 12800.0,
+      "finalUgMl": 0.078125
+     },
+     {
+      "amount": 0.001953125,
+      "ulStock": 0.001953125,
+      "dil": 25600.0,
+      "finalUgMl": 0.0390625
+     },
+     {
+      "amount": 0.0009765625,
+      "ulStock": 0.0009765625,
+      "dil": 51200.0,
+      "finalUgMl": 0.01953125
+     },
+     {
+      "amount": 0.00048828125,
+      "ulStock": 0.00048828125,
+      "dil": 102400.0,
+      "finalUgMl": 0.009765625
+     }
+    ]
+   }
+  }
+ ],
+ "index": [
+  {
+   "pos": 52000,
+   "neg": 900,
+   "sd": 300,
+   "p84": 1250,
+   "si": 85.16666666666667,
+   "sep": 145.27,
+   "sn": 57.77777777777778
+  },
+  {
+   "pos": 1830.5,
+   "neg": 211.2,
+   "sd": 75.4,
+   "p84": 290.1,
+   "si": 10.738063660477453,
+   "sep": 20.420830164765515,
+   "sn": 8.667140151515152
+  },
+  {
+   "pos": 40,
+   "neg": 12,
+   "sd": 3.3,
+   "p84": 15.5,
+   "si": 4.242424242424242,
+   "sep": 7.96,
+   "sn": 3.3333333333333335
+  }
+ ],
+ "cocktail": [
+  {
+   "in": {
+    "tubes": 12,
+    "over": 10,
+    "finalVol": 100,
+    "cocktailVol": 50,
+    "bsb": 10,
+    "abs": [
+     [
+      "ul",
+      1,
+      null
+     ],
+     [
+      "dil",
+      400,
+      null
+     ],
+     [
+      "ug",
+      0.06,
+      0.2
+     ],
+     [
+      "ul",
+      2.5,
+      null
+     ]
+    ]
+   },
+   "out": {
+    "n": 13.200000000000001,
+    "perTest": [
+     1,
+     0.25,
+     0.3,
+     2.5
+    ],
+    "total": [
+     13.200000000000001,
+     3.3000000000000003,
+     3.96,
+     33.0
+    ],
+    "bufferPerTest": 35.95,
+    "bufferTotal": 474.5400000000001
+   }
+  },
+  {
+   "in": {
+    "tubes": 96,
+    "over": 5,
+    "finalVol": 50,
+    "cocktailVol": 25,
+    "bsb": 5,
+    "abs": [
+     [
+      "ul",
+      0.25,
+      null
+     ],
+     [
+      "dil",
+      200,
+      null
+     ],
+     [
+      "ug",
+      0.125,
+      0.5
+     ]
+    ]
+   },
+   "out": {
+    "n": 100.80000000000001,
+    "perTest": [
+     0.25,
+     0.25,
+     0.25
+    ],
+    "total": [
+     25.200000000000003,
+     25.200000000000003,
+     25.200000000000003
+    ],
+    "bufferPerTest": 19.25,
+    "bufferTotal": 1940.4000000000003
+   }
+  }
+ ]
+}

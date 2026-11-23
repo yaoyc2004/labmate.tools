@@ -1179,6 +1179,14 @@
     download('panel-' + slug(I.name) + '.csv', '﻿' + lines.join('\r\n'), 'text/csv');
   });
   $('printBtn').addEventListener('click', function () { window.print(); });
+  // hand the markers and their dyes to 7.3 Staining Cocktail (amounts come from the user's antibody list there)
+  $('cocktailBtn').addEventListener('click', function () {
+    var rows = model.rows.filter(function (o) { return o.r.marker || o.f; }).map(function (o) { return { marker: o.r.marker || '', fluor: o.f ? o.f.name : '' }; });
+    if (!rows.length) { toast('Add a marker first.'); return; }
+    if (!window.LMH) { location.href = '../staining-cocktail/'; return; }
+    window.LMH.send('staining-cocktail', { rows: rows }, '../staining-cocktail/');
+  });
+
   $('exportMine').addEventListener('click', function () {
     if (!state.custom.instruments.length && !state.custom.fluors.length) { toast('Nothing to export yet — add an instrument or a dye first.'); return; }
     download('labmate-panel-designer-mine.json', JSON.stringify({ kind: 'labmate.panelDesigner.custom', v: 1, exported: new Date().toISOString().slice(0, 10), instruments: state.custom.instruments, fluors: state.custom.fluors }, null, 1), 'application/json');

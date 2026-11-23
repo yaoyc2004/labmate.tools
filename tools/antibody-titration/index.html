@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flow Antibody Titration Calculator — Series &amp; Stain Index | labmate.tools</title>
+<meta name="description" content="Free flow cytometry antibody titration calculator: plan a serial dilution series in µg or µL per test, then paste MFI statistics to get the stain index and the concentration to use.">
+<link rel="canonical" href="https://labmate.tools/tools/antibody-titration/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flow Antibody Titration Calculator — free, in your browser | labmate.tools">
+<meta property="og:description" content="Plan the dilution series, paste the MFIs, get the stain index and the amount per test to use.">
+<meta property="og:url" content="https://labmate.tools/tools/antibody-titration/">
+<meta property="og:image" content="https://labmate.tools/assets/og/antibody-titration.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flow Antibody Titration Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flow Antibody Titration Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Plan the dilution series, paste the MFIs, get the stain index and the amount per test to use.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/antibody-titration.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/antibody-titration/#app","name":"Flow Antibody Titration Calculator","url":"https://labmate.tools/tools/antibody-titration/","description":"Free flow cytometry antibody titration calculator: plan a serial dilution series in µg or µL per test, then paste MFI statistics to get the stain index and the concentration to use.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Serial or tube-by-tube dilution series from µg/test or µL/test","Antibody mix concentrated for the cell volume you add","Predilution when a volume is under 0.5 µL","Paste FlowJo, FCS Express or any statistics table","Stain index, 84th-percentile separation index or signal-to-noise","Best and lowest near-best concentration, background warning","Chart as SVG or PNG, CSV, print","Antibody list saved in this browser"],"audience":{"@type":"Audience","audienceType":"Flow cytometry users, core facility staff and students"},"image":"https://labmate.tools/assets/og/antibody-titration.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-23"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Cytometry","item":"https://labmate.tools/#cytometry"},{"@type":"ListItem","position":3,"name":"Flow Antibody Titration Calculator","item":"https://labmate.tools/tools/antibody-titration/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/antibody-titration/#faq","mainEntity":[{"@type":"Question","name":"What is the stain index?","acceptedAnswer":{"@type":"Answer","text":"The difference between the positive and negative median fluorescence divided by twice the spread (SD, best the robust SD) of the negative population, as defined by Maecker et al., Cytometry A 2004. It rises with separation and falls when the negative population spreads."}},{"@type":"Question","name":"Which concentration should I pick?","acceptedAnswer":{"@type":"Answer","text":"The page marks the amount with the highest index and the lowest amount within 90% of it. The lower one saves antibody and usually keeps background down; the best gives the widest separation."}},{"@type":"Question","name":"Where do I start the series?","acceptedAnswer":{"@type":"Answer","text":"A common start is 2–4× the vendor's recommended amount in 2-fold steps over 8 tubes, which shows the saturation plateau and where the signal drops. Without a recommendation, 1–2 µg per 100 µL is a usual start."}},{"@type":"Question","name":"My table has no SD column. Can I still use it?","acceptedAnswer":{"@type":"Answer","text":"Yes. With an 84th percentile of the negative population the page uses the separation index; with only medians it falls back to positive ÷ negative, which ignores spread. Export the robust SD from FlowJo to get the stain index."}},{"@type":"Question","name":"Does the titer hold for more cells or another volume?","acceptedAnswer":{"@type":"Answer","text":"It holds for about the same cell number in the same staining volume. Staining many more cells, or in a different volume, needs the titration repeated or the amount scaled."}},{"@type":"Question","name":"Is my data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The table is read and worked out in your browser. Your antibody list is kept in this browser only; export it as a file to keep a copy."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="../../assets/recipe.css?v=1">
+<link rel="stylesheet" href="../../assets/flow.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 7.2 ANTIBODY TITRATION</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">RESET</button>
+  <a class="lm-link" href="../../#cytometry">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 7.2</figcaption>
+      <svg width="132" height="70" viewBox="0 0 132 70"><line x1="10" y1="60" x2="124" y2="60" stroke="#1B2224" stroke-width="1.2"/><line x1="10" y1="8" x2="10" y2="60" stroke="#1B2224" stroke-width="1.2"/><path d="M16 54 L34 40 L52 24 L70 18 L88 17 L106 20 L120 24" fill="none" stroke="#17403D" stroke-width="2"/><g fill="#fff" stroke="#1B2224" stroke-width="1.3"><circle cx="16" cy="54" r="3"/><circle cx="34" cy="40" r="3"/><circle cx="52" cy="24" r="3"/><circle cx="88" cy="17" r="3"/><circle cx="106" cy="20" r="3"/><circle cx="120" cy="24" r="3"/></g><circle cx="70" cy="18" r="4.5" fill="#2E9E5B" stroke="#1B2224" stroke-width="1.3"/><text x="60" y="12" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1F7A45">SI</text></svg>
+    </figure>
+    <div>
+      <h1>Flow Antibody Titration Calculator</h1>
+      <p class="lm-lede">Plan the dilution series for a new antibody, in µg or µL per test, with the pipetting steps. After the run, paste the statistics table to get the stain index for each tube and the amount to use.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar" id="s1"><span>1 · ANTIBODY</span> <small>SECTION 07 — CYTOMETRY · 7.2</small></h2>
+  <div class="lm-sheet rc-input no-print">
+    <div class="rc-grid is-4">
+      <div class="term" data-term="target">
+        <div class="term-head"><span class="term-sym">T</span><span class="term-name">TARGET</span></div>
+        <div class="term-body"><label class="sr" for="target">Target</label><input id="target" type="text" autocomplete="off" spellcheck="false" placeholder="CD4"></div>
+      </div>
+      <div class="term" data-term="fluor">
+        <div class="term-head"><span class="term-sym">F</span><span class="term-name">FLUOROCHROME</span></div>
+        <div class="term-body"><label class="sr" for="fluor">Fluorochrome</label><input id="fluor" type="text" autocomplete="off" spellcheck="false" placeholder="PE"></div>
+      </div>
+      <div class="term" data-term="clone">
+        <div class="term-head"><span class="term-sym">c</span><span class="term-name">CLONE</span></div>
+        <div class="term-body"><label class="sr" for="clone">Clone</label><input id="clone" type="text" autocomplete="off" spellcheck="false" placeholder="optional"></div>
+      </div>
+      <div class="term" data-term="lot">
+        <div class="term-head"><span class="term-sym">#</span><span class="term-name">LOT</span></div>
+        <div class="term-body"><label class="sr" for="lot">Lot</label><input id="lot" type="text" autocomplete="off" spellcheck="false" placeholder="optional"></div>
+      </div>
+    </div>
+    <div class="rc-grid">
+      <div class="term" data-term="stock">
+        <div class="term-head"><span class="term-sym">C</span><span class="term-name">STOCK CONCENTRATION</span></div>
+        <div class="term-body"><label class="sr" for="stock">Stock concentration, mg/mL</label><input id="stock" type="text" inputmode="decimal" autocomplete="off" placeholder="from the vial"><span class="term-unit">mg/mL</span></div>
+        <div class="term-msg" id="stockm"></div>
+      </div>
+      <div class="term" data-term="rec">
+        <div class="term-head"><span class="term-sym">r</span><span class="term-name">RECOMMENDED PER TEST</span></div>
+        <div class="term-body"><label class="sr" for="rec">Vendor's recommended amount per test</label><input id="rec" type="text" inputmode="decimal" autocomplete="off">
+          <label class="sr" for="recUnit">Unit</label><select id="recUnit"><option value="ug">µg/test</option><option value="ul">µL/test</option></select></div>
+        <div class="term-msg" id="recm"></div>
+      </div>
+      <p class="rc-hint">Datasheets give either µg per test (enter the stock in mg/mL) or µL per test (the stock can stay empty). A “test” is usually 10<sup>6</sup> cells in 100 µL; check yours.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>2 · SERIES</span> <small>TUBES TO SET UP</small></h2>
+  <div class="lm-sheet">
+    <div class="rc-input no-print">
+      <div class="rc-grid is-4">
+        <div class="term" data-term="finalVol">
+          <div class="term-head"><span class="term-sym">V</span><span class="term-name">STAINING VOLUME</span></div>
+          <div class="term-body"><label class="sr" for="finalVol">Final staining volume per tube, µL</label><input id="finalVol" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µL</span></div>
+          <div class="term-msg" id="finalVolm"></div>
+        </div>
+        <div class="term" data-term="cellVol">
+          <div class="term-head"><span class="term-sym">V<sub>c</sub></span><span class="term-name">CELLS ADDED</span></div>
+          <div class="term-body"><label class="sr" for="cellVol">Cell suspension added per tube, µL</label><input id="cellVol" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µL</span></div>
+          <div class="term-msg" id="cellVolm"></div>
+        </div>
+        <div class="term" data-term="cells">
+          <div class="term-head"><span class="term-sym">N</span><span class="term-name">CELLS PER TUBE</span></div>
+          <div class="term-body"><label class="sr" for="cells">Cells per tube</label><input id="cells" type="text" inputmode="numeric" autocomplete="off"></div>
+        </div>
+        <div class="term" data-term="cellType">
+          <div class="term-head"><span class="term-sym">s</span><span class="term-name">CELL TYPE</span></div>
+          <div class="term-body"><label class="sr" for="cellType">Cell type</label><input id="cellType" type="text" autocomplete="off" placeholder="e.g. human PBMC"></div>
+        </div>
+      </div>
+      <div class="rc-grid is-4">
+        <div class="term" data-term="top">
+          <div class="term-head"><span class="term-sym">×</span><span class="term-name">START AT</span></div>
+          <div class="term-body"><label class="sr" for="top">Start at this multiple of the recommended amount</label><input id="top" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">× rec.</span></div>
+          <div class="term-msg" id="topm"></div>
+        </div>
+        <div class="term" data-term="factor">
+          <div class="term-head"><span class="term-sym">f</span><span class="term-name">STEP</span></div>
+          <div class="term-body"><label class="sr" for="factor">Dilution step</label><span class="term-unit">1 :</span><input id="factor" type="text" inputmode="decimal" autocomplete="off"></div>
+          <div class="term-msg" id="factorm"></div>
+        </div>
+        <div class="term" data-term="points">
+          <div class="term-head"><span class="term-sym">n</span><span class="term-name">TUBES</span></div>
+          <div class="term-body"><label class="sr" for="points">Number of tubes</label><input id="points" type="text" inputmode="numeric" autocomplete="off"></div>
+          <div class="term-msg" id="pointsm"></div>
+        </div>
+        <div class="term" data-term="extra">
+          <div class="term-head"><span class="term-sym">+</span><span class="term-name">SPARE</span></div>
+          <div class="term-body"><label class="sr" for="extra">Spare volume, %</label><input id="extra" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">%</span></div>
+          <div class="term-msg" id="extram"></div>
+        </div>
+      </div>
+      <div class="rc-row-actions">
+        <span class="rc-k" id="modeK" style="margin:0">MAKE THE SERIES</span>
+        <div class="lm-seg" role="group" aria-labelledby="modeK" id="modeSeg">
+          <button type="button" data-mode="serial">SERIAL TRANSFER</button>
+          <button type="button" data-mode="direct">TUBE BY TUBE</button>
+        </div>
+        <label class="fl-chk"><input type="checkbox" id="unstained"> Add an unstained tube</label>
+      </div>
+    </div>
+
+    <div class="rc-print-head" id="printHead"></div>
+    <section class="ans fl-section-gap" id="ans" aria-live="polite" aria-labelledby="ansK">
+      <span class="ans-k" id="ansK">TUBE PLAN</span>
+      <div class="ans-big" id="ansBig"></div>
+      <p class="ans-say" id="ansSay"></p>
+      <div class="ans-actions">
+        <button type="button" class="btn" id="copy">COPY PLAN</button>
+        <button type="button" class="lm-link" id="print">PRINT</button>
+        <button type="button" class="lm-link" id="csv">CSV</button>
+        <span class="btn-copied" id="copied" role="status"></span>
+      </div>
+    </section>
+    <div class="fl-scroll fl-section-gap"><table class="fl-out is-stack" id="tubes"></table></div>
+    <ol class="fl-steps" id="steps"></ol>
+    <ul class="notes" id="serNotes"></ul>
+  </div>
+
+  <h2 class="lm-bar no-print"><span>3 · STAIN INDEX</span> <small>PASTE THE RESULTS</small></h2>
+  <div class="lm-sheet no-print">
+    <label class="rc-k" for="paste">STATISTICS TABLE — ONE ROW PER TUBE: SAMPLE, POSITIVE MEDIAN, NEGATIVE MEDIAN, NEGATIVE rSD</label>
+    <textarea class="fl-text" id="paste" spellcheck="false" autocomplete="off" placeholder="Paste from FlowJo's table editor, FCS Express, Diva, Kaluza or a spreadsheet. Tab, comma or semicolon separated."></textarea>
+    <div class="fl-row">
+      <label class="fl-file">OPEN .CSV / .TXT<input type="file" id="file" accept=".csv,.txt,.tsv,text/csv,text/plain"></label>
+      <button type="button" class="lm-link" id="example">LOAD AN EXAMPLE</button>
+      <button type="button" class="lm-link" id="clearPaste">CLEAR</button>
+      <span class="rc-k" id="methodK">INDEX</span>
+      <div class="lm-seg" role="group" aria-labelledby="methodK" id="methodSeg">
+        <button type="button" data-method="auto">AUTO</button>
+        <button type="button" data-method="si">STAIN</button>
+        <button type="button" data-method="sep">SEPARATION</button>
+        <button type="button" data-method="sn">POS ÷ NEG</button>
+      </div>
+    </div>
+    <div class="fl-cols" id="colBox" hidden>
+      <label>SAMPLE NAME<select id="col-name"></select></label>
+      <label>POSITIVE MFI<select id="col-pos"></select></label>
+      <label>NEGATIVE MFI<select id="col-neg"></select></label>
+      <label>NEGATIVE SD / rSD<select id="col-sd"></select></label>
+      <label>NEGATIVE 84TH %ILE<select id="col-p84"></select></label>
+    </div>
+    <p class="rc-hint" id="siMsg" role="status"></p>
+    <p class="rc-hint">Amounts are read from sample names (“1:200”, “0.25 µg”, “2 µL”, “4x”) or, failing that, taken in order from the series above. Type over any of them.</p>
+
+    <section class="ans fl-section-gap" id="siAns" aria-live="polite" aria-labelledby="siK">
+      <span class="ans-k" id="siK">AMOUNT TO USE</span>
+      <div class="ans-big" id="siBig"></div>
+      <p class="ans-say" id="siSay"></p>
+      <div class="ans-actions">
+        <label class="sr" for="pickWhich">Which to save</label>
+        <select id="pickWhich" class="fl-mini" style="min-height:44px"><option value="lean">LOWEST WITHIN 90%</option><option value="best">BEST INDEX</option></select>
+        <button type="button" class="btn" id="saveLib" disabled>SAVE TO MY ANTIBODIES</button>
+        <span class="btn-copied" id="saved" role="status"></span>
+      </div>
+    </section>
+    <div class="fl-scroll fl-section-gap">
+      <table class="fl-out is-stack">
+        <thead><tr><th>SAMPLE</th><th class="c-num" id="siHeadAmt">AMOUNT</th><th class="c-num">POS MFI</th><th class="c-num">NEG MFI</th><th class="c-num">NEG SD</th><th class="c-num">INDEX</th></tr></thead>
+        <tbody id="siRows"></tbody>
+      </table>
+    </div>
+    <div class="fl-chart" id="chartBox">
+      <div id="chart"></div>
+      <div class="fl-chart-cap"><span>FIG. 7.2a — INDEX AGAINST AMOUNT · FILLED = BEST · RING = LOWEST WITHIN 90%</span>
+        <span class="fl-chart-actions"><button type="button" class="lm-link" id="svg">SVG</button> <button type="button" class="lm-link" id="png">PNG</button> <button type="button" class="lm-link" id="siCsv">CSV</button></span></div>
+    </div>
+    <ul class="notes" id="siNotes"></ul>
+  </div>
+
+  <h2 class="lm-bar no-print"><span>4 · MY ANTIBODIES</span> <small>SAVED IN THIS BROWSER</small></h2>
+  <div class="lm-sheet no-print" id="lib">
+    <div class="fl-scroll">
+      <table class="fl-out is-stack">
+        <thead><tr><th>ANTIBODY</th><th>LOT</th><th class="c-num">STOCK</th><th>TITER</th><th><span class="sr">Actions</span></th></tr></thead>
+        <tbody data-lib-body></tbody>
+      </table>
+    </div>
+    <div class="fl-row">
+      <span class="rc-k" data-lib-count></span>
+      <button type="button" class="lm-link" data-lib-export>EXPORT .JSON</button>
+      <label class="fl-file">IMPORT .JSON<input type="file" data-lib-import accept=".json,application/json"></label>
+      <a class="lm-link" href="../staining-cocktail/">BUILD A COCKTAIL →</a>
+      <span class="rc-hint" data-lib-msg role="status"></span>
+    </div>
+    <p class="fl-lib-warn" data-lib-warn hidden>This browser is not keeping data (private window or storage blocked). Export the list to keep it.</p>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Enter the <b>ANTIBODY</b>: the stock concentration from the vial and the amount the datasheet recommends per test.</li>
+          <li>Set the <b>SERIES</b>: staining volume, how much cell suspension you add, where to start and the step. 4× the recommendation, 2-fold, 8 tubes is a common start.</li>
+          <li>Choose <b>SERIAL TRANSFER</b> (one mix, carried tube to tube) or <b>TUBE BY TUBE</b>. Print the plan and tick the tubes off.</li>
+          <li>Stain, acquire, and gate the positive and negative populations in each tube. Export the median of both and the robust SD (rSD) of the negative.</li>
+          <li>Paste that table under <b>STAIN INDEX</b>. Check the columns and amounts the page picked.</li>
+          <li>Save the amount to <b>MY ANTIBODIES</b>. The Staining Cocktail page uses it for every panel after.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">SI = (MFI<sub>pos</sub> − MFI<sub>neg</sub>) ÷ (2 × rSD<sub>neg</sub>)</span>
+          <table>
+            <tr><td>MFI</td><td>median fluorescence of the positive and negative population</td></tr>
+            <tr><td>rSD<sub>neg</sub></td><td>robust SD of the negative population (SD also works)</td></tr>
+            <tr><td>Separation</td><td>(MFI<sub>pos</sub> − MFI<sub>neg</sub>) ÷ ((P84<sub>neg</sub> − MFI<sub>neg</sub>) ÷ 0.995)</td></tr>
+            <tr><td>Mix</td><td>each tube's antibody mix is V ÷ (V − V<sub>c</sub>) × the final concentration</td></tr>
+          </table>
+          <p>The page marks the highest index and the lowest amount within 90% of it.</p>
+        </div>
+        <p class="example"><b>Example.</b> 0.2 mg/mL PE antibody, 0.25 µg/test recommended, 100 µL with 50 µL cells, 4× start, 2-fold, 8 tubes, 10% spare: every tube needs 55 µL of mix. Tube 1 is 11 µL antibody + 99 µL buffer; 55 µL goes from tube to tube into 55 µL buffer. Amounts run 1 → 0.0078 µg/test (1:20 → 1:2560).</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. Nothing you paste leaves your browser.</li>
+          <li>A titer holds for about the same number of cells in the same volume, at the same temperature and time.</li>
+          <li>Titrate viability dyes and tandem dyes the same way; a new lot of a tandem is worth re-checking.</li>
+          <li>A calculator, not a protocol: check your lab's method.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · ANTIBODY TITRATION</div>
+  <h2>Where the numbers come from</h2>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">What</th><th scope="col">Used here</th><th scope="col">Source</th></tr></thead><tbody>
+    <tr><th scope="row">Stain index</th><td>D ÷ W, W = 2 SD of the negative population</td><td><a href="https://vumc.org/flow-cytometry/sites/default/files/public_files/Holdenappnotestaining-index.pdf">Maecker &amp; Trotter, Nature Methods app note 2008</a>, after Maecker et al., Cytometry A 62:169–173 (2004)</td></tr>
+    <tr><th scope="row">Robust SD</th><td>rSD of the negative as W ÷ 2</td><td><a href="https://depts.washington.edu/cfar/sites/default/files/uploads/DeRosa-Titrations-150420.pdf">De Rosa, antibody titrations (Fred Hutch / UW CFAR)</a></td></tr>
+    <tr><th scope="row">Separation index</th><td>84th percentile of the negative</td><td><a href="https://denovosoftware.com/full-access/knowledge-base/stain-index/">FCS Express knowledge base</a>; Telford et al., Cytometry A 2009 (<a href="https://doi.org/10.1002/cyto.a.20790">doi</a>)</td></tr>
+    <tr><th scope="row">Series</th><td>2-fold, 8 tubes, 4× start</td><td><a href="https://www.bdbiosciences.com/en-sg/learn/science-thought-leadership/blogs/why-antibody-titration">BD Biosciences</a> (4× the recommendation, 2-fold); De Rosa (8–12 dilutions, 10<sup>6</sup> cells, 50 µL cells + 50 µL antibody)</td></tr>
+    <tr><th scope="row">90% of best</th><td>lowest amount within 90% of the top index</td><td>FCS Express optimum at 90% of the maximum</td></tr>
+  </tbody></table></div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-23">23 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq" id="faq">
+      <div class="lm-more-k">QUESTIONS · ANTIBODY TITRATION</div>
+      <h2>Frequently asked</h2>
+      <details><summary>What is the stain index?</summary><p>The difference between the positive and negative median fluorescence divided by twice the spread (SD, best the robust SD) of the negative population, as defined by Maecker et al., Cytometry A 2004. It rises with separation and falls when the negative population spreads.</p></details>
+      <details><summary>Which concentration should I pick?</summary><p>The page marks the amount with the highest index and the lowest amount within 90% of it. The lower one saves antibody and usually keeps background down; the best gives the widest separation.</p></details>
+      <details><summary>Where do I start the series?</summary><p>A common start is 2–4× the vendor's recommended amount in 2-fold steps over 8 tubes, which shows the saturation plateau and where the signal drops. Without a recommendation, 1–2 µg per 100 µL is a usual start.</p></details>
+      <details><summary>My table has no SD column. Can I still use it?</summary><p>Yes. With an 84th percentile of the negative population the page uses the separation index; with only medians it falls back to positive ÷ negative, which ignores spread. Export the robust SD from FlowJo to get the stain index.</p></details>
+      <details><summary>Does the titer hold for more cells or another volume?</summary><p>It holds for about the same cell number in the same staining volume. Staining many more cells, or in a different volume, needs the titration repeated or the amount scaled.</p></details>
+      <details><summary>Is my data uploaded?</summary><p>No. The table is read and worked out in your browser. Your antibody list is kept in this browser only; export it as a file to keep a copy.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../staining-cocktail/"><span class="n">7.3</span><span class="t">Staining Cocktail Calculator</span><span class="d">Your titered antibodies × number of tubes → one cocktail, with buffer and checks.</span></a></li>
+        <li><a href="../panel-designer/"><span class="n">7.1</span><span class="t">Panel Designer</span><span class="d">Assign fluors to markers on your cytometer and check spillover.</span></a></li>
+        <li><a href="../serial-dilution/"><span class="n">2.4</span><span class="t">Serial Dilution</span><span class="d">Any dilution series for standards and samples.</span></a></li>
+      </ul>
+      <a class="all" href="../../#cytometry">ALL 23 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=antibody-titration">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../staining-cocktail/">COCKTAIL</a> · <a href="../../contact/?topic=antibody-titration">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 7.2</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="../../assets/grid-core.js?v=1"></script>
+<script src="../../assets/flow-core.js?v=1"></script>
+<script src="../../assets/flow-lib.js?v=1"></script>
+<script src="titration.js?v=1"></script>
+</body>
+</html>
