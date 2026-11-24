@@ -47,6 +47,7 @@
 ## Imaging
 
 - [Microscopy Scale Bar Maker](https://labmate.tools/tools/scale-bar/): Free batch scale bar maker for microscope images. Enter µm per pixel, measure a stage micrometer or read the Fiji / OME-TIFF scale, add the same bar to PNG, JPG or TIFF images and export copies with a CSV calibration record. Never uploaded.
+- [Microscopy Nyquist Calculator — Pixel Size, Zoom & Z-Step](https://labmate.tools/tools/nyquist/): Free Nyquist sampling calculator for widefield, point-scanning confocal, spinning disk and two-photon. Pick objectives, cameras and confocal systems from Nikon, Evident, Zeiss, Leica, Hamamatsu, Teledyne Photometrics, Andor and Yokogawa by brand and model (each with its spec-sheet source, data CC BY 4.0) or type every value; get Rayleigh resolution, Nyquist pixel size and z-step per channel (SVI definitions), the camera adapter, binning or confocal zoom that reaches it, tube-lens correction across brands, spinning-disk pinhole in Airy units, a printable settings card, share link and µm/px hand-off to the Scale Bar Maker.
 
 ## Animals
 

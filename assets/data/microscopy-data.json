@@ -1,0 +1,1318 @@
+{
+ "schemaVersion": 1,
+ "_meta": {
+  "title": "labmate.tools · microscopy hardware library",
+  "compiled": "2026-11-24",
+  "license": "CC BY 4.0 (this file); dye peaks shared with the Panel Designer list",
+  "notes": [
+   "Facts only (magnification, NA, pixel size, frame size…) read from each maker's public specification pages, datasheets or core-facility documents; source URL per entry. No text, images or curves copied.",
+   "status 'source' = every number read on the cited page; 'verify' = at least one number derived or commonly cited, still to check.",
+   "Immersion refractive index (nImm) comes from the media table, not from each objective: air 1.000, water 1.333, silicone 1.40 (Evident objectives page: water 1.33, silicone 1.40), glycerol 1.45, oil 1.518.",
+   "tubeLens_mm = the tube lens the maker designs its infinity objectives for. Nominal magnification holds only with that tube lens.",
+   "Scan systems: field_mm = diagonal (or circle diameter) of the square scan field at zoom 1 in the intermediate image."
+  ],
+  "media": {
+   "air": 1.0,
+   "water": 1.333,
+   "silicone": 1.4,
+   "glycerol": 1.45,
+   "oil": 1.518
+  },
+  "mediaSrc": {
+   "water": "https://evidentscientific.com/en/objectives",
+   "silicone": "https://evidentscientific.com/en/objectives",
+   "oil": "verify",
+   "glycerol": "verify"
+  }
+ },
+ "stands": [
+  {
+   "brand": "Nikon",
+   "tubeLens_mm": 200
+  },
+  {
+   "brand": "Leica",
+   "tubeLens_mm": 200
+  },
+  {
+   "brand": "Evident",
+   "tubeLens_mm": 180
+  },
+  {
+   "brand": "Zeiss",
+   "tubeLens_mm": 165
+  }
+ ],
+ "objectives": [
+  {
+   "id": "nikon-plan-apo-lambdad-4x",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 4x",
+   "mag": 4,
+   "na": 0.2,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "wd_mm": 20.0,
+   "coverGlass": "0/0.17",
+   "collar": false,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "nikon-plan-apo-lambdad-10x",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 10x",
+   "mag": 10,
+   "na": 0.45,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "wd_mm": 4.0,
+   "coverGlass": "0.17",
+   "fn": 25,
+   "collar": false,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications ; https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "nikon-plan-apo-lambdad-20x",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 20x",
+   "mag": 20,
+   "na": 0.8,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.8,
+   "coverGlass": "0.17",
+   "collar": false,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "nikon-plan-apo-lambdad-40x",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 40x",
+   "mag": 40,
+   "na": 0.95,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.21,
+   "coverGlass": "0.11–0.23",
+   "collar": true,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "nikon-plan-apo-lambdad-60x-oil",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 60x Oil",
+   "mag": 60,
+   "na": 1.42,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.15,
+   "coverGlass": "0.17",
+   "collar": false,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-plan-apo-lambdad-100x-oil",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda D",
+   "name": "Plan Apo λD 100x Oil",
+   "mag": 100,
+   "na": 1.45,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.13,
+   "coverGlass": "0.17",
+   "collar": false,
+   "source": "https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-plan-apo-lambdas-40xc-sil",
+   "brand": "Nikon",
+   "series": "CFI Plan Apochromat Lambda S",
+   "name": "Plan Apo λS 40xC Sil",
+   "mag": 40,
+   "na": 1.25,
+   "immersion": "silicone",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.3,
+   "collar": true,
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-apo-lwd-lambdas-40xc-wi",
+   "brand": "Nikon",
+   "series": "CFI Apochromat LWD Lambda S",
+   "name": "Apo LWD λS 40xC WI",
+   "mag": 40,
+   "na": 1.15,
+   "immersion": "water",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.6,
+   "coverGlass": "0.15–0.19",
+   "collar": true,
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives ; https://www.janelia.org/sites/default/files/Support%20Teams/Light%20Microscopy/Nikon%20Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-sr-apo-tirf-100x-oil",
+   "brand": "Nikon",
+   "series": "CFI SR Apochromat TIRF",
+   "name": "SR Apo TIRF 100x Oil",
+   "mag": 100,
+   "na": 1.49,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "wd_mm": 0.12,
+   "coverGlass": "0.13–0.19",
+   "collar": true,
+   "source": "https://www.janelia.org/sites/default/files/Support%20Teams/Light%20Microscopy/Nikon%20Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "From a 2016 Nikon brochure."
+  },
+  {
+   "id": "evident-uplxapo4x",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO4X",
+   "mag": 4,
+   "na": 0.16,
+   "immersion": "air",
+   "tubeLens_mm": 180,
+   "partNo": "N5701800",
+   "wd_mm": 13,
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/N5701800",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo10x",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO10X",
+   "mag": 10,
+   "na": 0.4,
+   "immersion": "air",
+   "tubeLens_mm": 180,
+   "partNo": "N5701900",
+   "wd_mm": 3.1,
+   "coverGlass": "0.17",
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/n5701900",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo20x",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO20X",
+   "mag": 20,
+   "na": 0.8,
+   "immersion": "air",
+   "tubeLens_mm": 180,
+   "partNo": "N5702000",
+   "wd_mm": 0.6,
+   "coverGlass": "0.17",
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/N5702000",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo40x",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO40X",
+   "mag": 40,
+   "na": 0.95,
+   "immersion": "air",
+   "tubeLens_mm": 180,
+   "partNo": "N5702100",
+   "wd_mm": 0.18,
+   "coverGlass": "0.11–0.23",
+   "fn": 26.5,
+   "collar": true,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/N5702100",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo40xo",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO40XO",
+   "mag": 40,
+   "na": 1.4,
+   "immersion": "oil",
+   "tubeLens_mm": 180,
+   "partNo": "N5702200",
+   "wd_mm": 0.13,
+   "coverGlass": "0.17",
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/N5702200",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo60xo",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO60XO",
+   "mag": 60,
+   "na": 1.42,
+   "immersion": "oil",
+   "tubeLens_mm": 180,
+   "partNo": "N5702300",
+   "wd_mm": 0.15,
+   "coverGlass": "0.17",
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/n5702300",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-uplxapo100xo",
+   "brand": "Evident",
+   "series": "UPLXAPO (X Line)",
+   "name": "UPLXAPO100XO",
+   "mag": 100,
+   "na": 1.45,
+   "immersion": "oil",
+   "tubeLens_mm": 180,
+   "partNo": "N5702400",
+   "wd_mm": 0.13,
+   "coverGlass": "0.17",
+   "fn": 26.5,
+   "collar": false,
+   "source": "https://evidentscientific.com/en/products/ix-objectives-standard/N5702400",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-plan-apochromat-20x-08",
+   "brand": "Zeiss",
+   "series": "Plan-Apochromat",
+   "name": "Plan-Apochromat 20x/0.8",
+   "mag": 20,
+   "na": 0.8,
+   "immersion": "air",
+   "tubeLens_mm": 165,
+   "wd_mm": 0.55,
+   "collar": false,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "zeiss-plan-apochromat-63x-14-oil-dic",
+   "brand": "Zeiss",
+   "series": "Plan-Apochromat",
+   "name": "Plan-Apochromat 63x/1.4 Oil DIC",
+   "mag": 63,
+   "na": 1.4,
+   "immersion": "oil",
+   "tubeLens_mm": 165,
+   "collar": false,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-plan-apochromat-100x-140-oil-dic",
+   "brand": "Zeiss",
+   "series": "Plan-Apochromat",
+   "name": "Plan-Apochromat 100x/1.40 Oil DIC",
+   "mag": 100,
+   "na": 1.4,
+   "immersion": "oil",
+   "tubeLens_mm": 165,
+   "collar": false,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-α-plan-apochromat-100x-146-oil-dic",
+   "brand": "Zeiss",
+   "series": "alpha Plan-Apochromat",
+   "name": "α Plan-Apochromat 100x/1.46 Oil DIC",
+   "mag": 100,
+   "na": 1.46,
+   "immersion": "oil",
+   "tubeLens_mm": 165,
+   "collar": false,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-c-apochromat-10x-045-w",
+   "brand": "Zeiss",
+   "series": "C-Apochromat",
+   "name": "C-Apochromat 10x/0.45 W",
+   "mag": 10,
+   "na": 0.45,
+   "immersion": "water",
+   "tubeLens_mm": 165,
+   "wd_mm": 1.8,
+   "collar": false,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-c-apochromat-40x-12-w-corr",
+   "brand": "Zeiss",
+   "series": "C-Apochromat",
+   "name": "C-Apochromat 40x/1.2 W Corr",
+   "mag": 40,
+   "na": 1.2,
+   "immersion": "water",
+   "tubeLens_mm": 165,
+   "collar": true,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-c-apochromat-63x-120-w-corr",
+   "brand": "Zeiss",
+   "series": "C-Apochromat",
+   "name": "C-Apochromat 63x/1.20 W Corr",
+   "mag": 63,
+   "na": 1.2,
+   "immersion": "water",
+   "tubeLens_mm": 165,
+   "collar": true,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-ld-c-apochromat-40x-11-w-corr",
+   "brand": "Zeiss",
+   "series": "LD C-Apochromat",
+   "name": "LD C-Apochromat 40x/1.1 W Corr",
+   "mag": 40,
+   "na": 1.1,
+   "immersion": "water",
+   "tubeLens_mm": 165,
+   "wd_mm": 0.62,
+   "collar": true,
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-hc-pl-apo-10x-040-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 10x/0.40 CS2",
+   "mag": 10,
+   "na": 0.4,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "partNo": "11506424",
+   "wd_mm": 2.56,
+   "collar": false,
+   "source": "https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "leica-hc-pl-apo-20x-075-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 20x/0.75 CS2",
+   "mag": 20,
+   "na": 0.75,
+   "immersion": "air",
+   "tubeLens_mm": 200,
+   "partNo": "11506517",
+   "wd_mm": 0.62,
+   "collar": false,
+   "source": "https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24",
+   "note": "Dry: no immersion marked on the source."
+  },
+  {
+   "id": "leica-hc-pl-apo-40x-130-oil-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 40x/1.30 OIL CS2",
+   "mag": 40,
+   "na": 1.3,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "partNo": "11506358",
+   "wd_mm": 0.24,
+   "collar": false,
+   "source": "https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-hc-pl-apo-63x-140-oil-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 63x/1.40 OIL CS2",
+   "mag": 63,
+   "na": 1.4,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "partNo": "11506350",
+   "wd_mm": 0.14,
+   "coverGlass": "0.17",
+   "fn": 25,
+   "collar": false,
+   "source": "https://www.leica-microsystems.com/objectivefinder/objective/506350",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-hc-pl-apo-63x-130-glyc-corr-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 63x/1.30 GLYC CORR CS2",
+   "mag": 63,
+   "na": 1.3,
+   "immersion": "glycerol",
+   "tubeLens_mm": 200,
+   "partNo": "11506353",
+   "wd_mm": 0.3,
+   "fn": 25,
+   "collar": true,
+   "source": "https://www.leica-microsystems.com/pt/produtos/acessorios/lentes-objetivas-para-microscopios/objectivefinder/objective/506353/",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-hc-pl-apo-63x-120-w-corr-cs2",
+   "brand": "Leica",
+   "series": "HC PL APO CS2",
+   "name": "HC PL APO 63x/1.20 W CORR CS2",
+   "mag": 63,
+   "na": 1.2,
+   "immersion": "water",
+   "tubeLens_mm": 200,
+   "partNo": "11506346",
+   "wd_mm": 0.3,
+   "collar": true,
+   "source": "https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-hc-pl-apo-100x-140-oil-sted-white",
+   "brand": "Leica",
+   "series": "HC PL APO",
+   "name": "HC PL APO 100x/1.40 OIL STED WHITE",
+   "mag": 100,
+   "na": 1.4,
+   "immersion": "oil",
+   "tubeLens_mm": 200,
+   "partNo": "11506378",
+   "wd_mm": 0.13,
+   "collar": false,
+   "source": "https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  }
+ ],
+ "cameras": [
+  {
+   "id": "hamamatsu-orca-fusion-bt-c15440-20up",
+   "brand": "Hamamatsu",
+   "name": "ORCA-Fusion BT (C15440-20UP)",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2304,
+    2304
+   ],
+   "diag_mm": 21.2,
+   "source": "https://www.hamamatsu.com/resources/pdf/sys/SCAS0138E_C14440-20UP_tec.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "hamamatsu-orca-fusion-c14440-20up",
+   "brand": "Hamamatsu",
+   "name": "ORCA-Fusion (C14440-20UP)",
+   "sensor": "sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2304,
+    2304
+   ],
+   "diag_mm": 21.2,
+   "qePeak": 80,
+   "readNoise": "0.7 e⁻ rms (ultra-quiet)",
+   "source": "https://hep.hamamatsu.com/eu/en/products/C14440-20UP.html",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "hamamatsu-orca-flash40-v3-c13440-20cu",
+   "brand": "Hamamatsu",
+   "name": "ORCA-Flash4.0 V3 (C13440-20CU)",
+   "sensor": "sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2048,
+    2048
+   ],
+   "qePeak": 82,
+   "readNoise": "1.4 e⁻ rms (slow scan)",
+   "source": "https://hep.hamamatsu.com/resources/pdf/sys/SCAS0134E_C13440-20CU_tec.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "hamamatsu-orca-quest-c15550-20up",
+   "brand": "Hamamatsu",
+   "name": "ORCA-Quest (C15550-20UP)",
+   "sensor": "qCMOS",
+   "pixel_um": 4.6,
+   "px": [
+    4096,
+    2304
+   ],
+   "diag_mm": 21.617,
+   "qePeak": 85,
+   "readNoise": "0.43 e⁻ rms (standard)",
+   "source": "https://www.hamamatsu.com/resources/pdf/sys/SCAS0154E_C15550-20UP_tec.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "hamamatsu-orca-fire-c16240-20up",
+   "brand": "Hamamatsu",
+   "name": "ORCA-Fire (C16240-20UP)",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 4.6,
+   "px": [
+    4432,
+    2368
+   ],
+   "diag_mm": 23.114,
+   "qePeak": 86,
+   "readNoise": "1.0 e⁻ rms",
+   "source": "https://camera.hamamatsu.com/eu/en/product/camera/C16240-20UP.html",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "teledyne-photometrics-prime-bsi-express",
+   "brand": "Teledyne Photometrics",
+   "name": "Prime BSI Express",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2048,
+    2048
+   ],
+   "diag_mm": 18.7,
+   "qePeak": 95,
+   "readNoise": "1.0 e⁻",
+   "source": "https://www.teledynevisionsolutions.com/products/prime-bsi-express/",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "teledyne-photometrics-prime-bsi",
+   "brand": "Teledyne Photometrics",
+   "name": "Prime BSI",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2048,
+    2048
+   ],
+   "qePeak": 95,
+   "readNoise": "1.0 e⁻ median",
+   "source": "https://www.teledynevisionsolutions.com/products/prime-bsi/",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 4.1 MP; 2048 × 2048 derived from 4.1 MP at 6.5 µm."
+  },
+  {
+   "id": "teledyne-photometrics-kinetix",
+   "brand": "Teledyne Photometrics",
+   "name": "Kinetix",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    3200,
+    3200
+   ],
+   "diag_mm": 29.4,
+   "qePeak": 95,
+   "readNoise": "0.7 e⁻ (sub-electron mode)",
+   "source": "https://epfl.ch/research/facilities/ptbiop/wp-content/uploads/2024/12/Kinetix-Camera.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "teledyne-photometrics-prime-95b",
+   "brand": "Teledyne Photometrics",
+   "name": "Prime 95B",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 11,
+   "px": [
+    1200,
+    1200
+   ],
+   "qePeak": 95,
+   "source": "https://www.teledynevisionsolutions.com/categories/cameras/scientific-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Pixel count not on the source page; 1200 × 1200 to check."
+  },
+  {
+   "id": "andor-zyla-42-/-zl41-cell-42",
+   "brand": "Andor",
+   "name": "Zyla 4.2 / ZL41 Cell 4.2",
+   "sensor": "sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2048,
+    2048
+   ],
+   "qePeak": 82,
+   "readNoise": "0.9 e⁻",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 4.2 MP; 2048 × 2048 derived."
+  },
+  {
+   "id": "andor-zyla-55-/-zl41-cell-55",
+   "brand": "Andor",
+   "name": "Zyla 5.5 / ZL41 Cell 5.5",
+   "sensor": "sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2560,
+    2160
+   ],
+   "qePeak": 64,
+   "readNoise": "0.9 e⁻",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 5.5 MP; 2560 × 2160 to check."
+  },
+  {
+   "id": "andor-sona-6-42b-6",
+   "brand": "Andor",
+   "name": "Sona-6 (4.2B-6)",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 6.5,
+   "px": [
+    2048,
+    2048
+   ],
+   "qePeak": 95,
+   "readNoise": "1.0 e⁻",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 4.2 MP; 2048 × 2048 derived."
+  },
+  {
+   "id": "andor-sona-11-42b-11",
+   "brand": "Andor",
+   "name": "Sona-11 (4.2B-11)",
+   "sensor": "BSI sCMOS",
+   "pixel_um": 11,
+   "px": [
+    2048,
+    2048
+   ],
+   "diag_mm": 32,
+   "qePeak": 95,
+   "readNoise": "1.6 e⁻",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 4.2 MP, 32 mm; 2048 × 2048 derived."
+  },
+  {
+   "id": "andor-ixon-life-888",
+   "brand": "Andor",
+   "name": "iXon Life 888",
+   "sensor": "EMCCD",
+   "pixel_um": 13,
+   "px": [
+    1024,
+    1024
+   ],
+   "qePeak": 97,
+   "readNoise": "<1 e⁻ (EM gain)",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 1.0 MP; 1024 × 1024 derived."
+  },
+  {
+   "id": "andor-ixon-life-897",
+   "brand": "Andor",
+   "name": "iXon Life 897",
+   "sensor": "EMCCD",
+   "pixel_um": 16,
+   "px": [
+    512,
+    512
+   ],
+   "qePeak": 97,
+   "readNoise": "<1 e⁻ (EM gain)",
+   "source": "https://andor.oxinst.com/microscope-cameras",
+   "status": "verify",
+   "checked": "2026-11-24",
+   "note": "Source lists 0.25 MP; 512 × 512 derived."
+  }
+ ],
+ "scanSystems": [
+  {
+   "id": "zeiss-lsm-880",
+   "brand": "Zeiss",
+   "name": "LSM 880",
+   "type": "point",
+   "field_mm": 20,
+   "fieldWording": "20 mm field diagonal in the intermediate image",
+   "maxFrame": 8192,
+   "zoom": [
+    0.6,
+    40
+   ],
+   "pinhole": "variable",
+   "source": "https://health.ucdavis.edu/physiology/research/zeiss-microscope/documents/ZEISS-LSM-880.pdf",
+   "status": "source",
+   "discontinued": true,
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "zeiss-lsm-980",
+   "brand": "Zeiss",
+   "name": "LSM 980",
+   "type": "point",
+   "field_mm": 20,
+   "fieldWording": "20 mm field diagonal in the intermediate image",
+   "maxFrame": 8192,
+   "zoom": [
+    0.6,
+    40
+   ],
+   "pinhole": "variable",
+   "source": "https://asset-downloads.zeiss.com/catalogs/download/mic/05fd8acd-c539-4a72-979d-c454c578e3d8/EN_product-info_LSM-980.pdf",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-tcs-sp8",
+   "brand": "Leica",
+   "name": "TCS SP8 (FOV scanner)",
+   "type": "point",
+   "field_mm": 22,
+   "fieldWording": "Field diameter 22 mm",
+   "maxFrame": 8192,
+   "zoom": [
+    0.75,
+    48
+   ],
+   "pinhole": "variable",
+   "source": "https://www.pragolab.cz/documents/Leica_TCS_%20SP8_Technical_Documentation_EN_03_2018.pdf",
+   "status": "source",
+   "discontinued": true,
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-tcs-sp8-resonant",
+   "brand": "Leica",
+   "name": "TCS SP8 (resonant 8 kHz)",
+   "type": "point",
+   "field_mm": 13,
+   "fieldWording": "Field diameter 13 mm",
+   "maxFrame": 2496,
+   "zoom": [
+    1.25,
+    48
+   ],
+   "pinhole": "variable",
+   "source": "https://www.pragolab.cz/documents/Leica_TCS_%20SP8_Technical_Documentation_EN_03_2018.pdf",
+   "status": "source",
+   "discontinued": true,
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-stellaris-8",
+   "brand": "Leica",
+   "name": "STELLARIS 8",
+   "type": "point",
+   "field_mm": 22,
+   "fieldWording": "22 mm (FOV) diagonal in the intermediate image plane",
+   "maxFrame": 8192,
+   "zoom": [
+    0.75,
+    48
+   ],
+   "pinhole": "variable",
+   "source": "https://www.uts.edu.au/about/locations-facilities/microbial-imaging-facility/imaging-technologies/leica-stellaris-8",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "leica-stellaris-8-resonant",
+   "brand": "Leica",
+   "name": "STELLARIS 8 (resonant)",
+   "type": "point",
+   "field_mm": 13,
+   "fieldWording": "13 mm diagonal",
+   "maxFrame": 2496,
+   "zoom": [
+    1.25,
+    48
+   ],
+   "pinhole": "variable",
+   "source": "https://www.uts.edu.au/about/locations-facilities/microbial-imaging-facility/imaging-technologies/leica-stellaris-8",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-a1-hd25",
+   "brand": "Nikon",
+   "name": "A1 HD25",
+   "type": "point",
+   "field_mm": 25,
+   "fieldWording": "Square inscribed in a Ø25 mm circle (Ti2-E)",
+   "maxFrame": 4096,
+   "zoom": [
+    0.72,
+    1000
+   ],
+   "pinhole": "12–256 µm",
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/a1hd25-a1rhd25/specifications",
+   "status": "source",
+   "discontinued": true,
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-a1r-hd25-resonant",
+   "brand": "Nikon",
+   "name": "A1R HD25 (resonant)",
+   "type": "point",
+   "field_mm": 25,
+   "fieldWording": "Square inscribed in a Ø25 mm circle (Ti2-E)",
+   "maxFrame": 1024,
+   "zoom": [
+    0.72,
+    8
+   ],
+   "pinhole": "variable",
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/a1hd25-a1rhd25/specifications",
+   "status": "source",
+   "discontinued": true,
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-ax",
+   "brand": "Nikon",
+   "name": "AX (galvano)",
+   "type": "point",
+   "field_mm": 25,
+   "fieldWording": "Field Number 25",
+   "maxFrame": 8192,
+   "pinhole": "variable",
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/specifications",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "nikon-ax-r",
+   "brand": "Nikon",
+   "name": "AX R (resonant)",
+   "type": "point",
+   "field_mm": 25,
+   "fieldWording": "Field Number 25",
+   "maxFrame": 2048,
+   "pinhole": "variable",
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/specifications",
+   "status": "source",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-fv3000",
+   "brand": "Evident",
+   "name": "FV3000 (galvano)",
+   "type": "point",
+   "field_mm": 18,
+   "fieldWording": "Field number 18 (to check)",
+   "maxFrame": 4096,
+   "pinhole": "variable",
+   "source": "https://www.olympus-lifescience.com/en/laser-scanning/fv3000/specifications/",
+   "status": "verify",
+   "note": "Field number and frame size not read on a source page yet.",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "evident-fv4000",
+   "brand": "Evident",
+   "name": "FV4000 (galvano)",
+   "type": "point",
+   "field_mm": 18,
+   "fieldWording": "Field number 18 (to check)",
+   "maxFrame": 4096,
+   "pinhole": "variable",
+   "source": "https://microscopy.unimelb.edu.au/__data/assets/pdf_file/0003/5186352/DMI-Evident-FV4000.pdf",
+   "status": "verify",
+   "note": "4096 × 4096 from the source; field number to check.",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "yokogawa-csu-w1-50",
+   "brand": "Yokogawa",
+   "name": "CSU-W1 · 50 µm disk",
+   "type": "disk",
+   "pinhole_um": 50,
+   "pitch_um": 500,
+   "fieldWording": "Effective FOV 17 × 16 mm",
+   "source": "https://www.yokogawa.com/us/solutions/products-and-services/life-science/spinning-disk-confocal/csu-w1-confocal-scanner-unit/",
+   "status": "verify",
+   "note": "50 µm diameter from the source; 500 µm pitch to check.",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "yokogawa-csu-w1-25",
+   "brand": "Yokogawa",
+   "name": "CSU-W1 · 25 µm disk",
+   "type": "disk",
+   "pinhole_um": 25,
+   "pitch_um": 500,
+   "fieldWording": "Effective FOV 17 × 16 mm",
+   "source": "https://www.yokogawa.com/us/solutions/products-and-services/life-science/spinning-disk-confocal/csu-w1-confocal-scanner-unit/",
+   "status": "verify",
+   "note": "25 µm diameter from the source; pitch to check.",
+   "checked": "2026-11-24"
+  },
+  {
+   "id": "yokogawa-csu-x1",
+   "brand": "Yokogawa",
+   "name": "CSU-X1",
+   "type": "disk",
+   "pinhole_um": 50,
+   "pitch_um": 253,
+   "source": "https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/csu-series",
+   "status": "verify",
+   "note": "50 µm / 253 µm commonly cited; not yet read on a source page.",
+   "checked": "2026-11-24"
+  }
+ ],
+ "fluors": [
+  {
+   "id": "alexa-fluor-405",
+   "name": "Alexa Fluor 405",
+   "exMax": 401,
+   "emMax": 421,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor 405"
+  },
+  {
+   "id": "alexa-fluor-350",
+   "name": "Alexa Fluor 350",
+   "exMax": 346,
+   "emMax": 442,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "dapi",
+   "name": "DAPI",
+   "exMax": 358,
+   "emMax": 461,
+   "status": "verify",
+   "src": "Panel Designer: FPbase (to check)"
+  },
+  {
+   "id": "hoechst-33342",
+   "name": "Hoechst 33342",
+   "exMax": 350,
+   "emMax": 461,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "mturquoise2",
+   "name": "mTurquoise2",
+   "exMax": 434,
+   "emMax": 474,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "egfp",
+   "name": "EGFP",
+   "exMax": 488,
+   "emMax": 507,
+   "status": "source",
+   "src": "Panel Designer: FPbase (ex 488 / em 507, EC 55900, QY 0.60)"
+  },
+  {
+   "id": "alexa-fluor-488",
+   "name": "Alexa Fluor 488",
+   "exMax": 494,
+   "emMax": 517,
+   "status": "source",
+   "src": "Panel Designer: BD Lasers and Dyes"
+  },
+  {
+   "id": "mneongreen",
+   "name": "mNeonGreen",
+   "exMax": 506,
+   "emMax": 517,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "fitc",
+   "name": "FITC",
+   "exMax": 494,
+   "emMax": 518,
+   "status": "source",
+   "src": "Panel Designer: BD Lasers and Dyes"
+  },
+  {
+   "id": "mvenus",
+   "name": "mVenus",
+   "exMax": 515,
+   "emMax": 528,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "alexa-fluor-430",
+   "name": "Alexa Fluor 430",
+   "exMax": 434,
+   "emMax": 539,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-514",
+   "name": "Alexa Fluor 514",
+   "exMax": 518,
+   "emMax": 540,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-532",
+   "name": "Alexa Fluor 532",
+   "exMax": 531,
+   "emMax": 554,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-555",
+   "name": "Alexa Fluor 555",
+   "exMax": 555,
+   "emMax": 565,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "cy3",
+   "name": "Cy3",
+   "exMax": 550,
+   "emMax": 570,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "jf549",
+   "name": "JF549",
+   "exMax": 549,
+   "emMax": 571,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "alexa-fluor-546",
+   "name": "Alexa Fluor 546",
+   "exMax": 556,
+   "emMax": 573,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "tdtomato",
+   "name": "tdTomato",
+   "exMax": 554,
+   "emMax": 581,
+   "status": "source",
+   "src": "Panel Designer: FPbase"
+  },
+  {
+   "id": "mscarlet",
+   "name": "mScarlet",
+   "exMax": 569,
+   "emMax": 594,
+   "status": "source",
+   "src": "Panel Designer: FPbase"
+  },
+  {
+   "id": "alexa-fluor-568",
+   "name": "Alexa Fluor 568",
+   "exMax": 578,
+   "emMax": 603,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "mcherry",
+   "name": "mCherry",
+   "exMax": 587,
+   "emMax": 610,
+   "status": "source",
+   "src": "Panel Designer: FPbase"
+  },
+  {
+   "id": "alexa-fluor-594",
+   "name": "Alexa Fluor 594",
+   "exMax": 590,
+   "emMax": 617,
+   "status": "source",
+   "src": "Panel Designer: BioLegend Fluorophore Families"
+  },
+  {
+   "id": "alexa-fluor-610",
+   "name": "Alexa Fluor 610",
+   "exMax": 612,
+   "emMax": 628,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "mkate2",
+   "name": "mKate2",
+   "exMax": 588,
+   "emMax": 633,
+   "status": "source",
+   "src": "Panel Designer: FPbase"
+  },
+  {
+   "id": "alexa-fluor-633",
+   "name": "Alexa Fluor 633",
+   "exMax": 632,
+   "emMax": 647,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "jf646",
+   "name": "JF646",
+   "exMax": 646,
+   "emMax": 664,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "alexa-fluor-647",
+   "name": "Alexa Fluor 647",
+   "exMax": 653,
+   "emMax": 669,
+   "status": "source",
+   "src": "Panel Designer: BD Lasers and Dyes"
+  },
+  {
+   "id": "cy5",
+   "name": "Cy5",
+   "exMax": 649,
+   "emMax": 670,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "sir",
+   "name": "SiR",
+   "exMax": 652,
+   "emMax": 674,
+   "status": "verify",
+   "src": "commonly cited peak; to check against FPbase"
+  },
+  {
+   "id": "alexa-fluor-660",
+   "name": "Alexa Fluor 660",
+   "exMax": 663,
+   "emMax": 690,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-680",
+   "name": "Alexa Fluor 680",
+   "exMax": 679,
+   "emMax": 702,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-700",
+   "name": "Alexa Fluor 700",
+   "exMax": 697,
+   "emMax": 719,
+   "status": "source",
+   "src": "Panel Designer: BD Lasers and Dyes"
+  },
+  {
+   "id": "alexa-fluor-750",
+   "name": "Alexa Fluor 750",
+   "exMax": 749,
+   "emMax": 775,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  },
+  {
+   "id": "alexa-fluor-790",
+   "name": "Alexa Fluor 790",
+   "exMax": 782,
+   "emMax": 805,
+   "status": "source",
+   "src": "Panel Designer: Thermo Fisher Alexa Fluor dye series, Table 1"
+  }
+ ]
+}
