@@ -1234,6 +1234,25 @@
   });
   $('camBin').addEventListener('change', function () { S.cal.cam.bin = num(this.value) || 1; save(); refresh(); });
 
+  // camera and objective lists shared with 8.2 Nyquist (assets/data/microscopy-data.js)
+  (function () {
+    var D = window.LMT_MICRO;
+    if (!D || !D.cameras || !D.objectives) return;
+    function opts(list, label) {
+      var groups = {};
+      list.forEach(function (x) { (groups[x.brand] = groups[x.brand] || []).push(x); });
+      return Object.keys(groups).map(function (b) {
+        return '<optgroup label="' + esc(b) + '">' + groups[b].map(function (x) { return '<option value="' + esc(x.id) + '">' + esc(label(x)) + '</option>'; }).join('') + '</optgroup>';
+      }).join('');
+    }
+    $('camLibCam').insertAdjacentHTML('beforeend', opts(D.cameras, function (c) { return c.name + ' · ' + c.pixel_um + ' µm'; }));
+    $('camLibObj').insertAdjacentHTML('beforeend', opts(D.objectives, function (o) { return o.name + ' · ' + o.mag + '×'; }));
+    $('camLib').hidden = false;
+    function find(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
+    $('camLibCam').addEventListener('change', function () { var c = find(D.cameras, this.value); if (c) { S.cal.cam.pix = c.pixel_um; save(); refresh(); } });
+    $('camLibObj').addEventListener('change', function () { var o = find(D.objectives, this.value); if (o) { S.cal.cam.obj = o.mag; save(); refresh(); } });
+  })();
+
   // file calibrations (buttons are re-rendered)
   $('fileCal').addEventListener('click', function (e) {
     var id = e.target && e.target.id;
@@ -1674,6 +1693,13 @@
   }
 
   /* ---------- go ---------- */
+  // µm per pixel sent from 8.2 Nyquist
+  var inbound = window.LMH && window.LMH.take('scale-bar');
+  if (inbound && ok(+inbound.umpp)) {
+    S.cal.method = 'value'; S.cal.unit = 'umpp'; S.cal.value = parseFloat((+inbound.umpp).toPrecision(8)); S.cal.presetId = '';
+    save();
+    setTimeout(function () { window.LMH.note('µm per pixel from the Nyquist Calculator: ' + sig(+inbound.umpp, 5) + (inbound.label ? ' (' + inbound.label + ')' : '') + '. Confirm with a stage micrometer before you publish.', 'toast'); }, 0);
+  }
   renderPresetSelect();
   buildStrip();
   refresh();

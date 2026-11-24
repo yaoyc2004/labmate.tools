@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Microscopy Nyquist Calculator — Pixel Size, Zoom &amp; Z-Step | labmate.tools</title>
+<meta name="description" content="Free microscopy Nyquist calculator: pick your objective, camera or confocal by brand and model (or type the numbers), get resolution, Nyquist pixel size and z-step, and see if you are under- or oversampling.">
+<link rel="canonical" href="https://labmate.tools/tools/nyquist/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Microscopy Nyquist Calculator — free, in your browser | labmate.tools">
+<meta property="og:description" content="Objective, camera or confocal by brand and model → resolution, Nyquist pixel size and z-step, and an under/oversampling check.">
+<meta property="og:url" content="https://labmate.tools/tools/nyquist/">
+<meta property="og:image" content="https://labmate.tools/assets/og/nyquist.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Microscopy Nyquist Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Microscopy Nyquist Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Objective, camera or confocal by brand and model → resolution, Nyquist pixel size and z-step, and an under/oversampling check.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/nyquist.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/nyquist/#app","name":"Microscopy Nyquist Calculator","url":"https://labmate.tools/tools/nyquist/","description":"Free microscopy Nyquist calculator: pick your objective, camera or confocal by brand and model (or type the numbers), get resolution, Nyquist pixel size and z-step, and see if you are under- or oversampling.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Objectives, cameras and confocal systems from Nikon, Evident, Zeiss, Leica, Hamamatsu, Teledyne Photometrics, Andor and Yokogawa, with sources","Every value can be typed by hand","Widefield, point-scanning confocal, spinning disk and two-photon","Lateral and axial resolution","Nyquist pixel size and z-step per channel","Camera adapter and binning, or confocal zoom, that reach Nyquist","Tube lens correction across brands","Spinning-disk pinhole in Airy units","Printable settings card and share link","Send µm per pixel to the Scale Bar Maker"],"audience":{"@type":"Audience","audienceType":"Microscopists, core facility staff, life science researchers and students"},"image":"https://labmate.tools/assets/og/nyquist.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-24"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Imaging","item":"https://labmate.tools/#imaging"},{"@type":"ListItem","position":3,"name":"Microscopy Nyquist Calculator","item":"https://labmate.tools/tools/nyquist/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/nyquist/#faq","mainEntity":[{"@type":"Question","name":"What pixel size do I need for Nyquist sampling?","acceptedAnswer":{"@type":"Answer","text":"For widefield, the pixel on the sample should be at most λem ÷ (4 NA); for a confocal, λex ÷ (8 NA). With NA 1.4 and GFP that is about 91 nm widefield and 44 nm confocal. The page works it out per channel and uses the strictest."}},{"@type":"Question","name":"My objective or camera is not in the list. Can I still use it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every field can be typed: magnification, NA, immersion, camera pixel size, frame size, zoom, wavelengths. The lists only fill the numbers in. Use SUBMIT TO THE LIBRARY to send us your model so it can be added for everyone."}},{"@type":"Question","name":"Is undersampling always bad?","acceptedAnswer":{"@type":"Answer","text":"No. You lose resolution you paid for in NA, but you gain field of view, speed and signal per pixel. For deconvolution, SVI suggests staying within about 1.3× (widefield) to 1.6× (confocal at 1 Airy unit) of the Nyquist distance."}},{"@type":"Question","name":"Why does the tube lens matter?","acceptedAnswer":{"@type":"Answer","text":"Infinity objectives are designed for one tube lens: 200 mm for Nikon and Leica, 180 mm for Evident and 165 mm for Zeiss. On another maker's stand the real magnification is the nominal one × stand tube lens ÷ design tube lens."}},{"@type":"Question","name":"Where do the hardware specifications come from?","acceptedAnswer":{"@type":"Answer","text":"From each maker's public specification pages, datasheets and core-facility documents, linked per entry in the table below. Entries marked check have a number still to confirm. The list is independent and not sponsored."}},{"@type":"Question","name":"Is anything uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is worked out in your browser. Your own objectives and cameras are kept in this browser; export them to keep a copy."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="../../assets/recipe.css?v=1">
+<link rel="stylesheet" href="../../assets/flow.css?v=1">
+<link rel="stylesheet" href="nyquist.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 8.2 NYQUIST</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">RESET</button>
+  <a class="lm-link" href="../../#imaging">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 8.2</figcaption>
+      <svg width="132" height="70" viewBox="0 0 132 70"><g stroke="#C9C4B6" stroke-width="1"><path d="M8 10 H76 M8 22 H76 M8 34 H76 M8 46 H76 M8 58 H76 M8 10 V58 M20 10 V58 M32 10 V58 M44 10 V58 M56 10 V58 M68 10 V58"/></g><path d="M8 58 C26 58 30 14 42 14 C54 14 58 58 76 58" fill="none" stroke="#17403D" stroke-width="2"/><g fill="#2E9E5B" stroke="#1B2224" stroke-width="1"><circle cx="20" cy="50" r="2.6"/><circle cx="32" cy="24" r="2.6"/><circle cx="44" cy="14.5" r="2.6"/><circle cx="56" cy="30" r="2.6"/><circle cx="68" cy="54" r="2.6"/></g><text x="84" y="30" font-family="IBM Plex Serif, Georgia, serif" font-style="italic" font-size="15" fill="#1B2224">Δx ≤</text><text x="84" y="50" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1F7A45">λ/4NA</text></svg>
+    </figure>
+    <div>
+      <h1>Microscopy Nyquist Calculator</h1>
+      <p class="lm-lede">Pick your objective, camera or confocal by brand and model — or type the numbers yourself. Get the resolution, the pixel size and z-step that meet Nyquist, and whether your current settings under- or oversample.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar" id="s1"><span>1 · MICROSCOPE</span> <small>SECTION 08 — IMAGING · 8.2</small></h2>
+  <div class="lm-sheet no-print">
+    <div class="rc-row-actions" style="margin-top:0">
+      <span class="rc-k" id="modeK" style="margin:0">MODE</span>
+      <div class="lm-seg ny-seg" role="group" aria-labelledby="modeK" id="modeSeg">
+        <button type="button" data-mode="widefield">WIDEFIELD</button>
+        <button type="button" data-mode="confocal">CONFOCAL</button>
+        <button type="button" data-mode="disk">SPINNING DISK</button>
+        <button type="button" data-mode="twophoton">TWO-PHOTON</button>
+      </div>
+    </div>
+    <div class="rc-grid ny-gap">
+      <div class="term" data-term="standTube">
+        <div class="term-head"><span class="term-sym">f<sub>TL</sub></span><span class="term-name">STAND · TUBE LENS</span></div>
+        <div class="term-body"><label class="sr" for="standBrand">Microscope stand</label><select id="standBrand" class="cs-wide">
+          <option value="">Same maker as the objective</option><option value="200">Nikon / Leica stand · 200 mm</option><option value="180">Evident (Olympus) stand · 180 mm</option><option value="165">Zeiss stand · 165 mm</option><option value="custom">Other tube lens…</option></select></div>
+        <div class="term-body" id="standCustomBox" hidden><label class="sr" for="standTube">Stand tube lens focal length, mm</label><input id="standTube" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">mm</span></div>
+        <div class="term-msg" id="standTubem"></div>
+      </div>
+      <p class="rc-hint ny-span2">Objectives are designed for their own maker's tube lens. Leave this on <b>same maker</b> unless the objective sits on another maker's stand.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>2 · OBJECTIVE</span> <small>PICK OR TYPE</small></h2>
+  <div class="lm-sheet no-print">
+    <div class="ny-pick">
+      <label class="rc-k" for="objBrand">BRAND</label>
+      <select id="objBrand" class="ny-sel"></select>
+      <label class="rc-k" for="objModel">MODEL</label>
+      <select id="objModel" class="ny-sel ny-wide"></select>
+    </div>
+    <p class="ny-src" id="objSrc"></p>
+    <div class="rc-grid is-4 ny-gap">
+      <div class="term" data-term="mag">
+        <div class="term-head"><span class="term-sym">M</span><span class="term-name">MAGNIFICATION</span></div>
+        <div class="term-body"><label class="sr" for="mag">Objective magnification</label><input id="mag" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">×</span></div>
+        <div class="term-msg" id="magm"></div>
+      </div>
+      <div class="term" data-term="na">
+        <div class="term-head"><span class="term-sym">NA</span><span class="term-name">NUMERICAL APERTURE</span></div>
+        <div class="term-body"><label class="sr" for="na">Numerical aperture</label><input id="na" type="text" inputmode="decimal" autocomplete="off"></div>
+        <div class="term-msg" id="nam"></div>
+      </div>
+      <div class="term" data-term="n">
+        <div class="term-head"><span class="term-sym">n</span><span class="term-name">IMMERSION</span></div>
+        <div class="term-body"><label class="sr" for="imm">Immersion medium</label><select id="imm"><option value="air">Air</option><option value="water">Water</option><option value="silicone">Silicone</option><option value="glycerol">Glycerol</option><option value="oil">Oil</option><option value="other">Other</option></select>
+          <label class="sr" for="n">Refractive index</label><input id="n" type="text" inputmode="decimal" autocomplete="off"></div>
+        <div class="term-msg" id="nm"></div>
+      </div>
+      <div class="term" data-term="designTube">
+        <div class="term-head"><span class="term-sym">f<sub>d</sub></span><span class="term-name">DESIGNED FOR</span></div>
+        <div class="term-body"><label class="sr" for="designTube">Design tube lens focal length, mm</label><input id="designTube" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">mm</span></div>
+        <div class="term-msg" id="designTubem"></div>
+      </div>
+    </div>
+    <div class="rc-grid is-4 ny-gap">
+      <div class="term" data-term="fn">
+        <div class="term-head"><span class="term-sym">FN</span><span class="term-name">FIELD NUMBER</span></div>
+        <div class="term-body"><label class="sr" for="fn">Field number, mm (optional)</label><input id="fn" type="text" inputmode="decimal" autocomplete="off" placeholder="optional"><span class="term-unit">mm</span></div>
+        <div class="term-msg" id="fnm"></div>
+      </div>
+      <p class="rc-hint ny-span3">Engraved on the barrel: <b>60x/1.42 Oil</b> is magnification / NA / immersion. Field number is on the eyepiece or the objective's spec sheet (often 22–26.5 mm); leave it empty if unsure.</p>
+    </div>
+    <div class="fl-row">
+      <button type="button" class="lm-link" id="saveObj">SAVE TO MY OBJECTIVES</button>
+      <span class="rc-hint" id="saveObjMsg" role="status" style="margin:0"></span>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>3 · DETECTOR</span> <small id="detK">CAMERA</small></h2>
+  <div class="lm-sheet no-print">
+    <label class="fl-chk"><input type="checkbox" id="manualOn"> I already know the pixel size on the sample</label>
+    <div id="manualBox" hidden>
+      <div class="rc-grid ny-gap">
+        <div class="term" data-term="manualPx">
+          <div class="term-head"><span class="term-sym">Δx</span><span class="term-name">PIXEL SIZE</span></div>
+          <div class="term-body"><label class="sr" for="manualPx">Pixel size on the sample</label><input id="manualPx" type="text" inputmode="decimal" autocomplete="off">
+            <label class="sr" for="manualUnit">Unit</label><select id="manualUnit"><option value="nm">nm</option><option value="um">µm</option></select></div>
+          <div class="term-msg" id="manualPxm"></div>
+        </div>
+        <p class="rc-hint ny-span2">From the image metadata, Fiji's Image › Properties or the acquisition software. The page only checks it against Nyquist.</p>
+      </div>
+    </div>
+
+    <div id="diskBox" hidden>
+      <div class="ny-pick ny-gap">
+        <label class="rc-k" for="diskModel">SPINNING DISK</label>
+        <select id="diskModel" class="ny-sel ny-wide"></select>
+      </div>
+      <p class="ny-src" id="diskSrc"></p>
+      <div class="rc-grid ny-gap">
+        <div class="term" data-term="pinhole">
+          <div class="term-head"><span class="term-sym">d</span><span class="term-name">PINHOLE DIAMETER</span></div>
+          <div class="term-body"><label class="sr" for="pinhole">Disk pinhole diameter, µm</label><input id="pinhole" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µm</span></div>
+          <div class="term-msg" id="pinholem"></div>
+        </div>
+        <div class="term" data-term="pitch">
+          <div class="term-head"><span class="term-sym">p</span><span class="term-name">PINHOLE SPACING</span></div>
+          <div class="term-body"><label class="sr" for="pitch">Pinhole spacing, µm (optional)</label><input id="pitch" type="text" inputmode="decimal" autocomplete="off" placeholder="optional"><span class="term-unit">µm</span></div>
+          <div class="term-msg" id="pitchm"></div>
+        </div>
+        <div class="term" data-term="relay">
+          <div class="term-head"><span class="term-sym">M<sub>d</sub></span><span class="term-name">MAG. TO THE DISK</span></div>
+          <div class="term-body"><label class="sr" for="relay">Magnification between the stand's image and the disk</label><input id="relay" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">×</span></div>
+          <div class="term-msg" id="relaym"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="camBox">
+      <div class="ny-pick ny-gap">
+        <label class="rc-k" for="camBrand">BRAND</label>
+        <select id="camBrand" class="ny-sel"></select>
+        <label class="rc-k" for="camModel">CAMERA</label>
+        <select id="camModel" class="ny-sel ny-wide"></select>
+      </div>
+      <p class="ny-src" id="camSrc"></p>
+      <div class="rc-grid is-4 ny-gap">
+        <div class="term" data-term="pix">
+          <div class="term-head"><span class="term-sym">p</span><span class="term-name">CAMERA PIXEL</span></div>
+          <div class="term-body"><label class="sr" for="pix">Camera pixel size, µm</label><input id="pix" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µm</span></div>
+          <div class="term-msg" id="pixm"></div>
+        </div>
+        <div class="term" data-term="pxW">
+          <div class="term-head"><span class="term-sym">N</span><span class="term-name">SENSOR PIXELS</span></div>
+          <div class="term-body ny-wh"><label class="sr" for="pxW">Sensor width, pixels</label><input id="pxW" type="text" inputmode="numeric" autocomplete="off"><span class="term-unit">×</span><label class="sr" for="pxH">Sensor height, pixels</label><input id="pxH" type="text" inputmode="numeric" autocomplete="off"></div>
+          <div class="term-msg" id="pxWm"></div>
+        </div>
+        <div class="term" data-term="bin">
+          <div class="term-head"><span class="term-sym">b</span><span class="term-name">BINNING</span></div>
+          <div class="term-body"><label class="sr" for="bin">Binning</label><select id="bin" class="cs-wide"><option value="1">1 × 1</option><option value="2">2 × 2</option><option value="3">3 × 3</option><option value="4">4 × 4</option></select></div>
+        </div>
+        <div class="term" data-term="adapter">
+          <div class="term-head"><span class="term-sym">M<sub>c</sub></span><span class="term-name">CAMERA ADAPTER</span></div>
+          <div class="term-body"><label class="sr" for="adapter">Camera adapter and any extra magnification</label><input id="adapter" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">×</span></div>
+          <div class="term-msg" id="adapterm"></div>
+        </div>
+      </div>
+      <p class="rc-hint">Camera adapter = everything between the stand's image and the camera: C-mount adapter, magnification changer, and on a spinning disk the relay after the disk. 1× if none.</p>
+      <div class="fl-row">
+        <button type="button" class="lm-link" id="saveCam">SAVE TO MY CAMERAS</button>
+        <span class="rc-hint" id="saveCamMsg" role="status" style="margin:0"></span>
+      </div>
+    </div>
+
+    <div id="scanBox" hidden>
+      <div class="ny-pick ny-gap">
+        <label class="rc-k" for="scanModel">CONFOCAL</label>
+        <select id="scanModel" class="ny-sel ny-wide"></select>
+      </div>
+      <p class="ny-src" id="scanSrc"></p>
+      <div class="rc-grid is-4 ny-gap">
+        <div class="term" data-term="field">
+          <div class="term-head"><span class="term-sym">F</span><span class="term-name">SCAN FIELD AT ZOOM 1</span></div>
+          <div class="term-body"><label class="sr" for="field">Scan field diagonal at zoom 1, mm</label><input id="field" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">mm</span></div>
+          <div class="term-msg" id="fieldm"></div>
+        </div>
+        <div class="term" data-term="frame">
+          <div class="term-head"><span class="term-sym">N</span><span class="term-name">FRAME</span></div>
+          <div class="term-body ny-wh"><label class="sr" for="frameW">Frame width, pixels</label><input id="frameW" type="text" inputmode="numeric" autocomplete="off"><span class="term-unit">×</span><label class="sr" for="frameH">Frame height, pixels</label><input id="frameH" type="text" inputmode="numeric" autocomplete="off"></div>
+          <div class="term-msg" id="framem"></div>
+        </div>
+        <div class="term" data-term="zoom">
+          <div class="term-head"><span class="term-sym">z</span><span class="term-name">ZOOM</span></div>
+          <div class="term-body"><label class="sr" for="zoom">Scan zoom</label><input id="zoom" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">×</span></div>
+          <div class="term-msg" id="zoomm"></div>
+        </div>
+        <div class="term" data-term="au" id="auTerm">
+          <div class="term-head"><span class="term-sym">AU</span><span class="term-name">PINHOLE</span></div>
+          <div class="term-body"><label class="sr" for="au">Pinhole in Airy units</label><input id="au" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">AU</span></div>
+          <div class="term-msg" id="aum"></div>
+        </div>
+      </div>
+      <p class="rc-hint">Scan field = the diagonal of the square scanned at zoom 1, in the intermediate image (the system's spec sheet: “20 mm field diagonal”, “field number 25”). Frame: the image size you acquire, e.g. 1024 × 1024.</p>
+    </div>
+  </div>
+
+  <h2 class="lm-bar"><span>4 · CHANNELS</span> <small>DYES &amp; WAVELENGTHS</small></h2>
+  <div class="lm-sheet no-print">
+    <div class="rc-wrap">
+      <table class="rc-table is-stack ny-ch">
+        <thead><tr><th>DYE / PROTEIN</th><th class="c-num" id="exHead">EXCITATION nm</th><th class="c-num">EMISSION nm</th><th class="c-x"><span class="sr">Remove</span></th></tr></thead>
+        <tbody id="chRows"></tbody>
+      </table>
+    </div>
+    <button type="button" class="rc-add" id="addCh">+ ADD CHANNEL</button>
+    <p class="rc-hint" id="chHint">Picking a dye fills its peak wavelengths. Type the laser line or filter centre you really use if it differs.</p>
+  </div>
+
+  <h2 class="lm-bar"><span>5 · Z STACK</span> <small>OPTIONAL</small></h2>
+  <div class="lm-sheet no-print">
+    <div class="rc-grid">
+      <div class="term" data-term="zstep">
+        <div class="term-head"><span class="term-sym">Δz</span><span class="term-name">YOUR Z STEP</span></div>
+        <div class="term-body"><label class="sr" for="zstep">Your z step, µm (optional)</label><input id="zstep" type="text" inputmode="decimal" autocomplete="off" placeholder="optional"><span class="term-unit">µm</span></div>
+        <div class="term-msg" id="zstepm"></div>
+      </div>
+      <div class="term" data-term="depth">
+        <div class="term-head"><span class="term-sym">D</span><span class="term-name">STACK DEPTH</span></div>
+        <div class="term-body"><label class="sr" for="depth">Stack depth, µm (optional)</label><input id="depth" type="text" inputmode="decimal" autocomplete="off" placeholder="optional"><span class="term-unit">µm</span></div>
+        <div class="term-msg" id="depthm"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="lm-bar" id="sRes"><span>6 · RESULT</span> <small>SAMPLING CHECK</small></h2>
+  <div class="lm-sheet">
+    <div class="rc-print-head" id="printHead"></div>
+    <section class="ans" id="ans" aria-live="polite" aria-labelledby="ansK">
+      <span class="ans-k" id="ansK">SAMPLING</span>
+      <div class="ans-big" id="ansBig"></div>
+      <p class="ans-say" id="ansSay"></p>
+      <div class="ans-actions">
+        <button type="button" class="btn" id="copy">COPY SETTINGS</button>
+        <button type="button" class="lm-link" id="print">PRINT CARD</button>
+        <button type="button" class="lm-link" id="share">COPY SHARE LINK</button>
+        <button type="button" class="lm-link" id="toScale">USE µm/px IN SCALE BAR →</button>
+        <span class="btn-copied" id="copied" role="status"></span>
+      </div>
+    </section>
+    <div class="ny-kpis fl-section-gap" id="kpis"></div>
+    <div class="fl-scroll fl-section-gap">
+      <table class="fl-out is-stack">
+        <thead><tr><th>CHANNEL</th><th class="c-num">EX / EM nm</th><th class="c-num">RESOLUTION XY</th><th class="c-num">RESOLUTION Z</th><th class="c-num">NYQUIST XY</th><th class="c-num">NYQUIST Z</th></tr></thead>
+        <tbody id="chOut"></tbody>
+      </table>
+    </div>
+    <ul class="notes" id="notes"></ul>
+  </div>
+
+  <section class="ny-submit no-print" aria-labelledby="subK">
+    <div>
+      <h2 id="subK">Your objective, camera or confocal isn't listed?</h2>
+      <p>You can already use it: type its numbers above and the result is exact. Send it to us and we'll check it against the maker's spec sheet and add it to the shared library, so the next person can pick it from the list.</p>
+    </div>
+    <a class="ny-submit-btn" id="submit" href="../../contact/?topic=nyquist&amp;about=hardware">SUBMIT TO THE LIBRARY <span aria-hidden="true">→</span></a>
+  </section>
+
+  <h2 class="lm-bar no-print"><span>7 · MY HARDWARE</span> <small>SAVED IN THIS BROWSER</small></h2>
+  <div class="lm-sheet no-print" id="mine">
+    <div class="fl-scroll">
+      <table class="fl-out is-stack">
+        <thead><tr><th>TYPE</th><th>NAME</th><th>VALUES</th><th><span class="sr">Actions</span></th></tr></thead>
+        <tbody id="mineRows"></tbody>
+      </table>
+    </div>
+    <div class="fl-row">
+      <button type="button" class="lm-link" id="mineExport">EXPORT .JSON</button>
+      <label class="fl-file">IMPORT .JSON<input type="file" id="mineImport" accept=".json,application/json"></label>
+      <span class="rc-hint" id="mineMsg" role="status" style="margin:0"></span>
+    </div>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Choose the <b>MODE</b>: widefield, point-scanning confocal, spinning disk or two-photon.</li>
+          <li>Pick the <b>OBJECTIVE</b> by brand and model, or type magnification, NA and immersion from the barrel.</li>
+          <li>Pick the <b>CAMERA</b> (widefield, spinning disk) or the <b>CONFOCAL</b> with your frame size and zoom. Or tick <b>I already know the pixel size</b>.</li>
+          <li>Add your <b>CHANNELS</b>. The strictest one (shortest wavelength) sets the target.</li>
+          <li>Read the <b>RESULT</b>: pixel size against Nyquist, the adapter, binning or zoom that reaches it, and the z-step. Print the card for the microscope.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formulas</h2>
+        <div class="formula">
+          <span class="eq">Δx = λ ÷ (4k · n sin α) · Δz = λ ÷ (2k · n (1 − cos α))</span>
+          <table>
+            <tr><td>α</td><td>half-aperture angle, sin α = NA ÷ n</td></tr>
+            <tr><td>Widefield</td><td>k = 1, λ = emission</td></tr>
+            <tr><td>Confocal, disk</td><td>k = 2, λ = excitation</td></tr>
+            <tr><td>Two-photon</td><td>k = 2, λ = the infrared excitation</td></tr>
+            <tr><td>Pixel</td><td>camera: pixel × binning ÷ (M × f<sub>TL</sub>/f<sub>d</sub> × M<sub>c</sub>); confocal: (F ÷ √2) ÷ (M × zoom × N)</td></tr>
+          </table>
+          <p>Resolution shown is the Rayleigh criterion (0.61 λ ÷ NA widefield; the pinhole-dependent confocal form).</p>
+        </div>
+        <p class="example"><b>Example.</b> 60×/1.42 oil, ORCA-Fusion (6.5 µm), 1× adapter, EGFP (507 nm emission), widefield: pixel 108 nm, Nyquist 89 nm — undersampled 1.21×. A 1.5× adapter gives 72 nm, at Nyquist. Same objective on a confocal at 1024 × 1024 with a 20 mm scan field needs zoom 5.4 for the 43 nm target at 488 nm.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. Nothing leaves your browser.</li>
+          <li>Nyquist is the coarsest sampling that keeps all the resolution; finer costs photons, time and file size.</li>
+          <li>Real pixel sizes differ from nominal by a few percent. Calibrate with a stage micrometer before you measure.</li>
+          <li>Hardware values come from the makers' public spec sheets; check yours.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · NYQUIST SAMPLING</div>
+  <h2>Where the numbers come from</h2>
+  <div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">What</th><th scope="col">Used here</th><th scope="col">Source</th></tr></thead><tbody>
+    <tr><th scope="row">Nyquist distances</th><td>Δx = λ/(4kn sin α), Δz = λ/(2kn(1 − cos α)); λem widefield, λex confocal</td><td><a href="https://svi.nl/Nyquist-Rate-Japanese">SVI, Nyquist rate</a> (eqs. 1, 4, 5); <a href="https://svi.nl/FaqDataAcquisition">SVI FAQ</a></td></tr>
+    <tr><th scope="row">Tolerated undersampling</th><td>about 1.3× widefield, 1.6× confocal at 1 AU</td><td><a href="https://svi.nl/FaqDataAcquisition">SVI FAQ</a>; <a href="https://imb.uq.edu.au/files/31113/Deconvolution_guide_v6.pdf">UQ IMB deconvolution guide</a></td></tr>
+    <tr><th scope="row">Resolution</th><td>Rayleigh, widefield 0.61 λem/NA, 2nλem/NA²; confocal C<sub>lat</sub>(AU), C<sub>ax</sub>(AU) with λex</td><td><a href="https://www.microscope.healthcare.nikon.com/microtools/resolution-calculator/">Nikon MicroscopyU resolution calculator</a> (eqs. 8, 10, 17–20)</td></tr>
+    <tr><th scope="row">Check value</th><td>63×/1.4 oil, 488 nm confocal → 43 nm / 130 nm</td><td><a href="https://imb.uq.edu.au/files/31113/Deconvolution_guide_v6.pdf">UQ IMB deconvolution guide</a>, table 3</td></tr>
+    <tr><th scope="row">Immersion index</th><td>water 1.33, silicone 1.40</td><td><a href="https://evidentscientific.com/en/objectives">Evident objectives</a></td></tr>
+  </tbody></table></div>
+<!-- lib:start -->
+<div class="ny-lib">
+<h2>Built-in hardware</h2>
+<p>31 objectives, 15 cameras and 15 confocal and spinning-disk systems, each linked to the page its numbers were read from. Data: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener license" target="_blank">CC BY 4.0</a>, compiled 2026-11-24. Not sponsored by any maker.</p>
+<h3>Objectives</h3><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Objective</th><th scope="col">Mag. / NA</th><th scope="col">Immersion</th><th scope="col">WD mm</th><th scope="col">Tube lens</th><th scope="col">Source</th></tr></thead><tbody>
+<tr><th scope="row">Nikon Plan Apo λD 4x</th><td>4× / 0.20</td><td>air</td><td>20</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λD 10x</th><td>10× / 0.45</td><td>air</td><td>4</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a> <a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives" rel="noopener" target="_blank">2</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λD 20x</th><td>20× / 0.80</td><td>air</td><td>0.8</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λD 40x</th><td>40× / 0.95</td><td>air</td><td>0.21</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λD 60x Oil</th><td>60× / 1.42</td><td>oil</td><td>0.15</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λD 100x Oil</th><td>100× / 1.45</td><td>oil</td><td>0.13</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/products/optics/lambda-d-objective-series/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Plan Apo λS 40xC Sil</th><td>40× / 1.25</td><td>silicone</td><td>0.3</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon Apo LWD λS 40xC WI</th><td>40× / 1.15</td><td>water</td><td>0.6</td><td>200 mm</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/objectives" rel="noopener" target="_blank">spec</a> <a href="https://www.janelia.org/sites/default/files/Support%20Teams/Light%20Microscopy/Nikon%20Objectives.pdf" rel="noopener" target="_blank">2</a></td></tr>
+<tr><th scope="row">Nikon SR Apo TIRF 100x Oil</th><td>100× / 1.49</td><td>oil</td><td>0.12</td><td>200 mm</td><td><a href="https://www.janelia.org/sites/default/files/Support%20Teams/Light%20Microscopy/Nikon%20Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO4X</th><td>4× / 0.16</td><td>air</td><td>13</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/N5701800" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO10X</th><td>10× / 0.40</td><td>air</td><td>3.1</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/n5701900" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO20X</th><td>20× / 0.80</td><td>air</td><td>0.6</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/N5702000" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO40X</th><td>40× / 0.95</td><td>air</td><td>0.18</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/N5702100" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO40XO</th><td>40× / 1.40</td><td>oil</td><td>0.13</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/N5702200" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO60XO</th><td>60× / 1.42</td><td>oil</td><td>0.15</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/n5702300" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident UPLXAPO100XO</th><td>100× / 1.45</td><td>oil</td><td>0.13</td><td>180 mm</td><td><a href="https://evidentscientific.com/en/products/ix-objectives-standard/N5702400" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss Plan-Apochromat 20x/0.8</th><td>20× / 0.80</td><td>air</td><td>0.55</td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss Plan-Apochromat 63x/1.4 Oil DIC</th><td>63× / 1.40</td><td>oil</td><td></td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss Plan-Apochromat 100x/1.40 Oil DIC</th><td>100× / 1.40</td><td>oil</td><td></td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss α Plan-Apochromat 100x/1.46 Oil DIC</th><td>100× / 1.46</td><td>oil</td><td></td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss C-Apochromat 10x/0.45 W</th><td>10× / 0.45</td><td>water</td><td>1.8</td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss C-Apochromat 40x/1.2 W Corr</th><td>40× / 1.20</td><td>water</td><td></td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss C-Apochromat 63x/1.20 W Corr</th><td>63× / 1.20</td><td>water</td><td></td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss LD C-Apochromat 40x/1.1 W Corr</th><td>40× / 1.10</td><td>water</td><td>0.62</td><td>165 mm</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/a6a230a9-d03f-4df1-ac45-90b8cbd6c6a1/EN_solutions-brochure_ZEISS-Microscope-Objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 10x/0.40 CS2</th><td>10× / 0.40</td><td>air</td><td>2.56</td><td>200 mm</td><td><a href="https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 20x/0.75 CS2</th><td>20× / 0.75</td><td>air</td><td>0.62</td><td>200 mm</td><td><a href="https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 40x/1.30 OIL CS2</th><td>40× / 1.30</td><td>oil</td><td>0.24</td><td>200 mm</td><td><a href="https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 63x/1.40 OIL CS2</th><td>63× / 1.40</td><td>oil</td><td>0.14</td><td>200 mm</td><td><a href="https://www.leica-microsystems.com/objectivefinder/objective/506350" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 63x/1.30 GLYC CORR CS2</th><td>63× / 1.30</td><td>glycerol</td><td>0.3</td><td>200 mm</td><td><a href="https://www.leica-microsystems.com/pt/produtos/acessorios/lentes-objetivas-para-microscopios/objectivefinder/objective/506353/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 63x/1.20 W CORR CS2</th><td>63× / 1.20</td><td>water</td><td>0.3</td><td>200 mm</td><td><a href="https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica HC PL APO 100x/1.40 OIL STED WHITE</th><td>100× / 1.40</td><td>oil</td><td>0.13</td><td>200 mm</td><td><a href="https://t4awstest.cc.ic.ac.uk/media/imperial-college/medicine/facilities/film/Leica-objectives.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+</tbody></table></div><h3>Cameras</h3><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Camera</th><th scope="col">Sensor</th><th scope="col">Pixel µm</th><th scope="col">Pixels</th><th scope="col">Source</th></tr></thead><tbody>
+<tr><th scope="row">Hamamatsu ORCA-Fusion BT (C15440-20UP)</th><td>BSI sCMOS</td><td>6.5</td><td>2304 × 2304</td><td><a href="https://www.hamamatsu.com/resources/pdf/sys/SCAS0138E_C14440-20UP_tec.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Hamamatsu ORCA-Fusion (C14440-20UP)</th><td>sCMOS</td><td>6.5</td><td>2304 × 2304</td><td><a href="https://hep.hamamatsu.com/eu/en/products/C14440-20UP.html" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Hamamatsu ORCA-Flash4.0 V3 (C13440-20CU)</th><td>sCMOS</td><td>6.5</td><td>2048 × 2048</td><td><a href="https://hep.hamamatsu.com/resources/pdf/sys/SCAS0134E_C13440-20CU_tec.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Hamamatsu ORCA-Quest (C15550-20UP)</th><td>qCMOS</td><td>4.6</td><td>4096 × 2304</td><td><a href="https://www.hamamatsu.com/resources/pdf/sys/SCAS0154E_C15550-20UP_tec.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Hamamatsu ORCA-Fire (C16240-20UP)</th><td>BSI sCMOS</td><td>4.6</td><td>4432 × 2368</td><td><a href="https://camera.hamamatsu.com/eu/en/product/camera/C16240-20UP.html" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Teledyne Photometrics Prime BSI Express</th><td>BSI sCMOS</td><td>6.5</td><td>2048 × 2048</td><td><a href="https://www.teledynevisionsolutions.com/products/prime-bsi-express/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Teledyne Photometrics Prime BSI <small>(check)</small></th><td>BSI sCMOS</td><td>6.5</td><td>2048 × 2048</td><td><a href="https://www.teledynevisionsolutions.com/products/prime-bsi/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Teledyne Photometrics Kinetix</th><td>BSI sCMOS</td><td>6.5</td><td>3200 × 3200</td><td><a href="https://epfl.ch/research/facilities/ptbiop/wp-content/uploads/2024/12/Kinetix-Camera.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Teledyne Photometrics Prime 95B <small>(check)</small></th><td>BSI sCMOS</td><td>11</td><td>1200 × 1200</td><td><a href="https://www.teledynevisionsolutions.com/categories/cameras/scientific-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor Zyla 4.2 / ZL41 Cell 4.2 <small>(check)</small></th><td>sCMOS</td><td>6.5</td><td>2048 × 2048</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor Zyla 5.5 / ZL41 Cell 5.5 <small>(check)</small></th><td>sCMOS</td><td>6.5</td><td>2560 × 2160</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor Sona-6 (4.2B-6) <small>(check)</small></th><td>BSI sCMOS</td><td>6.5</td><td>2048 × 2048</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor Sona-11 (4.2B-11) <small>(check)</small></th><td>BSI sCMOS</td><td>11</td><td>2048 × 2048</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor iXon Life 888 <small>(check)</small></th><td>EMCCD</td><td>13</td><td>1024 × 1024</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Andor iXon Life 897 <small>(check)</small></th><td>EMCCD</td><td>16</td><td>512 × 512</td><td><a href="https://andor.oxinst.com/microscope-cameras" rel="noopener" target="_blank">spec</a></td></tr>
+</tbody></table></div><h3>Confocal and spinning disk</h3><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">System</th><th scope="col">Type</th><th scope="col">Field / pinhole</th><th scope="col">Max frame</th><th scope="col">Source</th></tr></thead><tbody>
+<tr><th scope="row">Zeiss LSM 880 <small>(discontinued)</small></th><td>point scan</td><td>20 mm field diagonal in the intermediate image</td><td>8192 px</td><td><a href="https://health.ucdavis.edu/physiology/research/zeiss-microscope/documents/ZEISS-LSM-880.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Zeiss LSM 980</th><td>point scan</td><td>20 mm field diagonal in the intermediate image</td><td>8192 px</td><td><a href="https://asset-downloads.zeiss.com/catalogs/download/mic/05fd8acd-c539-4a72-979d-c454c578e3d8/EN_product-info_LSM-980.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica TCS SP8 (FOV scanner) <small>(discontinued)</small></th><td>point scan</td><td>Field diameter 22 mm</td><td>8192 px</td><td><a href="https://www.pragolab.cz/documents/Leica_TCS_%20SP8_Technical_Documentation_EN_03_2018.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica TCS SP8 (resonant 8 kHz) <small>(discontinued)</small></th><td>point scan</td><td>Field diameter 13 mm</td><td>2496 px</td><td><a href="https://www.pragolab.cz/documents/Leica_TCS_%20SP8_Technical_Documentation_EN_03_2018.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica STELLARIS 8</th><td>point scan</td><td>22 mm (FOV) diagonal in the intermediate image plane</td><td>8192 px</td><td><a href="https://www.uts.edu.au/about/locations-facilities/microbial-imaging-facility/imaging-technologies/leica-stellaris-8" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Leica STELLARIS 8 (resonant)</th><td>point scan</td><td>13 mm diagonal</td><td>2496 px</td><td><a href="https://www.uts.edu.au/about/locations-facilities/microbial-imaging-facility/imaging-technologies/leica-stellaris-8" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon A1 HD25 <small>(discontinued)</small></th><td>point scan</td><td>Square inscribed in a Ø25 mm circle (Ti2-E)</td><td>4096 px</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/a1hd25-a1rhd25/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon A1R HD25 (resonant) <small>(discontinued)</small></th><td>point scan</td><td>Square inscribed in a Ø25 mm circle (Ti2-E)</td><td>1024 px</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/a1hd25-a1rhd25/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon AX (galvano)</th><td>point scan</td><td>Field Number 25</td><td>8192 px</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Nikon AX R (resonant)</th><td>point scan</td><td>Field Number 25</td><td>2048 px</td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/ax/specifications" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident FV3000 (galvano) <small>(check)</small></th><td>point scan</td><td>Field number 18 (to check)</td><td>4096 px</td><td><a href="https://www.olympus-lifescience.com/en/laser-scanning/fv3000/specifications/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Evident FV4000 (galvano) <small>(check)</small></th><td>point scan</td><td>Field number 18 (to check)</td><td>4096 px</td><td><a href="https://microscopy.unimelb.edu.au/__data/assets/pdf_file/0003/5186352/DMI-Evident-FV4000.pdf" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Yokogawa CSU-W1 · 50 µm disk <small>(check)</small></th><td>spinning disk</td><td>50 µm pinholes, 500 µm apart</td><td></td><td><a href="https://www.yokogawa.com/us/solutions/products-and-services/life-science/spinning-disk-confocal/csu-w1-confocal-scanner-unit/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Yokogawa CSU-W1 · 25 µm disk <small>(check)</small></th><td>spinning disk</td><td>25 µm pinholes, 500 µm apart</td><td></td><td><a href="https://www.yokogawa.com/us/solutions/products-and-services/life-science/spinning-disk-confocal/csu-w1-confocal-scanner-unit/" rel="noopener" target="_blank">spec</a></td></tr>
+<tr><th scope="row">Yokogawa CSU-X1 <small>(check)</small></th><td>spinning disk</td><td>50 µm pinholes, 253 µm apart</td><td></td><td><a href="https://www.microscope.healthcare.nikon.com/en_AOM/products/confocal-microscopes/csu-series" rel="noopener" target="_blank">spec</a></td></tr>
+</tbody></table></div><p class="lm-note">(check) = at least one number derived or commonly cited, still to confirm against the maker. Dye peaks are shared with the Panel Designer list.</p></div>
+<!-- lib:end -->
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-24">24 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq" id="faq">
+      <div class="lm-more-k">QUESTIONS · NYQUIST SAMPLING</div>
+      <h2>Frequently asked</h2>
+      <details><summary>What pixel size do I need for Nyquist sampling?</summary><p>For widefield, the pixel on the sample should be at most λem ÷ (4 NA); for a confocal, λex ÷ (8 NA). With NA 1.4 and GFP that is about 91 nm widefield and 44 nm confocal. The page works it out per channel and uses the strictest.</p></details>
+      <details><summary>My objective or camera is not in the list. Can I still use it?</summary><p>Yes. Every field can be typed: magnification, NA, immersion, camera pixel size, frame size, zoom, wavelengths. The lists only fill the numbers in. Use SUBMIT TO THE LIBRARY to send us your model so it can be added for everyone.</p></details>
+      <details><summary>Is undersampling always bad?</summary><p>No. You lose resolution you paid for in NA, but you gain field of view, speed and signal per pixel. For deconvolution, SVI suggests staying within about 1.3× (widefield) to 1.6× (confocal at 1 Airy unit) of the Nyquist distance.</p></details>
+      <details><summary>Why does the tube lens matter?</summary><p>Infinity objectives are designed for one tube lens: 200 mm for Nikon and Leica, 180 mm for Evident and 165 mm for Zeiss. On another maker's stand the real magnification is the nominal one × stand tube lens ÷ design tube lens.</p></details>
+      <details><summary>Where do the hardware specifications come from?</summary><p>From each maker's public specification pages, datasheets and core-facility documents, linked per entry in the table below. Entries marked check have a number still to confirm. The list is independent and not sponsored.</p></details>
+      <details><summary>Is anything uploaded?</summary><p>No. Everything is worked out in your browser. Your own objectives and cameras are kept in this browser; export them to keep a copy.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../scale-bar/"><span class="n">8.1</span><span class="t">Scale Bar Maker</span><span class="d">Add the same, correctly sized scale bar to a batch of images.</span></a></li>
+        <li><a href="../panel-designer/"><span class="n">7.1</span><span class="t">Panel Designer</span><span class="d">Fluor spectra and spillover for flow cytometry panels.</span></a></li>
+        <li><a href="../poster-check/"><span class="n">6.1</span><span class="t">Poster Check</span><span class="d">Check figure resolution before printing a poster.</span></a></li>
+      </ul>
+      <a class="all" href="../../#imaging">ALL 24 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=nyquist">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1 · HARDWARE DATA CC BY 4.0</span>
+  <span><a href="../../">INDEX</a> · <a href="../scale-bar/">SCALE BAR</a> · <a href="../../contact/?topic=nyquist">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 8.2</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="../../assets/data/microscopy-data.js?v=1"></script>
+<script src="../../assets/micro-core.js?v=1"></script>
+<script src="nyquist.js?v=1"></script>
+</body>
+</html>

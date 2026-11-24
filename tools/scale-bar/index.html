@@ -159,13 +159,17 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
         </div>
 
         <div class="method" id="mCamera" hidden>
+          <div class="grid2" id="camLib" hidden>
+            <label class="field mono">CAMERA FROM LIST<select id="camLibCam"><option value="">— pick to fill the pixel size —</option></select></label>
+            <label class="field mono">OBJECTIVE FROM LIST<select id="camLibObj"><option value="">— pick to fill the magnification —</option></select></label>
+          </div>
           <div class="grid2">
             <label class="field mono">CAMERA PIXEL · µm<input id="camPix" type="number" min="0" step="any" inputmode="decimal" value="6.5"></label>
             <label class="field mono">BINNING<select id="camBin"><option>1</option><option>2</option><option>3</option><option>4</option><option>8</option></select></label>
             <label class="field mono">OBJECTIVE · ×<input id="camObj" type="number" min="0" step="any" inputmode="decimal" value="20"></label>
             <label class="field mono">EXTRA MAGNIFICATION · ×<input id="camExtra" type="number" min="0" step="any" inputmode="decimal" value="1"></label>
           </div>
-          <p class="hint sans"><b>Estimate only.</b> µm/px = camera pixel × binning ÷ (objective × adapter or zoom). Real optics differ by a few percent — confirm with a stage micrometer before you publish.</p>
+          <p class="hint sans"><b>Estimate only.</b> µm/px = camera pixel × binning ÷ (objective × adapter or zoom). Real optics differ by a few percent — confirm with a stage micrometer before you publish. <a href="../nyquist/">Check the sampling in the Nyquist Calculator →</a></p>
         </div>
 
         <div class="cal-result" id="calResult" aria-live="polite"></div>
@@ -373,11 +377,12 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
       <div class="lm-more-k">SEE ALSO</div>
       <h2>Related tools</h2>
       <ul>
+        <li><a href="../nyquist/"><span class="n">8.2</span><span class="t">Microscopy Nyquist Calculator</span><span class="d">Is your pixel size fine enough for the objective? Resolution, Nyquist pixel and z-step.</span></a></li>
         <li><a href="../poster-check/"><span class="n">6.1</span><span class="t">Poster Check</span><span class="d">Check that your poster prints at the size you order — image resolution and text size included.</span></a></li>
         <li><a href="../panel-designer/"><span class="n">7.1</span><span class="t">Flow Cytometry Panel Designer</span><span class="d">Lay your markers onto your cytometer and see where every colour will spill.</span></a></li>
         <li><a href="../cryo-labels/"><span class="n">4.1</span><span class="t">Cryo Label Maker</span><span class="d">Batch-print freezer-box labels onto laser sheets, lined up to your printer.</span></a></li>
       </ul>
-      <a class="all" href="../../#imaging">ALL 23 TOOLS →</a>
+      <a class="all" href="../../#imaging">ALL 24 TOOLS →</a>
       <a class="all" href="../../contact/?topic=scale-bar">QUESTION OR PROBLEM? CONTACT US →</a>
     </nav>
   </div>
@@ -390,6 +395,8 @@ gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathn
 </footer>
 </div>
 
-<script src="scale-bar.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="../../assets/data/microscopy-data.js?v=1"></script>
+<script src="scale-bar.js?v=2"></script>
 </body>
 </html>

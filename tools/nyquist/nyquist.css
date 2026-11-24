@@ -1,0 +1,76 @@
+/* labmate.tools — 8.2 Nyquist Calculator (with calc.css, recipe.css, flow.css) */
+
+.ny-gap { margin-top: 14px; }
+.ny-span2 { grid-column: span 2; align-self: center; }
+.ny-span3 { grid-column: span 3; align-self: center; }
+.ny-seg { flex-wrap: wrap; }
+.ny-seg button { min-height: 44px; }
+
+.ny-pick { display: grid; grid-template-columns: auto minmax(0, 220px) auto minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+.ny-pick .rc-k { margin: 0; }
+.ny-sel { height: 46px; min-width: 0; width: 100%; border: 1.5px solid var(--ink); background: #fff; font-family: var(--mono); font-size: 14px; padding: 0 8px; }
+.ny-sel:focus { outline: 2px solid var(--pass); outline-offset: 1px; }
+#diskBox .ny-pick, #scanBox .ny-pick { grid-template-columns: auto minmax(0, 1fr); }
+.ny-src { margin: 8px 0 0; font-size: 13px; color: var(--muted); font-family: var(--mono); line-height: 1.5; }
+.ny-src:empty { display: none; }
+.ny-src a { color: var(--teal); }
+.ny-src .ny-chk { color: var(--warn); }
+.ny-src .ny-ed { color: var(--err); }
+
+.term-body.ny-wh input { min-width: 0; }
+.term select#imm { flex: 0 0 auto; width: auto; }
+.term.is-edited .term-head::after { content: "EDITED"; font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: var(--warn); margin-left: 6px; }
+
+.ny-ch td:first-child { min-width: 180px; }
+.ny-ch .ny-dye { display: flex; gap: 6px; }
+.ny-ch .ny-dye select { flex: 0 0 46%; }
+
+/* result tiles */
+.ny-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.ny-kpi { border: 1.5px solid var(--ink); background: #fff; padding: 10px 12px; min-width: 0; }
+.ny-kpi .k { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--muted); }
+.ny-kpi .v { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.15; margin-top: 2px; overflow-wrap: anywhere; }
+.ny-kpi .v small { font-family: var(--mono); font-weight: 400; font-size: 13px; color: var(--muted); margin-left: 3px; }
+.ny-kpi .s { font-size: 13px; color: var(--ink-2); margin-top: 3px; }
+.ny-kpi.is-under { border-color: var(--err); box-shadow: inset 4px 0 0 var(--err); }
+.ny-kpi.is-ok { box-shadow: inset 4px 0 0 var(--pass); }
+.ny-kpi.is-over { box-shadow: inset 4px 0 0 var(--warn); }
+.ny-tag { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; padding: 2px 6px; border: 1.5px solid currentColor; vertical-align: 4px; margin-left: 6px; }
+.ny-tag.under { color: var(--err); }
+.ny-tag.ok { color: var(--pass-dark); }
+.ny-tag.over { color: var(--warn); }
+.ans.is-under { border-color: var(--err); }
+
+/* submit band */
+.ny-submit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 28px; align-items: center; margin: 26px 0 8px; padding: 22px 24px; border: 3px double var(--ink); background: var(--card); }
+.ny-submit h2 { margin: 0 0 6px; font-family: var(--serif); font-size: 24px; line-height: 1.2; }
+.ny-submit p { margin: 0; font-size: 16px; color: var(--ink-2); max-width: 60ch; }
+.ny-submit-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 64px; padding: 0 30px; background: var(--pass); color: #fff; border: 2px solid var(--ink); font-family: var(--mono); font-weight: 600; font-size: 17px; letter-spacing: .08em; text-decoration: none; box-shadow: 4px 4px 0 var(--ink); white-space: nowrap; }
+.ny-submit-btn:hover { background: var(--teal); }
+.ny-submit-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.ny-submit-btn:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+
+.ny-lib h3 { font-family: var(--serif); font-size: 20px; margin: 18px 0 6px; }
+.ny-lib .lm-tab td small { color: var(--muted); }
+
+@media (max-width: 860px) {
+  .ny-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ny-span2, .ny-span3 { grid-column: 1 / -1; }
+  .ny-pick { grid-template-columns: auto minmax(0, 1fr); }
+  .ny-submit { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .ny-kpi .v { font-size: 22px; }
+  .ny-submit { padding: 18px 16px; }
+  .ny-submit-btn { width: 100%; white-space: normal; font-size: 16px; padding: 0 16px; }
+  .ny-ch td:first-child { min-width: 0; }
+  .ny-ch .ny-dye { flex-direction: column; }
+  .rc-table.ny-ch.is-stack tr { position: relative; padding-right: 40px; }
+  .rc-table.ny-ch.is-stack td.c-x { position: absolute; right: 0; top: 6px; }
+}
+@media print {
+  .ny-submit, #mine { display: none !important; }
+  .ny-kpis { grid-template-columns: repeat(4, 1fr); }
+  .ny-kpi { padding: 6px 8px; }
+  .ny-kpi .v { font-size: 18px; }
+}

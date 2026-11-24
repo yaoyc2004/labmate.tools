@@ -2,6 +2,27 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-24
+
+New tool: **Microscopy Nyquist Calculator (8.2)** in SECTION 08 — IMAGING, with an open hardware library (objectives, cameras, confocal and spinning-disk systems) under CC BY 4.0.
+
+### Microscopy Nyquist Calculator (8.2) — new
+- Pick the mode (widefield, confocal, spinning disk, two-photon), the stand (tube lens), the objective, the camera or scanner, and up to four channels by dye. Results: target pixel and z step per channel (SVI definitions), the pixel you actually get, the verdict (UNDERSAMPLED / OK / OVERSAMPLED), resolution (Nikon MicroscopyU forms), field of view and the z-stack plan.
+- Library: 31 objectives (Nikon, Evident, Zeiss, Leica), 15 cameras, 15 point-scan and spinning-disk systems, 34 dyes. Every entry links to the page its numbers were read from; values not yet confirmed against the maker are marked (check). Discontinued models are kept and marked.
+- Every value can be typed by hand (magnification, NA, immersion, tube lens, pixel size, binning, adapter, scan field, zoom, frame, pinhole, wavelengths), so the calculation works for hardware that isn't in the library. Edited values are marked EDITED.
+- Suggestions: camera adapter and binning combinations that reach Nyquist, the confocal zoom for a frame size, the spinning-disk pinhole in Airy units, tube-lens mismatch between stand and objective, vignetting for large sensors.
+- MY HARDWARE: save your own objectives and cameras in the browser, export and import them as JSON.
+- Large SUBMIT TO THE LIBRARY button opens the contact form with the hardware already written in.
+- COPY SETTINGS, PRINT CARD, COPY SHARE LINK, and USE µm/px IN SCALE BAR.
+
+### Scale Bar Maker (8.1)
+- Camera calibration can now be filled from the library (camera and objective lists), and takes the µm/px sent from the Nyquist Calculator.
+
+### Site (imaging)
+- Homepage card in SECTION 08 (2 tools), structured data lists 24 tools, every tool page says ALL 24 TOOLS; 404 index, `llms.txt`, sitemap, social card (`assets/og/nyquist.png`), About page sources, contact topic "8.2 Nyquist Calculator" with a hardware submission template.
+- Data lives in `assets/data/microscopy-data.json`; `assets/data/build_data.py` checks it and rebuilds the page script and the library tables.
+- Tested: Nyquist, resolution, camera and scan geometry matched an independent Python implementation (largest relative difference 2.2 × 10⁻¹⁶) in 43 Node tests, including the 63×/1.4 oil confocal check (43 nm / 130 nm at 488 nm); 19 headless-browser tests (every mode, manual entry, my hardware, share link, submit hand-off, scale-bar hand-off), no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+
 ## 2026-11-23
 
 New tools: **Flow Antibody Titration Calculator (7.2)** and **Flow Staining Cocktail Calculator (7.3)** in SECTION 07 — CYTOMETRY, sharing one antibody list saved in the browser.

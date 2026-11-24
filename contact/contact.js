@@ -12,7 +12,7 @@
   // Older links or loose spellings → option values
   var ALIAS = { "qpcr-relative-quantification": "qpcr", "ddcq": "qpcr", "ddct": "qpcr", "rpm": "rpm-to-g", "cell-count": "cell-seeding",
     "western": "protein-loading", "4pl": "elisa", "5pl": "elisa", "densitometry": "blot-densitometry", "poster": "poster-check", "panel": "panel-designer",
-    "scalebar": "scale-bar", "tool-request": "request", "new-tool": "request", "home": "general", "about": "general" };
+    "scalebar": "scale-bar", "nyquist-calculator": "nyquist", "microscopy": "nyquist", "tool-request": "request", "new-tool": "request", "home": "general", "about": "general" };
 
   // Message templates a page can ask for with ?about=
   var TEMPLATES = {
@@ -27,6 +27,10 @@
     limits: {
       kind: "Request",
       text: "Please add my institution's dosing volume limits as a preset.\n\nInstitution / guideline name and link:\n\nSpecies and routes covered:\n\nGood-practice and maximum volumes (mL/kg or mL/site):\n"
+    },
+    hardware: {
+      kind: "Request",
+      text: "Please add this hardware to the Nyquist Calculator library.\n\nMaker and exact model (objective, camera or confocal):\n\nPart / catalogue number:\n\nKey numbers (magnification / NA / immersion; or pixel size and pixel count; or scan field, frame and zoom):\n\nLink to the maker's spec sheet or datasheet:\n"
     },
     tool: {
       kind: "Request",
@@ -56,6 +60,9 @@
   else if (kind === "question") setKind("Question");
 
   var tpl = TEMPLATES[(params.get("about") || "").toLowerCase()];
+  // a page can hand over a prefilled message (e.g. 8.2 Nyquist → SUBMIT TO THE LIBRARY)
+  var handed = window.LMH && window.LMH.take("contact");
+  if (handed && typeof handed.text === "string" && handed.text.trim()) tpl = { kind: handed.kind === "Problem" ? "Problem" : "Request", text: handed.text.slice(0, 4000) };
   if (!tpl && want === "request") tpl = TEMPLATES.tool;
   if (tpl && !msg.value) {
     msg.value = tpl.text;
