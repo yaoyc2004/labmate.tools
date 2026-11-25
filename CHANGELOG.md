@@ -2,6 +2,22 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-25
+
+New tool: **Protocol Timeline Planner (10.1)** in a new SECTION 10 — PLANNING.
+
+### Protocol Timeline Planner (10.1) — new
+- Eight editable templates: western blot (overnight primary), IHC on paraffin (DAB), immunofluorescence on cells, lipofection, sandwich ELISA, co-IP, RNA to qPCR, plasmid miniprep — or a blank protocol. Each step has a time, an optional shortest–longest window, and the minutes you are needed at its start and end (washes: the minutes at each change). Times can be typed as 45, 1:30, 1 h 30 or 16 h.
+- Plan from START AT or back from DONE BY, with your working day and minutes kept free at the end. A hands-on step that would fall at night is moved by stretching the nearest flexible step inside its window; the page says which step and by how much, and lists overnight leave and return windows.
+- Groups (up to 12) staggered AUTO (earliest clash-free start for 1–3 people), FIXED GAP or SIDE BY SIDE. Each group has an optional buffer (a guard band after each of its hands-on minutes); every hands-on step gets a step buffer (10% by default).
+- Timeline: summary, a to-scale chart of every group with nights shaded, notes for clashes, after-hours and weekend work, and a when-to-do-what list built for a phone.
+- ADD TO CALENDAR saves an .ics file with every step and an alarm 5 minutes before each (calendar alarms ring when the phone is locked; a web page can't). COPY SCHEDULE and PRINT BENCH CARD.
+- MY TEMPLATES: save your edited protocols in the browser, export and import them as JSON.
+
+### Site (planning)
+- Homepage SECTION 10 — PLANNING, finder chip and index; structured data lists 25 tools, every tool page says ALL 25 TOOLS; 404 index, `llms.txt`, sitemap, social card (`assets/og/protocol-timeline.png`), About page sources, contact topic "10.1 Protocol Timeline".
+- Tested: 14 Node tests of the scheduling core (forward and backward plans, stagger with buffers and 1–2 people, night stretching inside windows, the end of daylight saving, calendar file format) and headless-browser tests of the page, no JS errors, no horizontal scroll at 1440 / 834 / 390 px.
+
 ## 2026-11-24
 
 New tool: **Microscopy Nyquist Calculator (8.2)** in SECTION 08 — IMAGING, with an open hardware library (objectives, cameras, confocal and spinning-disk systems) under CC BY 4.0.

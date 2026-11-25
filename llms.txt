@@ -53,6 +53,10 @@
 
 - [Rodent Dosing Calculator & Dosing Sheet (mg/kg)](https://labmate.tools/tools/dosing/): Free mouse and rat dosing calculator. Paste a batch of body weights to get every animal's dose volume in mL, rounded to your syringe, the formulation recipe (vehicle components, stock, overage, multi-day courses), checks against good-practice and maximum dosing volumes per route (Diehl 2001, a conservative set, or your institution's limits), and a printable dosing sheet.
 
+## Planning
+
+- [Protocol Timeline Planner — Western Blot, IHC & Multi-Group Lab Scheduling](https://labmate.tools/tools/protocol-timeline/): Free protocol timeline planner. Editable templates (western blot, IHC on paraffin, immunofluorescence, lipofection, sandwich ELISA, co-IP, RNA to qPCR, plasmid miniprep) or your own steps, each with a time, a shortest–longest window and the minutes you are hands-on. Plans forward from a start time or backward from a deadline, staggers several groups so hands-on steps never clash (1–3 people), keeps a per-group buffer and a per-step buffer, stretches flexible incubations to keep hands-on work inside the working day, shows overnight leave and return windows, and exports a calendar file with alarms, a printable bench card and a plain-text schedule.
+
 ## About
 
 - [About labmate.tools](https://labmate.tools/about/): who makes it, where values come from and how they are checked.
