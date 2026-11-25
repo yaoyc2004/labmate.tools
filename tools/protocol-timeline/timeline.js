@@ -17,9 +17,9 @@
     var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s || '');
     return m ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]).getTime() : null;
   }
-  function tm(ms) { return new Date(ms).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }); }
-  function dayName(ms) { return new Date(ms).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }); }
-  function wd(ms) { return new Date(ms).toLocaleDateString(undefined, { weekday: 'short' }); }
+  function tm(ms) { return new Date(ms).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+  function dayName(ms) { return new Date(ms).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); }
+  function wd(ms) { return new Date(ms).toLocaleDateString('en-US', { weekday: 'short' }); }
   function when(ms, ref) { return (TL.dayStartOf(ms) === TL.dayStartOf(ref) ? '' : wd(ms) + ' ') + tm(ms); }
   var dur = TL.dur;
 
