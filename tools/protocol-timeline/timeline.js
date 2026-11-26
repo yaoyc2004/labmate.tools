@@ -98,6 +98,7 @@
         var a = document.createElement('a'); a.href = r[1]; a.textContent = r[0]; a.rel = 'noopener'; a.target = '_blank'; info.appendChild(a);
       });
     } else if (S.tpl === 'blank') info.textContent = 'Add your own steps below.';
+    else if (S.tpl === 'shared') info.textContent = 'SHARED WITH YOU · ' + (S.protocol.name || 'Protocol') + '. Save it as your template to keep a copy.';
     $('resetTpl').hidden = !(S.edited && t);
     $('tplName').value = S.protocol.name || '';
   }
@@ -340,6 +341,8 @@
 
   // ---------- compute ----------
   var R = null;
+  var APP = window.LMT_TL_APP = { hooks: [], get R() { return R; }, get S() { return S; }, color: function (i) { return color(i); },
+    tm: tm, when: when, dayName: dayName, showDur: showDur, esc: esc, flash: function (t) { flash(t); } };
   function compute() {
     var p = S.plan, at = fromInput(p.at);
     if (at == null) return { ok: false, why: 'Pick a date and time.' };
@@ -357,6 +360,7 @@
     R = compute();
     window.LMT_TL_TEST.R = R;
     renderResult();
+    APP.hooks.forEach(function (f) { f(R); });
   }
 
   // ---------- 4 · result ----------
@@ -366,10 +370,10 @@
     notes.innerHTML = ''; $('agenda').innerHTML = ''; $('chart').innerHTML = '';
     if (!R.ok) {
       ans.className = 'ans is-empty'; big.textContent = R.why || '—'; say.textContent = '';
-      ['ics', 'copy', 'print'].forEach(function (id) { $(id).disabled = true; });
+      ['ics', 'share', 'copy', 'print'].forEach(function (id) { $(id).disabled = true; });
       return;
     }
-    ['ics', 'copy', 'print'].forEach(function (id) { $(id).disabled = false; });
+    ['ics', 'share', 'copy', 'print'].forEach(function (id) { $(id).disabled = false; });
     var bad = R.clashes.length + R.after.length;
     ans.className = 'ans' + (bad ? ' is-warn' : '');
     big.innerHTML = '';
@@ -548,6 +552,63 @@
     flash('CALENDAR FILE SAVED — OPEN IT TO ADD THE ALARMS');
   });
 
+  // Steps from a file or a link: keep only known fields, as numbers.
+  function cleanSteps(list) {
+    return (Array.isArray(list) ? list : []).filter(function (s) { return s && s.name && Number(s.dur) > 0 && Number(s.dur) <= 14 * 1440; }).slice(0, 60).map(function (s) {
+      var o = { name: String(s.name).slice(0, 120), dur: Math.round(Number(s.dur)) };
+      ['min', 'max', 'reps', 'head', 'tail', 'buf'].forEach(function (k) { if (s[k] != null && s[k] !== '' && isFinite(Number(s[k]))) o[k] = Math.round(Number(s[k])); });
+      if (s.hands) o.hands = true; if (s.note) o.note = String(s.note).slice(0, 200);
+      return o;
+    });
+  }
+
+  // ---------- share link: the whole plan in the address, nothing uploaded ----------
+  function b64u(str) { return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function unb64u(str) { str = str.replace(/-/g, '+').replace(/_/g, '/'); while (str.length % 4) str += '='; return decodeURIComponent(escape(atob(str))); }
+  function shareLink() {
+    var p = clone(S.plan); p.groups = p.groups.slice(0, p.n).map(function (g) { return { label: g.label, guardOn: !!g.guardOn, guard: g.guard }; });
+    var builtin = !S.edited && TPL.some(function (t) { return t.id === S.tpl; });
+    var d = { v: 1, name: S.protocol.name || '', plan: p };
+    if (builtin) d.tpl = S.tpl; else d.steps = S.protocol.steps;
+    return location.href.split('#')[0] + '#p=' + b64u(JSON.stringify(d));
+  }
+  function readLink(hash) {
+    var m = /^#p=([A-Za-z0-9_-]+)$/.exec(hash || ''); if (!m) return false;
+    var d; try { d = JSON.parse(unb64u(m[1])); } catch (e) { return 'bad'; }
+    if (!d || d.v !== 1 || !d.plan) return 'bad';
+    var steps = d.tpl && tplById(d.tpl) && !tplById(d.tpl).mine ? clone(tplById(d.tpl).steps) : cleanSteps(d.steps);
+    if (!steps.length) return 'bad';
+    var f = fresh(), p = d.plan, q = f.plan;
+    if (p.anchor === 'finish' || p.anchor === 'start') q.anchor = p.anchor;
+    if (fromInput(p.at) != null) q.at = String(p.at).slice(0, 16);
+    if (parseHHMM(p.dayStart) != null) q.dayStart = p.dayStart;
+    if (parseHHMM(p.dayEnd) != null) q.dayEnd = p.dayEnd;
+    [['margin', 0, 240], ['n', 1, 12], ['gap', 0, 1440], ['people', 1, 3], ['round', 1, 15], ['pct', 0, 100]].forEach(function (k) {
+      var v = Number(p[k[0]]); if (isFinite(v) && v >= k[1] && v <= k[2]) q[k[0]] = Math.round(v);
+    });
+    if (['auto', 'fixed', 'together'].indexOf(p.stagger) >= 0) q.stagger = p.stagger;
+    q.absorb = p.absorb !== false;
+    (Array.isArray(p.groups) ? p.groups : []).slice(0, 12).forEach(function (g, i) {
+      if (!g) return;
+      q.groups[i] = { label: String(g.label || LABELS[i]).slice(0, 24), guardOn: !!g.guardOn, guard: Math.max(0, Math.min(240, Math.round(Number(g.guard) || 0))) };
+    });
+    S.tpl = d.tpl && tplById(d.tpl) ? d.tpl : 'shared';
+    S.protocol = { name: String(d.name || 'Shared protocol').slice(0, 60), steps: steps };
+    S.edited = false; S.plan = q;
+    return true;
+  }
+  $('share').addEventListener('click', function () {
+    var url = shareLink();
+    window.LMT_TL_TEST.lastLink = url;
+    if (navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      navigator.share({ title: (S.protocol.name || 'Protocol') + ' · timeline', url: url }).catch(function () { /* closed */ });
+      return;
+    }
+    var done = function () { flash('LINK COPIED — OPEN IT ON ANOTHER PHONE'); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+    else { fallbackCopy(url); done(); }
+  });
+
   // ---------- 5 · my templates ----------
   function renderMine() {
     var tb = $('mineRows'); tb.innerHTML = '';
@@ -583,12 +644,7 @@
         if (!Array.isArray(list)) throw new Error('no list');
         list.forEach(function (t) {
           if (!t || !t.name || !Array.isArray(t.steps) || !t.steps.length) return;
-          var steps = t.steps.filter(function (s) { return s && s.name && Number(s.dur) > 0; }).map(function (s) {
-            var o = { name: String(s.name).slice(0, 120), dur: Math.round(Number(s.dur)) };
-            ['min', 'max', 'reps', 'head', 'tail', 'buf'].forEach(function (k) { if (s[k] != null && isFinite(Number(s[k]))) o[k] = Math.round(Number(s[k])); });
-            if (s.hands) o.hands = true; if (s.note) o.note = String(s.note).slice(0, 200);
-            return o;
-          });
+          var steps = cleanSteps(t.steps);
           if (!steps.length) return;
           var name = String(t.name).slice(0, 60);
           S.mine = S.mine.filter(function (m) { return m.name.toLowerCase() !== name.toLowerCase(); });
@@ -612,6 +668,17 @@
     var w = $('chart').clientWidth; if (R && R.ok && Math.abs(w - lastW) > 20) { lastW = w; renderChart(); }
   });
 
-  window.LMT_TL_TEST = { get S() { return S; }, R: null, parseDur: parseDur };
+  window.LMT_TL_TEST = { get S() { return S; }, R: null, parseDur: parseDur, readLink: readLink };
+  function applyLink() {
+    var linked = readLink(location.hash);
+    if (!linked) return false;
+    try { history.replaceState(null, '', location.href.split('#')[0]); } catch (e) { /* ignore */ }
+    setTimeout(function () { flash(linked === true ? 'OPENED A SHARED PLAN' : 'THAT LINK IS BROKEN — SHOWING YOUR LAST PLAN'); }, 50);
+    return linked === true;
+  }
+  applyLink();
+  window.addEventListener('hashchange', function () {
+    if (applyLink()) { openStep = -1; renderChips(); renderSteps(); renderPlan(); update(); window.scrollTo(0, 0); }
+  });
   renderChips(); renderSteps(); renderPlan(); renderMine(); update();
 })();

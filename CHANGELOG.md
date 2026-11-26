@@ -2,6 +2,18 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-26
+
+### Protocol Timeline Planner (10.1) — bench mode
+- START BENCH MODE follows the plan live on a phone: one card per group with what to do now, a countdown and a progress bar, the step after next, and a COMING UP list. Press DONE as you finish each step.
+- Re-plans on every DONE: the next step starts then, step buffers take up a delay first, a flexible wait shrinks or stretches inside its window to land back on plan, and whatever is left moves the rest of the group (shown as +10 min / −5 min). A step running long is shown as over time; a passive step that is due says how long it may still wait.
+- Beeps and buzzes (where the phone allows) when a hands-on moment arrives, keeps the screen on, shows the countdown in the tab title, and warns when two groups will need you at once. START EVERYTHING NOW moves the whole plan to now, keeping the stagger; UNDO takes back a DONE.
+- The run is saved in the browser, so a reload or a closed tab picks up where you were. BACK TO PLAN keeps it; END RUN clears it.
+- SHARE PLAN copies a link (or opens the phone's share sheet) that rebuilds the protocol, times and groups on another device; nothing is uploaded.
+- Works offline once opened: a service worker for this tool only keeps a copy of the page, its scripts, styles and fonts.
+- Dates and times always show in English, whatever the browser language.
+- Tested: 3 more Node tests of the re-plan, 12 headless-browser tests of bench mode with a faked clock (start, overrun, late DONE, alarm, reload, undo, end, two groups, 390 / 1280 px), share links and an offline reload.
+
 ## 2026-11-25
 
 New tool: **Protocol Timeline Planner (10.1)** in a new SECTION 10 — PLANNING.
