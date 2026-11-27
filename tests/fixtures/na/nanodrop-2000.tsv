@@ -1,0 +1,4 @@
+Sample ID	User ID	Date	Time	Nucleic Acid Conc.	Unit	A260	A280	260/280	260/230	Sample Type	Factor
+Plasmid A	Default	11/26/2026	9:02 AM	1250.6	ng/ul	25.012	13.442	1.86	2.27	DNA-50	50.00
+Plasmid B	Default	11/26/2026	9:03 AM	310.2	ng/ul	6.204	3.578	1.73	2.01	DNA-50	50.00
+Primer mix	Default	11/26/2026	9:04 AM		ng/ul					DNA-50	50.00

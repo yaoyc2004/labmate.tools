@@ -1,0 +1,5 @@
+Date,Sample Name,Nucleic Acid(ng/uL),A260/A280,A260/A230,A260,A280,Nucleic Acid Factor,Baseline Correction (nm),Baseline Absorbance, Corrected (ng/uL), Corrected %CV,Impurity 1,Impurity 1 A260,Impurity 1 %CV,Impurity 1 mM
+11/26/2026 10:12:05 AM,Liver 1,512.334,2.071,2.143,12.808,6.185,40,340,0.021,,,,,,
+11/26/2026 10:12:31 AM,Liver 2,48.910,2.012,1.402,1.223,0.608,40,340,0.012,,,,,,
+11/26/2026 10:13:02 AM,Liver 1,530.102,2.069,2.151,13.253,6.405,40,340,0.019,,,,,,
+11/26/2026 10:13:40 AM,Blank check,-0.412,-43.6,0.47,-0.010,0.000,40,340,0.002,,,,,,
