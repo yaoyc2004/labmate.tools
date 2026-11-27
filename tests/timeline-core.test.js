@@ -153,4 +153,45 @@ t('calendar file: balanced blocks, UTC times, ≤ 75 octets a line, an alarm per
   assert.strictEqual(new Set(uids).size, uids.length);
 });
 
+// ---------- bench mode re-plan ----------
+const benchSetup = () => {
+  const steps = simple.steps.map((s) => TL.normStep(s, 0));
+  const L = TL.layout(steps, 0, null); // Prep 0–30, Incubate 30–90, Wash 90–105, Read 105–115 (minutes)
+  return { steps, plan: L.steps.map((x) => ({ s: x.s, e: x.e })) };
+};
+const mins = (out) => out.map((o) => [o.s / MIN, o.e / MIN]);
+
+t('replan: nothing done follows the plan; an overrunning step is assumed to end now', () => {
+  const { steps, plan } = benchSetup();
+  assert.deepStrictEqual(mins(TL.replan(steps, plan, [], null, 10 * MIN)), [[0, 30], [30, 90], [90, 105], [105, 115]]);
+  const late = TL.replan(steps, plan, [], null, 40 * MIN); // Prep still going at 40
+  assert.deepStrictEqual(late[0].e / MIN, 40);
+  assert.strictEqual(late[0].due / MIN, 30);
+  // the incubation (45–120 allowed) starts 10 late and shrinks to 50 to land back on plan
+  assert.deepStrictEqual(mins(late).slice(1), [[40, 90], [90, 105], [105, 115]]);
+  assert.deepStrictEqual(late.map((o) => o.state), ['now', 'next', 'next', 'next']);
+});
+
+t('replan: lateness bends a flexible wait inside its window, then shifts the rest', () => {
+  const { steps, plan } = benchSetup();
+  const a = TL.replan(steps, plan, [50 * MIN], null, 50 * MIN); // Prep done 20 min late
+  assert.deepStrictEqual(mins(a), [[0, 50], [50, 95], [95, 110], [110, 120]]); // 45 min floor, 5 min knock-on
+  assert.deepStrictEqual(a.map((o) => o.shift), [0, 20, 5, 5]);
+  const b = TL.replan(steps, plan, [20 * MIN], null, 20 * MIN); // done 10 early: wait stretches, wash on time
+  assert.deepStrictEqual(mins(b), [[0, 20], [20, 90], [90, 105], [105, 115]]);
+  // a fixed step finishing early lets the next one start straight away, later ones wait for their time
+  const c = TL.replan(steps, plan, [30 * MIN, 90 * MIN, 100 * MIN], null, 100 * MIN);
+  assert.deepStrictEqual(mins(c)[3], [100, 110]);
+  assert.strictEqual(c[3].state, 'now');
+});
+
+t('replan: hands-on parts move with the step; first start can be moved', () => {
+  const { steps, plan } = benchSetup();
+  const a = TL.replan(steps, plan, [], 5 * MIN, 5 * MIN);
+  assert.deepStrictEqual(mins(a)[0], [5, 35]);
+  assert.deepStrictEqual(a[1].hands.map((h) => [h.s / MIN, h.e / MIN, h.kind]), [[35, 40, 'start'], [88, 90, 'end']]);
+  assert.deepStrictEqual(a[2].hands.map((h) => h.s / MIN), [90, 95, 100]);
+  assert.ok(TL.bends(steps[1]) && !TL.bends(steps[0]) && !TL.bends(steps[2]));
+});
+
 console.log(n + ' passed');

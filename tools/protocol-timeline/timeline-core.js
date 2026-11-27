@@ -344,8 +344,53 @@
     return st.name;
   }
 
+
+  // ---------- bench mode: re-plan one group from what really happened ----------
+  // A step can bend inside its min–max window only when it is a single passive stretch.
+  function bends(st) { return !st.hands && st.reps === 1 && (st.min < st.dur || st.max > st.dur); }
+
+  // The hands-on parts of step `st` when it runs from s to e (same rules as layout()).
+  function handsOf(st, k, s, e) {
+    var d = (e - s) / MIN, part = d / st.reps, out = [];
+    for (var r = 0; r < st.reps; r++) {
+      var ps = s + r * part * MIN;
+      var len = st.hands ? part : st.reps > 1 ? Math.min(st.head, part) : Math.min(st.head, d);
+      if (len > 0) out.push({ s: ps, e: ps + len * MIN, step: k, kind: r === 0 ? 'start' : 'rep', rep: r });
+    }
+    if (!st.hands && st.tail > 0) out.push({ s: Math.max(s, e - st.tail * MIN), e: e, step: k, kind: 'end', rep: 0 });
+    if (!out.length) out.push({ s: s, e: s, step: k, kind: 'start', rep: 0 });
+    return out;
+  }
+
+  /* steps: normalised steps; plan: [{s, e}] planned times of one group; done: end times of the steps
+     marked done so far (in order); first: when step 1 really started (null = as planned); now: ms.
+     The step after a done step starts at once. Later steps never start before their planned time, so
+     lateness first eats the buffer, then a flexible wait bends inside its window to land back on plan.
+     A step running past its planned end is assumed to end now. */
+  function replan(steps, plan, done, first, now) {
+    var out = [], n = done.length, prev = null;
+    for (var k = 0; k < steps.length; k++) {
+      var st = steps[k], p = plan[k], s, e, due = null, state;
+      if (k === 0) s = first != null ? first : p.s;
+      else if (k <= n) s = done[k - 1];
+      else s = Math.max(prev, p.s);
+      if (k < n) { e = done[k]; state = 'done'; }
+      else {
+        var d = (p.e - p.s) / MIN;
+        if (bends(st)) d = Math.max(st.min, Math.min(st.max, (p.e - s) / MIN));
+        e = s + d * MIN; due = e; state = k === n ? 'now' : 'next';
+        if (k === n && now != null && now > e) e = now;
+      }
+      out.push({ i: k, s: s, e: e, due: due, state: state, shift: Math.round((s - p.s) / MIN), endShift: Math.round((e - p.e) / MIN),
+        hands: handsOf(st, k, s, e) });
+      prev = e;
+    }
+    return out;
+  }
+
   var API = { MIN: MIN, normStep: normStep, layout: layout, placeGroup: placeGroup, schedule: schedule, toICS: toICS,
-    eventText: eventText, dur: dur, padded: padded, inHours: inHours, nextOpen: nextOpen, dayStartOf: dayStartOf, at: at, overload: overload };
+    eventText: eventText, dur: dur, padded: padded, inHours: inHours, nextOpen: nextOpen, dayStartOf: dayStartOf, at: at, overload: overload,
+    replan: replan, handsOf: handsOf, bends: bends };
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
   else root.LMT_TL = API;
 })(this);

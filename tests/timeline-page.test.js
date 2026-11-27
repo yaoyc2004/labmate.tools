@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
   let n = 0;
   const t = async (name, fn) => { await fn(); n++; console.log('ok  ' + name); };
   const errors = [];
-  const ctx = await browser.newContext({ locale: 'en-US', timezoneId: 'America/New_York', acceptDownloads: true });
+  const ctx = await browser.newContext({ locale: 'en-US', timezoneId: 'America/New_York', acceptDownloads: true, serviceWorkers: 'block' });
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(String(e)));
   await page.route((u) => !u.href.startsWith('http://localhost'), (r) => r.abort());

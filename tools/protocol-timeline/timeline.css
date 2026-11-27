@@ -125,3 +125,80 @@
   .tl-agenda tr { break-inside: avoid; }
   .lm-bar#sRes { display: none !important; }
 }
+
+/* ---------- bench mode ---------- */
+.ans-actions .tl-go { background: var(--pass); border-color: var(--pass); }
+.ans-actions .tl-go:hover { background: var(--teal); border-color: var(--teal); }
+.tl-runinfo { margin: 12px 0 0; padding: 10px 12px; border: 1.5px dashed var(--teal); background: #E3ECE6; font-size: 15px; }
+.tl-runinfo .lm-link { margin-left: 4px; }
+html.tl-benching, html.tl-benching body { overflow: hidden; }
+.tl-bench {
+  position: fixed; inset: 0; z-index: 50; background: var(--paper); overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+}
+.tl-bench.is-ring { animation: tlRing 1.6s ease-out; }
+@keyframes tlRing { 0%, 30%, 60% { box-shadow: inset 0 0 0 10px var(--warn); } 15%, 45%, 100% { box-shadow: inset 0 0 0 0 transparent; } }
+.tl-bhead {
+  position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: center;
+  background: var(--teal); color: var(--paper);
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+}
+.tl-bt { min-width: 0; }
+.tl-bk { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; opacity: .75; }
+.tl-bhead h2 { margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.2; overflow-wrap: anywhere; outline: none; }
+.tl-bnow { font-family: var(--mono); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tl-bctl { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.tl-bctl .lm-link { color: var(--paper); min-height: 40px; }
+.tl-bctl .lm-link.is-confirm { color: #FFD6CC; text-decoration: underline; }
+.tl-pill { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; border: 1px solid rgba(250, 247, 238, .5); color: var(--paper); background: transparent; padding: 0 10px; min-height: 32px; display: inline-flex; align-items: center; border-radius: 16px; }
+.tl-pill.is-on { background: var(--pass); border-color: var(--pass); }
+button.tl-pill[aria-pressed="false"] { opacity: .6; }
+.tl-bbody { max-width: 760px; margin: 0 auto; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 12px; }
+.tl-card { background: #fff; border: 1.5px solid var(--ink); box-shadow: inset 6px 0 0 var(--c, var(--teal)); padding: 14px 14px 12px 20px; min-width: 0; }
+.tl-card.is-hot { border-color: var(--warn); box-shadow: inset 6px 0 0 var(--warn), 0 0 0 2px var(--warn); }
+.tl-card.is-fin { box-shadow: inset 6px 0 0 var(--pass); }
+.tl-ctop, .tl-ck { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+.tl-cbig { font-family: var(--serif); font-weight: 600; font-size: 24px; line-height: 1.2; margin: 4px 0 6px; overflow-wrap: anywhere; }
+.tl-card.is-top .tl-cbig { font-size: 30px; }
+.tl-crow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
+.tl-csub { font-size: 15px; color: var(--ink-2); }
+.tl-cd { font-family: var(--mono); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tl-card.is-top .tl-cd { font-size: 34px; }
+.tl-cd.is-over { color: var(--err); }
+.tl-bar { height: 6px; background: var(--card); border: 1px solid var(--dot); margin: 8px 0 4px; }
+.tl-bar i { display: block; height: 100%; width: 0; background: var(--c, var(--teal)); }
+.tl-card.is-hot .tl-bar i { background: var(--warn); }
+.tl-cnote { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
+.tl-cact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 12px; }
+.tl-cact .btn { min-height: 56px; padding: 6px 22px; font-size: 16px; }
+.tl-done { display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 50%; }
+.tl-done small { font-size: 11px; letter-spacing: .04em; opacity: .8; font-weight: 400; text-transform: none; overflow-wrap: anywhere; text-align: left; }
+.tl-cend { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: auto; }
+.tl-sh { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; padding: 1px 6px; border: 1px solid var(--dot); color: var(--muted); white-space: nowrap; }
+.tl-sh.is-late { color: var(--err); border-color: var(--err); }
+.tl-sh.is-early { color: var(--pass-dark); border-color: var(--pass); }
+.tl-shift { border: 1.5px dashed var(--teal); background: #E3ECE6; padding: 12px 14px; }
+.tl-shift p { margin: 0 0 8px; }
+.tl-shift p.tl-csub { margin: 8px 0 0; font-size: 13px; }
+.tl-warn { margin: 0; padding: 10px 12px; border-left: 4px solid var(--warn); background: #F6EBDD; font-size: 15px; }
+.tl-gfin { margin: 0; font-size: 15px; color: var(--muted); }
+.tl-uph { margin: 8px 0 0; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
+.tl-up { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.tl-up li { display: grid; grid-template-columns: 82px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px dotted var(--dot); }
+.tl-ut { font-family: var(--mono); font-size: 14px; font-weight: 600; }
+.tl-uw { overflow-wrap: anywhere; }
+.tl-bfoot { max-width: 760px; margin: 8px auto 24px; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); font-size: 13px; color: var(--muted); }
+@media (max-width: 600px) {
+  .tl-bnow { font-size: 22px; }
+  .tl-bctl { gap: 6px 10px; }
+  .tl-pill { padding: 0 8px; font-size: 10px; letter-spacing: .04em; }
+  .tl-bctl .lm-link { font-size: 12px; }
+  .tl-cbig { font-size: 21px; }
+  .tl-card.is-top .tl-cbig { font-size: 25px; }
+  .tl-card.is-top .tl-cd { font-size: 30px; }
+  .tl-done { width: 100%; }
+  .tl-cend { margin-left: 0; }
+  .tl-up li { grid-template-columns: 70px minmax(0, 1fr); }
+  .tl-up li .tl-sh { grid-column: 2; justify-self: start; }
+}
+@media print { .tl-bench, .tl-runinfo { display: none !important; } }
