@@ -634,7 +634,7 @@
     state.list = inbound.ids.map(function (x) { return String(x).trim(); }).filter(Boolean).join('\n');
     state.mode = 'list';
     save();
-    setTimeout(function () { window.LMH.note(inbound.ids.length + ' sample IDs from Plate Layout — check the sheet, then download the PDF.', document.querySelector('.page')); }, 0);
+    setTimeout(function () { window.LMH.note(inbound.ids.length + ' sample IDs from ' + (inbound.from || 'Plate Layout') + ' — check the sheet, then download the PDF.', document.querySelector('.page')); }, 0);
   }
   buildSheetSelect();
   setMode(state.mode);

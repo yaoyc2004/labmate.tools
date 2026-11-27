@@ -2,6 +2,25 @@
 
 Newest first. One entry per working day; each line says what changed for someone using the site.
 
+## 2026-11-27
+
+New tool: **DNA & RNA Normalization (2.8)** in SECTION 02 — CALCULATORS.
+
+### DNA & RNA Normalization (2.8) — new
+- Paste the results table from a NanoDrop or Qubit, or open the exported file (.csv, .tsv, .txt, .xlsx, or drop it on the box). It reads NanoDrop One/OneC, Eight, 8000 and 2000/Lite and Qubit 4 and Qubit Flex layouts, says which columns it used, converts ng/mL, µg/mL and mg/mL to ng/µL, reads decimal commas, and uses the Qubit's original sample concentration rather than the tube concentration. A plain list (name, ng/µL, optional 260/280 and 260/230) works too.
+- Repeat readings of the same sample are averaged, with their CV; readings that disagree by more than 10% are flagged.
+- Set the amount per tube (ng or µg) and the final volume, or the same ng/µL in every tube. One tap for common set-ups: RT 1 µg or 500 ng in 10 µL, RNA-seq 500 ng in 50 µL, DNA library 100 ng in 50 µL, 20 ng/µL for sequencing.
+- Volumes are rounded to steps a pipette can set (0.01 µL under 2 µL, 0.1 µL up to 20 µL…), and GIVES shows the amount after rounding.
+- Samples under the smallest volume you pipette (0.5 µL by default) get a pre-dilution (e.g. 1:4 — 2 µL + 6 µL water) and the volume of the diluted sample to add. Samples too dilute for the target use the whole volume and show what they give; the page offers the largest amount every sample can reach as a one-click target.
+- 260/280 and 260/230 in green, amber or red for DNA or RNA (from the file, or chosen), with the likely cause (protein or phenol, RNA in a DNA prep, guanidine or EDTA carry-over) and what to do. Ratios under 10 ng/µL are greyed out as unreliable. The cut-offs can be changed.
+- Pipetting sheet: tubes numbered 1, 2, 3… or a 96/384-well plate (down columns or along rows, any start well, skip edge wells) with a colour-coded plate map. Tick each tube on screen or on the plate map; ticks and settings are kept in the browser. Leave a sample out with × and bring it back.
+- PRINT SHEET gives a one-page bench sheet with a title, date, target, tick boxes, the plate map and the notes. EXCEL saves a workbook with the sheet (purity colours, frozen header) and a plate-map tab; CSV and COPY TABLE for notebooks; LIQUID HANDLER saves a generic worklist CSV or a Tecan .gwl (diluent first, then sample).
+- Hands the sample count to the Master Mix calculator and the sample names to Cryo Labels.
+
+### Site (calculators)
+- Homepage SECTION 02 entry and index count; structured data lists 26 tools, every tool page says ALL 26 TOOLS; 404 index, `llms.txt`, sitemap, social card (`assets/og/nucleic-acid-normalization.png`), About page sources, contact topic "2.8 DNA/RNA Normalization". Cryo Labels now names the tool the IDs came from.
+- Tested: 17 Node tests (each export layout, plain lists, repeats, purity, volumes against hand calculations, pre-dilution, plate positions, CSV, .gwl, an .xlsx that opens in openpyxl) and 21 headless-browser tests (example, presets, modes, limits, leaving out, ticks after reload, plate map, every download, Qubit paste, file open and drop, hand-offs, print layout, no horizontal scroll at 1440 / 834 / 390 px, no JS errors). Real NanoDrop and Qubit exports from the Allotropy test data were also read correctly.
+
 ## 2026-11-26
 
 ### Protocol Timeline Planner (10.1) — bench mode

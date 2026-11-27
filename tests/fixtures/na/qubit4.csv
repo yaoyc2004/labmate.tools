@@ -1,0 +1,4 @@
+Run ID,Assay Name,Test Name,Test Date,Qubit® tube conc.,Units,Original sample conc.,Units,Sample Volume (µL),Dilution Factor,Std 1 RFU,Std 2 RFU,Std 3 RFU,Excitation,Emission,Green RFU,Far Red RFU
+2026-11-26,1x dsDNA High Sensitivity,Lib A,11/26/2026 9:40:54 AM,123,ng/mL,24.6,ng/µL,1,200,49.43,21133.11,,Blue,Green,1303.11,
+2026-11-26,1x dsDNA High Sensitivity,Lib B,11/26/2026 9:41:20 AM,8.2,ng/mL,1640,ng/mL,1,200,49.43,21133.11,,Blue,Green,95.2,
+2026-11-26,1x dsDNA High Sensitivity,Lib C,11/26/2026 9:41:47 AM,Out of range,,Out of range,,1,200,49.43,21133.11,,Blue,Green,,

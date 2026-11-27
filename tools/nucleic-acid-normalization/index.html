@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- ga:start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KC5XH71KYR"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KC5XH71KYR', { page_location: location.origin + location.pathname + location.search });
+</script>
+<!-- ga:end -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DNA &amp; RNA Normalization Calculator (NanoDrop, Qubit) | labmate.tools</title>
+<meta name="description" content="Free DNA and RNA normalization calculator: paste a NanoDrop or Qubit export, set ng per tube and final volume, get sample and water volumes, 260/280 and 260/230 flags, and a printable pipetting sheet.">
+<link rel="canonical" href="https://labmate.tools/tools/nucleic-acid-normalization/">
+<!-- seo:start -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:site_name" content="labmate.tools">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DNA &amp; RNA Normalization Calculator — free, in your browser | labmate.tools">
+<meta property="og:description" content="Paste NanoDrop or Qubit results → sample and water volumes for equal ng per tube, purity flags, pipetting sheet.">
+<meta property="og:url" content="https://labmate.tools/tools/nucleic-acid-normalization/">
+<meta property="og:image" content="https://labmate.tools/assets/og/nucleic-acid-normalization.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DNA &amp; RNA Normalization Calculator — labmate.tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNA &amp; RNA Normalization Calculator — free, in your browser | labmate.tools">
+<meta name="twitter:description" content="Paste NanoDrop or Qubit results → sample and water volumes for equal ng per tube, purity flags, pipetting sheet.">
+<meta name="twitter:image" content="https://labmate.tools/assets/og/nucleic-acid-normalization.png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://labmate.tools/tools/nucleic-acid-normalization/#app","name":"DNA & RNA Normalization Calculator","url":"https://labmate.tools/tools/nucleic-acid-normalization/","description":"Free DNA and RNA normalization calculator: paste a NanoDrop or Qubit export, set ng per tube and final volume, get sample and water volumes, 260/280 and 260/230 flags, and a printable pipetting sheet.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Laboratory calculator","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Paste or open NanoDrop One, Eight, 8000, 2000 and Qubit 4 / Flex exports","Plain name and ng/µL lists","Equal mass or equal concentration","260/280 and 260/230 purity flags for DNA and RNA","Pre-dilution for very concentrated samples","Too-dilute warnings and the largest equal amount","Tubes, 96- or 384-well plate map","Printable pipetting sheet with tick boxes","Excel, CSV and Tecan worklist export"],"audience":{"@type":"Audience","audienceType":"Life science researchers, lab technicians and students"},"image":"https://labmate.tools/assets/og/nucleic-acid-normalization.png","inLanguage":"en","publisher":{"@id":"https://labmate.tools/#org"},"isPartOf":{"@id":"https://labmate.tools/#website"},"dateModified":"2026-11-27"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"labmate.tools","item":"https://labmate.tools/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://labmate.tools/#calculators"},{"@type":"ListItem","position":3,"name":"DNA & RNA Normalization Calculator","item":"https://labmate.tools/tools/nucleic-acid-normalization/"}]},{"@type":"FAQPage","@id":"https://labmate.tools/tools/nucleic-acid-normalization/#faq","mainEntity":[{"@type":"Question","name":"How do I calculate how much RNA to add for 1 µg in a reverse transcription?","acceptedAnswer":{"@type":"Answer","text":"Sample volume = 1000 ng ÷ concentration in ng/µL; water makes up the rest of the template volume. RNA at 412.6 ng/µL needs 2.42 µL, plus 7.58 µL water for 10 µL."}},{"@type":"Question","name":"What are good 260/280 and 260/230 ratios?","acceptedAnswer":{"@type":"Answer","text":"About 1.8 for DNA and 2.0 for RNA at 260/280; 260/230 is usually 2.0–2.2. Lower 260/280 suggests protein or phenol; lower 260/230 suggests guanidine salt, phenol or carbohydrate carry-over. Below about 10 ng/µL the ratios are too noisy to judge."}},{"@type":"Question","name":"Which NanoDrop and Qubit files can I paste?","acceptedAnswer":{"@type":"Answer","text":"Exports from NanoDrop One/OneC, Eight, 8000 and 2000/Lite, and Qubit 4 and Qubit Flex (.csv, .tsv, .txt or .xlsx), a block copied from Excel, or a plain list with a name and ng/µL on each line. For Qubit the original sample concentration is used, not the tube concentration."}},{"@type":"Question","name":"What if a sample is too concentrated to pipette?","acceptedAnswer":{"@type":"Answer","text":"When the volume falls under your smallest pipetting volume (0.5 µL by default) the sheet tells you to pre-dilute it, for example 2 µL + 18 µL water (1:10), and gives the volume of the diluted sample to add."}},{"@type":"Question","name":"What if a sample is too dilute?","acceptedAnswer":{"@type":"Answer","text":"It is flagged and the whole final volume is used, with the amount it actually gives. The page also tells you the largest amount every sample can reach, so you can lower the target for all of them."}},{"@type":"Question","name":"Is my data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Pasting, opening files, the calculation and the exports all happen in your browser."}}]},{"@type":"Organization","@id":"https://labmate.tools/#org","name":"labmate.tools","url":"https://labmate.tools/","logo":"https://labmate.tools/assets/icon-512.png","contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://labmate.tools/contact/","availableLanguage":"en"},"sameAs":["https://www.linkedin.com/company/labmate-tools/"],"description":"Independent, vendor-neutral maker of free browser-based calculators and bench tools for life science labs."},{"@type":"WebSite","@id":"https://labmate.tools/#website","name":"labmate.tools","alternateName":["The Lab Toolbox","labmatetools.com"],"url":"https://labmate.tools/","description":"Free in-browser calculators and bench tools for life science labs.","publisher":{"@id":"https://labmate.tools/#org"},"inLanguage":"en"}]}
+</script>
+<!-- seo:end -->
+<meta name="theme-color" content="#F2EDDF">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/calc.css?v=3">
+<link rel="stylesheet" href="../../assets/more.css?v=3">
+<link rel="stylesheet" href="na.css?v=1">
+</head>
+<body>
+
+<header class="lm-top">
+  <a class="lm-brand" href="../../" aria-label="labmate.tools home">
+    <svg width="24" height="28" viewBox="0 0 26 30" aria-hidden="true"><rect x="5" y="1.5" width="10" height="3" fill="#17403D"/><path d="M6.5 4.5 V22 a3.5 3.5 0 0 0 7 0 V4.5" fill="none" stroke="#17403D" stroke-width="1.8"/><path d="M7.4 14 H12.6 V22 a2.6 2.6 0 0 1 -5.2 0 Z" fill="#2E9E5B"/><circle cx="20" cy="22" r="5.5" fill="#2E9E5B"/><path d="M17.4 22.1 l1.8 1.8 l3.4 -3.6" fill="none" stroke="#FFFFFF" stroke-width="1.6"/></svg>
+    <span class="lm-word">labmate<i></i>tools</span>
+  </a>
+  <span class="lm-crumb">/ 2.8 DNA/RNA NORMALIZATION</span>
+  <span class="lm-spacer"></span>
+  <button type="button" class="lm-link" id="clear">CLEAR</button>
+  <a class="lm-link" href="../../#calculators">ALL TOOLS</a>
+</header>
+
+<main class="lm-page">
+  <div class="lm-head">
+    <figure class="lm-fig" aria-hidden="true">
+      <figcaption>FIG. 2.8</figcaption>
+      <svg width="150" height="64" viewBox="0 0 150 64">
+        <g stroke="#1B2224" stroke-width="1.5"><path d="M8 10 V44 a5 5 0 0 0 10 0 V10" fill="#17403D"/><path d="M28 10 V44 a5 5 0 0 0 10 0 V10" fill="#6FA595"/><path d="M48 10 V44 a5 5 0 0 0 10 0 V10" fill="#D3E6DD"/></g>
+        <text x="70" y="34" font-family="IBM Plex Mono, monospace" font-size="12" fill="#6B7472">→</text>
+        <g stroke="#1B2224" stroke-width="1.5"><path d="M88 10 V44 a5 5 0 0 0 10 0 V10" fill="#fff"/><path d="M108 10 V44 a5 5 0 0 0 10 0 V10" fill="#fff"/><path d="M128 10 V44 a5 5 0 0 0 10 0 V10" fill="#fff"/></g>
+        <g fill="#2E9E5B"><path d="M89 30 H97 V44 a4 4 0 0 1 -8 0 Z"/><path d="M109 30 H117 V44 a4 4 0 0 1 -8 0 Z"/><path d="M129 30 H137 V44 a4 4 0 0 1 -8 0 Z"/></g>
+        <g font-family="IBM Plex Mono, monospace" font-size="8" fill="#1B2224" text-anchor="middle"><text x="13" y="60">412</text><text x="33" y="60">198</text><text x="53" y="60">85</text><text x="113" y="60">1 µg · 10 µL</text></g>
+      </svg>
+    </figure>
+    <div>
+      <h1>DNA &amp; RNA Normalization</h1>
+      <p class="lm-lede">Paste your NanoDrop or Qubit results, choose the amount per tube, and get sample and water volumes for every sample — with purity flags and a pipetting sheet ready to print.</p>
+    </div>
+  </div>
+
+  <!-- 1 · concentrations -->
+  <h2 class="lm-bar na-np"><span>1 · CONCENTRATIONS</span> <small>NANODROP · QUBIT · ANY LIST</small></h2>
+  <div class="lm-sheet na-np">
+    <div class="na-in">
+      <div class="na-paste" id="drop">
+        <label for="src" class="na-k">PASTE THE EXPORT, OR A LIST: NAME, ng/µL, 260/280, 260/230</label>
+        <textarea id="src" rows="9" spellcheck="false" placeholder="Sample Name&#9;Nucleic Acid(ng/uL)&#9;A260/A280&#9;A260/A230&#10;Ctrl 1&#9;412.6&#9;2.08&#9;2.15&#10;…&#10;&#10;or simply&#10;Ctrl 1  412.6&#10;KO 1  198.3"></textarea>
+        <div class="na-drop-hint" aria-hidden="true">DROP THE FILE HERE</div>
+      </div>
+      <div class="na-side">
+        <div class="na-open">
+          <button type="button" class="btn" id="openBtn">OPEN FILE…</button>
+          <input type="file" id="file" accept=".csv,.tsv,.txt,.xlsx,text/csv,text/plain" hidden>
+          <span class="na-small">.csv · .tsv · .txt · .xlsx — or drag it onto the box</span>
+        </div>
+        <div>
+          <span class="presets-k">TRY AN EXAMPLE</span>
+          <div class="presets" id="exChips">
+            <button type="button" class="chip" data-ex="nd">NanoDrop RNA</button>
+            <button type="button" class="chip" data-ex="qb">Qubit dsDNA</button>
+            <button type="button" class="chip" data-ex="list">Plain list</button>
+          </div>
+        </div>
+        <div class="na-read" id="readInfo" role="status"></div>
+      </div>
+    </div>
+    <div class="na-opts">
+      <div class="na-opt">
+        <span class="na-k" id="typeLabel">SAMPLES ARE</span>
+        <div class="lm-seg" role="group" aria-labelledby="typeLabel" id="typeSeg">
+          <button type="button" data-v="auto">AS IN THE FILE</button>
+          <button type="button" data-v="DNA">DNA</button>
+          <button type="button" data-v="RNA">RNA</button>
+        </div>
+      </div>
+      <label class="lm-check na-chk"><input type="checkbox" id="merge"> <span>Average repeat readings of the same sample</span></label>
+    </div>
+  </div>
+
+  <!-- 2 · target -->
+  <h2 class="lm-bar na-np"><span>2 · TARGET</span> <small>THE SAME IN EVERY TUBE</small></h2>
+  <div class="lm-sheet na-np">
+    <div class="na-presets">
+      <span class="presets-k">COMMON SET-UPS</span>
+      <div class="presets" id="presets">
+        <button type="button" class="chip" data-p="rt1">RT <small>1 µg · 10 µL</small></button>
+        <button type="button" class="chip" data-p="rt05">RT <small>500 ng · 10 µL</small></button>
+        <button type="button" class="chip" data-p="rnaseq">RNA-seq library <small>500 ng · 50 µL</small></button>
+        <button type="button" class="chip" data-p="dnalib">DNA library <small>100 ng · 50 µL</small></button>
+        <button type="button" class="chip" data-p="seq">Send for sequencing <small>20 ng/µL · 20 µL</small></button>
+      </div>
+      <span class="presets-note">Typical inputs. Check your kit's manual for its range and the most template it takes.</span>
+    </div>
+
+    <div class="lm-solve">
+      <span class="lm-solve-k" id="modeLabel">EVERY TUBE GETS THE SAME</span>
+      <div class="lm-seg" role="group" aria-labelledby="modeLabel" id="modeSeg">
+        <button type="button" data-v="mass">AMOUNT (ng)</button>
+        <button type="button" data-v="conc">CONCENTRATION</button>
+      </div>
+    </div>
+
+    <div class="na-target">
+      <div class="term" data-term="amount" id="amountTerm">
+        <div class="term-head"><span class="term-sym">m</span><span class="term-name">AMOUNT PER TUBE</span></div>
+        <div class="term-body">
+          <label class="sr" for="amount">Amount per tube</label><input id="amount" type="text" inputmode="decimal" autocomplete="off">
+          <label class="sr" for="amountUnit">Unit</label><select id="amountUnit" class="na-unit"><option value="ng">ng</option><option value="µg">µg</option></select>
+        </div>
+        <div class="term-msg" id="amountm"></div>
+      </div>
+      <div class="term" data-term="target" id="targetTerm" hidden>
+        <div class="term-head"><span class="term-sym">c</span><span class="term-name">FINAL CONCENTRATION</span></div>
+        <div class="term-body"><label class="sr" for="target">Final concentration</label><input id="target" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">ng/µL</span></div>
+        <div class="term-msg" id="targetm"></div>
+      </div>
+      <div class="term" data-term="vf">
+        <div class="term-head"><span class="term-sym">V</span><span class="term-name">FINAL VOLUME</span></div>
+        <div class="term-body"><label class="sr" for="vf">Final volume</label><input id="vf" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µL</span></div>
+        <div class="term-msg" id="vfm"></div>
+      </div>
+      <div class="term" data-term="minv">
+        <div class="term-head"><span class="term-sym">v<sub>min</sub></span><span class="term-name">SMALLEST YOU PIPETTE</span></div>
+        <div class="term-body"><label class="sr" for="minv">Smallest volume you pipette</label><input id="minv" type="text" inputmode="decimal" autocomplete="off"><span class="term-unit">µL</span></div>
+        <div class="term-msg" id="minvm"></div>
+      </div>
+      <div class="term" data-term="dil">
+        <div class="term-head"><span class="term-sym">+</span><span class="term-name">MAKE UP WITH</span></div>
+        <div class="term-body">
+          <label class="sr" for="dil">Diluent</label>
+          <select id="dil" class="cs-wide">
+            <option value="Nuclease-free water">Nuclease-free water</option>
+            <option value="TE (low EDTA)">TE, low EDTA</option>
+            <option value="EB (10 mM Tris pH 8.5)">EB, 10 mM Tris pH 8.5</option>
+            <option value="Water">Water</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="na-more">
+      <label class="lm-check"><input type="checkbox" id="predil"> <span>Suggest a pre-dilution when the sample volume is under the smallest volume</span></label>
+      <label class="na-inline"><span class="na-k">ROUND VOLUMES TO</span>
+        <select id="step"><option value="auto">pipette steps (auto)</option><option value="0.01">0.01 µL</option><option value="0.05">0.05 µL</option><option value="0.1">0.1 µL</option><option value="0.5">0.5 µL</option></select>
+      </label>
+    </div>
+    <div class="na-max" id="maxBox" hidden></div>
+  </div>
+
+  <!-- 3 · sheet -->
+  <h2 class="lm-bar" id="sheetBar"><span>3 · PIPETTING SHEET</span> <small id="sheetSub">ADD THE DILUENT FIRST, THEN THE SAMPLE</small></h2>
+  <div class="lm-sheet" id="sheet">
+    <div class="na-print-head" id="printHead"></div>
+    <div class="na-summary" id="summary"></div>
+
+    <div class="na-layout">
+      <div class="na-opt">
+        <span class="na-k" id="layLabel">INTO</span>
+        <div class="lm-seg" role="group" aria-labelledby="layLabel" id="laySeg">
+          <button type="button" data-v="tubes">TUBES</button>
+          <button type="button" data-v="96">96-WELL</button>
+          <button type="button" data-v="384">384-WELL</button>
+        </div>
+      </div>
+      <div class="na-opt" id="plateOpts">
+        <div class="lm-seg" role="group" aria-label="Fill order" id="ordSeg">
+          <button type="button" data-v="col">DOWN COLUMNS</button>
+          <button type="button" data-v="row">ALONG ROWS</button>
+        </div>
+        <label class="na-inline"><span class="na-k">FROM WELL</span><input id="startWell" type="text" maxlength="3" autocomplete="off" class="na-well-in"></label>
+        <label class="lm-check na-chk"><input type="checkbox" id="skipEdge"> <span>Skip edge wells</span></label>
+      </div>
+    </div>
+
+    <div class="mm-wrap">
+      <table class="na-table" id="tbl">
+        <thead><tr>
+          <th class="c-done"><span class="sr">Done</span>✓</th>
+          <th class="c-pos">#</th>
+          <th class="c-name">SAMPLE</th>
+          <th class="n">ng/µL</th>
+          <th class="c-pur">260/280</th>
+          <th class="c-pur">260/230</th>
+          <th class="n c-s">SAMPLE µL</th>
+          <th class="n c-w" id="wHead">WATER µL</th>
+          <th class="n c-g">GIVES</th>
+          <th class="c-note">NOTE</th>
+          <th class="c-x"><span class="sr">Leave out</span></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+        <tfoot id="foot"></tfoot>
+      </table>
+    </div>
+    <p class="na-out" id="leftOut" hidden></p>
+
+    <div class="na-plate" id="plateBox" hidden>
+      <div class="na-plate-k">PLATE MAP <small id="plateSub"></small></div>
+      <div class="na-plate-grid" id="plate"></div>
+    </div>
+
+    <ul class="notes" id="notes"></ul>
+
+    <details class="na-limits" id="limitsBox">
+      <summary><span class="presets-k">PURITY LIMITS</span> <span id="limitsSay">Green and amber cut-offs for DNA and RNA</span></summary>
+      <div class="na-limits-body">
+        <table class="na-lim">
+          <thead><tr><th></th><th>260/280 GREEN</th><th>260/280 AMBER</th><th>260/230 GREEN ≥</th><th>260/230 AMBER ≥</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">DNA</th><td><input data-l="DNA.g280.0" inputmode="decimal"> – <input data-l="DNA.g280.1" inputmode="decimal"></td><td><input data-l="DNA.y280.0" inputmode="decimal"> – <input data-l="DNA.y280.1" inputmode="decimal"></td><td><input data-l="DNA.g230" inputmode="decimal"></td><td><input data-l="DNA.y230" inputmode="decimal"></td></tr>
+            <tr><th scope="row">RNA</th><td><input data-l="RNA.g280.0" inputmode="decimal"> – <input data-l="RNA.g280.1" inputmode="decimal"></td><td><input data-l="RNA.y280.0" inputmode="decimal"> – <input data-l="RNA.y280.1" inputmode="decimal"></td><td><input data-l="RNA.g230" inputmode="decimal"></td><td><input data-l="RNA.y230" inputmode="decimal"></td></tr>
+          </tbody>
+        </table>
+        <button type="button" class="lm-link" id="limitsReset">RESET TO DEFAULTS</button>
+      </div>
+    </details>
+
+    <div class="na-meta">
+      <label class="na-inline na-grow"><span class="na-k">SHEET TITLE</span><input id="title" type="text" autocomplete="off" placeholder="e.g. RT for qPCR — liver set 2"></label>
+      <label class="na-inline"><span class="na-k">BY</span><input id="who" type="text" autocomplete="off" placeholder="name"></label>
+    </div>
+
+    <div class="ans-actions na-actions">
+      <button type="button" class="btn" id="print">PRINT SHEET</button>
+      <button type="button" class="btn na-btn2" id="xlsx">EXCEL</button>
+      <button type="button" class="btn na-btn2" id="copy">COPY TABLE</button>
+      <button type="button" class="lm-link" id="csv">CSV</button>
+      <details class="na-robot" id="robot">
+        <summary class="lm-link">LIQUID HANDLER</summary>
+        <div class="na-robot-body">
+          <p class="na-small">One row per sample: source well, destination well, sample µL, diluent µL. Source wells come from the export's well column when it has one, otherwise A1, B1, C1… in the order above.</p>
+          <label class="na-inline"><span class="na-k">SOURCE</span>
+            <select id="srcOrder"><option value="file">wells from the file, else A1 down</option><option value="col">A1, B1, C1… (down)</option><option value="row">A1, A2, A3… (across)</option></select>
+          </label>
+          <div class="na-robot-btns">
+            <button type="button" class="btn na-btn2" id="worklist">WORKLIST CSV</button>
+            <button type="button" class="btn na-btn2" id="gwl">TECAN .GWL</button>
+          </div>
+          <p class="na-small" id="robotNote"></p>
+        </div>
+      </details>
+      <span class="btn-copied" id="copied" role="status"></span>
+    </div>
+    <div class="na-next">
+      <span class="na-k">NEXT</span>
+      <button type="button" class="lm-link" id="toMix">SET UP THE RT / PCR MASTER MIX →</button>
+      <button type="button" class="lm-link" id="toLabels">PRINT TUBE LABELS →</button>
+    </div>
+  </div>
+
+  <section class="lm-about">
+    <div class="lm-sec">ABOUT THIS TOOL</div>
+    <div class="lm-cols">
+      <div>
+        <h2>How to use</h2>
+        <ol class="lm-num">
+          <li>Copy the results table from the NanoDrop or Qubit software (or Excel) and paste it into box 1 — or open the exported file. The page finds the name, concentration, unit and ratio columns itself and says what it read.</li>
+          <li>No export? Type one sample per line: a name, then ng/µL, and optionally 260/280 and 260/230.</li>
+          <li>Measured a sample twice? Tick <b>Average repeat readings</b> and readings with the same name are averaged; the spread is shown.</li>
+          <li>Pick a set-up, or type the amount per tube and the final volume. <b>CONCENTRATION</b> mode makes every tube the same ng/µL instead (e.g. 20 ng/µL for sequencing).</li>
+          <li>Read the sheet: green, amber and red mark the purity ratios; rows that need a pre-dilution or are too dilute say what to do.</li>
+          <li><b>PRINT SHEET</b> for the bench (tick each tube as you go), <b>EXCEL</b> or <b>CSV</b> for your notebook, or a worklist for a liquid handler. Tick boxes on screen work too and are kept in this browser.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>The formula</h2>
+        <div class="formula">
+          <span class="eq">V<sub>sample</sub> = m ÷ c<sub>sample</sub></span>
+          <table>
+            <tr><td>diluent</td><td>V<sub>final</sub> − V<sub>sample</sub></td></tr>
+            <tr><td>by concentration</td><td>m = c<sub>final</sub> × V<sub>final</sub></td></tr>
+            <tr><td>too dilute</td><td>V<sub>sample</sub> &gt; V<sub>final</sub>: use V<sub>final</sub>, gives c × V<sub>final</sub></td></tr>
+            <tr><td>pre-dilution</td><td>V<sub>sample</sub> &lt; v<sub>min</sub>: dilute 1:k first, add k × V<sub>sample</sub></td></tr>
+          </table>
+        </div>
+        <p class="example"><b>Example.</b> 1 µg RNA in 10 µL, sample at 412.6 ng/µL: 1000 ÷ 412.6 = 2.42 µL sample + 7.58 µL water. At 2650 ng/µL it would be 0.38 µL — under 0.5 µL — so dilute 2 µL + 6 µL water (1:4) and add 1.51 µL of that.</p>
+        <h2>Good to know</h2>
+        <ol class="lm-num">
+          <li>Free to use. No subscription. Nothing you paste or open leaves your browser.</li>
+          <li>Add the diluent to the tube first, then the sample, so a small volume goes into liquid and is mixed in rather than left on the wall.</li>
+          <li>Absorbance (NanoDrop) counts every nucleotide, free ones and RNA in a DNA prep included; a dye assay (Qubit) counts only its target. For library prep, normalize on the Qubit value.</li>
+          <li>Volumes are rounded to steps you can set on a pipette; GIVES shows the amount after rounding.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+<!-- ref:start -->
+<section class="lm-ref" id="reference" aria-label="Reference">
+  <div class="lm-more-k">REFERENCE · PURITY RATIOS</div>
+  <h2>What the colours mean</h2><p>Default limits; change them under <b>Purity limits</b> on the sheet. Ratios from samples under 10 ng/µL are shown grey: at that level a little noise moves them a lot.</p><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Ratio</th><th scope="col">Green</th><th scope="col">Amber</th><th scope="col">Red</th><th scope="col">Likely cause when low</th></tr></thead><tbody><tr><th scope="row">260/280, DNA</th><td>1.75–2.05</td><td>1.60–1.75 or 2.05–2.20</td><td>&lt; 1.60 or &gt; 2.20</td><td>Protein or phenol. High: RNA left in the DNA.</td></tr><tr><th scope="row">260/280, RNA</th><td>1.90–2.20</td><td>1.80–1.90 or 2.20–2.30</td><td>&lt; 1.80 or &gt; 2.30</td><td>Protein or phenol.</td></tr><tr><th scope="row">260/230, both</th><td>≥ 1.80</td><td>1.50–1.80 (or &gt; 2.6)</td><td>&lt; 1.50</td><td>Guanidine salt from the lysis or binding buffer, phenol, EDTA or carbohydrate.</td></tr></tbody></table></div>
+  <h2>Exports it reads</h2><div class="lm-tab-wrap"><table class="lm-tab"><thead><tr><th scope="col">Instrument</th><th scope="col">Concentration column used</th><th scope="col">Also read</th></tr></thead><tbody><tr><th scope="row">NanoDrop One / OneC</th><td>Nucleic Acid (ng/uL)</td><td>Sample Name, A260/A280, A260/A230</td></tr><tr><th scope="row">NanoDrop Eight</th><td>ng/µL</td><td>Sample Name, Location, A260/A280, A260/A230, Application</td></tr><tr><th scope="row">NanoDrop 8000 / 2000 / Lite</th><td>Conc. or Nucleic Acid Conc. with its Units column</td><td>Sample ID, Well, 260/280, 260/230, Sample Type</td></tr><tr><th scope="row">Qubit 4 / Qubit Flex</th><td>Original sample conc. with its units (ng/mL and µg/mL converted)</td><td>Test Name or Sample Name, Assay Name, Well</td></tr><tr><th scope="row">Anything else</th><td>A column called conc., concentration or ng/µL</td><td>A name column, any 260/280 and 260/230 columns</td></tr></tbody></table></div>
+  <p class="lm-upd">LAST UPDATED <time datetime="2026-11-27">27 NOVEMBER 2026</time> · <a href="../../about/#sources">HOW VALUES ARE CHECKED</a> · <a href="../../about/">ABOUT LABMATE.TOOLS</a></p>
+</section>
+<!-- ref:end -->
+<!-- more:start -->
+<section class="lm-more" aria-label="Questions and related tools">
+  <div class="lm-more-grid">
+    <div class="lm-faq">
+      <div class="lm-more-k">QUESTIONS · DNA &amp; RNA NORMALIZATION</div>
+      <h2>Frequently asked</h2>
+      <details open><summary>How do I calculate how much RNA to add for 1 µg in a reverse transcription?</summary><p>Sample volume = 1000 ng ÷ concentration in ng/µL; water makes up the rest of the template volume. RNA at 412.6 ng/µL needs 2.42 µL, plus 7.58 µL water for 10 µL.</p></details>
+      <details><summary>What are good 260/280 and 260/230 ratios?</summary><p>About 1.8 for DNA and 2.0 for RNA at 260/280; 260/230 is usually 2.0–2.2. Lower 260/280 suggests protein or phenol; lower 260/230 suggests guanidine salt, phenol or carbohydrate carry-over. Below about 10 ng/µL the ratios are too noisy to judge.</p></details>
+      <details><summary>Which NanoDrop and Qubit files can I paste?</summary><p>Exports from NanoDrop One/OneC, Eight, 8000 and 2000/Lite, and Qubit 4 and Qubit Flex (.csv, .tsv, .txt or .xlsx), a block copied from Excel, or a plain list with a name and ng/µL on each line. For Qubit the original sample concentration is used, not the tube concentration.</p></details>
+      <details><summary>What if a sample is too concentrated to pipette?</summary><p>When the volume falls under your smallest pipetting volume (0.5 µL by default) the sheet tells you to pre-dilute it, for example 2 µL + 18 µL water (1:10), and gives the volume of the diluted sample to add.</p></details>
+      <details><summary>What if a sample is too dilute?</summary><p>It is flagged and the whole final volume is used, with the amount it actually gives. The page also tells you the largest amount every sample can reach, so you can lower the target for all of them.</p></details>
+      <details><summary>Is my data uploaded?</summary><p>No. Pasting, opening files, the calculation and the exports all happen in your browser.</p></details>
+    </div>
+    <nav class="lm-rel" aria-label="Related tools">
+      <div class="lm-more-k">SEE ALSO</div>
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="../master-mix/"><span class="n">2.1</span><span class="t">Master Mix Calculator</span><span class="d">The RT or PCR mix for the samples you just normalized, with overage.</span></a></li>
+        <li><a href="../qpcr/"><span class="n">2.5</span><span class="t">qPCR ΔΔCq</span><span class="d">After the run: fold changes against several reference genes.</span></a></li>
+        <li><a href="../cloning/"><span class="n">2.6</span><span class="t">Cloning Reaction Calculator</span><span class="d">ng/µL and fragment lengths to insert:vector molar ratios.</span></a></li>
+        <li><a href="../dilution/"><span class="n">2.2</span><span class="t">Dilution Calculator</span><span class="d">Solve C₁V₁ = C₂V₂ in any unit for a single tube.</span></a></li>
+        <li><a href="../plate-layout/"><span class="n">1.2</span><span class="t">Plate Layout Maker</span><span class="d">Plan the qPCR plate with replicates and controls.</span></a></li>
+      </ul>
+      <a class="all" href="../../#calculators">ALL 26 TOOLS →</a>
+      <a class="all" href="../../contact/?topic=nucleic-acid">QUESTION OR PROBLEM? CONTACT US →</a>
+    </nav>
+  </div>
+</section>
+<!-- more:end -->
+</main>
+
+<footer class="lm-foot lm-foot-in">
+  <span>LABMATE.TOOLS · VOL. 1</span>
+  <span><a href="../../">INDEX</a> · <a href="../master-mix/">MASTER MIX</a> · <a href="../../contact/?topic=nucleic-acid">CONTACT</a> · <a href="../../privacy/">PRIVACY</a> · <a href="https://unjamkit.com">UNJAMKIT</a></span>
+  <span>P. 2.8</span>
+</footer>
+
+<script src="../../assets/calc-core.js?v=1"></script>
+<script src="../../assets/handoff.js?v=1"></script>
+<script src="na-core.js?v=1"></script>
+<script src="na.js?v=1"></script>
+</body>
+</html>
